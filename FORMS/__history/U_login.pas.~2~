@@ -52,8 +52,7 @@ begin
   //Se não pare
   else
   begin
-    //msg('Usuario incorreto','Porfavor verifique as informações');
-    MessageDlg('Usuario incorreto, porfavor verifique as informações', MTINFORMATION, [MBOK], 0);
+    msg('Usuario incorreto','Porfavor verifique as informações');
     edNome.Clear;
     edSenha.Clear;
     edNome.SetFocus;

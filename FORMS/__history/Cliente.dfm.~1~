@@ -295,6 +295,8 @@ object FrmCliente: TFrmCliente
     ActivePage = Cadastro
     Align = alClient
     TabOrder = 1
+    ExplicitLeft = -8
+    ExplicitTop = 665
     object Consulta: TTabSheet
       Caption = 'Consulta'
       object SgConsulta: TSuperGrid
@@ -463,6 +465,7 @@ object FrmCliente: TFrmCliente
         Color = 14869218
         ParentColor = False
         TabOrder = 1
+        ExplicitTop = 100
         object Label15: TLabel
           Left = 12
           Top = 35
@@ -849,6 +852,10 @@ object FrmCliente: TFrmCliente
         Align = alClient
         Color = 14869218
         TabOrder = 3
+        ExplicitLeft = -35
+        ExplicitTop = -2
+        ExplicitWidth = 185
+        ExplicitHeight = 41
       end
     end
   end

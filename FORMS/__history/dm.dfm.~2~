@@ -38,36 +38,12 @@ object Conexao: TConexao
   end
   object sqlLogin: TSQLDataSet
     SchemaName = 'sysdba'
-    Active = True
     CommandText = 'SELECT * FROM LOGIN ORDER BY IDUSUARIO'
     MaxBlobSize = -1
     Params = <>
     SQLConnection = Conexao
     Left = 192
     Top = 16
-    object sqlLoginIDUSUARIO: TIntegerField
-      FieldName = 'IDUSUARIO'
-      Required = True
-    end
-    object sqlLoginNOME: TStringField
-      FieldName = 'NOME'
-      Size = 150
-    end
-    object sqlLoginSENHA: TStringField
-      FieldName = 'SENHA'
-      Size = 50
-    end
-    object sqlLoginTIPO: TStringField
-      FieldName = 'TIPO'
-      Size = 50
-    end
-    object sqlLoginCADASTRO: TDateField
-      FieldName = 'CADASTRO'
-    end
-    object sqlLoginNIVEL: TStringField
-      FieldName = 'NIVEL'
-      Size = 30
-    end
   end
   object dspLogin: TDataSetProvider
     DataSet = sqlLogin
@@ -75,34 +51,10 @@ object Conexao: TConexao
     Top = 16
   end
   object cdsLogin: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
-    ProviderName = 'dspLogin'
+    ProviderName = 'dspConsulta'
     Left = 257
     Top = 16
-    object cdsLoginIDUSUARIO: TIntegerField
-      FieldName = 'IDUSUARIO'
-      Required = True
-    end
-    object cdsLoginNOME: TStringField
-      FieldName = 'NOME'
-      Size = 150
-    end
-    object cdsLoginSENHA: TStringField
-      FieldName = 'SENHA'
-      Size = 50
-    end
-    object cdsLoginTIPO: TStringField
-      FieldName = 'TIPO'
-      Size = 50
-    end
-    object cdsLoginCADASTRO: TDateField
-      FieldName = 'CADASTRO'
-    end
-    object cdsLoginNIVEL: TStringField
-      FieldName = 'NIVEL'
-      Size = 30
-    end
   end
 end

@@ -38,22 +38,21 @@ uses dm, Menu;
 procedure TFrmlogin.BitBtn1Click(Sender: TObject);
 begin
   //Validação de login, pesquisa de login no banco de  dados.
-  Conexao.cdsLogin.close;
-  Conexao.cdsLogin.Open;
+  dm.Conexao.cdsLogin.close;
+  dm.Conexao.cdsLogin.Open;
   //Se localizar o NOME e SENHA na tabela sendo igual nos Edt, passe
-  if Conexao.cdsLogin.Locate('NOME',edNome.Text,[]) and dm.Conexao.cdsLogin.Locate ('SENHA', edSenha.Text,[]) then
+  if dm.Conexao.cdsLogin.Locate('NOME',edNome.Text,[]) and dm.Conexao.cdsLogin.Locate ('SENHA', edSenha.Text,[]) then
   begin
     //Trazendo variaveis USUARIO E TIPO
-    //Conexao.Usuario := edNome.Text;
-    //Conexao.TIPO := dm.cdsUsuarioTIPO.AsString;
+    dm.Usuario := edNome.Text;
+    dm.Tipo := dm.cdsUsuarioTIPO.AsString;
     FrmMenu := TFrmMenu.Create(nil);
     FrmMenu.Show;
   end
   //Se não pare
   else
   begin
-    //msg('Usuario incorreto','Porfavor verifique as informações');
-    MessageDlg('Usuario incorreto, porfavor verifique as informações', MTINFORMATION, [MBOK], 0);
+    msg('Usuario incorreto','Porfavor verifique as informações');
     edNome.Clear;
     edSenha.Clear;
     edNome.SetFocus;

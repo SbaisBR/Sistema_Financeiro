@@ -13,18 +13,17 @@ type
     sqlLogin: TSQLDataSet;
     dspLogin: TDataSetProvider;
     cdsLogin: TClientDataSet;
-    sqlLoginIDUSUARIO: TIntegerField;
-    sqlLoginNOME: TStringField;
-    sqlLoginSENHA: TStringField;
-    sqlLoginTIPO: TStringField;
-    sqlLoginCADASTRO: TDateField;
-    sqlLoginNIVEL: TStringField;
-    cdsLoginIDUSUARIO: TIntegerField;
-    cdsLoginNOME: TStringField;
-    cdsLoginSENHA: TStringField;
-    cdsLoginTIPO: TStringField;
-    cdsLoginCADASTRO: TDateField;
-    cdsLoginNIVEL: TStringField;
+    cdsLoginID: TIntegerField;
+    cdsLoginRAZAOSOCIAL: TStringField;
+    cdsLoginFANTASIA: TStringField;
+    cdsLoginTELEFONE_COMP: TStringField;
+    cdsLoginCIDADE: TStringField;
+    cdsLoginCNPJ: TStringField;
+    cdsLoginESTADO: TStringField;
+    cdsLoginENDERECO: TStringField;
+    cdsLoginNUMERO: TStringField;
+    cdsLoginBAIRRO: TStringField;
+    cdsLoginCEP: TStringField;
 
 
 
@@ -34,12 +33,11 @@ type
     FIDUsuario: integer;
     procedure SetFSelecionar(const Value: Boolean);
   public
-    Usuario, Tipo : String;
     function GetServiceController: TServiceController; override;
     { Public declarations }
-
-    //property FSelecionar : Boolean read FFSelecionar write SetFSelecionar;
-    //property IDUsuario          : integer read FIDUsuario write FIDUsuario;
+  //  Usuario, Tipo : String;
+    property FSelecionar : Boolean read FFSelecionar write SetFSelecionar;
+    property IDUsuario          : integer read FIDUsuario write FIDUsuario;
 
   end;
 

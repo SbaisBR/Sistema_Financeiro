@@ -13,18 +13,6 @@ type
     sqlLogin: TSQLDataSet;
     dspLogin: TDataSetProvider;
     cdsLogin: TClientDataSet;
-    sqlLoginIDUSUARIO: TIntegerField;
-    sqlLoginNOME: TStringField;
-    sqlLoginSENHA: TStringField;
-    sqlLoginTIPO: TStringField;
-    sqlLoginCADASTRO: TDateField;
-    sqlLoginNIVEL: TStringField;
-    cdsLoginIDUSUARIO: TIntegerField;
-    cdsLoginNOME: TStringField;
-    cdsLoginSENHA: TStringField;
-    cdsLoginTIPO: TStringField;
-    cdsLoginCADASTRO: TDateField;
-    cdsLoginNIVEL: TStringField;
 
 
 

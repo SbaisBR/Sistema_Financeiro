@@ -2,20 +2,20 @@ program Project1;
 
 uses
   Forms,
-  Menu in 'Menu.pas' {FrmMenu},
-  dm in 'dm.pas' {Conexao: TService},
-  Cliente in 'Cliente.pas' {FrmCliente},
-  Fornecedor in 'Fornecedor.pas' {FrmFornecedor},
-  Prestador in 'Prestador.pas' {FrmPrestador},
-  Transportador in 'Transportador.pas' {FrmTransportador},
-  U_login in 'U_login.pas' {Frmlogin};
+  Cliente in '..\FORMS\Cliente.pas' {FrmCliente},
+  dm in '..\FORMS\dm.pas' {Conexao: TService},
+  Fornecedor in '..\FORMS\Fornecedor.pas' {FrmFornecedor},
+  Menu in '..\FORMS\Menu.pas' {FrmMenu},
+  Prestador in '..\FORMS\Prestador.pas' {FrmPrestador},
+  Transportador in '..\FORMS\Transportador.pas' {FrmTransportador},
+  U_login in '..\FORMS\U_login.pas' {Frmlogin};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.CreateForm(TFrmlogin, Frmlogin);
-  Application.CreateForm(TFrmMenu, FrmMenu);
   Application.CreateForm(TConexao, Conexao);
+  Application.CreateForm(TFrmMenu, FrmMenu);
   Application.Run;
 end.

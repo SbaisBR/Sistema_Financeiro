@@ -119,8 +119,8 @@
 			<Linker Name="ExeDescription"></Linker>
 		</Linker>
 		<Directories>
-			<Directories Name="OutputDir">C:\Users\IMPLANTACAO-4\Documents\GitHub\Sistema_Financeiro\EXE</Directories>
-			<Directories Name="UnitOutputDir">C:\Users\IMPLANTACAO-4\Documents\GitHub\Sistema_Financeiro\DCU</Directories>
+			<Directories Name="OutputDir"></Directories>
+			<Directories Name="UnitOutputDir"></Directories>
 			<Directories Name="PackageDLLOutputDir"></Directories>
 			<Directories Name="PackageDCPOutputDir"></Directories>
 			<Directories Name="SearchPath"></Directories>
