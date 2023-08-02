@@ -629,7 +629,6 @@ object FrmMenu: TFrmMenu
         HotTrackFont.Name = 'Tahoma'
         HotTrackFont.Style = []
         ParentFont = False
-        OnClick = sbCLClick
         ExplicitLeft = 10
         ExplicitTop = 0
         ExplicitWidth = 152
@@ -1172,7 +1171,6 @@ object FrmMenu: TFrmMenu
         HotTrackFont.Name = 'Tahoma'
         HotTrackFont.Style = []
         ParentFont = False
-        OnClick = sbPRClick
         ExplicitLeft = 10
         ExplicitTop = 90
         ExplicitWidth = 152
@@ -1715,7 +1713,6 @@ object FrmMenu: TFrmMenu
         HotTrackFont.Name = 'Tahoma'
         HotTrackFont.Style = []
         ParentFont = False
-        OnClick = sbFRClick
         ExplicitLeft = 10
         ExplicitTop = 180
         ExplicitWidth = 152
@@ -2258,7 +2255,6 @@ object FrmMenu: TFrmMenu
         HotTrackFont.Name = 'Tahoma'
         HotTrackFont.Style = []
         ParentFont = False
-        OnClick = sbTRClick
         ExplicitLeft = 10
         ExplicitTop = 270
         ExplicitWidth = 152

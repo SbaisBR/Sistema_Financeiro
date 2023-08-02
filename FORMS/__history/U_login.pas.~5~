@@ -46,7 +46,7 @@ begin
   begin
     //Trazendo variaveis USUARIO E TIPO
     Conexao.Usuario := edNome.Text;
-    Conexao.TIPO := Conexao.cdsUsuarioTIPO.AsString;
+    Conexao.TIPO := dm.cdsUsuarioTIPO.AsString;
     FrmMenu := TFrmMenu.Create(nil);
     FrmMenu.Show;
   end

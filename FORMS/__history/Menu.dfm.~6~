@@ -17,19 +17,18 @@ object FrmMenu: TFrmMenu
   TextHeight = 13
   object pn1: TPanel
     Left = 0
-    Top = 101
+    Top = 97
     Width = 169
-    Height = 631
+    Height = 635
     Align = alLeft
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
     ExplicitLeft = 8
     ExplicitTop = 91
-    ExplicitHeight = 635
     object pnlSair: TPanel
       Left = 0
-      Top = 556
+      Top = 560
       Width = 169
       Height = 75
       Align = alBottom
@@ -61,10 +60,8 @@ object FrmMenu: TFrmMenu
       Left = 0
       Top = 0
       Width = 4
-      Height = 556
+      Height = 560
       Align = alLeft
-      BevelOuter = bvNone
-      Color = 4079682
       TabOrder = 1
       ExplicitHeight = 576
       object ShapeMenu: TShape
@@ -81,7 +78,7 @@ object FrmMenu: TFrmMenu
       Left = 4
       Top = 0
       Width = 165
-      Height = 556
+      Height = 560
       Align = alClient
       BevelOuter = bvNone
       Color = 4079682
@@ -629,7 +626,6 @@ object FrmMenu: TFrmMenu
         HotTrackFont.Name = 'Tahoma'
         HotTrackFont.Style = []
         ParentFont = False
-        OnClick = sbCLClick
         ExplicitLeft = 10
         ExplicitTop = 0
         ExplicitWidth = 152
@@ -1172,7 +1168,6 @@ object FrmMenu: TFrmMenu
         HotTrackFont.Name = 'Tahoma'
         HotTrackFont.Style = []
         ParentFont = False
-        OnClick = sbPRClick
         ExplicitLeft = 10
         ExplicitTop = 90
         ExplicitWidth = 152
@@ -1715,7 +1710,6 @@ object FrmMenu: TFrmMenu
         HotTrackFont.Name = 'Tahoma'
         HotTrackFont.Style = []
         ParentFont = False
-        OnClick = sbFRClick
         ExplicitLeft = 10
         ExplicitTop = 180
         ExplicitWidth = 152
@@ -2258,7 +2252,6 @@ object FrmMenu: TFrmMenu
         HotTrackFont.Name = 'Tahoma'
         HotTrackFont.Style = []
         ParentFont = False
-        OnClick = sbTRClick
         ExplicitLeft = 10
         ExplicitTop = 270
         ExplicitWidth = 152
@@ -2269,7 +2262,7 @@ object FrmMenu: TFrmMenu
     Left = 0
     Top = 0
     Width = 1117
-    Height = 101
+    Height = 97
     Align = alTop
     BevelOuter = bvNone
     Color = 4079682
@@ -2297,21 +2290,20 @@ object FrmMenu: TFrmMenu
   end
   object Panel2: TPanel
     Left = 169
-    Top = 101
+    Top = 97
     Width = 948
-    Height = 631
+    Height = 635
     Align = alClient
     Caption = 'Panel2'
     TabOrder = 2
     ExplicitLeft = 105
-    ExplicitTop = 97
     ExplicitWidth = 1012
     ExplicitHeight = 613
     object Panel3: TPanel
       Left = 1
       Top = 1
       Width = 946
-      Height = 629
+      Height = 633
       Align = alClient
       Caption = 'Panel2'
       TabOrder = 0
@@ -2322,7 +2314,7 @@ object FrmMenu: TFrmMenu
         Left = 4
         Top = 4
         Width = 938
-        Height = 621
+        Height = 625
         Align = alClient
         Picture.Data = {
           0A544A504547496D6167658FC80000FFD8FFE000104A46494600010101006000
@@ -3933,7 +3925,6 @@ object FrmMenu: TFrmMenu
         Stretch = True
         ExplicitLeft = 5
         ExplicitTop = 3
-        ExplicitHeight = 625
       end
     end
   end

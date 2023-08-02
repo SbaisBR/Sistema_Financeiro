@@ -41,7 +41,7 @@ type
     { Private declarations }
     FFSelecionar : Boolean;
     FIDUsuario: integer;
-    //procedure SetFSelecionar(const Value: Boolean);
+    procedure SetFSelecionar(const Value: Boolean);
   public
     Usuario, Tipo : String;
    // function GetServiceController: TServiceController; override;

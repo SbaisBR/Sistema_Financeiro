@@ -107,50 +107,70 @@ object Conexao: TConexao
   end
   object sqlUsuario: TSQLDataSet
     SchemaName = 'sysdba'
-    CommandText = 'SELECT * FROM USUARIO'#13#10'ORDER BY IDUSUARIO'
+    CommandText = 'SELECT * FROM LOGIN ORDER BY IDUSUARIO'
     MaxBlobSize = -1
     Params = <>
-    Left = 186
-    Top = 65
-  end
-  object dspUsuario: TDataSetProvider
-    DataSet = sqlUsuario
-    Left = 218
-    Top = 65
-  end
-  object cdsUsuario: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspUsuario'
-    Left = 250
+    SQLConnection = Conexao
+    Left = 192
     Top = 64
-    object cdsUsuarioIDUSUARIO: TIntegerField
+    object IntegerField1: TIntegerField
       FieldName = 'IDUSUARIO'
       Required = True
     end
-    object cdsUsuarioNOME: TStringField
+    object StringField1: TStringField
       FieldName = 'NOME'
-      Required = True
-      Size = 100
+      Size = 150
     end
-    object cdsUsuarioSENHA: TStringField
+    object StringField2: TStringField
       FieldName = 'SENHA'
-      Required = True
-      Size = 30
+      Size = 50
     end
-    object cdsUsuarioTIPO: TStringField
+    object StringField3: TStringField
       FieldName = 'TIPO'
-      Required = True
-      Size = 30
+      Size = 50
     end
-    object cdsUsuarioCADASTRO: TDateField
+    object DateField1: TDateField
       FieldName = 'CADASTRO'
-      Required = True
+    end
+    object StringField4: TStringField
+      FieldName = 'NIVEL'
+      Size = 30
     end
   end
-  object dtsUsuario: TDataSource
-    DataSet = cdsUsuario
-    Left = 281
+  object dspUsuario: TDataSetProvider
+    DataSet = sqlUsuario
+    Left = 224
     Top = 64
+  end
+  object cdsUsuario: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspLogin'
+    Left = 257
+    Top = 64
+    object IntegerField2: TIntegerField
+      FieldName = 'IDUSUARIO'
+      Required = True
+    end
+    object StringField5: TStringField
+      FieldName = 'NOME'
+      Size = 150
+    end
+    object StringField6: TStringField
+      FieldName = 'SENHA'
+      Size = 50
+    end
+    object StringField7: TStringField
+      FieldName = 'TIPO'
+      Size = 50
+    end
+    object DateField2: TDateField
+      FieldName = 'CADASTRO'
+    end
+    object StringField8: TStringField
+      FieldName = 'NIVEL'
+      Size = 30
+    end
   end
 end

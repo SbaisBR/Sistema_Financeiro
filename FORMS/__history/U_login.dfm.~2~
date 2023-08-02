@@ -12,7 +12,6 @@ object Frmlogin: TFrmlogin
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
-  OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 13
@@ -44,7 +43,7 @@ object Frmlogin: TFrmlogin
   end
   object Image1: TImage
     Left = 336
-    Top = 8
+    Top = 16
     Width = 205
     Height = 193
     Picture.Data = {
@@ -668,15 +667,14 @@ object Frmlogin: TFrmlogin
     Left = 24
     Top = 72
     Width = 249
-    Height = 21
+    Height = 25
     TabOrder = 0
   end
   object edSenha: TEdit
     Left = 24
     Top = 136
     Width = 249
-    Height = 21
-    PasswordChar = '*'
+    Height = 25
     TabOrder = 1
   end
   object BitBtn1: TBitBtn

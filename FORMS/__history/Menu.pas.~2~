@@ -5,12 +5,16 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, ImgList, JvExControls, JvSpeedButton, Buttons, jpeg,
-  ToolWin, ActnMan, ActnCtrls, ActnMenus, ActnList, XPStyleActnCtrls, ComCtrls;
+  ToolWin, ActnMan, ActnCtrls, ActnMenus, ActnList, XPStyleActnCtrls;
 
 type
   TFrmMenu = class(TForm)
     pn1: TPanel;
     Panel1: TPanel;
+    sbTR: TJvSpeedButton;
+    sbCL: TJvSpeedButton;
+    sbFR: TJvSpeedButton;
+    sbPR: TJvSpeedButton;
     ImageList1: TImageList;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -27,17 +31,6 @@ type
     Prestador: TAction;
     Transportador: TAction;
     Timer1: TTimer;
-    StatusBar1: TStatusBar;
-    pnlSair: TPanel;
-    pnlShapeShapeMenu: TPanel;
-    ShapeMenu: TShape;
-    pnlDadosMenu: TPanel;
-    sbCL: TJvSpeedButton;
-    sbPR: TJvSpeedButton;
-    sbFR: TJvSpeedButton;
-    sbTR: TJvSpeedButton;
-    btnSair: TSpeedButton;
-    procedure btnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure sbCLClick(Sender: TObject);
@@ -58,11 +51,6 @@ implementation
 uses Cliente, dm, Fornecedor, Prestador, Transportador, U_login;
 
 {$R *.dfm}
-
-procedure TFrmMenu.btnSairClick(Sender: TObject);
-begin
-  Application.Terminate;
-end;
 
 procedure TFrmMenu.FormCreate(Sender: TObject);
 begin
@@ -95,10 +83,7 @@ end;
 
 procedure TFrmMenu.Timer1Timer(Sender: TObject);
 begin
-  StatusBar1.Panels[0].Text := 'DATA'+datetostr(Now);
-  StatusBar1.Panels[1].Text := 'Horas'+TimeToStr(Now);
-  StatusBar1.Panels[2].Text := 'Seja Bem Vindo'+Conexao.usuario;
-  StatusBar1.Panels[3].Text := 'Seja Bem Vindo'+Conexao.Tipo;
+  StatusBar1
 end;
 
 end.

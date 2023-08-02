@@ -26,14 +26,20 @@ type
     cdsLoginCADASTRO: TDateField;
     cdsLoginNIVEL: TStringField;
     sqlUsuario: TSQLDataSet;
+    IntegerField1: TIntegerField;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    DateField1: TDateField;
+    StringField4: TStringField;
     dspUsuario: TDataSetProvider;
     cdsUsuario: TClientDataSet;
-    cdsUsuarioIDUSUARIO: TIntegerField;
-    cdsUsuarioNOME: TStringField;
-    cdsUsuarioSENHA: TStringField;
-    cdsUsuarioTIPO: TStringField;
-    cdsUsuarioCADASTRO: TDateField;
-    dtsUsuario: TDataSource;
+    IntegerField2: TIntegerField;
+    StringField5: TStringField;
+    StringField6: TStringField;
+    StringField7: TStringField;
+    DateField2: TDateField;
+    StringField8: TStringField;
 
 
 
@@ -41,7 +47,7 @@ type
     { Private declarations }
     FFSelecionar : Boolean;
     FIDUsuario: integer;
-    //procedure SetFSelecionar(const Value: Boolean);
+    procedure SetFSelecionar(const Value: Boolean);
   public
     Usuario, Tipo : String;
    // function GetServiceController: TServiceController; override;

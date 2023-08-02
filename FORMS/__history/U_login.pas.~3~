@@ -16,7 +16,6 @@ type
     Image1: TImage;
     BitBtn2: TBitBtn;
     Bevel1: TBevel;
-    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -45,8 +44,8 @@ begin
   if Conexao.cdsLogin.Locate('NOME',edNome.Text,[]) and dm.Conexao.cdsLogin.Locate ('SENHA', edSenha.Text,[]) then
   begin
     //Trazendo variaveis USUARIO E TIPO
-    Conexao.Usuario := edNome.Text;
-    Conexao.TIPO := Conexao.cdsUsuarioTIPO.AsString;
+    //Conexao.Usuario := edNome.Text;
+    //Conexao.TIPO := dm.cdsUsuarioTIPO.AsString;
     FrmMenu := TFrmMenu.Create(nil);
     FrmMenu.Show;
   end
@@ -72,21 +71,10 @@ begin
 Image1.Transparent := True;
 end;
 
-procedure TFrmlogin.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  if Key = vk_escape then
-  begin
-    Close
-  end;
-end;
-
 procedure TFrmlogin.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-  if Key = #13 then
-  begin
-    Key:=#0;
-    Perform(wm_NextDlgCtl,0,0);
-  end;
+  if key = #27 then
+    close;
 end;
+
 end.

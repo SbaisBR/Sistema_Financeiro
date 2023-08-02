@@ -61,7 +61,7 @@ uses Cliente, dm, Fornecedor, Prestador, Transportador, U_login;
 
 procedure TFrmMenu.btnSairClick(Sender: TObject);
 begin
-  Application.Terminate;
+  Aplication.Terminate;
 end;
 
 procedure TFrmMenu.FormCreate(Sender: TObject);

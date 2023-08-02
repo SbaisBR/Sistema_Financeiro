@@ -14,7 +14,8 @@ uses
 
 begin
   Application.Initialize;
-  Application.CreateForm(TConexao, Conexao);
   Application.CreateForm(TFrmlogin, Frmlogin);
+  Application.CreateForm(TConexao, Conexao);
+  Application.CreateForm(TFrmMenu, FrmMenu);
   Application.Run;
 end.

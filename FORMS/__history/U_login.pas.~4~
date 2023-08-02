@@ -45,8 +45,8 @@ begin
   if Conexao.cdsLogin.Locate('NOME',edNome.Text,[]) and dm.Conexao.cdsLogin.Locate ('SENHA', edSenha.Text,[]) then
   begin
     //Trazendo variaveis USUARIO E TIPO
-    Conexao.Usuario := edNome.Text;
-    Conexao.TIPO := Conexao.cdsUsuarioTIPO.AsString;
+    //Conexao.Usuario := edNome.Text;
+    //Conexao.TIPO := dm.cdsUsuarioTIPO.AsString;
     FrmMenu := TFrmMenu.Create(nil);
     FrmMenu.Show;
   end
