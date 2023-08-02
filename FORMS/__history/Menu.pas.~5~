@@ -29,7 +29,7 @@ type
     Timer1: TTimer;
     StatusBar1: TStatusBar;
     pnlSair: TPanel;
-    pnlShapeMenu: TPanel;
+    pnlShapeShapeMenu: TPanel;
     ShapeMenu: TShape;
     pnlDadosMenu: TPanel;
     sbCL: TJvSpeedButton;
@@ -37,7 +37,6 @@ type
     sbFR: TJvSpeedButton;
     sbTR: TJvSpeedButton;
     btnSair: TSpeedButton;
-    procedure FormShow(Sender: TObject);
     procedure btnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
@@ -47,7 +46,6 @@ type
     procedure sbTRClick(Sender: TObject);
   private
     { Private declarations }
-    procedure GET_LineMENU(Sender: TObject);
   public
     { Public declarations }
   end;
@@ -71,44 +69,26 @@ begin
   frmLogin.Visible := False;
 end;
 
-procedure TFrmMenu.FormShow(Sender: TObject);
-begin
-  GET_LineMENU(sbCL);
-end;
-
-procedure TFrmMenu.GET_LineMENU(Sender: TObject);
-begin
-  ShapeMenu.Left    := 0;
-  ShapeMenu.Top     := 0;
-  ShapeMenu.Height  := TJvSpeedButton(Sender).Height;
-  ShapeMenu.Top  := TJvSpeedButton(Sender).Top;
-  pnlShapeMenu.Repaint;
-end;
-
 procedure TFrmMenu.sbCLClick(Sender: TObject);
-begin //Clientes
-  GET_LineMENU(Sender);
+begin
   frmCliente := TFrmCliente.Create(nil);
   frmCliente.ShowModal;
 end;
 
 procedure TFrmMenu.sbFRClick(Sender: TObject);
-begin //Fornecedor
-  GET_LineMENU(Sender);
+begin
   FrmFornecedor := TFrmFornecedor.Create(nil);
   FrmFornecedor.ShowModal;
 end;
 
 procedure TFrmMenu.sbPRClick(Sender: TObject);
-begin //Prestador
-  GET_LineMENU(Sender);
+begin
   FrmPrestador := TfrmPrestador.Create(nil);
   FrmPrestador.ShowModal;
 end;
 
 procedure TFrmMenu.sbTRClick(Sender: TObject);
-begin //Transportador
-  GET_LineMENU(Sender);
+begin
   FrmTransportador := TfrmTransportador.Create(nil);
   FrmTransportador.ShowModal;
 end;
