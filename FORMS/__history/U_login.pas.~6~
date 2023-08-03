@@ -47,7 +47,6 @@ begin
     //Trazendo variaveis USUARIO E TIPO
     Conexao.Usuario := edNome.Text;
     Conexao.TIPO := Conexao.cdsUsuarioTIPO.AsString;
-    FrmLogin.Visible := False;
     FrmMenu := TFrmMenu.Create(nil);
     FrmMenu.Show;
   end

@@ -12,8 +12,7 @@ object FrmMenu: TFrmMenu
   Font.Style = []
   OldCreateOrder = False
   Position = poDesigned
-  WindowState = wsMaximized
-  OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -217,7 +216,7 @@ object FrmMenu: TFrmMenu
         AlignWithMargins = True
         Left = 3
         Top = 25
-        Width = 159
+        Width = 158
         Height = 82
         Hint = 'Clientes'
         Margins.Top = 25
@@ -762,7 +761,7 @@ object FrmMenu: TFrmMenu
         AlignWithMargins = True
         Left = 3
         Top = 132
-        Width = 159
+        Width = 158
         Height = 82
         Hint = 'Prestadores'
         Margins.Top = 25
@@ -1305,7 +1304,7 @@ object FrmMenu: TFrmMenu
         AlignWithMargins = True
         Left = 3
         Top = 239
-        Width = 159
+        Width = 158
         Height = 82
         Hint = 'Fornecedores'
         Margins.Top = 25
@@ -1841,12 +1840,13 @@ object FrmMenu: TFrmMenu
         ParentFont = False
         OnClick = sbFRClick
         ExplicitLeft = 5
+        ExplicitWidth = 159
       end
       object sbTR: TJvSpeedButton
         AlignWithMargins = True
         Left = 3
         Top = 346
-        Width = 159
+        Width = 158
         Height = 82
         Hint = 'Transportador'
         Margins.Top = 25
@@ -2444,7 +2444,7 @@ object FrmMenu: TFrmMenu
         OnMouseLeave = lblTituloEmpresaMouseLeave
       end
     end
-    object pnlUser: TPanel
+    object Panel5: TPanel
       Left = 992
       Top = 24
       Width = 125
@@ -2453,7 +2453,9 @@ object FrmMenu: TFrmMenu
       BevelOuter = bvNone
       Color = 4079682
       TabOrder = 2
-      object imgUser: TImage
+      ExplicitLeft = 991
+      ExplicitTop = 23
+      object Image2: TImage
         Left = 40
         Top = 0
         Width = 125
@@ -3139,7 +3141,6 @@ object FrmMenu: TFrmMenu
           FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFF
           FF000000}
         Stretch = True
-        OnClick = imgUserClick
       end
     end
   end
@@ -4805,7 +4806,7 @@ object FrmMenu: TFrmMenu
     Left = 840
     Top = 32
     Bitmap = {
-      494C010103000400040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000400040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000000000FF000000FF000000FF0000
       00FFFCFCFCFFFFFFFFFFFEFEFEFF595959FFBCBCBCFF000000FFFCFCFCFFFEFE
@@ -4941,8 +4942,7 @@ object FrmMenu: TFrmMenu
       4201F203001000000303D022011000001A83C480013C00001B03840881100000
       01020000E001000004000000F083000004048000F07F000020018009E07F0000
       02420002E03F00008280000CE03F00000011000FE03F00001040200FE03F0000
-      0000A00FE07F00008088FFFFF07F000000000000000000000000000000000000
-      000000000000}
+      0000A00FE07F00008088FFFFF07F0000}
   end
   object ActionManager1: TActionManager
     ActionBars = <

@@ -40,14 +40,14 @@ type
     btnSair: TSpeedButton;
     Panel4: TPanel;
     lblTituloEmpresa: TLabel;
-    pnlUser: TPanel;
-    imgUser: TImage;
-    procedure imgUserClick(Sender: TObject);
+    Panel5: TPanel;
+    Image2: TImage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure lblTituloEmpresaMouseLeave(Sender: TObject);
     procedure lblTituloEmpresaMouseEnter(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnSairClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure sbCLClick(Sender: TObject);
     procedure sbPRClick(Sender: TObject);
@@ -65,7 +65,7 @@ var
 
 implementation
 
-uses Cliente, dm, Fornecedor, Prestador, Transportador, U_login, U_User;
+uses Cliente, dm, Fornecedor, Prestador, Transportador, U_login;
 
 {$R *.dfm}
 
@@ -91,12 +91,6 @@ begin
   ShapeMenu.Height  := TJvSpeedButton(Sender).Height;
   ShapeMenu.Top  := TJvSpeedButton(Sender).Top;
   pnlShapeMenu.Repaint;
-end;
-
-procedure TFrmMenu.imgUserClick(Sender: TObject);
-begin
-  frmUser := TFrmUser.Create(nil);
-  frmUser.ShowModal;
 end;
 
 procedure TFrmMenu.lblTituloEmpresaMouseEnter(Sender: TObject);
@@ -141,7 +135,7 @@ procedure TFrmMenu.Timer1Timer(Sender: TObject);
 begin
   StatusBar1.Panels[0].Text := 'DATA'+datetostr(Now);
   StatusBar1.Panels[1].Text := 'Horas'+TimeToStr(Now);
-  StatusBar1.Panels[2].Text := 'Seja Bem Vindo '+Conexao.usuario;
+  StatusBar1.Panels[2].Text := 'Seja Bem Vindo'+Conexao.usuario;
   StatusBar1.Panels[3].Text := 'Seja Bem Vindo'+Conexao.Tipo;
 end;
 

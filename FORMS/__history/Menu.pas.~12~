@@ -48,6 +48,7 @@ type
     procedure lblTituloEmpresaMouseEnter(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnSairClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure sbCLClick(Sender: TObject);
     procedure sbPRClick(Sender: TObject);
@@ -141,7 +142,7 @@ procedure TFrmMenu.Timer1Timer(Sender: TObject);
 begin
   StatusBar1.Panels[0].Text := 'DATA'+datetostr(Now);
   StatusBar1.Panels[1].Text := 'Horas'+TimeToStr(Now);
-  StatusBar1.Panels[2].Text := 'Seja Bem Vindo '+Conexao.usuario;
+  StatusBar1.Panels[2].Text := 'Seja Bem Vindo'+Conexao.usuario;
   StatusBar1.Panels[3].Text := 'Seja Bem Vindo'+Conexao.Tipo;
 end;
 
