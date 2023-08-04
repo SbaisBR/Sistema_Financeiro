@@ -14,6 +14,7 @@ object FrmMenu: TFrmMenu
   Position = poDesigned
   WindowState = wsMaximized
   OnClose = FormClose
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -2454,8 +2455,8 @@ object FrmMenu: TFrmMenu
       Color = 4079682
       TabOrder = 2
       object imgUser: TImage
-        Left = 40
-        Top = 0
+        Left = 49
+        Top = 3
         Width = 125
         Height = 111
         Align = alCustom
@@ -4973,6 +4974,7 @@ object FrmMenu: TFrmMenu
     object Action1: TAction
       Category = 'Atalho'
       Caption = 'Cliente'
+      OnExecute = Action1Execute
     end
     object Action2: TAction
       Category = 'Atalho'

@@ -42,8 +42,6 @@ type
     lblTituloEmpresa: TLabel;
     pnlUser: TPanel;
     imgUser: TImage;
-    procedure Action1Execute(Sender: TObject);
-    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure imgUserClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure lblTituloEmpresaMouseLeave(Sender: TObject);
@@ -71,12 +69,6 @@ uses Cliente, dm, Fornecedor, Prestador, Transportador, U_login, U_User;
 
 {$R *.dfm}
 
-procedure TFrmMenu.Action1Execute(Sender: TObject);
-begin
-  frmCliente := TFrmCliente.Create(nil);
-  frmCliente.Show;
-end;
-
 procedure TFrmMenu.btnSairClick(Sender: TObject);
 begin
   Application.Terminate;
@@ -85,15 +77,6 @@ end;
 procedure TFrmMenu.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Application.Terminate;
-end;
-
-procedure TFrmMenu.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-   if Key = vk_escape then
-  begin
-    Close
-  end;
 end;
 
 procedure TFrmMenu.FormShow(Sender: TObject);

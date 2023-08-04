@@ -12,15 +12,13 @@ type
     edNome: TEdit;
     Label1: TLabel;
     edSenha: TEdit;
-    btnOk: TBitBtn;
+    BitBtn1: TBitBtn;
     Image1: TImage;
-    btnCanc: TBitBtn;
+    BitBtn2: TBitBtn;
     Bevel1: TBevel;
-    procedure edNomeKeyPress(Sender: TObject; var Key: Char);
-    procedure edSenhaKeyPress(Sender: TObject; var Key: Char);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure btnOkClick(Sender: TObject);
-    procedure btnCancClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormCreate(Sender: TObject);
   private
@@ -38,7 +36,7 @@ uses dm, Menu;
 
 {$R *.dfm}
 
-procedure TFrmlogin.btnOkClick(Sender: TObject);
+procedure TFrmlogin.BitBtn1Click(Sender: TObject);
 begin
   //Validação de login, pesquisa de login no banco de  dados.
   Conexao.cdsLogin.close;
@@ -65,24 +63,7 @@ begin
   end;
 end;
 
-procedure TFrmlogin.edNomeKeyPress(Sender: TObject; var Key: Char);
-begin
-  if Key = #13 then
-  begin
-    Key:=#0;
-    Perform(wm_NextDlgCtl,0,0);
-  end;
-end;
-
-procedure TFrmlogin.edSenhaKeyPress(Sender: TObject; var Key: Char);
-begin
-  if key = #13 then
-  begin
-    btnOk.Click;
-  end;
-end;
-
-procedure TFrmlogin.btnCancClick(Sender: TObject);
+procedure TFrmlogin.BitBtn2Click(Sender: TObject);
 begin
   Application.Terminate;
 end;

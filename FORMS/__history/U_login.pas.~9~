@@ -16,8 +16,6 @@ type
     Image1: TImage;
     btnCanc: TBitBtn;
     Bevel1: TBevel;
-    procedure edNomeKeyPress(Sender: TObject; var Key: Char);
-    procedure edSenhaKeyPress(Sender: TObject; var Key: Char);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnOkClick(Sender: TObject);
     procedure btnCancClick(Sender: TObject);
@@ -62,23 +60,6 @@ begin
     edSenha.Clear;
     edNome.SetFocus;
     Abort;
-  end;
-end;
-
-procedure TFrmlogin.edNomeKeyPress(Sender: TObject; var Key: Char);
-begin
-  if Key = #13 then
-  begin
-    Key:=#0;
-    Perform(wm_NextDlgCtl,0,0);
-  end;
-end;
-
-procedure TFrmlogin.edSenhaKeyPress(Sender: TObject; var Key: Char);
-begin
-  if key = #13 then
-  begin
-    btnOk.Click;
   end;
 end;
 

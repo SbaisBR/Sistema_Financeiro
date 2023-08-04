@@ -1,9 +1,8 @@
-object FrmTransportador: TFrmTransportador
+object FrmUser: TFrmUser
   Left = 0
   Top = 0
-  Caption = 'Transportador'
-  ClientHeight = 597
-  ClientWidth = 1080
+  ClientHeight = 441
+  ClientWidth = 1173
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,18 +12,18 @@ object FrmTransportador: TFrmTransportador
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel2: TPanel
+  object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1080
+    Width = 1173
     Height = 65
     Align = alTop
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
-    ExplicitWidth = 680
+    ExplicitWidth = 607
     object Image1: TImage
-      Left = 903
+      Left = 996
       Top = 0
       Width = 177
       Height = 65
@@ -265,16 +264,16 @@ object FrmTransportador: TFrmTransportador
         54EEAE1EE65DEF8181B55546151474007615151451451454F6D3F95949017858
         E5947507FBC3D0FF003E86ACB5AA5BAF9F2FCF0B63CBDBC79991903D57DFF21E
         B54E695E690BB919E8001800760076151D14514515FFD9}
-      ExplicitLeft = 884
+      ExplicitLeft = 811
       ExplicitTop = 2
       ExplicitHeight = 57
     end
     object lbTitulo: TLabel
       Left = 4
       Top = 0
-      Width = 159
+      Width = 85
       Height = 25
-      Caption = 'Transportador'
+      Caption = 'Usu'#225'rio'
       Color = clBtnFace
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -289,26 +288,227 @@ object FrmTransportador: TFrmTransportador
   object pgcCliente: TPageControl
     Left = 0
     Top = 65
-    Width = 1080
-    Height = 532
+    Width = 1173
+    Height = 376
     ActivePage = Consulta
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = -356
-    ExplicitTop = -46
-    ExplicitWidth = 1036
-    ExplicitHeight = 646
+    ExplicitLeft = -454
+    ExplicitTop = -165
+    ExplicitWidth = 1061
+    ExplicitHeight = 606
     object Consulta: TTabSheet
       Caption = 'Consulta'
       ExplicitLeft = 0
       ExplicitTop = 0
       ExplicitWidth = 0
       ExplicitHeight = 0
-      object SgConsulta: TSuperGrid
+      object Panel2: TPanel
         Left = 0
-        Top = 63
-        Width = 1072
-        Height = 441
+        Top = 0
+        Width = 1165
+        Height = 81
+        Align = alTop
+        BevelOuter = bvNone
+        Color = 4079682
+        TabOrder = 0
+        ExplicitWidth = 1053
+        object sbNovo: TSpeedButton
+          AlignWithMargins = True
+          Left = 20
+          Top = 8
+          Width = 118
+          Height = 65
+          Margins.Left = 20
+          Margins.Top = 8
+          Margins.Bottom = 8
+          Align = alLeft
+          BiDiMode = bdLeftToRight
+          Caption = '&Novo'
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ParentShowHint = False
+          ParentBiDiMode = False
+          ShowHint = True
+          ExplicitTop = 5
+        end
+        object sbEditar: TSpeedButton
+          AlignWithMargins = True
+          Left = 144
+          Top = 8
+          Width = 118
+          Height = 65
+          Margins.Top = 8
+          Margins.Bottom = 8
+          Align = alLeft
+          BiDiMode = bdLeftToRight
+          Caption = '&Editar'
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ParentShowHint = False
+          ParentBiDiMode = False
+          ShowHint = True
+          ExplicitLeft = 161
+          ExplicitTop = 5
+        end
+        object sbDeletar: TSpeedButton
+          AlignWithMargins = True
+          Left = 268
+          Top = 8
+          Width = 118
+          Height = 65
+          Margins.Top = 8
+          Margins.Bottom = 8
+          Align = alLeft
+          BiDiMode = bdLeftToRight
+          Caption = '&Deletar'
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ParentShowHint = False
+          ParentBiDiMode = False
+          ShowHint = True
+          ExplicitTop = 5
+        end
+        object sbSair: TSpeedButton
+          AlignWithMargins = True
+          Left = 888
+          Top = 8
+          Width = 118
+          Height = 65
+          Margins.Top = 8
+          Margins.Bottom = 8
+          Align = alLeft
+          BiDiMode = bdLeftToRight
+          Caption = '&Sair'
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ParentShowHint = False
+          ParentBiDiMode = False
+          ShowHint = True
+          ExplicitLeft = 302
+          ExplicitTop = 5
+        end
+        object sbPesquisar: TSpeedButton
+          AlignWithMargins = True
+          Left = 764
+          Top = 8
+          Width = 118
+          Height = 65
+          Margins.Top = 8
+          Margins.Bottom = 8
+          Align = alLeft
+          BiDiMode = bdLeftToRight
+          Caption = '&Pesquisar'
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ParentShowHint = False
+          ParentBiDiMode = False
+          ShowHint = True
+          ExplicitTop = 5
+        end
+        object sbRefresh: TSpeedButton
+          AlignWithMargins = True
+          Left = 640
+          Top = 8
+          Width = 118
+          Height = 65
+          Margins.Top = 8
+          Margins.Bottom = 8
+          Align = alLeft
+          BiDiMode = bdLeftToRight
+          Caption = '&Atualizar'
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ParentShowHint = False
+          ParentBiDiMode = False
+          ShowHint = True
+          ExplicitLeft = 302
+          ExplicitTop = 5
+        end
+        object sbCancelar: TSpeedButton
+          AlignWithMargins = True
+          Left = 516
+          Top = 8
+          Width = 118
+          Height = 65
+          Margins.Top = 8
+          Margins.Bottom = 8
+          Align = alLeft
+          BiDiMode = bdLeftToRight
+          Caption = '&Cancelar'
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ParentShowHint = False
+          ParentBiDiMode = False
+          ShowHint = True
+          ExplicitLeft = 302
+          ExplicitTop = 5
+        end
+        object sbSalvar: TSpeedButton
+          AlignWithMargins = True
+          Left = 392
+          Top = 8
+          Width = 118
+          Height = 65
+          Margins.Top = 8
+          Margins.Bottom = 8
+          Align = alLeft
+          BiDiMode = bdLeftToRight
+          Caption = '&Salvar'
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ParentShowHint = False
+          ParentBiDiMode = False
+          ShowHint = True
+          ExplicitLeft = 302
+          ExplicitTop = 5
+        end
+      end
+      object GridPesquisa: TSuperGrid
+        Left = 0
+        Top = 81
+        Width = 1165
+        Height = 267
         Align = alClient
         FixedColor = 11516371
         TabOrder = 1
@@ -329,8 +529,6 @@ object FrmTransportador: TFrmTransportador
           item
             Expanded = False
             FieldName = 'ID'
-            Title.Caption = 'C'#243'digo'
-            Width = 40
             Visible = True
           end
           item
@@ -340,48 +538,15 @@ object FrmTransportador: TFrmTransportador
           end
           item
             Expanded = False
+            FieldName = 'RAZAOSOCIAL'
+            Visible = True
+          end
+          item
+            Expanded = False
             FieldName = 'CNPJ'
             Title.Caption = 'CPF/CNPJ'
             Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'TELEFONE_COMP'
-            Title.Caption = 'TELEFONE'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'ESTADO'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'CIDADE'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'BAIRRO'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'NUMERO'
-            Visible = True
           end>
-      end
-      object gbFiltro1: TgbFiltro
-        Left = 0
-        Top = 0
-        Width = 1072
-        Height = 63
-        Align = alTop
-        Caption = 'Filtrar'
-        TabOrder = 0
-        TabStop = True
-        SuperGrid = SgConsulta
-        ExplicitWidth = 1161
       end
     end
     object Cadastro: TTabSheet
@@ -391,16 +556,15 @@ object FrmTransportador: TFrmTransportador
       ExplicitTop = 0
       ExplicitWidth = 0
       ExplicitHeight = 0
-      object Panel1: TPanel
+      object Panel3: TPanel
         Left = 0
-        Top = 381
-        Width = 1072
+        Top = 225
+        Width = 1165
         Height = 123
         Align = alBottom
         Color = 14869218
         TabOrder = 0
-        ExplicitTop = 384
-        ExplicitWidth = 672
+        ExplicitWidth = 976
         object btInserir: TBitBtn
           Left = 11
           Top = 6
@@ -457,17 +621,27 @@ object FrmTransportador: TFrmTransportador
           TabOrder = 5
         end
       end
+      object Panel4: TPanel
+        Left = 0
+        Top = 247
+        Width = 1165
+        Height = 208
+        Align = alClient
+        Color = 14869218
+        TabOrder = 1
+        ExplicitWidth = 976
+      end
       object GroupBox1: TGroupBox
         Left = 0
         Top = 94
-        Width = 1072
+        Width = 1165
         Height = 153
         Align = alTop
         Caption = 'Endere'#231'o'
         Color = 14869218
         ParentColor = False
-        TabOrder = 1
-        ExplicitWidth = 1028
+        TabOrder = 2
+        ExplicitWidth = 1053
         object Label15: TLabel
           Left = 12
           Top = 35
@@ -622,15 +796,15 @@ object FrmTransportador: TFrmTransportador
           end
         end
       end
-      object Panel3: TPanel
+      object Panel5: TPanel
         Left = 0
         Top = 0
-        Width = 1072
+        Width = 1165
         Height = 94
         Align = alTop
         Color = 14869218
-        TabOrder = 2
-        ExplicitWidth = 1161
+        TabOrder = 3
+        ExplicitWidth = 1053
         object Label1: TLabel
           Left = 12
           Top = 3
@@ -826,17 +1000,6 @@ object FrmTransportador: TFrmTransportador
           Enabled = False
           TabOrder = 11
         end
-      end
-      object Panel4: TPanel
-        Left = 0
-        Top = 247
-        Width = 1072
-        Height = 134
-        Align = alClient
-        Color = 14869218
-        TabOrder = 3
-        ExplicitWidth = 672
-        ExplicitHeight = 137
       end
     end
   end

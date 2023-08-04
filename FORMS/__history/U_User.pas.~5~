@@ -1,29 +1,32 @@
-unit Fornecedor;
+
+unit U_User;
 
 interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, jpeg, ExtCtrls, DBCtrls, JvExStdCtrls, JvDBCombobox, Mask,
-  Buttons, gbFiltro, Grids, DBGrids, JvExDBGrids, JvDBGrid, SuperGrid, ComCtrls;
+  Dialogs, StdCtrls, jpeg, ExtCtrls, JvExControls, JvSpeedButton, DBCtrls,
+  JvExStdCtrls, JvDBCombobox, Mask, Buttons, Grids, DBGrids, JvExDBGrids,
+  JvDBGrid, SuperGrid, ComCtrls;
 
 type
-  TFrmFornecedor = class(TForm)
-    Panel2: TPanel;
+  TFrmUser = class(TForm)
+    Panel1: TPanel;
     Image1: TImage;
     lbTitulo: TLabel;
     pgcCliente: TPageControl;
     Consulta: TTabSheet;
-    SgConsulta: TSuperGrid;
-    gbFiltro1: TgbFiltro;
+    Panel2: TPanel;
+    GridPesquisa: TSuperGrid;
     Cadastro: TTabSheet;
-    Panel1: TPanel;
+    Panel3: TPanel;
     btInserir: TBitBtn;
     DBNavigator1: TDBNavigator;
     btAlterar: TBitBtn;
     btSalvar: TBitBtn;
     btExcluir: TBitBtn;
     btCancelar: TBitBtn;
+    Panel4: TPanel;
     GroupBox1: TGroupBox;
     Label15: TLabel;
     Label16: TLabel;
@@ -42,7 +45,7 @@ type
     pnCodPais: TPanel;
     Label23: TLabel;
     edCodPais: TDBEdit;
-    Panel3: TPanel;
+    Panel5: TPanel;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -63,7 +66,14 @@ type
     edIe: TDBEdit;
     edDDD: TDBEdit;
     edDDD2: TDBEdit;
-    Panel4: TPanel;
+    sbNovo: TSpeedButton;
+    sbEditar: TSpeedButton;
+    sbDeletar: TSpeedButton;
+    sbSair: TSpeedButton;
+    sbPesquisar: TSpeedButton;
+    sbRefresh: TSpeedButton;
+    sbCancelar: TSpeedButton;
+    sbSalvar: TSpeedButton;
   private
     { Private declarations }
   public
@@ -71,7 +81,7 @@ type
   end;
 
 var
-  FrmFornecedor: TFrmFornecedor;
+  FrmUser: TFrmUser;
 
 implementation
 

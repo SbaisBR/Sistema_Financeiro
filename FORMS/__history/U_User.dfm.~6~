@@ -933,7 +933,6 @@ object FrmUser: TFrmUser
           ParentShowHint = False
           ParentBiDiMode = False
           ShowHint = True
-          OnClick = sbSairClick
           ExplicitTop = 5
         end
         object sbPesquisar: TSpeedButton

@@ -1,9 +1,9 @@
-object FrmTransportador: TFrmTransportador
+object FrmCliente: TFrmCliente
   Left = 0
   Top = 0
-  Caption = 'Transportador'
-  ClientHeight = 597
-  ClientWidth = 1080
+  Caption = 'Cliente'
+  ClientHeight = 698
+  ClientWidth = 1169
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,20 +11,21 @@ object FrmTransportador: TFrmTransportador
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel2: TPanel
+  object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1080
+    Width = 1169
     Height = 65
     Align = alTop
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
-    ExplicitWidth = 680
     object Image1: TImage
-      Left = 903
+      Left = 992
       Top = 0
       Width = 177
       Height = 65
@@ -265,16 +266,16 @@ object FrmTransportador: TFrmTransportador
         54EEAE1EE65DEF8181B55546151474007615151451451454F6D3F95949017858
         E5947507FBC3D0FF003E86ACB5AA5BAF9F2FCF0B63CBDBC79991903D57DFF21E
         B54E695E690BB919E8001800760076151D14514515FFD9}
-      ExplicitLeft = 884
+      ExplicitLeft = 811
       ExplicitTop = 2
       ExplicitHeight = 57
     end
     object lbTitulo: TLabel
       Left = 4
       Top = 0
-      Width = 159
+      Width = 89
       Height = 25
-      Caption = 'Transportador'
+      Caption = 'Clientes'
       Color = clBtnFace
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -289,27 +290,20 @@ object FrmTransportador: TFrmTransportador
   object pgcCliente: TPageControl
     Left = 0
     Top = 65
-    Width = 1080
-    Height = 532
+    Width = 1169
+    Height = 633
     ActivePage = Consulta
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = -356
-    ExplicitTop = -46
-    ExplicitWidth = 1036
-    ExplicitHeight = 646
     object Consulta: TTabSheet
       Caption = 'Consulta'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SgConsulta: TSuperGrid
         Left = 0
         Top = 63
-        Width = 1072
-        Height = 441
+        Width = 1161
+        Height = 542
         Align = alClient
+        DataSource = dtsConsulta
         FixedColor = 11516371
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
@@ -317,6 +311,8 @@ object FrmTransportador: TFrmTransportador
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
+        OnKeyDown = SgConsultaKeyDown
+        IniStorage = JvFormStorage
         TitleButtons = True
         SelectColumnsDialogStrings.Caption = 'Select columns'
         SelectColumnsDialogStrings.OK = '&OK'
@@ -374,14 +370,14 @@ object FrmTransportador: TFrmTransportador
       object gbFiltro1: TgbFiltro
         Left = 0
         Top = 0
-        Width = 1072
+        Width = 1161
         Height = 63
         Align = alTop
         Caption = 'Filtrar'
         TabOrder = 0
         TabStop = True
         SuperGrid = SgConsulta
-        ExplicitWidth = 1161
+        JvFormStorage = JvFormStorage
       end
     end
     object Cadastro: TTabSheet
@@ -391,16 +387,14 @@ object FrmTransportador: TFrmTransportador
       ExplicitTop = 0
       ExplicitWidth = 0
       ExplicitHeight = 0
-      object Panel1: TPanel
+      object Panel2: TPanel
         Left = 0
-        Top = 381
-        Width = 1072
+        Top = 482
+        Width = 1161
         Height = 123
         Align = alBottom
         Color = 14869218
         TabOrder = 0
-        ExplicitTop = 384
-        ExplicitWidth = 672
         object btInserir: TBitBtn
           Left = 11
           Top = 6
@@ -408,12 +402,14 @@ object FrmTransportador: TFrmTransportador
           Height = 33
           Caption = 'Inserir'
           TabOrder = 0
+          OnClick = btInserirClick
         end
         object DBNavigator1: TDBNavigator
           Left = 11
           Top = 45
           Width = 244
           Height = 36
+          DataSource = dtsConsulta
           VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
           TabOrder = 1
         end
@@ -425,6 +421,7 @@ object FrmTransportador: TFrmTransportador
           Height = 33
           Caption = 'Alterar'
           TabOrder = 2
+          OnClick = btAlterarClick
         end
         object btSalvar: TBitBtn
           Tag = 11
@@ -435,6 +432,7 @@ object FrmTransportador: TFrmTransportador
           Caption = 'Salvar'
           Enabled = False
           TabOrder = 3
+          OnClick = btSalvarClick
         end
         object btExcluir: TBitBtn
           Tag = 11
@@ -445,6 +443,7 @@ object FrmTransportador: TFrmTransportador
           Caption = 'Excluir'
           Enabled = False
           TabOrder = 4
+          OnClick = btExcluirClick
         end
         object btCancelar: TBitBtn
           Tag = 11
@@ -455,19 +454,19 @@ object FrmTransportador: TFrmTransportador
           Caption = 'Cancelar'
           Enabled = False
           TabOrder = 5
+          OnClick = btCancelarClick
         end
       end
       object GroupBox1: TGroupBox
         Left = 0
         Top = 94
-        Width = 1072
+        Width = 1161
         Height = 153
         Align = alTop
         Caption = 'Endere'#231'o'
         Color = 14869218
         ParentColor = False
         TabOrder = 1
-        ExplicitWidth = 1028
         object Label15: TLabel
           Left = 12
           Top = 35
@@ -524,8 +523,9 @@ object FrmTransportador: TFrmTransportador
           Width = 45
           Height = 21
           DataField = 'ESTADO'
+          DataSource = dtsCadEnd
           Enabled = False
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 0
         end
         object DBEdit1: TDBEdit
@@ -535,6 +535,7 @@ object FrmTransportador: TFrmTransportador
           Width = 121
           Height = 21
           DataField = 'CEP'
+          DataSource = dtsCadEnd
           Enabled = False
           TabOrder = 1
         end
@@ -545,6 +546,7 @@ object FrmTransportador: TFrmTransportador
           Width = 210
           Height = 21
           DataField = 'ENDERECO'
+          DataSource = dtsCadEnd
           Enabled = False
           TabOrder = 2
         end
@@ -555,6 +557,7 @@ object FrmTransportador: TFrmTransportador
           Width = 121
           Height = 21
           DataField = 'NUMERO'
+          DataSource = dtsCadEnd
           Enabled = False
           TabOrder = 3
         end
@@ -565,6 +568,7 @@ object FrmTransportador: TFrmTransportador
           Width = 121
           Height = 21
           DataField = 'COMPLEMENTO'
+          DataSource = dtsCadEnd
           Enabled = False
           TabOrder = 4
         end
@@ -575,6 +579,7 @@ object FrmTransportador: TFrmTransportador
           Width = 121
           Height = 21
           DataField = 'CIDADE'
+          DataSource = dtsCadEnd
           Enabled = False
           TabOrder = 5
         end
@@ -585,6 +590,7 @@ object FrmTransportador: TFrmTransportador
           Width = 121
           Height = 21
           DataField = 'BAIRRO'
+          DataSource = dtsCadEnd
           Enabled = False
           TabOrder = 6
         end
@@ -625,12 +631,11 @@ object FrmTransportador: TFrmTransportador
       object Panel3: TPanel
         Left = 0
         Top = 0
-        Width = 1072
+        Width = 1161
         Height = 94
         Align = alTop
         Color = 14869218
         TabOrder = 2
-        ExplicitWidth = 1161
         object Label1: TLabel
           Left = 12
           Top = 3
@@ -694,13 +699,15 @@ object FrmTransportador: TFrmTransportador
           Width = 145
           Height = 21
           DataField = 'TIPOPESSOA'
+          DataSource = dtsCadCliente
           Enabled = False
-          ItemHeight = 13
+          ItemHeight = 0
           Items.Strings = (
             'Pessoa Fisica'
             'Pessoa Jur'#237'dica'
             'Produtor Rural')
           TabOrder = 0
+          OnClick = dbTipoPessoaClick
         end
         object rgSexo: TDBRadioGroup
           Tag = 11
@@ -711,6 +718,7 @@ object FrmTransportador: TFrmTransportador
           Caption = 'G'#234'nero'
           Columns = 2
           DataField = 'SEXO'
+          DataSource = dtsCadCliente
           Enabled = False
           Items.Strings = (
             'Masculino'
@@ -731,6 +739,7 @@ object FrmTransportador: TFrmTransportador
           Height = 17
           Caption = 'Inativo'
           DataField = '_INATIVO'
+          DataSource = dtsCadCliente
           Enabled = False
           TabOrder = 2
           ValueChecked = 'T'
@@ -743,6 +752,7 @@ object FrmTransportador: TFrmTransportador
           Width = 112
           Height = 21
           DataField = 'TELEFONE'
+          DataSource = dtsCadCliente
           Enabled = False
           TabOrder = 3
         end
@@ -753,6 +763,7 @@ object FrmTransportador: TFrmTransportador
           Width = 112
           Height = 21
           DataField = 'TELEFONE2'
+          DataSource = dtsCadCliente
           Enabled = False
           TabOrder = 4
         end
@@ -763,6 +774,7 @@ object FrmTransportador: TFrmTransportador
           Width = 222
           Height = 21
           DataField = 'FANTASIA'
+          DataSource = dtsCadCliente
           Enabled = False
           TabOrder = 5
         end
@@ -773,6 +785,7 @@ object FrmTransportador: TFrmTransportador
           Width = 121
           Height = 21
           DataField = 'ID'
+          DataSource = dtsCadCliente
           Enabled = False
           TabOrder = 6
         end
@@ -783,6 +796,7 @@ object FrmTransportador: TFrmTransportador
           Width = 181
           Height = 21
           DataField = 'RAZAOSOCIAL'
+          DataSource = dtsCadCliente
           Enabled = False
           TabOrder = 7
         end
@@ -793,6 +807,7 @@ object FrmTransportador: TFrmTransportador
           Width = 158
           Height = 21
           DataField = 'CNPJ'
+          DataSource = dtsCadCliente
           Enabled = False
           TabOrder = 8
         end
@@ -803,6 +818,7 @@ object FrmTransportador: TFrmTransportador
           Width = 112
           Height = 21
           DataField = 'IE'
+          DataSource = dtsCadCliente
           Enabled = False
           TabOrder = 9
         end
@@ -813,6 +829,7 @@ object FrmTransportador: TFrmTransportador
           Width = 21
           Height = 21
           DataField = 'DDD'
+          DataSource = dtsCadCliente
           Enabled = False
           TabOrder = 10
         end
@@ -823,6 +840,7 @@ object FrmTransportador: TFrmTransportador
           Width = 21
           Height = 21
           DataField = 'DDD2'
+          DataSource = dtsCadCliente
           Enabled = False
           TabOrder = 11
         end
@@ -830,14 +848,484 @@ object FrmTransportador: TFrmTransportador
       object Panel4: TPanel
         Left = 0
         Top = 247
-        Width = 1072
-        Height = 134
+        Width = 1161
+        Height = 235
         Align = alClient
         Color = 14869218
         TabOrder = 3
-        ExplicitWidth = 672
-        ExplicitHeight = 137
       end
     end
+  end
+  object sqlConsulta: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'Select'#13#10'      C.*,E.cidade,E.estado, E.endereco, E.numero,E.bair' +
+      'ro,E.CEP,'#39'('#39' || C.DDD || '#39')'#39' || C.telefone AS TELEFONE_COMP'#13#10' Fr' +
+      'om CADCLIENTE C'#13#10'Left Join cadcliente_endereco E on (E.id_client' +
+      'e = C.id and e.tipo_end = '#39'(Padr'#227'o)'#39')'#13#10'where C.id is not null'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 192
+    Top = 8
+  end
+  object dspConsulta: TDataSetProvider
+    DataSet = sqlConsulta
+    Left = 224
+    Top = 8
+  end
+  object cdsConsulta: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspConsulta'
+    AfterScroll = cdsConsultaAfterScroll
+    Left = 257
+    Top = 8
+    object cdsConsultaID: TIntegerField
+      FieldName = 'ID'
+    end
+    object cdsConsultaRAZAOSOCIAL: TStringField
+      FieldName = 'RAZAOSOCIAL'
+      Size = 100
+    end
+    object cdsConsultaFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Size = 50
+    end
+    object cdsConsultaTELEFONE_COMP: TStringField
+      FieldName = 'TELEFONE_COMP'
+      Size = 24
+    end
+    object cdsConsultaCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Size = 50
+    end
+    object cdsConsultaCNPJ: TStringField
+      FieldName = 'CNPJ'
+      EditMask = '00.000.000/0000-00;0;'
+      FixedChar = True
+      Size = 14
+    end
+    object cdsConsultaESTADO: TStringField
+      FieldName = 'ESTADO'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsConsultaENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Size = 60
+    end
+    object cdsConsultaNUMERO: TStringField
+      FieldName = 'NUMERO'
+      Size = 10
+    end
+    object cdsConsultaBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Size = 50
+    end
+    object cdsConsultaCEP: TStringField
+      FieldName = 'CEP'
+      FixedChar = True
+      Size = 8
+    end
+  end
+  object dtsConsulta: TDataSource
+    DataSet = cdsConsulta
+    Left = 304
+    Top = 8
+  end
+  object JvFormStorage: TJvFormStorage
+    Active = False
+    AppStoragePath = 'frmCliente\'
+    StoredValues = <>
+    Left = 782
+    Top = 18
+  end
+  object JvAppIniFileStorage: TJvAppIniFileStorage
+    StorageOptions.BooleanStringTrueValues = 'TRUE, YES, Y'
+    StorageOptions.BooleanStringFalseValues = 'FALSE, NO, N'
+    AutoFlush = True
+    AutoReload = True
+    FileName = 'estado.ini'
+    FlushOnDestroy = False
+    SubStorages = <>
+    Left = 822
+    Top = 18
+  end
+  object Lock: TLock
+    Tag = 9
+    Enabled = False
+    AlterarCor = True
+    ColorEdit = 13041663
+    Left = 385
+    Top = 8
+  end
+  object sqlCadCliente: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'SELECT'#13#10'    C.*, E.CIDADE,E.ESTADO, E.ENDERECO, E.NUMERO, E.BAIR' +
+      'RO, E.CEP,TP.TIPO'#13#10'FROM'#13#10'    CADCLIENTE C'#13#10'    LEFT JOIN CADCLIE' +
+      'NTE_ENDERECO E ON (E.ID_CLIENTE = C.ID AND E.TIPO_END = '#39'(Padr'#227'o' +
+      ')'#39')'#13#10'    LEFT JOIN CADTIPOCLIENTE TP ON TP.ID = C.ID_TIPO'#13#10'WHERE' +
+      #13#10'    C.ID =:ID'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    SQLConnection = Conexao.Conexao
+    Left = 1016
+    Top = 352
+    object sqlCadClienteID: TIntegerField
+      FieldName = 'ID'
+    end
+    object sqlCadClienteCIDADE: TStringField
+      FieldName = 'CIDADE'
+      ProviderFlags = []
+      Size = 50
+    end
+    object sqlCadClienteESTADO: TStringField
+      FieldName = 'ESTADO'
+      ProviderFlags = []
+      FixedChar = True
+      Size = 2
+    end
+    object sqlCadClienteENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      ProviderFlags = []
+      Size = 60
+    end
+    object sqlCadClienteNUMERO: TStringField
+      FieldName = 'NUMERO'
+      ProviderFlags = []
+      Size = 10
+    end
+    object sqlCadClienteBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      ProviderFlags = []
+      Size = 50
+    end
+    object sqlCadClienteCEP: TStringField
+      FieldName = 'CEP'
+      ProviderFlags = []
+      FixedChar = True
+      Size = 8
+    end
+    object sqlCadClienteTIPO: TStringField
+      FieldName = 'TIPO'
+      ProviderFlags = []
+      Size = 60
+    end
+    object sqlCadClienteFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Size = 50
+    end
+    object sqlCadClienteRAZAOSOCIAL: TStringField
+      FieldName = 'RAZAOSOCIAL'
+      Size = 100
+    end
+    object sqlCadClienteIE: TStringField
+      FieldName = 'IE'
+      FixedChar = True
+    end
+    object sqlCadClienteDDD: TStringField
+      FieldName = 'DDD'
+      FixedChar = True
+      Size = 2
+    end
+    object sqlCadClienteTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+    end
+    object sqlCadClienteDDD2: TStringField
+      FieldName = 'DDD2'
+      FixedChar = True
+      Size = 2
+    end
+    object sqlCadClienteTELEFONE2: TStringField
+      FieldName = 'TELEFONE2'
+    end
+    object sqlCadClienteID_TIPO: TIntegerField
+      FieldName = 'ID_TIPO'
+    end
+    object sqlCadClienteCNPJ: TStringField
+      FieldName = 'CNPJ'
+      FixedChar = True
+      Size = 14
+    end
+    object sqlCadClienteSEXO: TStringField
+      FieldName = 'SEXO'
+      FixedChar = True
+      Size = 1
+    end
+    object sqlCadClienteDATACAD: TDateField
+      FieldName = 'DATACAD'
+    end
+    object sqlCadClienteDATAFUND: TDateField
+      FieldName = 'DATAFUND'
+    end
+    object sqlCadCliente_INATIVO: TStringField
+      FieldName = '_INATIVO'
+      FixedChar = True
+      Size = 1
+    end
+    object sqlCadClientePESSOAFISICA: TStringField
+      FieldName = 'PESSOAFISICA'
+      FixedChar = True
+      Size = 1
+    end
+    object sqlCadClienteTIPOPESSOA: TStringField
+      FieldName = 'TIPOPESSOA'
+      FixedChar = True
+      Size = 2
+    end
+  end
+  object dspCadCliente: TDataSetProvider
+    DataSet = sqlCadCliente
+    Left = 1048
+    Top = 352
+  end
+  object cdsCadCliente: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspCadCliente'
+    AfterScroll = cdsCadClienteAfterScroll
+    BeforeApplyUpdates = cdsCadClienteBeforeApplyUpdates
+    AfterApplyUpdates = cdsCadClienteAfterApplyUpdates
+    Left = 1081
+    Top = 352
+    object cdsCadClienteID: TIntegerField
+      FieldName = 'ID'
+    end
+    object cdsCadClienteCIDADE: TStringField
+      FieldName = 'CIDADE'
+      ProviderFlags = []
+      Size = 50
+    end
+    object cdsCadClienteESTADO: TStringField
+      FieldName = 'ESTADO'
+      ProviderFlags = []
+      FixedChar = True
+      Size = 2
+    end
+    object cdsCadClienteENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      ProviderFlags = []
+      Size = 60
+    end
+    object cdsCadClienteNUMERO: TStringField
+      FieldName = 'NUMERO'
+      ProviderFlags = []
+      Size = 10
+    end
+    object cdsCadClienteBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      ProviderFlags = []
+      Size = 50
+    end
+    object cdsCadClienteCEP: TStringField
+      FieldName = 'CEP'
+      ProviderFlags = []
+      FixedChar = True
+      Size = 8
+    end
+    object cdsCadClienteTIPO: TStringField
+      FieldName = 'TIPO'
+      ProviderFlags = []
+      Size = 60
+    end
+    object cdsCadClienteFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Size = 50
+    end
+    object cdsCadClienteRAZAOSOCIAL: TStringField
+      FieldName = 'RAZAOSOCIAL'
+      Size = 100
+    end
+    object cdsCadClienteIE: TStringField
+      FieldName = 'IE'
+      FixedChar = True
+    end
+    object cdsCadClienteDDD: TStringField
+      FieldName = 'DDD'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsCadClienteTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+    end
+    object cdsCadClienteDDD2: TStringField
+      FieldName = 'DDD2'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsCadClienteTELEFONE2: TStringField
+      FieldName = 'TELEFONE2'
+    end
+    object cdsCadClienteID_TIPO: TIntegerField
+      FieldName = 'ID_TIPO'
+    end
+    object cdsCadClienteCNPJ: TStringField
+      FieldName = 'CNPJ'
+      FixedChar = True
+      Size = 14
+    end
+    object cdsCadClienteSEXO: TStringField
+      FieldName = 'SEXO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsCadClienteDATACAD: TDateField
+      FieldName = 'DATACAD'
+    end
+    object cdsCadClienteDATAFUND: TDateField
+      FieldName = 'DATAFUND'
+    end
+    object cdsCadCliente_INATIVO: TStringField
+      FieldName = '_INATIVO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsCadClientePESSOAFISICA: TStringField
+      FieldName = 'PESSOAFISICA'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsCadClienteTIPOPESSOA: TStringField
+      FieldName = 'TIPOPESSOA'
+      FixedChar = True
+      Size = 2
+    end
+  end
+  object dtsCadCliente: TDataSource
+    DataSet = cdsCadCliente
+    Left = 1128
+    Top = 352
+  end
+  object sqlCadEndCliente: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'Select'#13#10'    E.*'#13#10'From'#13#10'    CADCLIENTE_ENDERECO E'#13#10'where'#13#10'    E.I' +
+      'D_CLIENTE = :ID'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    SQLConnection = Conexao.Conexao
+    Left = 1016
+    Top = 400
+    object sqlCadEndClienteID: TIntegerField
+      FieldName = 'ID'
+    end
+    object sqlCadEndClienteENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Size = 60
+    end
+    object sqlCadEndClienteBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Size = 50
+    end
+    object sqlCadEndClienteCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Size = 50
+    end
+    object sqlCadEndClienteESTADO: TStringField
+      FieldName = 'ESTADO'
+      FixedChar = True
+      Size = 2
+    end
+    object sqlCadEndClienteCEP: TStringField
+      FieldName = 'CEP'
+      FixedChar = True
+      Size = 8
+    end
+    object sqlCadEndClienteNUMERO: TStringField
+      FieldName = 'NUMERO'
+      Size = 10
+    end
+    object sqlCadEndClienteCOMPLEMENTO: TStringField
+      FieldName = 'COMPLEMENTO'
+      Size = 50
+    end
+    object sqlCadEndClienteCODIGOPAIS: TIntegerField
+      FieldName = 'CODIGOPAIS'
+    end
+    object sqlCadEndClienteTIPO_END: TStringField
+      FieldName = 'TIPO_END'
+      Size = 15
+    end
+  end
+  object dspCadEndCliente: TDataSetProvider
+    DataSet = sqlCadEndCliente
+    Left = 1048
+    Top = 400
+  end
+  object cdsCadEndCliente: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspCadEndCliente'
+    AfterScroll = cdsCadEndClienteAfterScroll
+    OnNewRecord = cdsCadEndClienteNewRecord
+    Left = 1081
+    Top = 400
+    object cdsCadEndClienteID: TIntegerField
+      FieldName = 'ID'
+    end
+    object cdsCadEndClienteENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Size = 60
+    end
+    object cdsCadEndClienteBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Size = 50
+    end
+    object cdsCadEndClienteCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Size = 50
+    end
+    object cdsCadEndClienteESTADO: TStringField
+      FieldName = 'ESTADO'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsCadEndClienteCEP: TStringField
+      FieldName = 'CEP'
+      FixedChar = True
+      Size = 8
+    end
+    object cdsCadEndClienteNUMERO: TStringField
+      FieldName = 'NUMERO'
+      Size = 10
+    end
+    object cdsCadEndClienteCODIGOPAIS: TIntegerField
+      FieldName = 'CODIGOPAIS'
+    end
+    object cdsCadEndClienteTIPO_END: TStringField
+      FieldName = 'TIPO_END'
+      Size = 15
+    end
+    object cdsCadEndClienteCOMPLEMENTO: TStringField
+      FieldName = 'COMPLEMENTO'
+      Size = 50
+    end
+  end
+  object dtsCadEnd: TDataSource
+    DataSet = cdsCadEndCliente
+    Left = 1128
+    Top = 400
   end
 end

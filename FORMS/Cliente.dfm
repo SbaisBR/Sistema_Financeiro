@@ -292,7 +292,7 @@ object FrmCliente: TFrmCliente
     Top = 65
     Width = 1169
     Height = 633
-    ActivePage = Consulta
+    ActivePage = Cadastro
     Align = alClient
     TabOrder = 1
     object Consulta: TTabSheet
@@ -383,10 +383,6 @@ object FrmCliente: TFrmCliente
     object Cadastro: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel2: TPanel
         Left = 0
         Top = 482
@@ -525,7 +521,7 @@ object FrmCliente: TFrmCliente
           DataField = 'ESTADO'
           DataSource = dtsCadEnd
           Enabled = False
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 0
         end
         object DBEdit1: TDBEdit
@@ -701,7 +697,7 @@ object FrmCliente: TFrmCliente
           DataField = 'TIPOPESSOA'
           DataSource = dtsCadCliente
           Enabled = False
-          ItemHeight = 0
+          ItemHeight = 13
           Items.Strings = (
             'Pessoa Fisica'
             'Pessoa Jur'#237'dica'

@@ -1,0 +1,31 @@
+unit Transportador;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, jpeg, ExtCtrls, JvExControls, JvSpeedButton;
+
+type
+  TFrmTransportador = class(TForm)
+    Panel2: TPanel;
+    Image1: TImage;
+    lbTitulo: TLabel;
+    sbTR: TJvSpeedButton;
+    sbFR: TJvSpeedButton;
+    sbPR: TJvSpeedButton;
+    sbCL: TJvSpeedButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmTransportador: TFrmTransportador;
+
+implementation
+
+{$R *.dfm}
+
+end.

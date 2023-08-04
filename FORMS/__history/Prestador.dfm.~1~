@@ -19,7 +19,7 @@ object FrmPrestador: TFrmPrestador
     Top = 65
     Width = 1061
     Height = 606
-    ActivePage = Consulta
+    ActivePage = Cadastro
     Align = alClient
     TabOrder = 0
     object Consulta: TTabSheet
@@ -354,6 +354,8 @@ object FrmPrestador: TFrmPrestador
         Align = alBottom
         Color = 14869218
         TabOrder = 0
+        ExplicitTop = 482
+        ExplicitWidth = 1161
         object btInserir: TBitBtn
           Left = 11
           Top = 6
@@ -419,6 +421,10 @@ object FrmPrestador: TFrmPrestador
         Align = alClient
         Color = 14869218
         TabOrder = 1
+        ExplicitLeft = -35
+        ExplicitTop = -2
+        ExplicitWidth = 185
+        ExplicitHeight = 41
       end
       object GroupBox1: TGroupBox
         Left = 0
@@ -430,6 +436,8 @@ object FrmPrestador: TFrmPrestador
         Color = 14869218
         ParentColor = False
         TabOrder = 2
+        ExplicitTop = 100
+        ExplicitWidth = 1161
         object Label15: TLabel
           Left = 12
           Top = 35
@@ -592,6 +600,7 @@ object FrmPrestador: TFrmPrestador
         Align = alTop
         Color = 14869218
         TabOrder = 3
+        ExplicitWidth = 1161
         object Label1: TLabel
           Left = 12
           Top = 3
