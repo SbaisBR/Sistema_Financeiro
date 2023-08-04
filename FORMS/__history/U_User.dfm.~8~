@@ -309,7 +309,6 @@ object FrmUser: TFrmUser
         Width = 1235
         Height = 620
         Align = alClient
-        DataSource = Conexao.dtsUsuario
         FixedColor = 11516371
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -328,22 +327,23 @@ object FrmUser: TFrmUser
         Columns = <
           item
             Expanded = False
-            FieldName = 'IDUSUARIO'
+            FieldName = 'ID'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'NOME'
+            FieldName = 'FANTASIA'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'TIPO'
+            FieldName = 'RAZAOSOCIAL'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'CADASTRO'
+            FieldName = 'CNPJ'
+            Title.Caption = 'CPF/CNPJ'
             Visible = True
           end>
       end
@@ -351,141 +351,380 @@ object FrmUser: TFrmUser
     object Cadastro: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitLeft = -20
-      ExplicitTop = -8
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+      object GroupBox1: TGroupBox
+        Left = 0
+        Top = 175
+        Width = 1235
+        Height = 153
+        Align = alTop
+        Caption = 'Endere'#231'o'
+        Color = 14869218
+        ParentColor = False
+        TabOrder = 0
+        ExplicitLeft = -16
+        ExplicitTop = 401
+        object Label15: TLabel
+          Left = 12
+          Top = 35
+          Width = 19
+          Height = 13
+          Caption = 'CEP'
+        end
+        object Label16: TLabel
+          Left = 164
+          Top = 35
+          Width = 55
+          Height = 13
+          Caption = 'Logradouro'
+        end
+        object Label17: TLabel
+          Left = 391
+          Top = 35
+          Width = 37
+          Height = 13
+          Caption = 'Numero'
+        end
+        object Label18: TLabel
+          Left = 543
+          Top = 35
+          Width = 65
+          Height = 13
+          Caption = 'Complemento'
+        end
+        object Label19: TLabel
+          Left = 12
+          Top = 79
+          Width = 33
+          Height = 13
+          Caption = 'Estado'
+        end
+        object Label20: TLabel
+          Left = 72
+          Top = 79
+          Width = 33
+          Height = 13
+          Caption = 'Cidade'
+        end
+        object Label21: TLabel
+          Left = 224
+          Top = 79
+          Width = 28
+          Height = 13
+          Caption = 'Bairro'
+        end
+        object DBComboBox1: TDBComboBox
+          Tag = 11
+          Left = 12
+          Top = 92
+          Width = 45
+          Height = 21
+          DataField = 'ESTADO'
+          Enabled = False
+          ItemHeight = 13
+          TabOrder = 0
+        end
+        object DBEdit1: TDBEdit
+          Tag = 11
+          Left = 12
+          Top = 48
+          Width = 121
+          Height = 21
+          DataField = 'CEP'
+          Enabled = False
+          TabOrder = 1
+        end
+        object DBEdit2: TDBEdit
+          Tag = 11
+          Left = 164
+          Top = 48
+          Width = 210
+          Height = 21
+          DataField = 'ENDERECO'
+          Enabled = False
+          TabOrder = 2
+        end
+        object DBEdit3: TDBEdit
+          Tag = 11
+          Left = 391
+          Top = 48
+          Width = 121
+          Height = 21
+          DataField = 'NUMERO'
+          Enabled = False
+          TabOrder = 3
+        end
+        object DBEdit4: TDBEdit
+          Tag = 11
+          Left = 543
+          Top = 48
+          Width = 121
+          Height = 21
+          DataField = 'COMPLEMENTO'
+          Enabled = False
+          TabOrder = 4
+        end
+        object DBEdit5: TDBEdit
+          Tag = 11
+          Left = 72
+          Top = 92
+          Width = 121
+          Height = 21
+          DataField = 'CIDADE'
+          Enabled = False
+          TabOrder = 5
+        end
+        object DBEdit6: TDBEdit
+          Tag = 11
+          Left = 223
+          Top = 92
+          Width = 121
+          Height = 21
+          DataField = 'BAIRRO'
+          Enabled = False
+          TabOrder = 6
+        end
+        object pnCodPais: TPanel
+          Left = 385
+          Top = 77
+          Width = 73
+          Height = 38
+          BevelOuter = bvNone
+          Color = 14869218
+          TabOrder = 7
+          Visible = False
+          object Label23: TLabel
+            Left = 7
+            Top = -1
+            Width = 41
+            Height = 13
+            Caption = 'C'#243'd Pais'
+          end
+          object edCodPais: TDBEdit
+            Tag = 11
+            Left = 5
+            Top = 14
+            Width = 70
+            Height = 21
+            DataField = 'CODIGOPAIS'
+            Enabled = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+      end
       object Panel5: TPanel
         Left = 0
         Top = 81
         Width = 1235
-        Height = 352
+        Height = 94
         Align = alTop
         Color = 14869218
-        TabOrder = 0
+        TabOrder = 1
+        ExplicitLeft = 12
         ExplicitTop = 84
         object Label1: TLabel
-          Left = 268
-          Top = 71
-          Width = 12
-          Height = 16
-          Caption = 'ID'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
+          Left = 12
+          Top = 3
+          Width = 33
+          Height = 13
+          Caption = 'C'#243'digo'
         end
         object Label2: TLabel
-          Left = 368
-          Top = 71
-          Width = 33
-          Height = 16
-          Caption = 'Nome'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
+          Left = 148
+          Top = 3
+          Width = 41
+          Height = 13
+          Caption = 'Fantasia'
         end
         object Label3: TLabel
-          Left = 688
-          Top = 71
-          Width = 51
-          Height = 16
-          Caption = 'Cadastro'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
+          Left = 380
+          Top = 3
+          Width = 60
+          Height = 13
+          Caption = 'Raz'#227'o Social'
         end
         object Label4: TLabel
-          Left = 689
-          Top = 151
-          Width = 25
-          Height = 16
-          Caption = 'Tipo'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
+          Left = 612
+          Top = 3
+          Width = 57
+          Height = 13
+          Caption = 'Tipo Pessoa'
         end
         object Label5: TLabel
-          Left = 268
-          Top = 151
-          Width = 36
-          Height = 16
-          Caption = 'Senha'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
+          Left = 12
+          Top = 47
+          Width = 25
+          Height = 13
+          Caption = 'CNPJ'
+        end
+        object Label6: TLabel
+          Left = 193
+          Top = 47
+          Width = 68
+          Height = 13
+          Caption = 'Insc. Estadual'
+        end
+        object Label7: TLabel
+          Left = 353
+          Top = 47
+          Width = 42
+          Height = 13
+          Caption = 'Telefone'
+        end
+        object Label8: TLabel
+          Left = 506
+          Top = 47
+          Width = 56
+          Height = 13
+          Caption = '2'#186' Telefone'
         end
         object dbTipoPessoa: TJvDBComboBox
           Tag = 11
-          Left = 688
-          Top = 169
-          Width = 156
+          Left = 612
+          Top = 16
+          Width = 145
           Height = 21
-          DataField = 'TIPO'
-          DataSource = Conexao.dtsUsuario
+          DataField = 'TIPOPESSOA'
           Enabled = False
           ItemHeight = 13
           Items.Strings = (
-            'ADMINISTRADOR'
-            'APOO')
+            'Pessoa Fisica'
+            'Pessoa Jur'#237'dica'
+            'Produtor Rural')
           TabOrder = 0
         end
-        object edNome: TDBEdit
+        object rgSexo: TDBRadioGroup
           Tag = 11
-          Left = 368
-          Top = 90
-          Width = 249
-          Height = 25
-          DataField = 'NOME'
-          DataSource = Conexao.dtsUsuario
+          Left = 649
+          Top = 51
+          Width = 169
+          Height = 31
+          Caption = 'G'#234'nero'
+          Columns = 2
+          DataField = 'SEXO'
           Enabled = False
+          Items.Strings = (
+            'Masculino'
+            'Feminino')
+          ParentBackground = True
           TabOrder = 1
+          TabStop = True
+          Values.Strings = (
+            'M'
+            'F')
+          Visible = False
         end
-        object edCodigo: TDBEdit
+        object dbCBInativo: TDBCheckBox
           Tag = 11
-          Left = 268
-          Top = 90
-          Width = 81
-          Height = 25
-          DataField = 'IDUSUARIO'
-          DataSource = Conexao.dtsUsuario
+          Left = 784
+          Top = 16
+          Width = 97
+          Height = 17
+          Caption = 'Inativo'
+          DataField = '_INATIVO'
           Enabled = False
           TabOrder = 2
+          ValueChecked = 'T'
+          ValueUnchecked = 'F'
         end
-        object edRazaosocial: TDBEdit
+        object edTELEFONE: TDBEdit
           Tag = 11
-          Left = 689
-          Top = 90
-          Width = 181
-          Height = 25
-          DataField = 'CADASTRO'
-          DataSource = Conexao.dtsUsuario
+          Left = 380
+          Top = 60
+          Width = 112
+          Height = 21
+          DataField = 'TELEFONE'
           Enabled = False
           TabOrder = 3
         end
+        object edTelefone2: TDBEdit
+          Tag = 11
+          Left = 531
+          Top = 60
+          Width = 112
+          Height = 21
+          DataField = 'TELEFONE2'
+          Enabled = False
+          TabOrder = 4
+        end
+        object edNome: TDBEdit
+          Tag = 11
+          Left = 139
+          Top = 16
+          Width = 222
+          Height = 21
+          DataField = 'FANTASIA'
+          Enabled = False
+          TabOrder = 5
+        end
+        object edCodigo: TDBEdit
+          Tag = 11
+          Left = 12
+          Top = 16
+          Width = 121
+          Height = 21
+          DataField = 'ID'
+          Enabled = False
+          TabOrder = 6
+        end
+        object edRazaosocial: TDBEdit
+          Tag = 11
+          Left = 381
+          Top = 16
+          Width = 181
+          Height = 21
+          DataField = 'RAZAOSOCIAL'
+          Enabled = False
+          TabOrder = 7
+        end
         object edCnpj: TDBEdit
           Tag = 11
-          Left = 268
-          Top = 166
-          Width = 349
-          Height = 29
-          DataField = 'SENHA'
-          DataSource = Conexao.dtsUsuario
+          Left = 12
+          Top = 60
+          Width = 158
+          Height = 21
+          DataField = 'CNPJ'
           Enabled = False
-          PasswordChar = '*'
-          TabOrder = 4
+          TabOrder = 8
+        end
+        object edIe: TDBEdit
+          Tag = 11
+          Left = 193
+          Top = 60
+          Width = 112
+          Height = 21
+          DataField = 'IE'
+          Enabled = False
+          TabOrder = 9
+        end
+        object edDDD: TDBEdit
+          Tag = 11
+          Left = 353
+          Top = 60
+          Width = 21
+          Height = 21
+          DataField = 'DDD'
+          Enabled = False
+          TabOrder = 10
+        end
+        object edDDD2: TDBEdit
+          Tag = 11
+          Left = 504
+          Top = 60
+          Width = 21
+          Height = 21
+          DataField = 'DDD2'
+          Enabled = False
+          TabOrder = 11
         end
       end
       object Panel4: TPanel
@@ -496,9 +735,9 @@ object FrmUser: TFrmUser
         Align = alTop
         BevelOuter = bvNone
         Color = 4079682
-        TabOrder = 1
+        TabOrder = 2
         ExplicitWidth = 1165
-        object sbNovo: TSpeedButton
+        object SpeedButton1: TSpeedButton
           AlignWithMargins = True
           Left = 20
           Top = 8
@@ -652,10 +891,9 @@ object FrmUser: TFrmUser
           ParentShowHint = False
           ParentBiDiMode = False
           ShowHint = True
-          OnClick = sbNovoClick
           ExplicitTop = 5
         end
-        object sbEditar: TSpeedButton
+        object SpeedButton2: TSpeedButton
           AlignWithMargins = True
           Left = 144
           Top = 8
@@ -808,11 +1046,10 @@ object FrmUser: TFrmUser
           ParentShowHint = False
           ParentBiDiMode = False
           ShowHint = True
-          OnClick = sbEditarClick
           ExplicitLeft = 161
           ExplicitTop = 5
         end
-        object sbDeletar: TSpeedButton
+        object SpeedButton3: TSpeedButton
           AlignWithMargins = True
           Left = 268
           Top = 8
@@ -965,10 +1202,9 @@ object FrmUser: TFrmUser
           ParentShowHint = False
           ParentBiDiMode = False
           ShowHint = True
-          OnClick = sbDeletarClick
           ExplicitTop = 5
         end
-        object sbSair: TSpeedButton
+        object SpeedButton4: TSpeedButton
           AlignWithMargins = True
           Left = 888
           Top = 8
@@ -1124,7 +1360,7 @@ object FrmUser: TFrmUser
           OnClick = sbSairClick
           ExplicitTop = 5
         end
-        object sbPesquisar: TSpeedButton
+        object SpeedButton5: TSpeedButton
           AlignWithMargins = True
           Left = 764
           Top = 8
@@ -1276,10 +1512,9 @@ object FrmUser: TFrmUser
           ParentShowHint = False
           ParentBiDiMode = False
           ShowHint = True
-          OnClick = sbPesquisarClick
           ExplicitTop = 5
         end
-        object sbAtualizar: TSpeedButton
+        object SpeedButton6: TSpeedButton
           AlignWithMargins = True
           Left = 640
           Top = 8
@@ -1432,11 +1667,10 @@ object FrmUser: TFrmUser
           ParentShowHint = False
           ParentBiDiMode = False
           ShowHint = True
-          OnClick = sbAtualizarClick
           ExplicitLeft = 302
           ExplicitTop = 5
         end
-        object sbCancelar: TSpeedButton
+        object SpeedButton7: TSpeedButton
           AlignWithMargins = True
           Left = 516
           Top = 8
@@ -1589,11 +1823,10 @@ object FrmUser: TFrmUser
           ParentShowHint = False
           ParentBiDiMode = False
           ShowHint = True
-          OnClick = sbCancelarClick
           ExplicitLeft = 302
           ExplicitTop = 5
         end
-        object sbSalvar: TSpeedButton
+        object SpeedButton8: TSpeedButton
           AlignWithMargins = True
           Left = 392
           Top = 8
@@ -1746,30 +1979,8 @@ object FrmUser: TFrmUser
           ParentShowHint = False
           ParentBiDiMode = False
           ShowHint = True
-          OnClick = sbSalvarClick
           ExplicitLeft = 302
           ExplicitTop = 5
-        end
-      end
-      object Panel2: TPanel
-        Left = 0
-        Top = 539
-        Width = 1235
-        Height = 81
-        Align = alBottom
-        BevelOuter = bvNone
-        Color = 4079682
-        TabOrder = 2
-        ExplicitTop = 0
-        ExplicitWidth = 1165
-        object DBNavigator1: TDBNavigator
-          Left = 462
-          Top = 16
-          Width = 252
-          Height = 41
-          DataSource = Conexao.dtsUsuario
-          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
-          TabOrder = 0
         end
       end
     end

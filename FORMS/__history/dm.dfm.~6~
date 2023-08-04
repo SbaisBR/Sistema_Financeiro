@@ -107,36 +107,11 @@ object Conexao: TConexao
   end
   object sqlUsuario: TSQLDataSet
     SchemaName = 'sysdba'
-    Active = True
     CommandText = 'SELECT * FROM USUARIO'#13#10'ORDER BY IDUSUARIO'
     MaxBlobSize = -1
     Params = <>
-    SQLConnection = Conexao
     Left = 186
     Top = 65
-    object sqlUsuarioIDUSUARIO: TIntegerField
-      FieldName = 'IDUSUARIO'
-      Required = True
-    end
-    object sqlUsuarioNOME: TStringField
-      FieldName = 'NOME'
-      Required = True
-      Size = 100
-    end
-    object sqlUsuarioSENHA: TStringField
-      FieldName = 'SENHA'
-      Required = True
-      Size = 30
-    end
-    object sqlUsuarioTIPO: TStringField
-      FieldName = 'TIPO'
-      Required = True
-      Size = 30
-    end
-    object sqlUsuarioCADASTRO: TDateField
-      FieldName = 'CADASTRO'
-      Required = True
-    end
   end
   object dspUsuario: TDataSetProvider
     DataSet = sqlUsuario
@@ -144,7 +119,6 @@ object Conexao: TConexao
     Top = 65
   end
   object cdsUsuario: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspUsuario'

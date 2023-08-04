@@ -16,66 +16,39 @@ type
     lbTitulo: TLabel;
     pgcCliente: TPageControl;
     Consulta: TTabSheet;
-    Panel2: TPanel;
     GridPesquisa: TSuperGrid;
     Cadastro: TTabSheet;
-    Panel3: TPanel;
-    btInserir: TBitBtn;
-    DBNavigator1: TDBNavigator;
-    btAlterar: TBitBtn;
-    btSalvar: TBitBtn;
-    btExcluir: TBitBtn;
-    btCancelar: TBitBtn;
-    Panel4: TPanel;
-    GroupBox1: TGroupBox;
-    Label15: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
-    Label18: TLabel;
-    Label19: TLabel;
-    Label20: TLabel;
-    Label21: TLabel;
-    DBComboBox1: TDBComboBox;
-    DBEdit1: TDBEdit;
-    DBEdit2: TDBEdit;
-    DBEdit3: TDBEdit;
-    DBEdit4: TDBEdit;
-    DBEdit5: TDBEdit;
-    DBEdit6: TDBEdit;
-    pnCodPais: TPanel;
-    Label23: TLabel;
-    edCodPais: TDBEdit;
     Panel5: TPanel;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
     dbTipoPessoa: TJvDBComboBox;
-    rgSexo: TDBRadioGroup;
-    dbCBInativo: TDBCheckBox;
-    edTELEFONE: TDBEdit;
-    edTelefone2: TDBEdit;
     edNome: TDBEdit;
     edCodigo: TDBEdit;
     edRazaosocial: TDBEdit;
     edCnpj: TDBEdit;
-    edIe: TDBEdit;
-    edDDD: TDBEdit;
-    edDDD2: TDBEdit;
+    Panel4: TPanel;
     sbNovo: TSpeedButton;
     sbEditar: TSpeedButton;
     sbDeletar: TSpeedButton;
     sbSair: TSpeedButton;
     sbPesquisar: TSpeedButton;
-    sbRefresh: TSpeedButton;
+    sbAtualizar: TSpeedButton;
     sbCancelar: TSpeedButton;
     sbSalvar: TSpeedButton;
-    ImageList1: TImageList;
+    Panel2: TPanel;
+    DBNavigator1: TDBNavigator;
+    procedure sbPesquisarClick(Sender: TObject);
+    procedure sbNovoClick(Sender: TObject);
+    procedure sbSalvarClick(Sender: TObject);
+    procedure sbEditarClick(Sender: TObject);
+    procedure sbDeletarClick(Sender: TObject);
+    procedure sbCancelarClick(Sender: TObject);
+    procedure sbAtualizarClick(Sender: TObject);
     procedure sbSairClick(Sender: TObject);
+    procedure tratabotao();
   private
     { Private declarations }
   public
@@ -87,11 +60,95 @@ var
 
 implementation
 
+uses dm;
+
 {$R *.dfm}
+
+procedure TFrmUser.sbAtualizarClick(Sender: TObject);
+begin
+  Tratabotao();
+  Conexao.cdsUsuario.Refresh;
+  MessageDlg('Atualizado com sucesso!', MTINFORMATION, [MBOK],0);
+end;
+
+procedure TFrmUser.sbCancelarClick(Sender: TObject);
+begin
+  Tratabotao();
+  Conexao.cdsUsuario.Cancel;
+  Conexao.cdsUsuario.CancelUpdates;
+  MessageDlg('Ação cancelada com sucesso', MTINFORMATION, [MBOK], 0);
+end;
+
+procedure TFrmUser.sbDeletarClick(Sender: TObject);
+begin
+  Tratabotao();
+  if MessageDlg('Deseja deletar esse registro?', MtConfirmation, [mbOk,MbNo], 0) =mrOk then
+    begin
+      Conexao.cdsUsuario.delete;
+      Tratabotao();
+    end
+    else
+     Tratabotao();
+     abort;
+end;
+
+procedure TFrmUser.sbEditarClick(Sender: TObject);
+begin
+  Tratabotao();
+  if MessageDlg('Deseja alterar esse registro?', MtConfirmation, [mbOk,MbNo], 0) =mrOk then
+   begin
+     Conexao.cdsUsuario.Edit;
+   end
+   else
+    Tratabotao();
+    abort;
+end;
+
+procedure TFrmUser.sbNovoClick(Sender: TObject);
+var proximo : integer;
+begin
+  Tratabotao();
+  Conexao.cdsUsuario.Open;   //Abre a tabela
+  Conexao.cdsUsuario.Last;   // Vai para o ultimo registro da tabela
+  proximo:= Conexao.cdsUsuarioIDUSUARIO.AsInteger + 1;   //Recebe o valor do ultimo registro e vai para o proximo '+1'
+  Conexao.cdsUsuario.Append;  //Adiciona mais uma coluna em branco para adionar um novo registro
+  Conexao.cdsUsuarioIDUSUARIO.AsInteger := proximo;   //O campo ID recebe o valor da variavel proximo
+  edNome.SetFocus;   //Leva o foco para o DBEdit2
+  Conexao.cdsUsuarioCADASTRO.AsDateTime:=Date;  //O campo CADASTRO recebe a data atualizada
+end;
+
+procedure TFrmUser.sbPesquisarClick(Sender: TObject);
+begin
+ { FrmPesquisaUsuario:=TFrmPesquisaUsuario.Create(self);
+  FrmPesquisaUsuario.ShowModal;
+  try
+
+  finally
+    FrmPesquisaUsuario.Free;
+    FrmPesquisaUsuario:= nil;
+  end;}
+end;
 
 procedure TFrmUser.sbSairClick(Sender: TObject);
 begin
   FrmUser.Close;
+end;
+
+procedure TFrmUser.sbSalvarClick(Sender: TObject);
+begin
+  Tratabotao();
+  Conexao.cdsUsuario.Post;
+  MessageDlg('Registro salvo com sucesso!', MtInformation, [mbOk], 0);
+  Conexao.cdsUsuario.ApplyUpdates(0);
+end;
+
+procedure TFrmUser.tratabotao;
+begin
+  sbNovo.Enabled:= Not sbNovo.Enabled;
+  sbEditar.Enabled := Not sbEditar.Enabled;
+  sbDeletar.Enabled:= Not sbDeletar.Enabled;
+  sbSalvar.Enabled := Not sbSalvar.Enabled;
+  sbAtualizar.Enabled := Not sbAtualizar.Enabled;
 end;
 
 end.

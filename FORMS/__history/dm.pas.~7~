@@ -34,11 +34,6 @@ type
     cdsUsuarioTIPO: TStringField;
     cdsUsuarioCADASTRO: TDateField;
     dtsUsuario: TDataSource;
-    sqlUsuarioIDUSUARIO: TIntegerField;
-    sqlUsuarioNOME: TStringField;
-    sqlUsuarioSENHA: TStringField;
-    sqlUsuarioTIPO: TStringField;
-    sqlUsuarioCADASTRO: TDateField;
 
 
 
