@@ -1,7 +1,6 @@
 object FrmMenu: TFrmMenu
   Left = 617
   Top = 77
-  Caption = 'FrmMenu'
   ClientHeight = 751
   ClientWidth = 1117
   Color = clBtnFace
@@ -220,13 +219,12 @@ object FrmMenu: TFrmMenu
         Top = 25
         Width = 159
         Height = 82
-        Hint = 'Clientes'
         Margins.Top = 25
         Margins.Bottom = 0
+        Action = AcCli
         Align = alTop
         BiDiMode = bdLeftToRight
         ParentBiDiMode = False
-        Caption = '[ CLIENTE ]'
         Flat = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -754,7 +752,6 @@ object FrmMenu: TFrmMenu
         HotTrackFont.Name = 'Tahoma'
         HotTrackFont.Style = []
         ParentFont = False
-        OnClick = sbCLClick
         ExplicitLeft = 10
         ExplicitTop = 0
         ExplicitWidth = 152
@@ -1298,9 +1295,7 @@ object FrmMenu: TFrmMenu
         HotTrackFont.Style = []
         ParentFont = False
         OnClick = sbPRClick
-        ExplicitLeft = 10
-        ExplicitTop = 90
-        ExplicitWidth = 152
+        ExplicitLeft = 1
       end
       object sbFR: TJvSpeedButton
         AlignWithMargins = True
@@ -4803,8 +4798,8 @@ object FrmMenu: TFrmMenu
       end>
   end
   object ImageList1: TImageList
-    Left = 840
-    Top = 32
+    Left = 816
+    Top = 40
     Bitmap = {
       494C010103000400040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
@@ -4952,7 +4947,8 @@ object FrmMenu: TFrmMenu
           item
             Items = <
               item
-                Action = Cliente
+                Action = AcCli
+                ShortCut = 114
               end
               item
                 Action = Fornecedor
@@ -4971,10 +4967,11 @@ object FrmMenu: TFrmMenu
     Left = 728
     Top = 40
     StyleName = 'XP Style'
-    object Action1: TAction
+    object AcCli: TAction
       Category = 'Atalho'
       Caption = 'Cliente'
-      OnExecute = Action1Execute
+      ShortCut = 114
+      OnExecute = AcCliExecute
     end
     object Action2: TAction
       Category = 'Atalho'

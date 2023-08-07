@@ -148,6 +148,8 @@ object Conexao: TConexao
     Aggregates = <>
     Params = <>
     ProviderName = 'dspUsuario'
+    AfterScroll = cdsUsuarioAfterScroll
+    BeforeApplyUpdates = cdsUsuarioBeforeApplyUpdates
     Left = 250
     Top = 64
     object cdsUsuarioIDUSUARIO: TIntegerField

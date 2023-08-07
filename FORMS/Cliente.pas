@@ -45,7 +45,6 @@ type
     btSalvar: TBitBtn;
     btExcluir: TBitBtn;
     Label1: TLabel;
-    dbTipoPessoa: TJvDBComboBox;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -158,6 +157,7 @@ type
     edCodPais: TDBEdit;
     Label23: TLabel;
     Panel4: TPanel;
+    dbTipoPessoa: TDBComboBox;
     procedure cdsCadEndClienteNewRecord(DataSet: TDataSet);
     procedure cdsCadEndClienteAfterScroll(DataSet: TDataSet);
     procedure cdsConsultaAfterScroll(DataSet: TDataSet);

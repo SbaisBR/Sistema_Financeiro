@@ -39,6 +39,9 @@ type
     sqlUsuarioSENHA: TStringField;
     sqlUsuarioTIPO: TStringField;
     sqlUsuarioCADASTRO: TDateField;
+    procedure cdsUsuarioBeforeApplyUpdates(Sender: TObject;
+      var OwnerData: OleVariant);
+    procedure cdsUsuarioAfterScroll(DataSet: TDataSet);
 
 
 
@@ -78,5 +81,21 @@ end;}
 begin
   FFSelecionar := Value;
 end;}
+
+procedure TConexao.cdsUsuarioAfterScroll(DataSet: TDataSet);
+begin
+//  try
+//    cdsUsuario.AfterScroll := nil;
+//  finally
+//    cdsUsuario.AfterScroll := cdsUsuarioAfterScroll;
+//  end;
+
+end;
+
+procedure TConexao.cdsUsuarioBeforeApplyUpdates(Sender: TObject;
+  var OwnerData: OleVariant);
+begin
+  cdsUsuario.Params[0].Value := cdsUsuarioIDUSUARIO.Value;
+end;
 
 end.

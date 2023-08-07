@@ -21,7 +21,6 @@ object FrmUser: TFrmUser
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
-    ExplicitWidth = 607
     object Image1: TImage
       Left = 1066
       Top = 0
@@ -290,19 +289,11 @@ object FrmUser: TFrmUser
     Top = 65
     Width = 1243
     Height = 648
-    ActivePage = Cadastro
+    ActivePage = Consulta
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = -454
-    ExplicitTop = -165
-    ExplicitWidth = 1061
-    ExplicitHeight = 606
     object Consulta: TTabSheet
       Caption = 'Consulta'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object GridPesquisa: TSuperGrid
         Left = 0
         Top = 0
@@ -351,8 +342,6 @@ object FrmUser: TFrmUser
     object Cadastro: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitLeft = -20
-      ExplicitTop = -8
       object Panel5: TPanel
         Left = 0
         Top = 81
@@ -427,64 +416,62 @@ object FrmUser: TFrmUser
           Font.Style = []
           ParentFont = False
         end
-        object dbTipoPessoa: TJvDBComboBox
-          Tag = 11
-          Left = 688
-          Top = 169
-          Width = 156
-          Height = 21
-          DataField = 'TIPO'
-          DataSource = Conexao.dtsUsuario
-          Enabled = False
-          ItemHeight = 13
-          Items.Strings = (
-            'ADMINISTRADOR'
-            'APOO')
-          TabOrder = 0
-        end
         object edNome: TDBEdit
           Tag = 11
           Left = 368
           Top = 90
           Width = 249
-          Height = 25
+          Height = 21
           DataField = 'NOME'
           DataSource = Conexao.dtsUsuario
           Enabled = False
-          TabOrder = 1
+          TabOrder = 0
         end
         object edCodigo: TDBEdit
           Tag = 11
           Left = 268
           Top = 90
           Width = 81
-          Height = 25
+          Height = 21
           DataField = 'IDUSUARIO'
           DataSource = Conexao.dtsUsuario
           Enabled = False
-          TabOrder = 2
+          TabOrder = 1
         end
-        object edRazaosocial: TDBEdit
+        object edCadastro: TDBEdit
           Tag = 11
           Left = 689
           Top = 90
           Width = 181
-          Height = 25
+          Height = 21
           DataField = 'CADASTRO'
           DataSource = Conexao.dtsUsuario
           Enabled = False
-          TabOrder = 3
+          TabOrder = 2
         end
-        object edCnpj: TDBEdit
+        object edSenha: TDBEdit
           Tag = 11
           Left = 268
           Top = 166
           Width = 349
-          Height = 29
+          Height = 21
           DataField = 'SENHA'
           DataSource = Conexao.dtsUsuario
           Enabled = False
           PasswordChar = '*'
+          TabOrder = 3
+        end
+        object cbTipo: TDBComboBox
+          Left = 689
+          Top = 166
+          Width = 145
+          Height = 21
+          DataField = 'TIPO'
+          DataSource = Conexao.dtsUsuario
+          ItemHeight = 13
+          Items.Strings = (
+            'ADMINISTRADOR'
+            'APOO')
           TabOrder = 4
         end
       end
@@ -497,7 +484,6 @@ object FrmUser: TFrmUser
         BevelOuter = bvNone
         Color = 4079682
         TabOrder = 1
-        ExplicitWidth = 1165
         object sbNovo: TSpeedButton
           AlignWithMargins = True
           Left = 20
@@ -656,6 +642,7 @@ object FrmUser: TFrmUser
           ExplicitTop = 5
         end
         object sbEditar: TSpeedButton
+          Tag = -11
           AlignWithMargins = True
           Left = 144
           Top = 8
@@ -809,10 +796,10 @@ object FrmUser: TFrmUser
           ParentBiDiMode = False
           ShowHint = True
           OnClick = sbEditarClick
-          ExplicitLeft = 161
           ExplicitTop = 5
         end
         object sbDeletar: TSpeedButton
+          Tag = 11
           AlignWithMargins = True
           Left = 268
           Top = 8
@@ -823,6 +810,7 @@ object FrmUser: TFrmUser
           Align = alLeft
           BiDiMode = bdLeftToRight
           Caption = '&Deletar'
+          Enabled = False
           Flat = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1437,6 +1425,7 @@ object FrmUser: TFrmUser
           ExplicitTop = 5
         end
         object sbCancelar: TSpeedButton
+          Tag = 11
           AlignWithMargins = True
           Left = 516
           Top = 8
@@ -1447,6 +1436,7 @@ object FrmUser: TFrmUser
           Align = alLeft
           BiDiMode = bdLeftToRight
           Caption = '&Cancelar'
+          Enabled = False
           Flat = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1594,6 +1584,7 @@ object FrmUser: TFrmUser
           ExplicitTop = 5
         end
         object sbSalvar: TSpeedButton
+          Tag = 11
           AlignWithMargins = True
           Left = 392
           Top = 8
@@ -1604,6 +1595,7 @@ object FrmUser: TFrmUser
           Align = alLeft
           BiDiMode = bdLeftToRight
           Caption = '&Salvar'
+          Enabled = False
           Flat = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1760,8 +1752,6 @@ object FrmUser: TFrmUser
         BevelOuter = bvNone
         Color = 4079682
         TabOrder = 2
-        ExplicitTop = 0
-        ExplicitWidth = 1165
         object DBNavigator1: TDBNavigator
           Left = 462
           Top = 16
@@ -1773,5 +1763,13 @@ object FrmUser: TFrmUser
         end
       end
     end
+  end
+  object Lock: TLock
+    Tag = 9
+    Enabled = False
+    AlterarCor = True
+    ColorEdit = 13041663
+    Left = 385
+    Top = 8
   end
 end

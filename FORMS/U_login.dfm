@@ -1,7 +1,6 @@
 object Frmlogin: TFrmlogin
   Left = 0
   Top = 0
-  Caption = 'Frmlogin'
   ClientHeight = 262
   ClientWidth = 607
   Color = clSilver

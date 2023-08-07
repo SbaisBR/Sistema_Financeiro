@@ -7,7 +7,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, jpeg, ExtCtrls, JvExControls, JvSpeedButton, DBCtrls,
   JvExStdCtrls, JvDBCombobox, Mask, Buttons, Grids, DBGrids, JvExDBGrids,
-  JvDBGrid, SuperGrid, ComCtrls, ActnList, ImgList;
+  JvDBGrid, SuperGrid, ComCtrls, ActnList, ImgList, Lock;
 
 type
   TFrmUser = class(TForm)
@@ -24,11 +24,10 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
-    dbTipoPessoa: TJvDBComboBox;
     edNome: TDBEdit;
     edCodigo: TDBEdit;
-    edRazaosocial: TDBEdit;
-    edCnpj: TDBEdit;
+    edCadastro: TDBEdit;
+    edSenha: TDBEdit;
     Panel4: TPanel;
     sbNovo: TSpeedButton;
     sbEditar: TSpeedButton;
@@ -40,6 +39,8 @@ type
     sbSalvar: TSpeedButton;
     Panel2: TPanel;
     DBNavigator1: TDBNavigator;
+    Lock: TLock;
+    cbTipo: TDBComboBox;
     procedure sbPesquisarClick(Sender: TObject);
     procedure sbNovoClick(Sender: TObject);
     procedure sbSalvarClick(Sender: TObject);
@@ -89,19 +90,20 @@ begin
     end
     else
      Tratabotao();
-     abort;
+     Exit;
 end;
 
 procedure TFrmUser.sbEditarClick(Sender: TObject);
 begin
   Tratabotao();
+  Lock.Enabled      := True;
   if MessageDlg('Deseja alterar esse registro?', MtConfirmation, [mbOk,MbNo], 0) =mrOk then
    begin
      Conexao.cdsUsuario.Edit;
    end
    else
     Tratabotao();
-    abort;
+    Exit;
 end;
 
 procedure TFrmUser.sbNovoClick(Sender: TObject);
@@ -113,8 +115,9 @@ begin
   proximo:= Conexao.cdsUsuarioIDUSUARIO.AsInteger + 1;   //Recebe o valor do ultimo registro e vai para o proximo '+1'
   Conexao.cdsUsuario.Append;  //Adiciona mais uma coluna em branco para adionar um novo registro
   Conexao.cdsUsuarioIDUSUARIO.AsInteger := proximo;   //O campo ID recebe o valor da variavel proximo
-  edNome.SetFocus;   //Leva o foco para o DBEdit2
   Conexao.cdsUsuarioCADASTRO.AsDateTime:=Date;  //O campo CADASTRO recebe a data atualizada
+  sbEditar.Click;
+  Conexao.cdsUsuarioAfterScroll(Nil);
 end;
 
 procedure TFrmUser.sbPesquisarClick(Sender: TObject);
@@ -136,19 +139,32 @@ end;
 
 procedure TFrmUser.sbSalvarClick(Sender: TObject);
 begin
-  Tratabotao();
-  Conexao.cdsUsuario.Post;
-  MessageDlg('Registro salvo com sucesso!', MtInformation, [mbOk], 0);
-  Conexao.cdsUsuario.ApplyUpdates(0);
+  try
+    if Trim(edNome.Text) = '' then
+    begin
+      MessageDlg('O campo "Nome" é obrigatório.', mtError, [mbOK], 0);
+      edNome.SetFocus;
+      Exit;
+    end;
+
+    Tratabotao();
+    Lock.Enabled := False;
+
+    Conexao.cdsUsuario.Post;
+    MessageDlg('Registro salvo com sucesso!', MtInformation, [mbOk], 0);
+//    Conexao.cdsUsuario.ApplyUpdates(0);
+  finally
+    Conexao.cdsUsuario.AfterScroll(Conexao.cdsUsuario);
+  end;
 end;
 
 procedure TFrmUser.tratabotao;
 begin
-  sbNovo.Enabled:= Not sbNovo.Enabled;
-  sbEditar.Enabled := Not sbEditar.Enabled;
-  sbDeletar.Enabled:= Not sbDeletar.Enabled;
+  sbNovo.Enabled:=  sbNovo.Enabled;
+  sbEditar.Enabled :=  sbEditar.Enabled;
+  sbDeletar.Enabled:=  sbDeletar.Enabled;
   sbSalvar.Enabled := Not sbSalvar.Enabled;
-  sbAtualizar.Enabled := Not sbAtualizar.Enabled;
+  sbAtualizar.Enabled :=  sbAtualizar.Enabled;
 end;
 
 end.

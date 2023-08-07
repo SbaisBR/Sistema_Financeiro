@@ -688,23 +688,6 @@ object FrmCliente: TFrmCliente
           Height = 13
           Caption = '2'#186' Telefone'
         end
-        object dbTipoPessoa: TJvDBComboBox
-          Tag = 11
-          Left = 612
-          Top = 16
-          Width = 145
-          Height = 21
-          DataField = 'TIPOPESSOA'
-          DataSource = dtsCadCliente
-          Enabled = False
-          ItemHeight = 13
-          Items.Strings = (
-            'Pessoa Fisica'
-            'Pessoa Jur'#237'dica'
-            'Produtor Rural')
-          TabOrder = 0
-          OnClick = dbTipoPessoaClick
-        end
         object rgSexo: TDBRadioGroup
           Tag = 11
           Left = 649
@@ -720,7 +703,7 @@ object FrmCliente: TFrmCliente
             'Masculino'
             'Feminino')
           ParentBackground = True
-          TabOrder = 1
+          TabOrder = 0
           TabStop = True
           Values.Strings = (
             'M'
@@ -737,7 +720,7 @@ object FrmCliente: TFrmCliente
           DataField = '_INATIVO'
           DataSource = dtsCadCliente
           Enabled = False
-          TabOrder = 2
+          TabOrder = 1
           ValueChecked = 'T'
           ValueUnchecked = 'F'
         end
@@ -750,7 +733,7 @@ object FrmCliente: TFrmCliente
           DataField = 'TELEFONE'
           DataSource = dtsCadCliente
           Enabled = False
-          TabOrder = 3
+          TabOrder = 2
         end
         object edTelefone2: TDBEdit
           Tag = 11
@@ -761,7 +744,7 @@ object FrmCliente: TFrmCliente
           DataField = 'TELEFONE2'
           DataSource = dtsCadCliente
           Enabled = False
-          TabOrder = 4
+          TabOrder = 3
         end
         object edNome: TDBEdit
           Tag = 11
@@ -772,7 +755,7 @@ object FrmCliente: TFrmCliente
           DataField = 'FANTASIA'
           DataSource = dtsCadCliente
           Enabled = False
-          TabOrder = 5
+          TabOrder = 4
         end
         object edCodigo: TDBEdit
           Tag = 11
@@ -783,7 +766,7 @@ object FrmCliente: TFrmCliente
           DataField = 'ID'
           DataSource = dtsCadCliente
           Enabled = False
-          TabOrder = 6
+          TabOrder = 5
         end
         object edRazaosocial: TDBEdit
           Tag = 11
@@ -794,7 +777,7 @@ object FrmCliente: TFrmCliente
           DataField = 'RAZAOSOCIAL'
           DataSource = dtsCadCliente
           Enabled = False
-          TabOrder = 7
+          TabOrder = 6
         end
         object edCnpj: TDBEdit
           Tag = 11
@@ -805,7 +788,7 @@ object FrmCliente: TFrmCliente
           DataField = 'CNPJ'
           DataSource = dtsCadCliente
           Enabled = False
-          TabOrder = 8
+          TabOrder = 7
         end
         object edIe: TDBEdit
           Tag = 11
@@ -816,7 +799,7 @@ object FrmCliente: TFrmCliente
           DataField = 'IE'
           DataSource = dtsCadCliente
           Enabled = False
-          TabOrder = 9
+          TabOrder = 8
         end
         object edDDD: TDBEdit
           Tag = 11
@@ -827,7 +810,7 @@ object FrmCliente: TFrmCliente
           DataField = 'DDD'
           DataSource = dtsCadCliente
           Enabled = False
-          TabOrder = 10
+          TabOrder = 9
         end
         object edDDD2: TDBEdit
           Tag = 11
@@ -838,6 +821,20 @@ object FrmCliente: TFrmCliente
           DataField = 'DDD2'
           DataSource = dtsCadCliente
           Enabled = False
+          TabOrder = 10
+        end
+        object dbTipoPessoa: TDBComboBox
+          Tag = 11
+          Left = 610
+          Top = 16
+          Width = 145
+          Height = 21
+          Align = alCustom
+          ItemHeight = 13
+          Items.Strings = (
+            'Pessoa Fisica'
+            'Pessoa Jur'#237'dica'
+            'Produtor Rural')
           TabOrder = 11
         end
       end
