@@ -221,10 +221,10 @@ object FrmMenu: TFrmMenu
         Height = 82
         Margins.Top = 25
         Margins.Bottom = 0
-        Action = AcCli
         Align = alTop
         BiDiMode = bdLeftToRight
         ParentBiDiMode = False
+        Caption = 'Cliente'
         Flat = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -752,6 +752,7 @@ object FrmMenu: TFrmMenu
         HotTrackFont.Name = 'Tahoma'
         HotTrackFont.Style = []
         ParentFont = False
+        OnClick = sbCLClick
         ExplicitLeft = 10
         ExplicitTop = 0
         ExplicitWidth = 152
@@ -4770,7 +4771,7 @@ object FrmMenu: TFrmMenu
           28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2803FFFD9}
         Stretch = True
         ExplicitLeft = 5
-        ExplicitTop = 3
+        ExplicitTop = 5
       end
     end
   end

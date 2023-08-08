@@ -9,7 +9,8 @@ uses
   Prestador in '..\FORMS\Prestador.pas' {FrmPrestador},
   Transportador in '..\FORMS\Transportador.pas' {FrmTransportador},
   U_login in '..\FORMS\U_login.pas' {Frmlogin},
-  U_User in '..\FORMS\U_User.pas' {FrmUser};
+  U_User in '..\FORMS\U_User.pas' {FrmUser},
+  U_baselLista in '..\FORMS\U_baselLista.pas' {viewbaselista};
 
 {$R *.res}
 
@@ -19,5 +20,6 @@ begin
   Application.CreateForm(TConexao, Conexao);
   Application.CreateForm(TFrmlogin, Frmlogin);
   Application.CreateForm(TFrmUser, FrmUser);
+  Application.CreateForm(Tviewbaselista, viewbaselista);
   Application.Run;
 end.

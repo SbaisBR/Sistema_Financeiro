@@ -300,7 +300,7 @@ object FrmUser: TFrmUser
         Width = 1235
         Height = 620
         Align = alClient
-        DataSource = Conexao.dtsUsuario
+        DataSource = dtsConsulta
         FixedColor = 11516371
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -415,21 +415,6 @@ object FrmUser: TFrmUser
           Font.Style = []
           ParentFont = False
         end
-        object dbTipoPessoa: TJvDBComboBox
-          Tag = 11
-          Left = 688
-          Top = 169
-          Width = 156
-          Height = 21
-          DataField = 'TIPO'
-          DataSource = Conexao.dtsUsuario
-          Enabled = False
-          ItemHeight = 13
-          Items.Strings = (
-            'ADMINISTRADOR'
-            'APOO')
-          TabOrder = 0
-        end
         object edNome: TDBEdit
           Tag = 11
           Left = 368
@@ -439,7 +424,7 @@ object FrmUser: TFrmUser
           DataField = 'NOME'
           DataSource = Conexao.dtsUsuario
           Enabled = False
-          TabOrder = 1
+          TabOrder = 0
         end
         object edCodigo: TDBEdit
           Tag = 11
@@ -450,9 +435,9 @@ object FrmUser: TFrmUser
           DataField = 'IDUSUARIO'
           DataSource = Conexao.dtsUsuario
           Enabled = False
-          TabOrder = 2
+          TabOrder = 1
         end
-        object edRazaosocial: TDBEdit
+        object edCadastro: TDBEdit
           Tag = 11
           Left = 689
           Top = 90
@@ -461,9 +446,9 @@ object FrmUser: TFrmUser
           DataField = 'CADASTRO'
           DataSource = Conexao.dtsUsuario
           Enabled = False
-          TabOrder = 3
+          TabOrder = 2
         end
-        object edCnpj: TDBEdit
+        object edSenha: TDBEdit
           Tag = 11
           Left = 268
           Top = 166
@@ -473,6 +458,19 @@ object FrmUser: TFrmUser
           DataSource = Conexao.dtsUsuario
           Enabled = False
           PasswordChar = '*'
+          TabOrder = 3
+        end
+        object cbTipo: TDBComboBox
+          Left = 689
+          Top = 166
+          Width = 145
+          Height = 21
+          DataField = 'TIPO'
+          DataSource = Conexao.dtsUsuario
+          ItemHeight = 13
+          Items.Strings = (
+            'ADMINISTRADOR'
+            'APOO')
           TabOrder = 4
         end
       end
@@ -811,6 +809,7 @@ object FrmUser: TFrmUser
           Align = alLeft
           BiDiMode = bdLeftToRight
           Caption = '&Deletar'
+          Enabled = False
           Flat = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1436,6 +1435,7 @@ object FrmUser: TFrmUser
           Align = alLeft
           BiDiMode = bdLeftToRight
           Caption = '&Cancelar'
+          Enabled = False
           Flat = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1594,6 +1594,7 @@ object FrmUser: TFrmUser
           Align = alLeft
           BiDiMode = bdLeftToRight
           Caption = '&Salvar'
+          Enabled = False
           Flat = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1737,7 +1738,6 @@ object FrmUser: TFrmUser
           ParentBiDiMode = False
           ShowHint = True
           OnClick = sbSalvarClick
-          ExplicitLeft = 302
           ExplicitTop = 5
         end
       end
@@ -1768,6 +1768,51 @@ object FrmUser: TFrmUser
     AlterarCor = True
     ColorEdit = 13041663
     Left = 385
+    Top = 8
+  end
+  object dtsConsulta: TDataSource
+    DataSet = cdsConsulta
+    Left = 304
+    Top = 8
+  end
+  object cdsConsulta: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspConsulta'
+    Left = 257
+    Top = 8
+    object cdsConsultaIDUSUARIO: TIntegerField
+      FieldName = 'IDUSUARIO'
+    end
+    object cdsConsultaNOME: TStringField
+      FieldName = 'NOME'
+      Size = 100
+    end
+    object cdsConsultaSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 30
+    end
+    object cdsConsultaTIPO: TStringField
+      FieldName = 'TIPO'
+      Size = 50
+    end
+    object cdsConsultaCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+    end
+  end
+  object dspConsulta: TDataSetProvider
+    DataSet = sqlConsulta
+    Left = 224
+    Top = 8
+  end
+  object sqlConsulta: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 'SELECT *'#13#10'FROM USUARIO'#13#10'ORDER BY IDUSUARIO'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 192
     Top = 8
   end
 end

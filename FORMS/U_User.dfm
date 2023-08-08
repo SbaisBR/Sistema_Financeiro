@@ -292,6 +292,7 @@ object FrmUser: TFrmUser
     ActivePage = Cadastro
     Align = alClient
     TabOrder = 1
+    ExplicitTop = 71
     object Consulta: TTabSheet
       Caption = 'Consulta'
       object GridPesquisa: TSuperGrid

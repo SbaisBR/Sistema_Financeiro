@@ -62,6 +62,7 @@ object FrmPrestador: TFrmPrestador
           Font.Style = []
           ParentColor = False
           ParentFont = False
+          Visible = False
         end
         object lb_fim: TLabel
           Left = 436
@@ -77,6 +78,7 @@ object FrmPrestador: TFrmPrestador
           Font.Style = []
           ParentColor = False
           ParentFont = False
+          Visible = False
         end
         object lb_descricao: TLabel
           Left = 168

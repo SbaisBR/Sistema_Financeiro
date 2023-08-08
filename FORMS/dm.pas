@@ -34,26 +34,14 @@ type
     cdsUsuarioTIPO: TStringField;
     cdsUsuarioCADASTRO: TDateField;
     dtsUsuario: TDataSource;
-    sqlUsuarioIDUSUARIO: TIntegerField;
-    sqlUsuarioNOME: TStringField;
-    sqlUsuarioSENHA: TStringField;
-    sqlUsuarioTIPO: TStringField;
-    sqlUsuarioCADASTRO: TDateField;
-    procedure cdsUsuarioAfterApplyUpdates(Sender: TObject;
-      var OwnerData: OleVariant);
-    procedure cdsUsuarioBeforeApplyUpdates(Sender: TObject;
-      var OwnerData: OleVariant);
-    procedure cdsUsuarioAfterScroll(DataSet: TDataSet);
 
 
 
   private
     FFSelecionar : Boolean;
     FIDUsuario: integer;
-
   public
     Usuario, Tipo : String;
-
   end;
 
 var
@@ -64,3 +52,5 @@ implementation
 {$R *.DFM}
 
 
+
+end.

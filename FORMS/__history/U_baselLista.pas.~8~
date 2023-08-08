@@ -1,0 +1,73 @@
+unit U_baselLista;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, frxpngimage, ExtCtrls, StdCtrls, Buttons, ComCtrls, ImgList;
+
+type
+  Tviewbaselista = class(TForm)
+    pnlTopo: TPanel;
+    pnlRodape: TPanel;
+    pnlLinhaFundo: TPanel;
+    pnlImgLogo: TPanel;
+    imgLogoAzul: TImage;
+    imgLogoCinza: TImage;
+    lblTitulo: TLabel;
+    pnlFechar: TPanel;
+    btnFechar: TSpeedButton;
+    btnEditar: TSpeedButton;
+    btnNovo: TSpeedButton;
+    btnCancelar: TSpeedButton;
+    btnSalvar: TSpeedButton;
+    ImageList24: TImageList;
+    Page_panelconteudo: TPageControl;
+    Card_cadastro: TTabSheet;
+    Card_pesquisar: TTabSheet;
+    pnlFiltroPesquisa: TPanel;
+    pnlPesquisar: TPanel;
+    edtPesquisar: TEdit;
+    pnlFiltro: TPanel;
+    lblPesquisa: TLabel;
+    pnlFiltroCadastro: TPanel;
+    procedure FormShow(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure imgLogoCinzaMouseLeave(Sender: TObject);
+    procedure imgLogoAzulMouseEnter(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  viewbaselista: Tviewbaselista;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tviewbaselista.btnFecharClick(Sender: TObject);
+begin
+  Self.Close;
+end;
+
+procedure Tviewbaselista.FormShow(Sender: TObject);
+begin
+  Page_panelconteudo.ActivePage := Card_pesquisar; 
+end;
+
+procedure Tviewbaselista.imgLogoAzulMouseEnter(Sender: TObject);
+begin
+  imgLogoAzul.Visible := False;
+  imgLogoCinza.Visible := True;
+end;
+
+procedure Tviewbaselista.imgLogoCinzaMouseLeave(Sender: TObject);
+begin
+  imgLogoAzul.Visible := True;
+  imgLogoCinza.Visible := False;
+end;
+
+end.
