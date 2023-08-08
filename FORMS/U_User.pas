@@ -7,7 +7,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, jpeg, ExtCtrls, JvExControls, JvSpeedButton, DBCtrls,
   JvExStdCtrls, JvDBCombobox, Mask, Buttons, Grids, DBGrids, JvExDBGrids,
-  JvDBGrid, SuperGrid, ComCtrls, ActnList, ImgList, Lock;
+  JvDBGrid, SuperGrid, ComCtrls, ActnList, ImgList, Lock, FMTBcd, DB, SqlExpr,
+  Provider, DBClient;
 
 type
   TFrmUser = class(TForm)
@@ -41,6 +42,15 @@ type
     DBNavigator1: TDBNavigator;
     Lock: TLock;
     cbTipo: TDBComboBox;
+    dtsConsulta: TDataSource;
+    cdsConsulta: TClientDataSet;
+    dspConsulta: TDataSetProvider;
+    sqlConsulta: TSQLDataSet;
+    cdsConsultaIDUSUARIO: TIntegerField;
+    cdsConsultaNOME: TStringField;
+    cdsConsultaSENHA: TStringField;
+    cdsConsultaTIPO: TStringField;
+    cdsConsultaCADASTRO: TDateField;
     procedure sbPesquisarClick(Sender: TObject);
     procedure sbNovoClick(Sender: TObject);
     procedure sbSalvarClick(Sender: TObject);
@@ -65,9 +75,12 @@ uses dm;
 
 {$R *.dfm}
 
+
+
 procedure TFrmUser.sbAtualizarClick(Sender: TObject);
 begin
   Tratabotao();
+  //Conexao.cdsUsuario.ApplyUpdates(0);
   Conexao.cdsUsuario.Refresh;
   MessageDlg('Atualizado com sucesso!', MTINFORMATION, [MBOK],0);
 end;
@@ -116,8 +129,7 @@ begin
   Conexao.cdsUsuario.Append;  //Adiciona mais uma coluna em branco para adionar um novo registro
   Conexao.cdsUsuarioIDUSUARIO.AsInteger := proximo;   //O campo ID recebe o valor da variavel proximo
   Conexao.cdsUsuarioCADASTRO.AsDateTime:=Date;  //O campo CADASTRO recebe a data atualizada
-  sbEditar.Click;
-  Conexao.cdsUsuarioAfterScroll(Nil);
+  Lock.Enabled      := True;
 end;
 
 procedure TFrmUser.sbPesquisarClick(Sender: TObject);
@@ -150,12 +162,14 @@ begin
     Tratabotao();
     Lock.Enabled := False;
 
-    Conexao.cdsUsuario.Post;
     MessageDlg('Registro salvo com sucesso!', MtInformation, [mbOk], 0);
-//    Conexao.cdsUsuario.ApplyUpdates(0);
+    Conexao.cdsUsuario.Post;
+    Conexao.cdsUsuario.ApplyUpdates(0);
+    cdsConsulta.Refresh;
   finally
-    Conexao.cdsUsuario.AfterScroll(Conexao.cdsUsuario);
+
   end;
+  Conexao.cdsUsuario.AfterScroll(Conexao.cdsUsuario);
 end;
 
 procedure TFrmUser.tratabotao;

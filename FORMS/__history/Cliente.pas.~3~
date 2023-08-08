@@ -257,6 +257,7 @@ end;
 
 procedure TFrmCliente.btSalvarClick(Sender: TObject);
 begin
+
     if (Trim(cdsCadClienteTELEFONE.Text) <> '') and (Length(cdsCadClienteTELEFONE.Text) < 8)  then
     begin
      MessageBox(Handle, PChar('Telefone inválido, realize a correção'

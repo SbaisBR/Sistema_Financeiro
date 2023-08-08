@@ -830,7 +830,6 @@ object FrmCliente: TFrmCliente
           Width = 145
           Height = 21
           Align = alCustom
-          Enabled = False
           ItemHeight = 13
           Items.Strings = (
             'Pessoa Fisica'

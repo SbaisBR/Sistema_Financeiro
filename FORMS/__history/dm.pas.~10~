@@ -39,8 +39,6 @@ type
     sqlUsuarioSENHA: TStringField;
     sqlUsuarioTIPO: TStringField;
     sqlUsuarioCADASTRO: TDateField;
-    procedure cdsUsuarioAfterApplyUpdates(Sender: TObject;
-      var OwnerData: OleVariant);
     procedure cdsUsuarioBeforeApplyUpdates(Sender: TObject;
       var OwnerData: OleVariant);
     procedure cdsUsuarioAfterScroll(DataSet: TDataSet);
@@ -48,11 +46,17 @@ type
 
 
   private
+    { Private declarations }
     FFSelecionar : Boolean;
     FIDUsuario: integer;
-
+    //procedure SetFSelecionar(const Value: Boolean);
   public
     Usuario, Tipo : String;
+   // function GetServiceController: TServiceController; override;
+    { Public declarations }
+
+    //property FSelecionar : Boolean read FFSelecionar write SetFSelecionar;
+    //property IDUsuario          : integer read FIDUsuario write FIDUsuario;
 
   end;
 
@@ -63,4 +67,35 @@ implementation
 
 {$R *.DFM}
 
+{procedure ServiceController(CtrlCode: DWord); stdcall;
+begin
+  Conexao.Controller(CtrlCode);
+end;}
 
+{function TConexao.GetServiceController: TServiceController;
+begin
+  Result := ServiceController;
+end;}
+
+{procedure TConexao.SetFSelecionar(const Value: Boolean);
+begin
+  FFSelecionar := Value;
+end;}
+
+procedure TConexao.cdsUsuarioAfterScroll(DataSet: TDataSet);
+begin
+//  try
+//    cdsUsuario.AfterScroll := nil;
+//  finally
+//    cdsUsuario.AfterScroll := cdsUsuarioAfterScroll;
+//  end;
+
+end;
+
+procedure TConexao.cdsUsuarioBeforeApplyUpdates(Sender: TObject;
+  var OwnerData: OleVariant);
+begin
+  cdsUsuario.Params[0].Value := cdsUsuarioIDUSUARIO.Value;
+end;
+
+end.

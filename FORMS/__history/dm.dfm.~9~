@@ -11,7 +11,7 @@ object Conexao: TConexao
     LoginPrompt = False
     Params.Strings = (
       'DriverName=Interbase'
-      'Database=localhost:\GestaoPRO\Dados\novafilms.FDB'
+      'Database=localhost:\GestaoPRO\Dados\NOVAFILMS.FDB'
       'RoleName=RoleName'
       'User_Name=sysdba'
       'Password=masterkey'
@@ -38,6 +38,7 @@ object Conexao: TConexao
   end
   object sqlLogin: TSQLDataSet
     SchemaName = 'sysdba'
+    Active = True
     CommandText = 'SELECT * FROM LOGIN ORDER BY IDUSUARIO'
     MaxBlobSize = -1
     Params = <>
@@ -142,9 +143,11 @@ object Conexao: TConexao
     Top = 65
   end
   object cdsUsuario: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspUsuario'
+    AfterScroll = cdsUsuarioAfterScroll
     BeforeApplyUpdates = cdsUsuarioBeforeApplyUpdates
     Left = 250
     Top = 64

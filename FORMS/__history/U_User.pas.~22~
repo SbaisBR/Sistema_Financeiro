@@ -24,11 +24,10 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
-    dbTipoPessoa: TJvDBComboBox;
     edNome: TDBEdit;
     edCodigo: TDBEdit;
-    edRazaosocial: TDBEdit;
-    edCnpj: TDBEdit;
+    edCadastro: TDBEdit;
+    edSenha: TDBEdit;
     Panel4: TPanel;
     sbNovo: TSpeedButton;
     sbEditar: TSpeedButton;
@@ -41,6 +40,7 @@ type
     Panel2: TPanel;
     DBNavigator1: TDBNavigator;
     Lock: TLock;
+    cbTipo: TDBComboBox;
     procedure sbPesquisarClick(Sender: TObject);
     procedure sbNovoClick(Sender: TObject);
     procedure sbSalvarClick(Sender: TObject);
@@ -90,7 +90,7 @@ begin
     end
     else
      Tratabotao();
-     abort;
+     Exit;
 end;
 
 procedure TFrmUser.sbEditarClick(Sender: TObject);
@@ -103,7 +103,7 @@ begin
    end
    else
     Tratabotao();
-    abort;
+    Exit;
 end;
 
 procedure TFrmUser.sbNovoClick(Sender: TObject);
@@ -139,33 +139,32 @@ end;
 
 procedure TFrmUser.sbSalvarClick(Sender: TObject);
 begin
-  if Trim(edNome.Text) = '' then
-  begin
-    MessageDlg('O campo "Nome" é obrigatório.', mtError, [mbOK], 0);
-    edNome.SetFocus;
-    Exit;
-  end;
-
-  Tratabotao();
-  Lock.Enabled := False;
   try
+    if Trim(edNome.Text) = '' then
+    begin
+      MessageDlg('O campo "Nome" é obrigatório.', mtError, [mbOK], 0);
+      edNome.SetFocus;
+      Exit;
+    end;
+
+    Tratabotao();
+    Lock.Enabled := False;
+
     Conexao.cdsUsuario.Post;
     MessageDlg('Registro salvo com sucesso!', MtInformation, [mbOk], 0);
-    Conexao.cdsUsuario.ApplyUpdates(0);
+//    Conexao.cdsUsuario.ApplyUpdates(0);
   finally
-    // ...
+    Conexao.cdsUsuario.AfterScroll(Conexao.cdsUsuario);
   end;
-  Conexao.cdsUsuario.AfterScroll(Conexao.cdsUsuario);
-
 end;
 
 procedure TFrmUser.tratabotao;
 begin
-  sbNovo.Enabled:= Not sbNovo.Enabled;
-  sbEditar.Enabled := Not sbEditar.Enabled;
-  sbDeletar.Enabled:= Not sbDeletar.Enabled;
+  sbNovo.Enabled:=  sbNovo.Enabled;
+  sbEditar.Enabled :=  sbEditar.Enabled;
+  sbDeletar.Enabled:=  sbDeletar.Enabled;
   sbSalvar.Enabled := Not sbSalvar.Enabled;
-  sbAtualizar.Enabled := Not sbAtualizar.Enabled;
+  sbAtualizar.Enabled :=  sbAtualizar.Enabled;
 end;
 
 end.
