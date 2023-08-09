@@ -34,6 +34,20 @@ type
     cdsUsuarioTIPO: TStringField;
     cdsUsuarioCADASTRO: TDateField;
     dtsUsuario: TDataSource;
+    sqlAbrCaixa: TSQLDataSet;
+    IntegerField1: TIntegerField;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    DateField1: TDateField;
+    dspAbrCaixa: TDataSetProvider;
+    dsAbrCaixa: TDataSource;
+    cdsAbrCaixa: TClientDataSet;
+    IntegerField2: TIntegerField;
+    StringField4: TStringField;
+    StringField5: TStringField;
+    StringField6: TStringField;
+    DateField2: TDateField;
 
 
 

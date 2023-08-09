@@ -1,0 +1,31 @@
+unit U_baselLista;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, frxpngimage, ExtCtrls, StdCtrls, Buttons, ComCtrls, ImgList;
+
+type
+  Tviewbaselista = class(TForm)
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure imgLogoCinzaMouseLeave(Sender: TObject);
+    procedure imgLogoAzulMouseEnter(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  viewbaselista: Tviewbaselista;
+
+implementation
+
+{$R *.dfm}
+
+
+end.

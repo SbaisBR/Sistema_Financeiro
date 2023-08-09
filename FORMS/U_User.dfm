@@ -289,10 +289,9 @@ object FrmUser: TFrmUser
     Top = 65
     Width = 1243
     Height = 648
-    ActivePage = Cadastro
+    ActivePage = Consulta
     Align = alClient
     TabOrder = 1
-    ExplicitTop = 71
     object Consulta: TTabSheet
       Caption = 'Consulta'
       object GridPesquisa: TSuperGrid
@@ -1777,7 +1776,6 @@ object FrmUser: TFrmUser
     Top = 8
   end
   object cdsConsulta: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspConsulta'

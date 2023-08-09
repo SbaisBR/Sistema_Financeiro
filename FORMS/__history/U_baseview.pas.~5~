@@ -1,0 +1,24 @@
+unit U_baseview;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, U_baselLista, StdCtrls, ComCtrls, Buttons, ExtCtrls;
+
+type
+  Tviewbaselista1 = class(Tviewbaselista)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  viewbaselista1: Tviewbaselista1;
+
+implementation
+
+{$R *.dfm}
+
+end.

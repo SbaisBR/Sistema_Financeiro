@@ -1,0 +1,26 @@
+unit U_baselLista;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, frxpngimage, ExtCtrls, StdCtrls, Buttons, ComCtrls, ImgList;
+
+type
+  Tviewbaselista = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  viewbaselista: Tviewbaselista;
+
+implementation
+
+{$R *.dfm}
+
+
+
+end.

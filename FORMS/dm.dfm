@@ -176,4 +176,76 @@ object Conexao: TConexao
     Left = 281
     Top = 64
   end
+  object sqlAbrCaixa: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 'SELECT * FROM USUARIO'#13#10'ORDER BY IDUSUARIO'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao
+    Left = 186
+    Top = 121
+    object IntegerField1: TIntegerField
+      FieldName = 'IDUSUARIO'
+      Required = True
+    end
+    object StringField1: TStringField
+      FieldName = 'NOME'
+      Required = True
+      Size = 100
+    end
+    object StringField2: TStringField
+      FieldName = 'SENHA'
+      Required = True
+      Size = 30
+    end
+    object StringField3: TStringField
+      FieldName = 'TIPO'
+      Required = True
+      Size = 30
+    end
+    object DateField1: TDateField
+      FieldName = 'CADASTRO'
+      Required = True
+    end
+  end
+  object dspAbrCaixa: TDataSetProvider
+    DataSet = sqlAbrCaixa
+    Left = 218
+    Top = 121
+  end
+  object dsAbrCaixa: TDataSource
+    DataSet = cdsAbrCaixa
+    Left = 281
+    Top = 120
+  end
+  object cdsAbrCaixa: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspUsuario'
+    Left = 250
+    Top = 120
+    object IntegerField2: TIntegerField
+      FieldName = 'IDUSUARIO'
+      Required = True
+    end
+    object StringField4: TStringField
+      FieldName = 'NOME'
+      Required = True
+      Size = 100
+    end
+    object StringField5: TStringField
+      FieldName = 'SENHA'
+      Required = True
+      Size = 30
+    end
+    object StringField6: TStringField
+      FieldName = 'TIPO'
+      Required = True
+      Size = 30
+    end
+    object DateField2: TDateField
+      FieldName = 'CADASTRO'
+      Required = True
+    end
+  end
 end

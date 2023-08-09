@@ -1,0 +1,39 @@
+unit U_viewPrinc;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls, jpeg;
+
+type
+  TviewPrincipal = class(TForm)
+    pnlTopo: TPanel;
+    pnlLinhaRodape: TPanel;
+    pnlRodape: TPanel;
+    pnlConsultaProduto: TPanel;
+    pnlListaProdutos: TPanel;
+    pnlBackground: TPanel;
+    pnlTopConsultaProduto: TPanel;
+    pnlTituloConsultaProdutos: TPanel;
+    edtCodBarras: TEdit;
+    lblCodigodeBarras: TLabel;
+    pnlRodapeConsultaProduto: TPanel;
+    pnlNomeProduto: TPanel;
+    imgLogoProduto: TImage;
+    imgLogoEmpresa: TImage;
+    pnlLogoEmpresa: TPanel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  viewPrincipal: TviewPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+end.
