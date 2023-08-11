@@ -149,7 +149,6 @@ inherited viewbaselista1: Tviewbaselista1
           0303030000001010107171713E40424E4E4E0808080000000505053E40423E40
           423E40423E40423E40423E40423E40423E40423E40423E40423E40423E40423E
           4042}
-        OnMouseLeave = imgLogoCinzaMouseLeave
         ExplicitLeft = 1
         ExplicitTop = 1
         ExplicitWidth = 152
@@ -262,7 +261,6 @@ inherited viewbaselista1: Tviewbaselista1
           05070B02030512161E6E747E3E40424E535C0B0D13020204080A0E3E40423E40
           423E40423E40423E40423E40423E40423E40423E40423E40423E40423E40423E
           4042}
-        OnMouseEnter = imgLogoAzulMouseEnter
         ExplicitLeft = 1
         ExplicitTop = 1
         ExplicitWidth = 152
@@ -700,7 +698,7 @@ inherited viewbaselista1: Tviewbaselista1
       Margins.Top = 0
       Margins.Right = 2
       Margins.Bottom = 0
-      ActivePage = Card_pesquisar
+      ActivePage = Card_cadastro
       Align = alClient
       TabOrder = 0
       object Card_cadastro: TTabSheet

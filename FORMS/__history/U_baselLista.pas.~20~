@@ -1,13 +1,13 @@
-unit U_baseview;
+unit U_baselLista;
 
 interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, U_baselLista, StdCtrls, ComCtrls, Buttons, ExtCtrls;
+  Dialogs, frxpngimage, ExtCtrls, StdCtrls, Buttons, ComCtrls, ImgList;
 
 type
-  Tviewbaselista1 = class(Tviewbaselista)
+  Tviewbaselista = class(TForm)
   private
     { Private declarations }
   public
@@ -15,10 +15,11 @@ type
   end;
 
 var
-  viewbaselista1: Tviewbaselista1;
+  viewbaselista: Tviewbaselista;
 
 implementation
 
 {$R *.dfm}
+
 
 end.

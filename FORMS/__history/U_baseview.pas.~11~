@@ -32,13 +32,11 @@ type
   lblPesquisa: TLabel;
   pnlFiltroCadastro: TPanel;
   btnVoltar: TSpeedButton;
-  btnNovo: TSpeedButton;
-  procedure imgLogoCinzaMouseLeave(Sender: TObject);
-  procedure imgLogoAzulMouseEnter(Sender: TObject);
-  procedure FormShow(Sender: TObject);
-  procedure btnVoltarClick(Sender: TObject);
-  procedure btnFecharClick(Sender: TObject);
-  procedure btnNovoClick(Sender: TObject);
+    btnNovo: TSpeedButton;
+    procedure FormShow(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -77,20 +75,6 @@ procedure Tviewbaselista1.FormShow(Sender: TObject);
 begin
   inherited;
   Page_panelconteudo.ActivePage := Card_pesquisar;
-end;
-
-procedure Tviewbaselista1.imgLogoAzulMouseEnter(Sender: TObject);
-begin
-  inherited;
-  imgLogoAzul.Visible := False;
-  imgLogoCinza.Visible := True;
-end;
-
-procedure Tviewbaselista1.imgLogoCinzaMouseLeave(Sender: TObject);
-begin
-  inherited;
-  imgLogoAzul.Visible := True;
-  imgLogoCinza.Visible := False;
 end;
 
 end.

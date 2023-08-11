@@ -32,13 +32,13 @@ type
   lblPesquisa: TLabel;
   pnlFiltroCadastro: TPanel;
   btnVoltar: TSpeedButton;
-  btnNovo: TSpeedButton;
-  procedure imgLogoCinzaMouseLeave(Sender: TObject);
-  procedure imgLogoAzulMouseEnter(Sender: TObject);
-  procedure FormShow(Sender: TObject);
-  procedure btnVoltarClick(Sender: TObject);
-  procedure btnFecharClick(Sender: TObject);
-  procedure btnNovoClick(Sender: TObject);
+    btnNovo: TSpeedButton;
+    procedure imgLogoCinzaMouseLeave(Sender: TObject);
+    procedure imgLogoAzulMouseEnter(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
   private
     { Private declarations }
   public
