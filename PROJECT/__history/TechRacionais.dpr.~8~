@@ -23,5 +23,7 @@ begin
   Application.CreateForm(TConexao, Conexao);
   Application.CreateForm(TFrmlogin, Frmlogin);
   Application.CreateForm(TviewPrincipal, viewPrincipal);
+  Application.CreateForm(Tviewbaselista1, viewbaselista1);
+  Application.CreateForm(Tviewbaselista2, viewbaselista2);
   Application.Run;
 end.

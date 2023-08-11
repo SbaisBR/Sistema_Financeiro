@@ -5,8 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, frxpngimage, ExtCtrls, StdCtrls, Buttons, ComCtrls, ImgList,
-  U_baselLista, FMTBcd, DB, DBClient, Provider, SqlExpr, Grids, DBGrids,
-  JvExDBGrids, JvDBGrid, SuperGrid;
+  U_baselLista;
 
 
 type
@@ -34,31 +33,6 @@ type
   pnlFiltroCadastro: TPanel;
   btnVoltar: TSpeedButton;
   btnNovo: TSpeedButton;
-    SuperGrid1: TSuperGrid;
-    sqlAbreCaixa: TSQLDataSet;
-    dspAbreCaixa: TDataSetProvider;
-    cdsAbreCaixa: TClientDataSet;
-    dtsAbreCaixa: TDataSource;
-    sqlAbreCaixaABR_CODIGO: TIntegerField;
-    sqlAbreCaixaABR_DATAABERTURA: TDateField;
-    sqlAbreCaixaABR_HRAABERTURA: TTimeField;
-    sqlAbreCaixaABR_DTAFECHAMENTO: TDateField;
-    sqlAbreCaixaABR_HRAFECHAMENTO: TTimeField;
-    sqlAbreCaixaABR_VLRINICIAL: TFMTBCDField;
-    sqlAbreCaixaABR_VLRFINAL: TFMTBCDField;
-    sqlAbreCaixaABR_CODIGOUSUARIO: TIntegerField;
-    sqlAbreCaixaABR_STATUS: TStringField;
-    sqlAbreCaixaABR_OBSERVACAO: TStringField;
-    cdsAbreCaixaABR_CODIGO: TIntegerField;
-    cdsAbreCaixaABR_DATAABERTURA: TDateField;
-    cdsAbreCaixaABR_HRAABERTURA: TTimeField;
-    cdsAbreCaixaABR_DTAFECHAMENTO: TDateField;
-    cdsAbreCaixaABR_HRAFECHAMENTO: TTimeField;
-    cdsAbreCaixaABR_VLRINICIAL: TFMTBCDField;
-    cdsAbreCaixaABR_VLRFINAL: TFMTBCDField;
-    cdsAbreCaixaABR_CODIGOUSUARIO: TIntegerField;
-    cdsAbreCaixaABR_STATUS: TStringField;
-    cdsAbreCaixaABR_OBSERVACAO: TStringField;
   procedure imgLogoCinzaMouseLeave(Sender: TObject);
   procedure imgLogoAzulMouseEnter(Sender: TObject);
   procedure FormShow(Sender: TObject);
