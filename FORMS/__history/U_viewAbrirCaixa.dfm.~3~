@@ -1,0 +1,77 @@
+inherited viewAbrirCaixa: TviewAbrirCaixa
+  Caption = 'viewAbrirCaixa'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pnlTopo: TPanel
+    inherited lblTitulo: TLabel
+      Width = 97
+      Caption = 'Abrir Caixa'
+      ExplicitWidth = 97
+    end
+  end
+  inherited pnlLinhaFundo: TPanel
+    inherited Page_panelconteudo: TPageControl
+      inherited Card_cadastro: TTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 1014
+        ExplicitHeight = 604
+      end
+      inherited Card_pesquisar: TTabSheet
+        inherited SuperGrid1: TSuperGrid
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'ABR_CODIGO'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ABR_DATAABERTURA'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ABR_HRAABERTURA'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ABR_DTAFECHAMENTO'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ABR_HRAFECHAMENTO'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ABR_VLRINICIAL'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ABR_VLRFINAL'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ABR_CODIGOUSUARIO'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ABR_STATUS'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ABR_OBSERVACAO'
+              Visible = True
+            end>
+        end
+      end
+    end
+  end
+end

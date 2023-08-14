@@ -13,7 +13,7 @@ uses
   U_baselLista in '..\FORMS\U_baselLista.pas' {viewbaselista},
   U_viewPrinc in '..\FORMS\U_viewPrinc.pas' {viewPrincipal},
   U_baseview in '..\FORMS\U_baseview.pas' {viewbaselista1},
-  U_viewAbrirCaixa in '..\FORMS\U_viewAbrirCaixa.pas' {viewbaselista2};
+  U_viewAbrirCaixa in '..\FORMS\U_viewAbrirCaixa.pas' {viewAbrirCaixa};
 
 {$R *.res}
 

@@ -219,13 +219,12 @@ object FrmMenu: TFrmMenu
         Top = 25
         Width = 159
         Height = 82
-        Hint = 'Clientes'
         Margins.Top = 25
         Margins.Bottom = 0
         Align = alTop
         BiDiMode = bdLeftToRight
         ParentBiDiMode = False
-        Caption = '[ CLIENTE ]'
+        Caption = 'Cliente'
         Flat = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -4772,7 +4771,7 @@ object FrmMenu: TFrmMenu
           28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2803FFFD9}
         Stretch = True
         ExplicitLeft = 5
-        ExplicitTop = 3
+        ExplicitTop = 5
       end
     end
   end
@@ -4800,8 +4799,8 @@ object FrmMenu: TFrmMenu
       end>
   end
   object ImageList1: TImageList
-    Left = 840
-    Top = 32
+    Left = 816
+    Top = 40
     Bitmap = {
       494C010103000400040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
@@ -4949,7 +4948,7 @@ object FrmMenu: TFrmMenu
           item
             Items = <
               item
-                Action = Cliente
+                Action = AcCli
                 ShortCut = 114
               end
               item
@@ -4978,14 +4977,17 @@ object FrmMenu: TFrmMenu
     object Action2: TAction
       Category = 'Atalho'
       Caption = 'Fornecedor'
+      OnExecute = Action2Execute
     end
     object Action3: TAction
       Category = 'Atalho'
       Caption = 'Prestador'
+      OnExecute = Action3Execute
     end
     object Action4: TAction
       Category = 'Atalho'
       Caption = 'Transportador'
+      OnExecute = Action4Execute
     end
   end
   object ActionList1: TActionList

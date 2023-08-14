@@ -42,6 +42,8 @@ type
     lblTituloEmpresa: TLabel;
     pnlUser: TPanel;
     imgUser: TImage;
+    sbCaixa: TJvSpeedButton;
+    procedure sbCaixaClick(Sender: TObject);
     procedure Action4Execute(Sender: TObject);
     procedure Action3Execute(Sender: TObject);
     procedure Action2Execute(Sender: TObject);
@@ -70,7 +72,8 @@ var
 
 implementation
 
-uses Cliente, dm, Fornecedor, Prestador, Transportador, U_login, U_User;
+uses Cliente, dm, Fornecedor, Prestador, Transportador, U_login, U_User,
+  U_viewPrinc;
 
 {$R *.dfm}
 
@@ -169,6 +172,13 @@ end;
 procedure TFrmMenu.lblTituloEmpresaMouseLeave(Sender: TObject);
 begin
   lblTituloEmpresa.Font.Color := clWhite;
+end;
+
+procedure TFrmMenu.sbCaixaClick(Sender: TObject);
+begin
+  GET_LineMENU(Sender);
+  ViewPrincipal := TviewPrincipal.Create(nil);
+  ViewPrincipal.ShowModal;
 end;
 
 procedure TFrmMenu.sbCLClick(Sender: TObject);

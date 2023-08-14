@@ -47,6 +47,8 @@ type
     lblTotalAPagar: TLabel;
     edtTotalApagar: TEdit;
     DBG_produtos: TSuperGrid;
+    lblAbreCaixa: TLabel;
+    procedure lblAbreCaixaClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloMouseLeave(Sender: TObject);
     procedure imgLogoEmpresaMouseEnter(Sender: TObject);
@@ -60,6 +62,8 @@ var
   viewPrincipal: TviewPrincipal;
 
 implementation
+
+uses U_viewAbrirCaixa;
 
 {$R *.dfm}
 
@@ -78,6 +82,16 @@ procedure TviewPrincipal.imgLogoEmpresaMouseEnter(Sender: TObject);
 begin //Mouse enter
   imgLogoEmpresa.Visible        := False;
   imgLogoEmpresaAmarelo.Visible := True;
+end;
+
+procedure TviewPrincipal.lblAbreCaixaClick(Sender: TObject);
+begin //Abrir Caixa
+  viewAbrirCaixa := TviewAbrirCaixa.Create(Self);
+  try
+    viewAbrirCaixa.Showmodal;
+  finally
+    FreeAndNil(viewAbrirCaixa);
+  end;
 end;
 
 end.

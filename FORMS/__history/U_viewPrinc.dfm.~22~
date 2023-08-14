@@ -338,8 +338,8 @@ object viewPrincipal: TviewPrincipal
             3FFFD9}
           Transparent = True
           OnMouseEnter = imgLogoEmpresaMouseEnter
-          ExplicitLeft = 24
-          ExplicitTop = 36
+          ExplicitLeft = 3
+          ExplicitTop = -3
         end
       end
       object pnlTextoEmpresa: TPanel
@@ -567,7 +567,7 @@ object viewPrincipal: TviewPrincipal
         Left = 0
         Top = 121
         Width = 349
-        Height = 149
+        Height = 177
         Align = alClient
         ExplicitLeft = 120
         ExplicitTop = 208
@@ -634,25 +634,23 @@ object viewPrincipal: TviewPrincipal
           Font.Style = []
           ParentFont = False
           TabOrder = 1
-          Text = '7898317160189'
         end
       end
       object pnlRodapeConsultaProduto: TPanel
         Left = 0
-        Top = 422
+        Top = 450
         Width = 349
-        Height = 103
+        Height = 75
         Align = alBottom
         BevelOuter = bvNone
         Color = 7434609
         TabOrder = 1
-        ExplicitTop = 420
         object lblSubTotal: TLabel
           AlignWithMargins = True
           Left = 3
           Top = 20
           Width = 95
-          Height = 80
+          Height = 52
           Margins.Top = 20
           Align = alLeft
           Caption = 'Sub. Total'
@@ -668,7 +666,7 @@ object viewPrincipal: TviewPrincipal
       end
       object pnlNomeProduto: TPanel
         Left = 0
-        Top = 270
+        Top = 298
         Width = 349
         Height = 152
         Align = alBottom
@@ -696,54 +694,66 @@ object viewPrincipal: TviewPrincipal
         object pnlQtditem: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 84
+          Top = 49
           Width = 343
-          Height = 65
+          Height = 100
           Align = alBottom
           BevelOuter = bvNone
           Color = clWhite
           TabOrder = 0
-          ExplicitLeft = -10
-          ExplicitTop = 81
           object lblQTD: TLabel
             Left = 16
             Top = 16
-            Width = 26
+            Width = 29
             Height = 19
             Caption = 'Qtd'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
+            Font.Color = 5395026
             Font.Height = -16
             Font.Name = 'Tahoma'
-            Font.Style = []
+            Font.Style = [fsBold]
             ParentFont = False
           end
           object lblValorUnitario: TLabel
-            Left = 222
+            Left = 89
             Top = 21
-            Width = 98
+            Width = 114
             Height = 19
             Caption = 'Valor Unit'#225'rio'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
+            Font.Color = 5395026
             Font.Height = -16
             Font.Name = 'Tahoma'
-            Font.Style = []
+            Font.Style = [fsBold]
             ParentFont = False
           end
           object edtQTD: TEdit
             Left = 16
             Top = 41
             Width = 63
-            Height = 21
+            Height = 31
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clHighlight
+            Font.Height = -19
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
             TabOrder = 0
+            Text = '1'
           end
           object edtValorUnitario: TEdit
-            Left = 222
+            Left = 85
             Top = 41
-            Width = 98
-            Height = 21
+            Width = 118
+            Height = 31
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clHighlight
+            Font.Height = -19
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
             TabOrder = 1
+            Text = '1'
           end
         end
       end
@@ -764,6 +774,105 @@ object viewPrincipal: TviewPrincipal
       TabOrder = 1
       ExplicitWidth = 599
       ExplicitHeight = 523
+      object pnlTotalPagar: TPanel
+        Left = 0
+        Top = 450
+        Width = 882
+        Height = 75
+        Align = alBottom
+        BevelOuter = bvNone
+        Color = 14581528
+        TabOrder = 0
+        object lblTotalAPagar: TLabel
+          AlignWithMargins = True
+          Left = 3
+          Top = 20
+          Width = 125
+          Height = 52
+          Margins.Top = 20
+          Align = alLeft
+          Caption = 'Total a Pagar'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -21
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ExplicitHeight = 25
+        end
+        object edtTotalApagar: TEdit
+          AlignWithMargins = True
+          Left = 585
+          Top = 10
+          Width = 287
+          Height = 62
+          Margins.Top = 10
+          Margins.Right = 10
+          Align = alRight
+          BevelOuter = bvNone
+          BorderStyle = bsNone
+          Color = 14581528
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -33
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          Text = '0'
+          ExplicitLeft = 592
+        end
+      end
+      object DBG_produtos: TSuperGrid
+        AlignWithMargins = True
+        Left = 10
+        Top = 20
+        Width = 862
+        Height = 427
+        Margins.Left = 10
+        Margins.Top = 20
+        Margins.Right = 10
+        Align = alClient
+        BorderStyle = bsNone
+        FixedColor = 11516371
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 5460819
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        Options = [dgTitles, dgTabs, dgRowSelect, dgAlwaysShowSelection]
+        ParentFont = False
+        TabOrder = 1
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        TitleButtons = True
+        SelectColumnsDialogStrings.Caption = 'Select columns'
+        SelectColumnsDialogStrings.OK = '&OK'
+        SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
+        EditControls = <>
+        RowsHeight = 24
+        TitleRowHeight = 17
+        CorColOrdenado = clWhite
+        Columns = <
+          item
+            Expanded = False
+            Title.Caption = 'Codigo'
+            Visible = True
+          end
+          item
+            Expanded = False
+            Title.Caption = 'Produto'
+            Visible = True
+          end
+          item
+            Expanded = False
+            Title.Caption = 'Quantidade'
+            Visible = True
+          end>
+      end
     end
   end
 end

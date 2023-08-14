@@ -1,8 +1,6 @@
 inherited viewbaselista1: Tviewbaselista1
   Caption = 'viewbaselista1'
   OnShow = FormShow
-  ExplicitWidth = 1042
-  ExplicitHeight = 758
   PixelsPerInch = 96
   TextHeight = 13
   object pnlTopo: TPanel
@@ -400,6 +398,7 @@ inherited viewbaselista1: Tviewbaselista1
         0000000000000000000000000000000000000000000000000000000000000000
         000000000000}
       ParentFont = False
+      OnClick = btnEditarClick
       ExplicitLeft = 696
     end
     object btnCancelar: TSpeedButton
@@ -493,6 +492,7 @@ inherited viewbaselista1: Tviewbaselista1
         0000000000000000000000000000000000000000000000000000000000000000
         000000000000}
       ParentFont = False
+      OnClick = btnCancelarClick
       ExplicitLeft = 824
     end
     object btnSalvar: TSpeedButton
@@ -586,6 +586,7 @@ inherited viewbaselista1: Tviewbaselista1
         0000000000000000000000000000000000000000000000000000000000000000
         000000000000}
       ParentFont = False
+      OnClick = btnSalvarClick
     end
     object btnNovo: TSpeedButton
       AlignWithMargins = True
@@ -729,8 +730,6 @@ inherited viewbaselista1: Tviewbaselista1
       object Card_pesquisar: TTabSheet
         Caption = 'Card_pesquisar'
         ImageIndex = 1
-        ExplicitLeft = 7
-        ExplicitTop = 22
         object pnlFiltroPesquisa: TPanel
           Left = 0
           Top = 0
@@ -806,6 +805,7 @@ inherited viewbaselista1: Tviewbaselista1
           Margins.Bottom = 5
           Align = alClient
           FixedColor = 11516371
+          Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect]
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -820,6 +820,27 @@ inherited viewbaselista1: Tviewbaselista1
           RowsHeight = 17
           TitleRowHeight = 17
           CorColOrdenado = clWhite
+          Columns = <
+            item
+              Expanded = False
+              Visible = True
+            end
+            item
+              Expanded = False
+              Visible = True
+            end
+            item
+              Expanded = False
+              Visible = True
+            end
+            item
+              Expanded = False
+              Visible = True
+            end
+            item
+              Expanded = False
+              Visible = True
+            end>
         end
       end
     end

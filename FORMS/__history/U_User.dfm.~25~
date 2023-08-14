@@ -289,7 +289,7 @@ object FrmUser: TFrmUser
     Top = 65
     Width = 1243
     Height = 648
-    ActivePage = Cadastro
+    ActivePage = Consulta
     Align = alClient
     TabOrder = 1
     object Consulta: TTabSheet
@@ -300,7 +300,7 @@ object FrmUser: TFrmUser
         Width = 1235
         Height = 620
         Align = alClient
-        DataSource = Conexao.dtsUsuario
+        DataSource = dtsConsulta
         FixedColor = 11516371
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -350,7 +350,6 @@ object FrmUser: TFrmUser
         Align = alTop
         Color = 14869218
         TabOrder = 0
-        ExplicitTop = 84
         object Label1: TLabel
           Left = 268
           Top = 71
@@ -438,7 +437,7 @@ object FrmUser: TFrmUser
           Enabled = False
           TabOrder = 1
         end
-        object edRazaosocial: TDBEdit
+        object edCadastro: TDBEdit
           Tag = 11
           Left = 689
           Top = 90
@@ -449,7 +448,7 @@ object FrmUser: TFrmUser
           Enabled = False
           TabOrder = 2
         end
-        object edCnpj: TDBEdit
+        object edSenha: TDBEdit
           Tag = 11
           Left = 268
           Top = 166
@@ -1739,7 +1738,6 @@ object FrmUser: TFrmUser
           ParentBiDiMode = False
           ShowHint = True
           OnClick = sbSalvarClick
-          ExplicitLeft = 302
           ExplicitTop = 5
         end
       end
@@ -1770,6 +1768,50 @@ object FrmUser: TFrmUser
     AlterarCor = True
     ColorEdit = 13041663
     Left = 385
+    Top = 8
+  end
+  object dtsConsulta: TDataSource
+    DataSet = cdsConsulta
+    Left = 304
+    Top = 8
+  end
+  object cdsConsulta: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspConsulta'
+    Left = 257
+    Top = 8
+    object cdsConsultaIDUSUARIO: TIntegerField
+      FieldName = 'IDUSUARIO'
+    end
+    object cdsConsultaNOME: TStringField
+      FieldName = 'NOME'
+      Size = 100
+    end
+    object cdsConsultaSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 30
+    end
+    object cdsConsultaTIPO: TStringField
+      FieldName = 'TIPO'
+      Size = 50
+    end
+    object cdsConsultaCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+    end
+  end
+  object dspConsulta: TDataSetProvider
+    DataSet = sqlConsulta
+    Left = 224
+    Top = 8
+  end
+  object sqlConsulta: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 'SELECT *'#13#10'FROM USUARIO'#13#10'ORDER BY IDUSUARIO'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 192
     Top = 8
   end
 end

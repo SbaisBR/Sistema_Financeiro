@@ -59,6 +59,9 @@ type
     cdsAbreCaixaABR_CODIGOUSUARIO: TIntegerField;
     cdsAbreCaixaABR_STATUS: TStringField;
     cdsAbreCaixaABR_OBSERVACAO: TStringField;
+    procedure btnSalvarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
   procedure imgLogoCinzaMouseLeave(Sender: TObject);
   procedure imgLogoAzulMouseEnter(Sender: TObject);
   procedure FormShow(Sender: TObject);
@@ -81,6 +84,26 @@ implementation
 
 
 
+procedure Tviewbaselista1.btnCancelarClick(Sender: TObject);
+begin //Cancelar
+  inherited;
+  cdsAbreCaixa.Cancel;
+  cdsAbreCaixa.CancelUpdates;
+  MessageDlg('Ação cancelada com sucesso', MTINFORMATION, [MBOK], 0);
+end;
+
+procedure Tviewbaselista1.btnEditarClick(Sender: TObject);
+begin //Editar
+  inherited;
+  page_panelconteudo.ActivePage := Card_cadastro;
+  if MessageDlg('Deseja alterar esse registro?', MtConfirmation, [mbOk,MbNo], 0) =mrOk then
+   begin
+      cdsAbreCaixa.edit;
+   end
+   else
+     Exit;
+end;
+
 procedure Tviewbaselista1.btnFecharClick(Sender: TObject);
 begin
   inherited;
@@ -88,9 +111,25 @@ begin
 end;
 
 procedure Tviewbaselista1.btnNovoClick(Sender: TObject);
+var proximo : integer;
 begin //Novo
   inherited;
   page_panelconteudo.ActivePage := Card_cadastro;
+  cdsAbreCaixa.Open;   //Abre a tabela
+  cdsAbreCaixa.Last;   // Vai para o ultimo registro da tabela
+  proximo:= cdsAbreCaixaABR_CODIGO.Asinteger + 1;   //Recebe o valor do ultimo registro e vai para o proximo '+1'
+  cdsAbreCaixa.Append;  //Adiciona mais uma coluna em branco para adionar um novo registro
+  cdsAbreCaixaABR_CODIGO.Asinteger := proximo;   //O campo ID recebe o valor da variavel proximo
+  cdsAbreCaixaABR_DATAABERTURA.AsDateTime:=Date;  //O campo CADASTRO recebe a data atualizada
+  //Lock.Enabled      := True;
+end;
+
+procedure Tviewbaselista1.btnSalvarClick(Sender: TObject);
+begin  //Salvar
+  inherited;
+  MessageDlg('Registro salvo com sucesso!', MtInformation, [mbOk], 0);
+  cdsAbreCaixa.Post;
+  cdsAbreCaixa.Applyupdates(0);
 end;
 
 procedure Tviewbaselista1.btnVoltarClick(Sender: TObject);
