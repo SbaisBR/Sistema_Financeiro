@@ -60,7 +60,6 @@ type
     cdsAbreCaixaABR_STATUS: TStringField;
     cdsAbreCaixaABR_OBSERVACAO: TStringField;
     lblTituloCadastro: TLabel;
-    DataSource1: TDataSource;
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);

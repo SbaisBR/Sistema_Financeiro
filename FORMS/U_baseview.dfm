@@ -703,7 +703,7 @@ inherited viewbaselista1: Tviewbaselista1
       Margins.Top = 0
       Margins.Right = 2
       Margins.Bottom = 0
-      ActivePage = Card_pesquisar
+      ActivePage = Card_cadastro
       Align = alClient
       TabOrder = 0
       object Card_cadastro: TTabSheet
@@ -712,18 +712,38 @@ inherited viewbaselista1: Tviewbaselista1
           Left = 0
           Top = 0
           Width = 1014
-          Height = 129
+          Height = 69
           Align = alTop
           BevelOuter = bvNone
           Color = 14606304
           TabOrder = 0
           object btnVoltar: TSpeedButton
-            Left = 832
-            Top = 32
-            Width = 169
-            Height = 57
+            AlignWithMargins = True
+            Left = 864
+            Top = 3
+            Width = 147
+            Height = 63
+            Align = alRight
             Caption = 'Voltar pesquisar'
             OnClick = btnVoltarClick
+          end
+          object lblTituloCadastro: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 15
+            Width = 124
+            Height = 51
+            Margins.Top = 15
+            Align = alLeft
+            Caption = '[CADASTRO]'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = 5395026
+            Font.Height = -19
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitTop = 20
+            ExplicitHeight = 23
           end
         end
       end
@@ -942,5 +962,10 @@ inherited viewbaselista1: Tviewbaselista1
     DataSet = cdsAbreCaixa
     Left = 544
     Top = 168
+  end
+  object DataSource1: TDataSource
+    DataSet = sqlAbreCaixa
+    Left = 504
+    Top = 368
   end
 end
