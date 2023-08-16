@@ -14,7 +14,6 @@ type
     lblVlrInicial: TLabel;
     lblOBS: TLabel;
     edOBS: TDBEdit;
-    procedure btnSalvarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -28,8 +27,6 @@ var
 
 implementation
 
-uses Providers.Variaveis;
-
 {$R *.dfm}
 
 procedure TviewAbrirCaixa.btnNovoClick(Sender: TObject);
@@ -42,20 +39,10 @@ begin
   edVlrIncial.SetFocus;
 end;
 
-procedure TviewAbrirCaixa.btnSalvarClick(Sender: TObject);
-begin
-  inherited;
-  NUM_CAIXA := cdsAbreCaixaABR_CODIGO.ASinteger;
-  Self.Close;
-end;
-
 procedure TviewAbrirCaixa.FormShow(Sender: TObject);
 begin
   inherited;
   cdsAbreCaixa.Open;
-  Card_cadastro.TabVisible := False;
-  Card_Pesquisar.TabVisible := False;
-  Page_panelconteudo.ActivePage := Card_Pesquisar;
 end;
 
 end.

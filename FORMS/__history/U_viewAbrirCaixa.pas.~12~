@@ -45,7 +45,6 @@ end;
 procedure TviewAbrirCaixa.btnSalvarClick(Sender: TObject);
 begin
   inherited;
-  NUM_CAIXA := cdsAbreCaixaABR_CODIGO.ASinteger;
   Self.Close;
 end;
 

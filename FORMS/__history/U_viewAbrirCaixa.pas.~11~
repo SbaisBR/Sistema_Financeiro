@@ -28,8 +28,6 @@ var
 
 implementation
 
-uses Providers.Variaveis;
-
 {$R *.dfm}
 
 procedure TviewAbrirCaixa.btnNovoClick(Sender: TObject);
@@ -45,7 +43,6 @@ end;
 procedure TviewAbrirCaixa.btnSalvarClick(Sender: TObject);
 begin
   inherited;
-  NUM_CAIXA := cdsAbreCaixaABR_CODIGO.ASinteger;
   Self.Close;
 end;
 
