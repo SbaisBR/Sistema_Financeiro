@@ -1,6 +1,8 @@
 inherited viewbaselista1: Tviewbaselista1
   Caption = 'viewbaselista1'
   OnShow = FormShow
+  ExplicitWidth = 1042
+  ExplicitHeight = 758
   PixelsPerInch = 96
   TextHeight = 13
   object pnlTopo: TPanel
@@ -680,8 +682,7 @@ inherited viewbaselista1: Tviewbaselista1
         000000000000}
       ParentFont = False
       OnClick = btnNovoClick
-      ExplicitLeft = 515
-      ExplicitTop = 2
+      ExplicitTop = 6
     end
   end
   object pnlLinhaFundo: TPanel
@@ -742,7 +743,6 @@ inherited viewbaselista1: Tviewbaselista1
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitTop = 20
             ExplicitHeight = 23
           end
         end

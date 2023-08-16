@@ -14,7 +14,7 @@ type
     lblVlrInicial: TLabel;
     lblOBS: TLabel;
     edOBS: TDBEdit;
-    procedure btnNovoClick(Sender: TObject);
+    edVlrFinal: TDBEdit;
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
@@ -28,16 +28,6 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TviewAbrirCaixa.btnNovoClick(Sender: TObject);
-begin
-  inherited;
-  cdsAbreCaixaABR_DATAABERTURA.AsDateTime := Date;
-  cdsAbreCaixaABR_HRAABERTURA.AsDateTime :=Time;
-  cdsAbreCaixaABR_CODIGOUSUARIO.AsInteger :=1;
-  cdsAbreCaixaABR_STATUS.AsString := 'ABERTO';
-  edVlrIncial.SetFocus;
-end;
 
 procedure TviewAbrirCaixa.FormShow(Sender: TObject);
 begin

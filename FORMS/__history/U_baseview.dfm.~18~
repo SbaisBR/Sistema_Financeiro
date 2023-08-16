@@ -1,5 +1,6 @@
 inherited viewbaselista1: Tviewbaselista1
   Caption = 'viewbaselista1'
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlTopo: TPanel
@@ -15,7 +16,7 @@ inherited viewbaselista1: Tviewbaselista1
       AlignWithMargins = True
       Left = 45
       Top = 1
-      Width = 72
+      Width = 91
       Height = 34
       Cursor = crHandPoint
       Margins.Left = 5
@@ -23,7 +24,7 @@ inherited viewbaselista1: Tviewbaselista1
       Margins.Right = 1
       Margins.Bottom = 1
       Align = alLeft
-      Caption = 'lblTitulo'
+      Caption = 'Base Lista'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -20
@@ -148,6 +149,7 @@ inherited viewbaselista1: Tviewbaselista1
           0303030000001010107171713E40424E4E4E0808080000000505053E40423E40
           423E40423E40423E40423E40423E40423E40423E40423E40423E40423E40423E
           4042}
+        OnMouseLeave = imgLogoCinzaMouseLeave
         ExplicitLeft = 1
         ExplicitTop = 1
         ExplicitWidth = 152
@@ -260,6 +262,7 @@ inherited viewbaselista1: Tviewbaselista1
           05070B02030512161E6E747E3E40424E535C0B0D13020204080A0E3E40423E40
           423E40423E40423E40423E40423E40423E40423E40423E40423E40423E40423E
           4042}
+        OnMouseEnter = imgLogoAzulMouseEnter
         ExplicitLeft = 1
         ExplicitTop = 1
         ExplicitWidth = 152
@@ -290,6 +293,7 @@ inherited viewbaselista1: Tviewbaselista1
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        OnClick = btnFecharClick
         ExplicitTop = -3
       end
     end
@@ -394,6 +398,7 @@ inherited viewbaselista1: Tviewbaselista1
         0000000000000000000000000000000000000000000000000000000000000000
         000000000000}
       ParentFont = False
+      OnClick = btnEditarClick
       ExplicitLeft = 696
     end
     object btnCancelar: TSpeedButton
@@ -487,6 +492,7 @@ inherited viewbaselista1: Tviewbaselista1
         0000000000000000000000000000000000000000000000000000000000000000
         000000000000}
       ParentFont = False
+      OnClick = btnCancelarClick
       ExplicitLeft = 824
     end
     object btnSalvar: TSpeedButton
@@ -580,6 +586,102 @@ inherited viewbaselista1: Tviewbaselista1
         0000000000000000000000000000000000000000000000000000000000000000
         000000000000}
       ParentFont = False
+      OnClick = btnSalvarClick
+    end
+    object btnNovo: TSpeedButton
+      AlignWithMargins = True
+      Left = 595
+      Top = 3
+      Width = 87
+      Height = 45
+      Align = alRight
+      Caption = '[NOVO]'
+      Flat = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Glyph.Data = {
+        42090000424D4209000000000000420000002800000018000000180000000100
+        20000300000000090000C40E0000C40E000000000000000000000000FF0000FF
+        0000FF0000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
+        00000000000000000000000000000000000000000000FFFFFF53FFFFFFD9FFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF970000
+        0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFE4FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3B0000
+        0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF110000
+        0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFF0000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF020000
+        0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFF0000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2B0000
+        0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF930000
+        0000000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBFFFF
+        FF31000000000000000000000000FFFFFFFFFFFFFFFF00000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFE2FFFFFF280000000000000000000000000000000000000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFF8FFFFFF91FFFFFF22000000000000000000000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+        00000000000000000000FFFFFF1FFFFFFFE4FFFFFFFF00000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+        000000000000FFFFFF1FFFFFFFE4FFFFFFFFFFFFFF7400000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+        0000FFFFFF1FFFFFFFE4FFFFFFFFFFFFFF740000000000000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFF
+        FF1FFFFFFFE4FFFFFFFFFFFFFF74000000000000000000000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1FFFFF
+        FFE4FFFFFFFFFFFFFF7400000000000000000000000000000000000000000000
+        00000000000000000000000000000000000000000000FFFFFFE6FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE0FFFF
+        FFFFFFFFFF7B0000000000000000000000000000000000000000000000000000
+        00000000000000000000000000000000000000000000FFFFFF53FFFFFFD8FFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FF7D000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        000000000000}
+      ParentFont = False
+      OnClick = btnNovoClick
+      ExplicitLeft = 515
+      ExplicitTop = 2
     end
   end
   object pnlLinhaFundo: TPanel
@@ -601,7 +703,7 @@ inherited viewbaselista1: Tviewbaselista1
       Margins.Top = 0
       Margins.Right = 2
       Margins.Bottom = 0
-      ActivePage = Card_pesquisar
+      ActivePage = Card_cadastro
       Align = alClient
       TabOrder = 0
       object Card_cadastro: TTabSheet
@@ -610,17 +712,38 @@ inherited viewbaselista1: Tviewbaselista1
           Left = 0
           Top = 0
           Width = 1014
-          Height = 129
+          Height = 69
           Align = alTop
           BevelOuter = bvNone
           Color = 14606304
           TabOrder = 0
           object btnVoltar: TSpeedButton
-            Left = 832
-            Top = 32
-            Width = 169
-            Height = 57
+            AlignWithMargins = True
+            Left = 864
+            Top = 3
+            Width = 147
+            Height = 63
+            Align = alRight
             Caption = 'Voltar pesquisar'
+            OnClick = btnVoltarClick
+          end
+          object lblTituloCadastro: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 15
+            Width = 124
+            Height = 51
+            Margins.Top = 15
+            Align = alLeft
+            Caption = '[CADASTRO]'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = 5395026
+            Font.Height = -19
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitTop = 20
+            ExplicitHeight = 23
           end
         end
       end
@@ -690,7 +813,159 @@ inherited viewbaselista1: Tviewbaselista1
             end
           end
         end
+        object SuperGrid1: TSuperGrid
+          AlignWithMargins = True
+          Left = 5
+          Top = 86
+          Width = 1004
+          Height = 513
+          Margins.Left = 5
+          Margins.Top = 5
+          Margins.Right = 5
+          Margins.Bottom = 5
+          Align = alClient
+          FixedColor = 11516371
+          Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect]
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+          TitleButtons = True
+          SelectColumnsDialogStrings.Caption = 'Select columns'
+          SelectColumnsDialogStrings.OK = '&OK'
+          SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
+          EditControls = <>
+          RowsHeight = 17
+          TitleRowHeight = 17
+          CorColOrdenado = clWhite
+          Columns = <
+            item
+              Expanded = False
+              Visible = True
+            end
+            item
+              Expanded = False
+              Visible = True
+            end
+            item
+              Expanded = False
+              Visible = True
+            end
+            item
+              Expanded = False
+              Visible = True
+            end
+            item
+              Expanded = False
+              Visible = True
+            end>
+        end
       end
     end
+  end
+  object sqlAbreCaixa: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 'SELECT *'#13#10'FROM ABRECAIXA'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 432
+    Top = 168
+    object sqlAbreCaixaABR_CODIGO: TIntegerField
+      FieldName = 'ABR_CODIGO'
+      Required = True
+    end
+    object sqlAbreCaixaABR_DATAABERTURA: TDateField
+      FieldName = 'ABR_DATAABERTURA'
+    end
+    object sqlAbreCaixaABR_HRAABERTURA: TTimeField
+      FieldName = 'ABR_HRAABERTURA'
+    end
+    object sqlAbreCaixaABR_DTAFECHAMENTO: TDateField
+      FieldName = 'ABR_DTAFECHAMENTO'
+    end
+    object sqlAbreCaixaABR_HRAFECHAMENTO: TTimeField
+      FieldName = 'ABR_HRAFECHAMENTO'
+    end
+    object sqlAbreCaixaABR_VLRINICIAL: TFMTBCDField
+      FieldName = 'ABR_VLRINICIAL'
+      Precision = 15
+      Size = 2
+    end
+    object sqlAbreCaixaABR_VLRFINAL: TFMTBCDField
+      FieldName = 'ABR_VLRFINAL'
+      Precision = 15
+      Size = 2
+    end
+    object sqlAbreCaixaABR_CODIGOUSUARIO: TIntegerField
+      FieldName = 'ABR_CODIGOUSUARIO'
+    end
+    object sqlAbreCaixaABR_STATUS: TStringField
+      FieldName = 'ABR_STATUS'
+    end
+    object sqlAbreCaixaABR_OBSERVACAO: TStringField
+      FieldName = 'ABR_OBSERVACAO'
+      Size = 200
+    end
+  end
+  object dspAbreCaixa: TDataSetProvider
+    DataSet = sqlAbreCaixa
+    Left = 464
+    Top = 168
+  end
+  object cdsAbreCaixa: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspAbreCaixa'
+    Left = 497
+    Top = 168
+    object cdsAbreCaixaABR_CODIGO: TIntegerField
+      FieldName = 'ABR_CODIGO'
+      Required = True
+    end
+    object cdsAbreCaixaABR_DATAABERTURA: TDateField
+      FieldName = 'ABR_DATAABERTURA'
+    end
+    object cdsAbreCaixaABR_HRAABERTURA: TTimeField
+      FieldName = 'ABR_HRAABERTURA'
+    end
+    object cdsAbreCaixaABR_DTAFECHAMENTO: TDateField
+      FieldName = 'ABR_DTAFECHAMENTO'
+    end
+    object cdsAbreCaixaABR_HRAFECHAMENTO: TTimeField
+      FieldName = 'ABR_HRAFECHAMENTO'
+    end
+    object cdsAbreCaixaABR_VLRINICIAL: TFMTBCDField
+      FieldName = 'ABR_VLRINICIAL'
+      Precision = 15
+      Size = 2
+    end
+    object cdsAbreCaixaABR_VLRFINAL: TFMTBCDField
+      FieldName = 'ABR_VLRFINAL'
+      Precision = 15
+      Size = 2
+    end
+    object cdsAbreCaixaABR_CODIGOUSUARIO: TIntegerField
+      FieldName = 'ABR_CODIGOUSUARIO'
+    end
+    object cdsAbreCaixaABR_STATUS: TStringField
+      FieldName = 'ABR_STATUS'
+    end
+    object cdsAbreCaixaABR_OBSERVACAO: TStringField
+      FieldName = 'ABR_OBSERVACAO'
+      Size = 200
+    end
+  end
+  object dtsAbreCaixa: TDataSource
+    DataSet = cdsAbreCaixa
+    Left = 544
+    Top = 168
+  end
+  object DataSource1: TDataSource
+    DataSet = sqlAbreCaixa
+    Left = 504
+    Top = 368
   end
 end
