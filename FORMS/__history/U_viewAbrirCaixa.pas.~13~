@@ -14,7 +14,6 @@ type
     lblVlrInicial: TLabel;
     lblOBS: TLabel;
     edOBS: TDBEdit;
-    cbxStatus: TDBComboBox;
     procedure btnSalvarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);

@@ -14,8 +14,10 @@ uses
   U_viewPrinc in '..\FORMS\U_viewPrinc.pas' {viewPrincipal},
   U_baseview in '..\FORMS\U_baseview.pas' {viewbaselista1},
   U_viewAbrirCaixa in '..\FORMS\U_viewAbrirCaixa.pas' {viewAbrirCaixa},
-  Providers.Variaveis in '..\FORMS\Providers.Variaveis.pas',
-  Providers.Functions in '..\FORMS\Providers.Functions.pas';
+  service.cadastro in '..\FORMS\services\service.cadastro.pas',
+  providers.conversao in '..\FORMS\providers\providers.conversao.pas',
+  providers.functions in '..\FORMS\providers\providers.functions.pas',
+  providers.variaveis in '..\FORMS\providers\providers.variaveis.pas';
 
 {$R *.res}
 

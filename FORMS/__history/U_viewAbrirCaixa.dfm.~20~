@@ -78,8 +78,6 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
           Height = 31
           Style = csDropDownList
           CharCase = ecUpperCase
-          DataField = 'ABR_STATUS'
-          DataSource = dtsAbreCaixa
           Font.Charset = DEFAULT_CHARSET
           Font.Color = 5395026
           Font.Height = -19
