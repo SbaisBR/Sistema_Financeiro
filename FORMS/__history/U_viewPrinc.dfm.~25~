@@ -21,8 +21,6 @@ object viewPrincipal: TviewPrincipal
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
-    ExplicitTop = -3
-    ExplicitWidth = 1192
     object pnlLogoEmpresa: TPanel
       Left = 0
       Top = 0
@@ -41,7 +39,6 @@ object viewPrincipal: TviewPrincipal
         BevelOuter = bvNone
         Color = 4079682
         TabOrder = 0
-        ExplicitLeft = 0
         object imgLogoEmpresaAmarelo: TImage
           Left = 105
           Top = 0
@@ -338,8 +335,8 @@ object viewPrincipal: TviewPrincipal
             3FFFD9}
           Transparent = True
           OnMouseEnter = imgLogoEmpresaMouseEnter
-          ExplicitLeft = 24
-          ExplicitTop = 36
+          ExplicitLeft = 3
+          ExplicitTop = -3
         end
       end
       object pnlTextoEmpresa: TPanel
@@ -357,10 +354,6 @@ object viewPrincipal: TviewPrincipal
         Font.Style = []
         ParentFont = False
         TabOrder = 1
-        ExplicitLeft = 167
-        ExplicitTop = 36
-        ExplicitWidth = 185
-        ExplicitHeight = 41
         object lblNomeEmpresa: TLabel
           AlignWithMargins = True
           Left = 3
@@ -391,8 +384,6 @@ object viewPrincipal: TviewPrincipal
         BevelOuter = bvNone
         Color = 46079
         TabOrder = 2
-        ExplicitLeft = 0
-        ExplicitTop = 17
       end
     end
     object pnlHora: TPanel
@@ -420,7 +411,6 @@ object viewPrincipal: TviewPrincipal
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitTop = 25
         ExplicitWidth = 156
         ExplicitHeight = 59
       end
@@ -449,7 +439,7 @@ object viewPrincipal: TviewPrincipal
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ExplicitWidth = 179
+        ExplicitWidth = 51
       end
       object lblCidade: TLabel
         AlignWithMargins = True
@@ -478,10 +468,6 @@ object viewPrincipal: TviewPrincipal
       BevelOuter = bvNone
       Color = 4079682
       TabOrder = 3
-      ExplicitLeft = 504
-      ExplicitTop = 40
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object lblCaixaLivre: TLabel
         AlignWithMargins = True
         Left = 3
@@ -499,8 +485,7 @@ object viewPrincipal: TviewPrincipal
         Font.Name = 'Arial Narrow'
         Font.Style = []
         ParentFont = False
-        ExplicitLeft = 217
-        ExplicitTop = 30
+        ExplicitLeft = 316
         ExplicitWidth = 240
         ExplicitHeight = 55
       end
@@ -515,8 +500,6 @@ object viewPrincipal: TviewPrincipal
     BevelOuter = bvNone
     Color = 14581528
     TabOrder = 1
-    ExplicitTop = 741
-    ExplicitWidth = 1244
   end
   object pnlRodape: TPanel
     AlignWithMargins = True
@@ -532,9 +515,21 @@ object viewPrincipal: TviewPrincipal
     BevelOuter = bvNone
     Color = 3487029
     TabOrder = 2
-    ExplicitLeft = 536
-    ExplicitTop = 376
-    ExplicitWidth = 185
+    object lblAbreCaixa: TLabel
+      Left = 20
+      Top = 12
+      Width = 53
+      Height = 13
+      Cursor = crHandPoint
+      Caption = 'Abrir Caixa'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      OnClick = lblAbreCaixaClick
+    end
   end
   object pnlBackground: TPanel
     Left = 0
@@ -544,9 +539,6 @@ object viewPrincipal: TviewPrincipal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 3
-    ExplicitTop = 110
-    ExplicitWidth = 1008
-    ExplicitHeight = 563
     object pnlConsultaProduto: TPanel
       AlignWithMargins = True
       Left = 20
@@ -561,8 +553,6 @@ object viewPrincipal: TviewPrincipal
       BevelOuter = bvNone
       Color = clWhite
       TabOrder = 0
-      ExplicitTop = 133
-      ExplicitHeight = 523
       object imgLogoProduto: TImage
         Left = 0
         Top = 121
@@ -592,9 +582,6 @@ object viewPrincipal: TviewPrincipal
           BevelOuter = bvNone
           Color = 13816530
           TabOrder = 0
-          ExplicitLeft = 80
-          ExplicitTop = 40
-          ExplicitWidth = 185
           object lblCodigodeBarras: TLabel
             AlignWithMargins = True
             Left = 3
@@ -634,7 +621,6 @@ object viewPrincipal: TviewPrincipal
           Font.Style = []
           ParentFont = False
           TabOrder = 1
-          Text = '7898317160189'
         end
       end
       object pnlRodapeConsultaProduto: TPanel
@@ -661,7 +647,6 @@ object viewPrincipal: TviewPrincipal
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          ExplicitTop = 30
           ExplicitHeight = 25
         end
       end
@@ -674,7 +659,6 @@ object viewPrincipal: TviewPrincipal
         BevelOuter = bvNone
         Color = clWhite
         TabOrder = 2
-        ExplicitTop = 268
         object lblNomeProduto: TLabel
           AlignWithMargins = True
           Left = 3
@@ -691,6 +675,7 @@ object viewPrincipal: TviewPrincipal
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          ExplicitWidth = 195
         end
         object pnlQtditem: TPanel
           AlignWithMargins = True
@@ -773,8 +758,6 @@ object viewPrincipal: TviewPrincipal
       BevelOuter = bvNone
       Color = clWhite
       TabOrder = 1
-      ExplicitWidth = 599
-      ExplicitHeight = 523
       object pnlTotalPagar: TPanel
         Left = 0
         Top = 450
@@ -803,11 +786,12 @@ object viewPrincipal: TviewPrincipal
         end
         object edtTotalApagar: TEdit
           AlignWithMargins = True
-          Left = 592
+          Left = 585
           Top = 10
           Width = 287
           Height = 62
           Margins.Top = 10
+          Margins.Right = 10
           Align = alRight
           BevelOuter = bvNone
           BorderStyle = bsNone
@@ -821,6 +805,56 @@ object viewPrincipal: TviewPrincipal
           TabOrder = 0
           Text = '0'
         end
+      end
+      object DBG_produtos: TSuperGrid
+        AlignWithMargins = True
+        Left = 10
+        Top = 20
+        Width = 862
+        Height = 427
+        Margins.Left = 10
+        Margins.Top = 20
+        Margins.Right = 10
+        Align = alClient
+        BorderStyle = bsNone
+        FixedColor = 11516371
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 5460819
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        Options = [dgTitles, dgTabs, dgRowSelect, dgAlwaysShowSelection]
+        ParentFont = False
+        TabOrder = 1
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        TitleButtons = True
+        SelectColumnsDialogStrings.Caption = 'Select columns'
+        SelectColumnsDialogStrings.OK = '&OK'
+        SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
+        EditControls = <>
+        RowsHeight = 24
+        TitleRowHeight = 17
+        CorColOrdenado = clWhite
+        Columns = <
+          item
+            Expanded = False
+            Title.Caption = 'Codigo'
+            Visible = True
+          end
+          item
+            Expanded = False
+            Title.Caption = 'Produto'
+            Visible = True
+          end
+          item
+            Expanded = False
+            Title.Caption = 'Quantidade'
+            Visible = True
+          end>
       end
     end
   end
