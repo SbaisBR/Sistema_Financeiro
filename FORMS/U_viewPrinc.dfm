@@ -633,7 +633,6 @@ object viewPrincipal: TviewPrincipal
         BevelOuter = bvNone
         Color = 7434609
         TabOrder = 1
-        ExplicitTop = 453
         object lblSubTotal: TLabel
           AlignWithMargins = True
           Left = 3
@@ -914,6 +913,10 @@ object viewPrincipal: TviewPrincipal
       FieldName = 'EAN'
       Size = 14
     end
+    object cdsCodBarVALORUNIT: TFMTBCDField
+      FieldName = 'VALORUNIT'
+      Precision = 15
+    end
   end
   object dtsCodBar: TDataSource
     DataSet = cdsCodBar
@@ -922,9 +925,39 @@ object viewPrincipal: TviewPrincipal
   end
   object sqlCotI: TSQLDataSet
     SchemaName = 'sysdba'
-    CommandText = 'SELECT *'#13#10'FROM CADPRODUTO'
+    CommandText = 
+      'SELECT'#13#10'   I.ID, I.ID_COTACAO, I.ID_PRODUTO, I.DESCRICAO, I.COMP' +
+      'LEMENTO, I.INFOADICIONAL, I.QTDE, I.LOCAL_ESTOQUE, I.CUSTOUNIT,'#13 +
+      #10'I.VALORUNIT, I.VALORUNIT2, I.DESCONTO, I.MARKUP, I.MARGEMLUCRO,' +
+      ' I.VALORUNIT_DESC, I.VALORUNIT_DESC2,  I.VALORUNITLIQUIDO, I.ALI' +
+      'QIPI, I.ALIQISSRETIDO, I.VALORISSRETIDO, I.ALIQICMS, I.VALORICMS' +
+      'SUBST, I.CODSIMILAR, I.DESCRICAO_SIMILAR,'#13#10'I.VALORICMS21, I.VALO' +
+      'RIPI, I.VALORTOTAL, I.VALORTOTALLIQUIDO, I.VALORDESCONTO, I.STAT' +
+      'US, I.PREV_ENTREGA, I.ESTOQUE,'#13#10'I.DATA_PREV_ENTREGA, I.OBS, I.ID' +
+      '_PEDIDO, I.ID_NOTAFISCAL, I.ID_NOTAFISCAL_COBR, I.ID_ORDEMSERVIC' +
+      'O, I.SAIDA, I.ESTORNO, I.ID_PROMOCAO, I.DATASOLIC, I.RECNO, I.UN' +
+      'IDMED,'#13#10'I.CAMPOCALC1, I.CAMPOCALC2, I.CAMPOCALC3, I.CAMPOCALC4, ' +
+      'I.CAMPOCALC5, I.CAMPOCALC6, I.CAMPOCALC7, I.CAMPOCALC8, I.CAMPOC' +
+      'ALC9,'#13#10'I.CAMPOADICIONAL1, I.CAMPOADICIONAL2, I.CAMPOADICIONAL3, ' +
+      'I.CAMPOADICIONAL4, I.CAMPOADICIONAL5, I.CAMPOADICIONAL6, I.CAMPO' +
+      'ADICIONAL7, I.CAMPOADICIONAL8, I.CAMPOADICIONAL9,'#13#10'I.ITEM_PEDIDO' +
+      'CLI, I.COMISSAO, I.VALORCOMISSAO, I.VALIDADE, I.CFOP, I.DESCONTO' +
+      '_S, I.ESTRUTURA_DATAREVCUSTO, I.VALORFRETE, I.ID_CONSIG, I.PRAZO' +
+      '_GARANTIA, I.TIPOPRODUTO,'#13#10'COALESCE(I.CLFISC, P.CLFISC) AS CLFIS' +
+      'C, P.UNIDMED as PRODUTO_UNIDMED, P.TIPO as PRODUTO_TIPO, P.DESCO' +
+      'NTOMAX as PRODUTO_DESCONTOMAX, P.EAN as PRODUTO_EAN,'#13#10'P.ID_GRUPO' +
+      ' as PRODUTO_ID_GRUPO, P.FRACIONADO_ID_PRODUTO, P.FRACIONADO_FRAC' +
+      'AO_S, P.COMPRIMENTO AS PRODUTO_COMPRIMENTO, P.ALTURA AS PRODUTO_' +
+      'ALTURA, P.LARGURA AS PRODUTO_LARGURA,'#13#10'(I.QTDE * P.PESO/1000) as' +
+      ' PESOTOTAL'#13#10'FROM COTACAOI I'#13#10'LEFT JOIN CADPRODUTO P on P.ID = I.' +
+      'ID_PRODUTO'#13#10'where I.ID_PRODUTO = :ID_PRODUTO'#13#10'order by I.ID'
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID_PRODUTO'
+        ParamType = ptInput
+      end>
     SQLConnection = Conexao.Conexao
     Left = 392
     Top = 64
@@ -936,20 +969,32 @@ object viewPrincipal: TviewPrincipal
   end
   object cdsCotI: TClientDataSet
     Aggregates = <>
-    Params = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID_PRODUTO'
+        ParamType = ptInput
+      end>
     ProviderName = 'dspCotI'
     Left = 457
     Top = 64
     object IntegerField2: TIntegerField
       FieldName = 'ID'
     end
+    object cdsCotIID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+    end
     object StringField3: TStringField
       FieldName = 'DESCRICAO'
       Size = 100
     end
-    object StringField4: TStringField
-      FieldName = 'EAN'
+    object cdsCotIPRODUTO_EAN: TStringField
+      FieldName = 'PRODUTO_EAN'
       Size = 14
+    end
+    object cdsCotIVALORUNIT_DESC: TFMTBCDField
+      FieldName = 'VALORUNIT_DESC'
+      Precision = 15
     end
   end
   object dtsCotI: TDataSource

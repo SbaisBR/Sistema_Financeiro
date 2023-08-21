@@ -61,8 +61,11 @@ type
     cdsCotI: TClientDataSet;
     IntegerField2: TIntegerField;
     StringField3: TStringField;
-    StringField4: TStringField;
     dtsCotI: TDataSource;
+    cdsCotIPRODUTO_EAN: TStringField;
+    cdsCotIID_PRODUTO: TIntegerField;
+    cdsCotIVALORUNIT_DESC: TFMTBCDField;
+    cdsCodBarVALORUNIT: TFMTBCDField;
     procedure edtCodBarrasExit(Sender: TObject);
     procedure lblAbreCaixaClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloClick(Sender: TObject);
@@ -88,6 +91,11 @@ begin //Filtra pelo código de barras
   cdsCodBar.Close;
   sqlCodBar.commandText := 'SELECT * FROM CADPRODUTO WHERE EAN LIKE  ''%'+edtCodBarras.Text+'%''';
   cdsCodBar.Open;
+  cdsCotI.Open;
+  cdsCotI.Edit;
+  cdsCotIID_PRODUTO.Value       := cdsCodBarID.Value;
+  edtValorUnitario.Text := cdsCodBarVALORUNIT.AsString;
+  cdsCotI.Post;
   if not cdsCodBar.IsEmpty then
   begin
     ShowMessage('Descrição: ' + cdsCodBarDESCRICAO.AsString);

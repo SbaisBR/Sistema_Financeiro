@@ -5,13 +5,19 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
   inherited pnlTopo: TPanel
     inherited lblTitulo: TLabel
       Width = 97
+      Height = 34
       Caption = 'Abrir Caixa'
       ExplicitWidth = 97
     end
   end
   inherited pnlLinhaFundo: TPanel
     inherited Page_panelconteudo: TPageControl
+      ActivePage = Card_pesquisar
       inherited Card_cadastro: TTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 1014
+        ExplicitHeight = 604
         object lblVlrInicial: TLabel [0]
           Left = 11
           Top = 104
@@ -39,6 +45,11 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+        end
+        inherited pnlFiltroCadastro: TPanel
+          inherited lblTituloCadastro: TLabel
+            Height = 51
+          end
         end
         object edVlrIncial: TDBEdit
           Left = 11
@@ -101,7 +112,10 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
         inherited pnlFiltroPesquisa: TPanel
           inherited pnlFiltro: TPanel
             inherited lblPesquisa: TLabel
-              Height = 18
+              Top = 15
+              Margins.Top = 15
+              ExplicitTop = 19
+              ExplicitHeight = 18
             end
           end
         end

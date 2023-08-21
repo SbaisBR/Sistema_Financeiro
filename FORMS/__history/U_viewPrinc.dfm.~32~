@@ -21,8 +21,6 @@ object viewPrincipal: TviewPrincipal
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
-    ExplicitTop = -3
-    ExplicitWidth = 1192
     object pnlLogoEmpresa: TPanel
       Left = 0
       Top = 0
@@ -41,7 +39,6 @@ object viewPrincipal: TviewPrincipal
         BevelOuter = bvNone
         Color = 4079682
         TabOrder = 0
-        ExplicitLeft = 0
         object imgLogoEmpresaAmarelo: TImage
           Left = 105
           Top = 0
@@ -357,10 +354,6 @@ object viewPrincipal: TviewPrincipal
         Font.Style = []
         ParentFont = False
         TabOrder = 1
-        ExplicitLeft = 167
-        ExplicitTop = 36
-        ExplicitWidth = 185
-        ExplicitHeight = 41
         object lblNomeEmpresa: TLabel
           AlignWithMargins = True
           Left = 3
@@ -391,8 +384,6 @@ object viewPrincipal: TviewPrincipal
         BevelOuter = bvNone
         Color = 46079
         TabOrder = 2
-        ExplicitLeft = 0
-        ExplicitTop = 17
       end
     end
     object pnlHora: TPanel
@@ -420,7 +411,6 @@ object viewPrincipal: TviewPrincipal
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitTop = 25
         ExplicitWidth = 156
         ExplicitHeight = 59
       end
@@ -449,7 +439,7 @@ object viewPrincipal: TviewPrincipal
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ExplicitWidth = 179
+        ExplicitWidth = 51
       end
       object lblCidade: TLabel
         AlignWithMargins = True
@@ -478,10 +468,6 @@ object viewPrincipal: TviewPrincipal
       BevelOuter = bvNone
       Color = 4079682
       TabOrder = 3
-      ExplicitLeft = 504
-      ExplicitTop = 40
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object lblCaixaLivre: TLabel
         AlignWithMargins = True
         Left = 3
@@ -499,8 +485,7 @@ object viewPrincipal: TviewPrincipal
         Font.Name = 'Arial Narrow'
         Font.Style = []
         ParentFont = False
-        ExplicitLeft = 217
-        ExplicitTop = 30
+        ExplicitLeft = 316
         ExplicitWidth = 240
         ExplicitHeight = 55
       end
@@ -515,8 +500,6 @@ object viewPrincipal: TviewPrincipal
     BevelOuter = bvNone
     Color = 14581528
     TabOrder = 1
-    ExplicitTop = 741
-    ExplicitWidth = 1244
   end
   object pnlRodape: TPanel
     AlignWithMargins = True
@@ -532,9 +515,21 @@ object viewPrincipal: TviewPrincipal
     BevelOuter = bvNone
     Color = 3487029
     TabOrder = 2
-    ExplicitLeft = 536
-    ExplicitTop = 376
-    ExplicitWidth = 185
+    object lblAbreCaixa: TLabel
+      Left = 20
+      Top = 12
+      Width = 53
+      Height = 13
+      Cursor = crHandPoint
+      Caption = 'Abrir Caixa'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      OnClick = lblAbreCaixaClick
+    end
   end
   object pnlBackground: TPanel
     Left = 0
@@ -544,9 +539,6 @@ object viewPrincipal: TviewPrincipal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 3
-    ExplicitTop = 110
-    ExplicitWidth = 1008
-    ExplicitHeight = 563
     object pnlConsultaProduto: TPanel
       AlignWithMargins = True
       Left = 20
@@ -561,8 +553,6 @@ object viewPrincipal: TviewPrincipal
       BevelOuter = bvNone
       Color = clWhite
       TabOrder = 0
-      ExplicitTop = 133
-      ExplicitHeight = 523
       object imgLogoProduto: TImage
         Left = 0
         Top = 121
@@ -592,9 +582,6 @@ object viewPrincipal: TviewPrincipal
           BevelOuter = bvNone
           Color = 13816530
           TabOrder = 0
-          ExplicitLeft = 80
-          ExplicitTop = 40
-          ExplicitWidth = 185
           object lblCodigodeBarras: TLabel
             AlignWithMargins = True
             Left = 3
@@ -634,6 +621,7 @@ object viewPrincipal: TviewPrincipal
           Font.Style = []
           ParentFont = False
           TabOrder = 1
+          OnExit = edtCodBarrasExit
         end
       end
       object pnlRodapeConsultaProduto: TPanel
@@ -645,6 +633,7 @@ object viewPrincipal: TviewPrincipal
         BevelOuter = bvNone
         Color = 7434609
         TabOrder = 1
+        ExplicitTop = 453
         object lblSubTotal: TLabel
           AlignWithMargins = True
           Left = 3
@@ -660,8 +649,24 @@ object viewPrincipal: TviewPrincipal
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          ExplicitTop = 30
           ExplicitHeight = 25
+        end
+        object edtSubTotal: TEdit
+          Left = 136
+          Top = 22
+          Width = 203
+          Height = 31
+          BevelOuter = bvNone
+          BorderStyle = bsNone
+          Color = 7434609
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          Text = '1'
         end
       end
       object pnlNomeProduto: TPanel
@@ -673,7 +678,6 @@ object viewPrincipal: TviewPrincipal
         BevelOuter = bvNone
         Color = clWhite
         TabOrder = 2
-        ExplicitTop = 268
         object lblNomeProduto: TLabel
           AlignWithMargins = True
           Left = 3
@@ -690,6 +694,7 @@ object viewPrincipal: TviewPrincipal
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          ExplicitWidth = 195
         end
         object pnlQtditem: TPanel
           AlignWithMargins = True
@@ -772,8 +777,6 @@ object viewPrincipal: TviewPrincipal
       BevelOuter = bvNone
       Color = clWhite
       TabOrder = 1
-      ExplicitWidth = 599
-      ExplicitHeight = 523
       object pnlTotalPagar: TPanel
         Left = 0
         Top = 450
@@ -820,7 +823,6 @@ object viewPrincipal: TviewPrincipal
           ParentFont = False
           TabOrder = 0
           Text = '0'
-          ExplicitLeft = 592
         end
       end
       object DBG_produtos: TSuperGrid
@@ -834,6 +836,7 @@ object viewPrincipal: TviewPrincipal
         Margins.Right = 10
         Align = alClient
         BorderStyle = bsNone
+        DataSource = dtsCodBar
         FixedColor = 11516371
         Font.Charset = ANSI_CHARSET
         Font.Color = 5460819
@@ -871,8 +874,87 @@ object viewPrincipal: TviewPrincipal
             Expanded = False
             Title.Caption = 'Quantidade'
             Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DESCRICAO'
+            Visible = True
           end>
       end
     end
+  end
+  object sqlCodBar: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 'SELECT *'#13#10'FROM CADPRODUTO'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 168
+    Top = 64
+  end
+  object dspCodBar: TDataSetProvider
+    DataSet = sqlCodBar
+    Left = 200
+    Top = 64
+  end
+  object cdsCodBar: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspCodBar'
+    Left = 233
+    Top = 64
+    object cdsCodBarID: TIntegerField
+      FieldName = 'ID'
+    end
+    object cdsCodBarDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 100
+    end
+    object cdsCodBarEAN: TStringField
+      FieldName = 'EAN'
+      Size = 14
+    end
+  end
+  object dtsCodBar: TDataSource
+    DataSet = cdsCodBar
+    Left = 280
+    Top = 64
+  end
+  object sqlCotI: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 'SELECT *'#13#10'FROM CADPRODUTO'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 392
+    Top = 64
+  end
+  object dspCotI: TDataSetProvider
+    DataSet = sqlCotI
+    Left = 424
+    Top = 64
+  end
+  object cdsCotI: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspCotI'
+    Left = 457
+    Top = 64
+    object IntegerField2: TIntegerField
+      FieldName = 'ID'
+    end
+    object StringField3: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 100
+    end
+    object StringField4: TStringField
+      FieldName = 'EAN'
+      Size = 14
+    end
+  end
+  object dtsCotI: TDataSource
+    DataSet = cdsCotI
+    Left = 504
+    Top = 64
   end
 end

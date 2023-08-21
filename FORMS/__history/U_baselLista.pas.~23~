@@ -26,7 +26,7 @@ implementation
 procedure Tviewbaselista.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  if key = VK_RETURN then
+  if key = BK_RETURN then
     Perform(wm_NextDlgCtl,0,0); 
 end;
 
