@@ -48,6 +48,21 @@ type
     edtTotalApagar: TEdit;
     DBG_produtos: TSuperGrid;
     lblAbreCaixa: TLabel;
+    sqlCodBar: TSQLDataSet;
+    dspCodBar: TDataSetProvider;
+    cdsCodBar: TClientDataSet;
+    dtsCodBar: TDataSource;
+    cdsCodBarID: TIntegerField;
+    cdsCodBarDESCRICAO: TStringField;
+    cdsCodBarEAN: TStringField;
+    edtSubTotal: TEdit;
+    sqlCotI: TSQLDataSet;
+    dspCotI: TDataSetProvider;
+    cdsCotI: TClientDataSet;
+    IntegerField2: TIntegerField;
+    StringField3: TStringField;
+    StringField4: TStringField;
+    dtsCotI: TDataSource;
     procedure edtCodBarrasExit(Sender: TObject);
     procedure lblAbreCaixaClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloClick(Sender: TObject);
@@ -69,8 +84,16 @@ uses U_viewAbrirCaixa;
 {$R *.dfm}
 
 procedure TviewPrincipal.edtCodBarrasExit(Sender: TObject);
-begin
-  // Fazer um Filtro e retornar por show message o nome do ien do codigo
+begin //Filtra pelo código de barras
+  cdsCodBar.Close;
+  sqlCodBar.commandText := 'SELECT * FROM CADPRODUTO WHERE EAN LIKE  ''%'+edtCodBarras.Text+'%''';
+  cdsCodBar.Open;
+  if not cdsCodBar.IsEmpty then
+  begin
+    ShowMessage('Descrição: ' + cdsCodBarDESCRICAO.AsString);
+  end
+  else
+    ShowMessage('Nenhum produto encontrado com o código de barras especificado.');
 end;
 
 procedure TviewPrincipal.imgLogoEmpresaAmareloClick(Sender: TObject);

@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, jpeg;
+  Dialogs, ExtCtrls, StdCtrls, jpeg, Grids, DBGrids, JvExDBGrids, JvDBGrid,
+  SuperGrid, FMTBcd, DBClient, Provider, DB, SqlExpr;
 
 type
   TviewPrincipal = class(TForm)
@@ -44,6 +45,11 @@ type
     edtValorUnitario: TEdit;
     pnlTotalPagar: TPanel;
     lblTotalAPagar: TLabel;
+    edtTotalApagar: TEdit;
+    DBG_produtos: TSuperGrid;
+    lblAbreCaixa: TLabel;
+    procedure edtCodBarrasExit(Sender: TObject);
+    procedure lblAbreCaixaClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloMouseLeave(Sender: TObject);
     procedure imgLogoEmpresaMouseEnter(Sender: TObject);
@@ -58,7 +64,14 @@ var
 
 implementation
 
+uses U_viewAbrirCaixa;
+
 {$R *.dfm}
+
+procedure TviewPrincipal.edtCodBarrasExit(Sender: TObject);
+begin
+  // Fazer um Filtro e retornar por show message o nome do ien do codigo
+end;
 
 procedure TviewPrincipal.imgLogoEmpresaAmareloClick(Sender: TObject);
 begin
@@ -75,6 +88,16 @@ procedure TviewPrincipal.imgLogoEmpresaMouseEnter(Sender: TObject);
 begin //Mouse enter
   imgLogoEmpresa.Visible        := False;
   imgLogoEmpresaAmarelo.Visible := True;
+end;
+
+procedure TviewPrincipal.lblAbreCaixaClick(Sender: TObject);
+begin //Abrir Caixa
+  viewAbrirCaixa := TviewAbrirCaixa.Create(Self);
+  try
+    viewAbrirCaixa.Showmodal;
+  finally
+    FreeAndNil(viewAbrirCaixa);
+  end;
 end;
 
 end.

@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, jpeg;
+  Dialogs, ExtCtrls, StdCtrls, jpeg, Grids, DBGrids, JvExDBGrids, JvDBGrid,
+  SuperGrid, FMTBcd, DBClient, Provider, DB, SqlExpr;
 
 type
   TviewPrincipal = class(TForm)
@@ -45,6 +46,17 @@ type
     pnlTotalPagar: TPanel;
     lblTotalAPagar: TLabel;
     edtTotalApagar: TEdit;
+    DBG_produtos: TSuperGrid;
+    lblAbreCaixa: TLabel;
+    sqlCodBar: TSQLDataSet;
+    dspCodBar: TDataSetProvider;
+    cdsCodBar: TClientDataSet;
+    dtsCodBar: TDataSource;
+    cdsCodBarID: TIntegerField;
+    cdsCodBarDESCRICAO: TStringField;
+    cdsCodBarEAN: TStringField;
+    procedure edtCodBarrasExit(Sender: TObject);
+    procedure lblAbreCaixaClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloMouseLeave(Sender: TObject);
     procedure imgLogoEmpresaMouseEnter(Sender: TObject);
@@ -59,7 +71,22 @@ var
 
 implementation
 
+uses U_viewAbrirCaixa;
+
 {$R *.dfm}
+
+procedure TviewPrincipal.edtCodBarrasExit(Sender: TObject);
+begin //Filtra pelo código de barras
+  cdsCodBar.Close;
+  sqlCodBar.commandText := 'SELECT * FROM CADPRODUTO WHERE EAN LIKE  ''%'+edtCodBarras.Text+'%''';
+  cdsCodBar.Open;
+  if not cdsCodBar.IsEmpty then
+  begin
+    ShowMessage('Descrição: ' + cdsCodBarDESCRICAO.AsString);
+  end
+  else
+    ShowMessage('Nenhum produto encontrado com o código de barras especificado.');
+end;
 
 procedure TviewPrincipal.imgLogoEmpresaAmareloClick(Sender: TObject);
 begin
@@ -76,6 +103,16 @@ procedure TviewPrincipal.imgLogoEmpresaMouseEnter(Sender: TObject);
 begin //Mouse enter
   imgLogoEmpresa.Visible        := False;
   imgLogoEmpresaAmarelo.Visible := True;
+end;
+
+procedure TviewPrincipal.lblAbreCaixaClick(Sender: TObject);
+begin //Abrir Caixa
+  viewAbrirCaixa := TviewAbrirCaixa.Create(Self);
+  try
+    viewAbrirCaixa.Showmodal;
+  finally
+    FreeAndNil(viewAbrirCaixa);
+  end;
 end;
 
 end.

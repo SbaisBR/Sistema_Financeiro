@@ -621,6 +621,7 @@ object viewPrincipal: TviewPrincipal
           Font.Style = []
           ParentFont = False
           TabOrder = 1
+          OnExit = edtCodBarrasExit
         end
       end
       object pnlRodapeConsultaProduto: TPanel
@@ -632,6 +633,7 @@ object viewPrincipal: TviewPrincipal
         BevelOuter = bvNone
         Color = 7434609
         TabOrder = 1
+        ExplicitTop = 453
         object lblSubTotal: TLabel
           AlignWithMargins = True
           Left = 3
@@ -648,6 +650,23 @@ object viewPrincipal: TviewPrincipal
           Font.Style = []
           ParentFont = False
           ExplicitHeight = 25
+        end
+        object edtSubTotal: TEdit
+          Left = 136
+          Top = 22
+          Width = 203
+          Height = 31
+          BevelOuter = bvNone
+          BorderStyle = bsNone
+          Color = 7434609
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          Text = '1'
         end
       end
       object pnlNomeProduto: TPanel
@@ -817,6 +836,7 @@ object viewPrincipal: TviewPrincipal
         Margins.Right = 10
         Align = alClient
         BorderStyle = bsNone
+        DataSource = dtsCodBar
         FixedColor = 11516371
         Font.Charset = ANSI_CHARSET
         Font.Color = 5460819
@@ -854,8 +874,87 @@ object viewPrincipal: TviewPrincipal
             Expanded = False
             Title.Caption = 'Quantidade'
             Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DESCRICAO'
+            Visible = True
           end>
       end
     end
+  end
+  object sqlCodBar: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 'SELECT *'#13#10'FROM CADPRODUTO'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 168
+    Top = 64
+  end
+  object dspCodBar: TDataSetProvider
+    DataSet = sqlCodBar
+    Left = 200
+    Top = 64
+  end
+  object cdsCodBar: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspCodBar'
+    Left = 233
+    Top = 64
+    object cdsCodBarID: TIntegerField
+      FieldName = 'ID'
+    end
+    object cdsCodBarDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 100
+    end
+    object cdsCodBarEAN: TStringField
+      FieldName = 'EAN'
+      Size = 14
+    end
+  end
+  object dtsCodBar: TDataSource
+    DataSet = cdsCodBar
+    Left = 280
+    Top = 64
+  end
+  object sqlCotI: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 'SELECT *'#13#10'FROM CADPRODUTO'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 392
+    Top = 64
+  end
+  object dspCotI: TDataSetProvider
+    DataSet = sqlCotI
+    Left = 424
+    Top = 64
+  end
+  object cdsCotI: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspCotI'
+    Left = 457
+    Top = 64
+    object IntegerField2: TIntegerField
+      FieldName = 'ID'
+    end
+    object StringField3: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 100
+    end
+    object StringField4: TStringField
+      FieldName = 'EAN'
+      Size = 14
+    end
+  end
+  object dtsCotI: TDataSource
+    DataSet = cdsCotI
+    Left = 504
+    Top = 64
   end
 end
