@@ -3,9 +3,8 @@ unit service.cadastro;
 interface
 
 uses
-
-  DBGrids,
   providers.conversao, frxClass, frxDBSet;
+
 type
  TServiceCadastro = Class
     private
@@ -35,7 +34,7 @@ implementation
 { TServiceCadastro }
 
 procedure TServiceCadastro.DimensionarGrid(dbg: TDBGrid);
-type
+begin
   TArray = Array of Integer;
   procedure AjustarColumns(Swidth, TSize: Integer; Asize: TArray);
   var
@@ -79,12 +78,12 @@ begin
 
     TSize := TSize + Asize[idx];
   end;
-  {if TDBGridOption.dgColLines in dbg.Options then
-    Twidth := Twidth + dbg.Columns.count;}
+  if TDBGridOption.dgColLines in dbg.Options then
+    Twidth := Twidth + dbg.Columns.count;
 
   // adiciona a largura da coluna indicada do cursor
-  {if TDBGridOption.dgIndicator in dbg.Options then
-    Twidth := Twidth + IndicatorWidth;}
+  if TDBGridOption.dgIndicator in dbg.Options then
+    Twidth := Twidth + IndicatorWidth;
 
   Swidth := dbg.ClientWidth - Twidth;
   AjustarColumns(Swidth, TSize, Asize);

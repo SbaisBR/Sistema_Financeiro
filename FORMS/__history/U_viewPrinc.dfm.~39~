@@ -650,6 +650,22 @@ object viewPrincipal: TviewPrincipal
           ParentFont = False
           ExplicitHeight = 25
         end
+        object edtSubTotal: TEdit
+          Left = 136
+          Top = 22
+          Width = 203
+          Height = 31
+          BevelOuter = bvNone
+          BorderStyle = bsNone
+          Color = 7434609
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+        end
       end
       object pnlNomeProduto: TPanel
         Left = 0
@@ -726,7 +742,6 @@ object viewPrincipal: TviewPrincipal
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            Text = '1'
           end
           object edtValorUnitario: TEdit
             Left = 85
@@ -740,7 +755,6 @@ object viewPrincipal: TviewPrincipal
             Font.Style = []
             ParentFont = False
             TabOrder = 1
-            Text = '1'
           end
         end
       end
@@ -818,7 +832,7 @@ object viewPrincipal: TviewPrincipal
         Margins.Right = 10
         Align = alClient
         BorderStyle = bsNone
-        DataSource = dtsCodBar
+        DataSource = dtsTBL_Itens
         FixedColor = 11516371
         Font.Charset = ANSI_CHARSET
         Font.Color = 5460819
@@ -844,22 +858,43 @@ object viewPrincipal: TviewPrincipal
         Columns = <
           item
             Expanded = False
-            Title.Caption = 'Codigo'
-            Visible = True
-          end
-          item
-            Expanded = False
-            Title.Caption = 'Produto'
-            Visible = True
-          end
-          item
-            Expanded = False
-            Title.Caption = 'Quantidade'
+            FieldName = 'ID_PRODUTO'
+            Title.Caption = 'C'#243'digo'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCRICAO'
+            Title.Caption = 'Produto'
+            Width = 130
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'QTDE'
+            Title.Caption = 'QTD'
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'VALORUNIT'
+            Title.Caption = 'Vlr. Unit'
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'DESCONTO'
+            Title.Caption = 'Vlr. Desc'
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'VALORTOTAL'
+            Title.Caption = 'Sub. Total'
             Visible = True
           end>
       end
@@ -896,10 +931,105 @@ object viewPrincipal: TviewPrincipal
       FieldName = 'EAN'
       Size = 14
     end
+    object cdsCodBarVALORUNIT: TFMTBCDField
+      FieldName = 'VALORUNIT'
+      Precision = 15
+    end
   end
   object dtsCodBar: TDataSource
     DataSet = cdsCodBar
     Left = 280
+    Top = 64
+  end
+  object sqlTBl_Itens: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'SELECT'#13#10'   I.ID, I.ID_COTACAO, I.ID_PRODUTO, I.DESCRICAO, I.COMP' +
+      'LEMENTO, I.INFOADICIONAL, I.QTDE, I.LOCAL_ESTOQUE, I.CUSTOUNIT,'#13 +
+      #10'I.VALORUNIT, I.VALORUNIT2, I.DESCONTO, I.MARKUP, I.MARGEMLUCRO,' +
+      ' I.VALORUNIT_DESC, I.VALORUNIT_DESC2,  I.VALORUNITLIQUIDO, I.ALI' +
+      'QIPI, I.ALIQISSRETIDO, I.VALORISSRETIDO, I.ALIQICMS, I.VALORICMS' +
+      'SUBST, I.CODSIMILAR, I.DESCRICAO_SIMILAR,'#13#10'I.VALORICMS21, I.VALO' +
+      'RIPI, I.VALORTOTAL, I.VALORTOTALLIQUIDO, I.VALORDESCONTO, I.STAT' +
+      'US, I.PREV_ENTREGA, I.ESTOQUE,'#13#10'I.DATA_PREV_ENTREGA, I.OBS, I.ID' +
+      '_PEDIDO, I.ID_NOTAFISCAL, I.ID_NOTAFISCAL_COBR, I.ID_ORDEMSERVIC' +
+      'O, I.SAIDA, I.ESTORNO, I.ID_PROMOCAO, I.DATASOLIC, I.RECNO, I.UN' +
+      'IDMED,'#13#10'I.CAMPOCALC1, I.CAMPOCALC2, I.CAMPOCALC3, I.CAMPOCALC4, ' +
+      'I.CAMPOCALC5, I.CAMPOCALC6, I.CAMPOCALC7, I.CAMPOCALC8, I.CAMPOC' +
+      'ALC9,'#13#10'I.CAMPOADICIONAL1, I.CAMPOADICIONAL2, I.CAMPOADICIONAL3, ' +
+      'I.CAMPOADICIONAL4, I.CAMPOADICIONAL5, I.CAMPOADICIONAL6, I.CAMPO' +
+      'ADICIONAL7, I.CAMPOADICIONAL8, I.CAMPOADICIONAL9,'#13#10'I.ITEM_PEDIDO' +
+      'CLI, I.COMISSAO, I.VALORCOMISSAO, I.VALIDADE, I.CFOP, I.DESCONTO' +
+      '_S, I.ESTRUTURA_DATAREVCUSTO, I.VALORFRETE, I.ID_CONSIG, I.PRAZO' +
+      '_GARANTIA, I.TIPOPRODUTO,'#13#10'COALESCE(I.CLFISC, P.CLFISC) AS CLFIS' +
+      'C, P.UNIDMED as PRODUTO_UNIDMED, P.TIPO as PRODUTO_TIPO, P.DESCO' +
+      'NTOMAX as PRODUTO_DESCONTOMAX, P.EAN as PRODUTO_EAN,'#13#10'P.ID_GRUPO' +
+      ' as PRODUTO_ID_GRUPO, P.FRACIONADO_ID_PRODUTO, P.FRACIONADO_FRAC' +
+      'AO_S, P.COMPRIMENTO AS PRODUTO_COMPRIMENTO, P.ALTURA AS PRODUTO_' +
+      'ALTURA, P.LARGURA AS PRODUTO_LARGURA,'#13#10'(I.QTDE * P.PESO/1000) as' +
+      ' PESOTOTAL'#13#10'FROM COTACAOI I'#13#10'LEFT JOIN CADPRODUTO P on P.ID = I.' +
+      'ID_PRODUTO'#13#10'where I.ID_PRODUTO = :ID_PRODUTO'#13#10'order by I.ID'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID_PRODUTO'
+        ParamType = ptInput
+      end>
+    SQLConnection = Conexao.Conexao
+    Left = 392
+    Top = 64
+  end
+  object dspTBL_Itens: TDataSetProvider
+    DataSet = sqlTBl_Itens
+    Left = 424
+    Top = 64
+  end
+  object cdsTBL_Itens: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID_PRODUTO'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspTBL_Itens'
+    Left = 457
+    Top = 64
+    object cdsTBL_ItensCod_Item: TIntegerField
+      FieldName = 'ID'
+    end
+    object cdsTBL_ItensCod_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+    end
+    object cdsTBL_ItensQTDE: TFMTBCDField
+      FieldName = 'QTDE'
+      Precision = 15
+      Size = 4
+    end
+    object cdsTBL_ItensVALORUNIT: TFMTBCDField
+      FieldName = 'VALORUNIT'
+      currency = True
+      Precision = 15
+    end
+    object cdsTBL_ItensVALORTOTAL: TFMTBCDField
+      FieldName = 'VALORTOTAL'
+      currency = True
+      Precision = 15
+      Size = 2
+    end
+    object cdsTBL_ItensDESCONTO: TFMTBCDField
+      FieldName = 'DESCONTO'
+      Precision = 15
+    end
+    object cdsTBL_Itensnome_produto: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 100
+    end
+  end
+  object dtsTBL_Itens: TDataSource
+    DataSet = cdsTBL_Itens
+    Left = 504
     Top = 64
   end
 end

@@ -49,24 +49,25 @@ type
     DBG_produtos: TSuperGrid;
     lblAbreCaixa: TLabel;
     sqlCodBar: TSQLDataSet;
-    sqlCodBarID: TIntegerField;
-    sqlCodBarDIGITO_INICIAL: TIntegerField;
-    sqlCodBarTAMANHO_CODBAR: TIntegerField;
-    sqlCodBarCODPRODUTO_INICIO: TIntegerField;
-    sqlCodBarCODPRODUTO_FIM: TIntegerField;
-    sqlCodBarTIPO: TStringField;
-    sqlCodBarVALOR_INICIO: TIntegerField;
-    sqlCodBarVALOR_FIM: TIntegerField;
     dspCodBar: TDataSetProvider;
     cdsCodBar: TClientDataSet;
+    dtsCodBar: TDataSource;
     cdsCodBarID: TIntegerField;
-    cdsCodBarDIGITO_INICIAL: TIntegerField;
-    cdsCodBarTAMANHO_CODBAR: TIntegerField;
-    cdsCodBarCODPRODUTO_INICIO: TIntegerField;
-    cdsCodBarCODPRODUTO_FIM: TIntegerField;
-    cdsCodBarTIPO: TStringField;
-    cdsCodBarVALOR_INICIO: TIntegerField;
-    cdsCodBarVALOR_FIM: TIntegerField;
+    cdsCodBarDESCRICAO: TStringField;
+    cdsCodBarEAN: TStringField;
+    edtSubTotal: TEdit;
+    sqlTBl_Itens: TSQLDataSet;
+    dspTBL_Itens: TDataSetProvider;
+    cdsTBL_Itens: TClientDataSet;
+    dtsTBL_Itens: TDataSource;
+    cdsCodBarVALORUNIT: TFMTBCDField;
+    cdsTBL_ItensCod_Item: TIntegerField;
+    cdsTBL_Itensnome_produto: TStringField;
+    cdsTBL_ItensCod_PRODUTO: TIntegerField;
+    cdsTBL_ItensQTDE: TFMTBCDField;
+    cdsTBL_ItensVALORUNIT: TFMTBCDField;
+    cdsTBL_ItensDESCONTO: TFMTBCDField;
+    cdsTBL_ItensVALORTOTAL: TFMTBCDField;
     procedure edtCodBarrasExit(Sender: TObject);
     procedure lblAbreCaixaClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloClick(Sender: TObject);
@@ -88,8 +89,37 @@ uses U_viewAbrirCaixa;
 {$R *.dfm}
 
 procedure TviewPrincipal.edtCodBarrasExit(Sender: TObject);
-begin
-  // Fazer um Filtro e retornar por show message o nome do ien do codigo
+Var QTD, VLR_UNIT,VLR_SUBTOTAL : Double;
+begin //Filtra pelo código de barras
+  if Length(edtCodBarras.Text) > 0 then
+  begin
+    cdsCodBar.Close;
+    sqlCodBar.commandText := 'SELECT * FROM CADPRODUTO WHERE EAN LIKE  ''%'+edtCodBarras.Text+'%''';
+    cdsCodBar.Open;
+
+    if not cdsCodBar.IsEmpty then
+    begin
+      VLR_UNIT := (cdsCodBarVALORUNIT.AsCurrency);
+      QTD := StrToFloatDef(edtQTD.Text,1);
+      VLR_SUBTOTAL := VLR_UNIT * QTD;
+      edtSubTOTAL.Text := FloatToStr(VLR_SUBTOTAL);
+
+      cdsTBL_Itens.Open;
+      cdsTBL_Itens.Insert;
+      cdsTBL_ItensCod_Produto.AsInteger := cdsCodBarID.AsInteger;
+      cdsTBL_ItensQTDE.AsFloat          := QTD;
+      cdsTBL_ItensVALORUNIT.AsFloat     := VLR_UNIT;
+      cdsTBL_ItensDESCONTO.AsFloat      := 0;
+      cdsTBL_ItensVALORTOTAL.AsFloat     := VLR_SUBTOTAL;
+      cdsTBL_Itensnome_produto.AsString := cdsCodBarDESCRICAO.AsString;
+      cdsTBL_Itens.Post;
+
+      edtCodBarras.Clear;
+      edtCodBarras.SetFocus;
+    end
+    else
+    ShowMessage('Nenhum produto encontrado com o código de barras especificado.');
+  end;
 end;
 
 procedure TviewPrincipal.imgLogoEmpresaAmareloClick(Sender: TObject);

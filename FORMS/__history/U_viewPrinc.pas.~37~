@@ -55,6 +55,20 @@ type
     cdsCodBarID: TIntegerField;
     cdsCodBarDESCRICAO: TStringField;
     cdsCodBarEAN: TStringField;
+    edtSubTotal: TEdit;
+    sqlTBl_Itens: TSQLDataSet;
+    dspTBL_Itens: TDataSetProvider;
+    cdsTBL_Itens: TClientDataSet;
+    dtsTBL_Itens: TDataSource;
+    cdsCodBarVALORUNIT: TFMTBCDField;
+    cdsTBL_ItensCod_Item: TIntegerField;
+    cdsTBL_Itensnome_produto: TStringField;
+    cdsTBL_ItensCod_PRODUTO: TIntegerField;
+    cdsTBL_ItensQTDE: TFMTBCDField;
+    cdsTBL_ItensVALORUNIT: TFMTBCDField;
+    cdsTBL_ItensDESCONTO: TFMTBCDField;
+    cdsTBL_ItensVALORTOTAL: TFMTBCDField;
+    procedure FormResize(Sender: TObject);
     procedure edtCodBarrasExit(Sender: TObject);
     procedure lblAbreCaixaClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloClick(Sender: TObject);
@@ -71,16 +85,48 @@ var
 
 implementation
 
-uses U_viewAbrirCaixa;
+uses U_viewAbrirCaixa, service.cadastro;
 
 {$R *.dfm}
 
 procedure TviewPrincipal.edtCodBarrasExit(Sender: TObject);
+Var QTD, VLR_UNIT,VLR_SUBTOTAL : Double;
 begin
-  cdsCodBar.Close;
-  sqlCodBar.commandText := 'SELECT * FROM CADPRODUTO WHERE EAN LIKE  ''%'+edtCodBarras.Text+'%''';
-  ShowMessage(cdsCodBarDESCRICAO.AsString);
-  cdsCodBar.Open;
+  if Length(edtCodBarras.Text) > 0 then
+  begin
+    cdsCodBar.Close; //Filtra pelo código de barras
+    sqlCodBar.commandText := 'SELECT * FROM CADPRODUTO WHERE EAN LIKE  ''%'+edtCodBarras.Text+'%''';
+    cdsCodBar.Open;
+
+    if not cdsCodBar.IsEmpty then //Não insere nada caso não encontre código de barras
+    begin
+      VLR_UNIT := (cdsCodBarVALORUNIT.AsCurrency);
+      QTD := StrToFloatDef(edtQTD.Text,1);
+      VLR_SUBTOTAL := VLR_UNIT * QTD; //Multiplica a unidade pela quantidade
+      edtSubTOTAL.Text := FloatToStr(VLR_SUBTOTAL);
+      edtVAlorUnitario.Text := FloatToStr(VLR_UNIT);
+
+      cdsTBL_Itens.Open;
+      cdsTBL_Itens.Insert;
+      cdsTBL_ItensCod_Produto.AsInteger := cdsCodBarID.AsInteger;
+      cdsTBL_ItensQTDE.AsFloat          := QTD;
+      cdsTBL_ItensVALORUNIT.AsFloat     := VLR_UNIT;
+      cdsTBL_ItensDESCONTO.AsFloat      := 0;
+      cdsTBL_ItensVALORTOTAL.AsFloat    := VLR_SUBTOTAL;
+      cdsTBL_Itensnome_produto.AsString := cdsCodBarDESCRICAO.AsString;
+      cdsTBL_Itens.Post;
+
+      edtCodBarras.Clear;
+      edtCodBarras.SetFocus;
+    end
+    else
+    ShowMessage('Nenhum produto encontrado com o código de barras especificado.');
+  end;
+end;
+
+procedure TviewPrincipal.FormResize(Sender: TObject);
+begin
+  F
 end;
 
 procedure TviewPrincipal.imgLogoEmpresaAmareloClick(Sender: TObject);

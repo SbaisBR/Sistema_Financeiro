@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, StdCtrls, jpeg, Grids, DBGrids, JvExDBGrids, JvDBGrid,
-  SuperGrid;
+  SuperGrid, FMTBcd, DBClient, Provider, DB, SqlExpr;
 
 type
   TviewPrincipal = class(TForm)
@@ -48,6 +48,27 @@ type
     edtTotalApagar: TEdit;
     DBG_produtos: TSuperGrid;
     lblAbreCaixa: TLabel;
+    sqlCodBar: TSQLDataSet;
+    dspCodBar: TDataSetProvider;
+    cdsCodBar: TClientDataSet;
+    dtsCodBar: TDataSource;
+    cdsCodBarID: TIntegerField;
+    cdsCodBarDESCRICAO: TStringField;
+    cdsCodBarEAN: TStringField;
+    edtSubTotal: TEdit;
+    sqlTBl_Itens: TSQLDataSet;
+    dspTBL_Itens: TDataSetProvider;
+    cdsTBL_Itens: TClientDataSet;
+    dtsTBL_Itens: TDataSource;
+    cdsCodBarVALORUNIT: TFMTBCDField;
+    cdsTBL_ItensCod_Item: TIntegerField;
+    cdsTBL_Itensnome_produto: TStringField;
+    cdsTBL_ItensCod_PRODUTO: TIntegerField;
+    cdsTBL_ItensQTDE: TFMTBCDField;
+    cdsTBL_ItensVALORUNIT: TFMTBCDField;
+    cdsTBL_ItensDESCONTO: TFMTBCDField;
+    cdsTBL_ItensVALORTOTAL: TFMTBCDField;
+    procedure edtCodBarrasExit(Sender: TObject);
     procedure lblAbreCaixaClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloMouseLeave(Sender: TObject);
@@ -66,6 +87,36 @@ implementation
 uses U_viewAbrirCaixa;
 
 {$R *.dfm}
+
+procedure TviewPrincipal.edtCodBarrasExit(Sender: TObject);
+Var QTD, VLR_UNIT,VLR_SUBTOTAL : Double;
+begin //Filtra pelo código de barras
+  cdsCodBar.Close;
+  sqlCodBar.commandText := 'SELECT * FROM CADPRODUTO WHERE EAN LIKE  ''%'+edtCodBarras.Text+'%''';
+  cdsCodBar.Open;
+
+  VLR_UNIT := (cdsCodBarVALORUNIT.AsCurrency);
+  QTD := StrToFloatDef(edtQTD.Text,1);
+  VLR_SUBTOTAL := VLR_UNIT * QTD;
+  edtSubTOTAL.Text := FloatToStr(VLR_SUBTOTAL);
+
+
+  cdsTBL_Itens.Open;
+  cdsTBL_Itens.Append;
+  cdsTBL_ItensCod_Produto.AsInteger := cdsCodBarID.AsInteger;
+  cdsTBL_ItensQTDE.AsFloat          := QTD;
+  cdsTBL_ItensVALORUNIT.AsFloat     := VLR_UNIT;
+  cdsTBL_ItensDESCONTO.AsFloat      := 0;
+  cdsTBL_ItensVALORTOTAL.AsFloat     := VLR_SUBTOTAL;
+  cdsTBL_Itensnome_produto.AsString := cdsCodBarDESCRICAO.AsString;
+  cdsTBL_Itens.Post;
+  if not cdsCodBar.IsEmpty then
+  begin
+    ShowMessage('Descrição: ' + cdsCodBarDESCRICAO.AsString);
+  end
+  else
+    ShowMessage('Nenhum produto encontrado com o código de barras especificado.');
+end;
 
 procedure TviewPrincipal.imgLogoEmpresaAmareloClick(Sender: TObject);
 begin

@@ -3,9 +3,9 @@ unit service.cadastro;
 interface
 
 uses
+  providers.conversao, frxClass, frxDBSet,
 
-  DBGrids,
-  providers.conversao, frxClass, frxDBSet;
+  Vcl.DBGrids;
 type
  TServiceCadastro = Class
     private
@@ -79,12 +79,12 @@ begin
 
     TSize := TSize + Asize[idx];
   end;
-  {if TDBGridOption.dgColLines in dbg.Options then
-    Twidth := Twidth + dbg.Columns.count;}
+  if TDBGridOption.dgColLines in dbg.Options then
+    Twidth := Twidth + dbg.Columns.count;
 
   // adiciona a largura da coluna indicada do cursor
-  {if TDBGridOption.dgIndicator in dbg.Options then
-    Twidth := Twidth + IndicatorWidth;}
+  if TDBGridOption.dgIndicator in dbg.Options then
+    Twidth := Twidth + IndicatorWidth;
 
   Swidth := dbg.ClientWidth - Twidth;
   AjustarColumns(Swidth, TSize, Asize);
