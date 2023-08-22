@@ -68,6 +68,19 @@ type
     cdsTBL_ItensVALORUNIT: TFMTBCDField;
     cdsTBL_ItensDESCONTO: TFMTBCDField;
     cdsTBL_ItensVALORTOTAL: TFMTBCDField;
+    Timer_Hora: TTimer;
+    sqlFrmPagto: TSQLDataSet;
+    dspFrmPagto: TDataSetProvider;
+    cdsFrmPagto: TClientDataSet;
+    IntegerField1: TIntegerField;
+    IntegerField2: TIntegerField;
+    FMTBCDField1: TFMTBCDField;
+    FMTBCDField2: TFMTBCDField;
+    FMTBCDField3: TFMTBCDField;
+    FMTBCDField4: TFMTBCDField;
+    StringField1: TStringField;
+    procedure Timer_HoraTimer(Sender: TObject);
+    procedure dtsTBL_ItensDataChange(Sender: TObject; Field: TField);
     procedure DBG_produtosDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure cdsTBL_ItensAfterPost(DataSet: TDataSet);
@@ -130,6 +143,11 @@ begin //Deixando a cor branca
   end;
 end;
 
+procedure TviewPrincipal.dtsTBL_ItensDataChange(Sender: TObject; Field: TField);
+begin //Data Change
+  ServiceCadastro.DimensionarGrid(DBG_produtos);
+end;
+
 procedure TviewPrincipal.edtCodBarrasExit(Sender: TObject);
 Var QTD, VLR_UNIT,VLR_SUBTOTAL : Double;
 begin
@@ -181,11 +199,11 @@ begin
     key := #0;
     edtQTD.SetFocus;
   end;
-  
+
 end;
 
 procedure TviewPrincipal.FormResize(Sender: TObject);
-begin
+begin //Resize
   ServiceCadastro.DimensionarGrid(DBG_produtos);
 end;
 
@@ -214,6 +232,11 @@ begin //Abrir Caixa
   finally
     FreeAndNil(viewAbrirCaixa);
   end;
+end;
+
+procedure TviewPrincipal.Timer_HoraTimer(Sender: TObject);
+begin
+  lblHora.Caption := TimeToStr(Time);
 end;
 
 end.

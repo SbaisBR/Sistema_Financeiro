@@ -452,14 +452,14 @@ object viewPrincipal: TviewPrincipal
         Height = 19
         Margins.Top = 0
         Align = alTop
-        Caption = 'Renden'#231#227'o - PA'
+        Caption = 'S'#227'o Paulo'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ExplicitWidth = 113
+        ExplicitWidth = 70
       end
     end
     object pnlCaixaLivre: TPanel
@@ -710,7 +710,7 @@ object viewPrincipal: TviewPrincipal
           TabOrder = 0
           object lblQTD: TLabel
             Left = 16
-            Top = 16
+            Top = 21
             Width = 29
             Height = 19
             Caption = 'Qtd'
@@ -1075,7 +1075,70 @@ object viewPrincipal: TviewPrincipal
   end
   object dtsTBL_Itens: TDataSource
     DataSet = cdsTBL_Itens
+    OnDataChange = dtsTBL_ItensDataChange
     Left = 504
     Top = 64
+  end
+  object Timer_Hora: TTimer
+    OnTimer = Timer_HoraTimer
+    Left = 560
+    Top = 64
+  end
+  object sqlFrmPagto: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 'SELECT'#13#10'*'#13#10'FROM'#13#10'FORMASPAGAMENTOS'#13#10'Order by For_Codigo'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 656
+    Top = 64
+  end
+  object dspFrmPagto: TDataSetProvider
+    DataSet = sqlFrmPagto
+    Left = 688
+    Top = 64
+  end
+  object cdsFrmPagto: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID_PRODUTO'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspTBL_Itens'
+    AfterPost = cdsTBL_ItensAfterPost
+    Left = 721
+    Top = 64
+    object IntegerField1: TIntegerField
+      FieldName = 'ID'
+    end
+    object IntegerField2: TIntegerField
+      FieldName = 'ID_PRODUTO'
+    end
+    object FMTBCDField1: TFMTBCDField
+      FieldName = 'QTDE'
+      Precision = 15
+      Size = 4
+    end
+    object FMTBCDField2: TFMTBCDField
+      FieldName = 'VALORUNIT'
+      currency = True
+      Precision = 15
+    end
+    object FMTBCDField3: TFMTBCDField
+      FieldName = 'VALORTOTAL'
+      currency = True
+      Precision = 15
+      Size = 2
+    end
+    object FMTBCDField4: TFMTBCDField
+      FieldName = 'DESCONTO'
+      Precision = 15
+    end
+    object StringField1: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 100
+    end
   end
 end
