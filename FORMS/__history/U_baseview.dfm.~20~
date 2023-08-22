@@ -18,7 +18,7 @@ inherited viewbaselista1: Tviewbaselista1
       AlignWithMargins = True
       Left = 45
       Top = 1
-      Width = 72
+      Width = 91
       Height = 34
       Cursor = crHandPoint
       Margins.Left = 5
@@ -26,7 +26,7 @@ inherited viewbaselista1: Tviewbaselista1
       Margins.Right = 1
       Margins.Bottom = 1
       Align = alLeft
-      Caption = 'lblTitulo'
+      Caption = 'Base Lista'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -20
@@ -400,6 +400,7 @@ inherited viewbaselista1: Tviewbaselista1
         0000000000000000000000000000000000000000000000000000000000000000
         000000000000}
       ParentFont = False
+      OnClick = btnEditarClick
       ExplicitLeft = 696
     end
     object btnCancelar: TSpeedButton
@@ -493,6 +494,7 @@ inherited viewbaselista1: Tviewbaselista1
         0000000000000000000000000000000000000000000000000000000000000000
         000000000000}
       ParentFont = False
+      OnClick = btnCancelarClick
       ExplicitLeft = 824
     end
     object btnSalvar: TSpeedButton
@@ -586,6 +588,7 @@ inherited viewbaselista1: Tviewbaselista1
         0000000000000000000000000000000000000000000000000000000000000000
         000000000000}
       ParentFont = False
+      OnClick = btnSalvarClick
     end
     object btnNovo: TSpeedButton
       AlignWithMargins = True
@@ -679,8 +682,7 @@ inherited viewbaselista1: Tviewbaselista1
         000000000000}
       ParentFont = False
       OnClick = btnNovoClick
-      ExplicitLeft = 515
-      ExplicitTop = 2
+      ExplicitTop = 6
     end
   end
   object pnlLinhaFundo: TPanel
@@ -702,7 +704,7 @@ inherited viewbaselista1: Tviewbaselista1
       Margins.Top = 0
       Margins.Right = 2
       Margins.Bottom = 0
-      ActivePage = Card_pesquisar
+      ActivePage = Card_cadastro
       Align = alClient
       TabOrder = 0
       object Card_cadastro: TTabSheet
@@ -711,26 +713,43 @@ inherited viewbaselista1: Tviewbaselista1
           Left = 0
           Top = 0
           Width = 1014
-          Height = 129
+          Height = 69
           Align = alTop
           BevelOuter = bvNone
           Color = 14606304
           TabOrder = 0
           object btnVoltar: TSpeedButton
-            Left = 832
-            Top = 32
-            Width = 169
-            Height = 57
+            AlignWithMargins = True
+            Left = 864
+            Top = 3
+            Width = 147
+            Height = 63
+            Align = alRight
             Caption = 'Voltar pesquisar'
             OnClick = btnVoltarClick
+          end
+          object lblTituloCadastro: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 15
+            Width = 124
+            Height = 51
+            Margins.Top = 15
+            Align = alLeft
+            Caption = '[CADASTRO]'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = 5395026
+            Font.Height = -19
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 23
           end
         end
       end
       object Card_pesquisar: TTabSheet
         Caption = 'Card_pesquisar'
         ImageIndex = 1
-        ExplicitLeft = 7
-        ExplicitTop = 22
         object pnlFiltroPesquisa: TPanel
           Left = 0
           Top = 0
@@ -806,6 +825,7 @@ inherited viewbaselista1: Tviewbaselista1
           Margins.Bottom = 5
           Align = alClient
           FixedColor = 11516371
+          Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect]
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -820,6 +840,27 @@ inherited viewbaselista1: Tviewbaselista1
           RowsHeight = 17
           TitleRowHeight = 17
           CorColOrdenado = clWhite
+          Columns = <
+            item
+              Expanded = False
+              Visible = True
+            end
+            item
+              Expanded = False
+              Visible = True
+            end
+            item
+              Expanded = False
+              Visible = True
+            end
+            item
+              Expanded = False
+              Visible = True
+            end
+            item
+              Expanded = False
+              Visible = True
+            end>
         end
       end
     end
@@ -921,5 +962,10 @@ inherited viewbaselista1: Tviewbaselista1
     DataSet = cdsAbreCaixa
     Left = 544
     Top = 168
+  end
+  object DataSource1: TDataSource
+    DataSet = sqlAbreCaixa
+    Left = 504
+    Top = 368
   end
 end

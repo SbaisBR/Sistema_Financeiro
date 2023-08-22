@@ -61,8 +61,6 @@ type
     cdsAbreCaixaABR_OBSERVACAO: TStringField;
     lblTituloCadastro: TLabel;
     DataSource1: TDataSource;
-    procedure lblTituloMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -161,16 +159,6 @@ begin
   inherited;
   imgLogoAzul.Visible := True;
   imgLogoCinza.Visible := False;
-end;
-
-procedure Tviewbaselista1.lblTituloMouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-const
-  sc_dragmove = $f012;
-begin // Mover o form sem bordas
-  inherited;
-  ReleaseCapture;
-  Perform(wm_SysCommand, sc_DragMove, 0);
 end;
 
 end.

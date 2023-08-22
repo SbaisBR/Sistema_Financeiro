@@ -1,19 +1,23 @@
 inherited viewbaselista1: Tviewbaselista1
+  BorderStyle = bsNone
   Caption = 'viewbaselista1'
+  ClientHeight = 758
+  ClientWidth = 1042
   OnShow = FormShow
-  ExplicitWidth = 1042
-  ExplicitHeight = 758
   PixelsPerInch = 96
   TextHeight = 13
   object pnlTopo: TPanel
     Left = 0
     Top = 0
-    Width = 1026
+    Width = 1042
     Height = 36
+    Cursor = crHandPoint
     Align = alTop
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
+    OnMouseDown = lblTituloMouseDown
+    ExplicitWidth = 1026
     object lblTitulo: TLabel
       AlignWithMargins = True
       Left = 45
@@ -33,6 +37,7 @@ inherited viewbaselista1: Tviewbaselista1
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnMouseDown = lblTituloMouseDown
       ExplicitHeight = 24
     end
     object pnlImgLogo: TPanel
@@ -264,6 +269,7 @@ inherited viewbaselista1: Tviewbaselista1
           05070B02030512161E6E747E3E40424E535C0B0D13020204080A0E3E40423E40
           423E40423E40423E40423E40423E40423E40423E40423E40423E40423E40423E
           4042}
+        OnMouseDown = lblTituloMouseDown
         OnMouseEnter = imgLogoAzulMouseEnter
         ExplicitLeft = 1
         ExplicitTop = 1
@@ -272,7 +278,7 @@ inherited viewbaselista1: Tviewbaselista1
       end
     end
     object pnlFechar: TPanel
-      Left = 960
+      Left = 976
       Top = 0
       Width = 66
       Height = 36
@@ -280,6 +286,7 @@ inherited viewbaselista1: Tviewbaselista1
       BevelOuter = bvNone
       Color = 46079
       TabOrder = 1
+      ExplicitLeft = 960
       object btnFechar: TSpeedButton
         Left = 0
         Top = 0
@@ -302,16 +309,18 @@ inherited viewbaselista1: Tviewbaselista1
   end
   object pnlRodape: TPanel
     Left = 0
-    Top = 668
-    Width = 1026
+    Top = 707
+    Width = 1042
     Height = 51
     Align = alBottom
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 1
+    ExplicitTop = 668
+    ExplicitWidth = 1026
     object btnEditar: TSpeedButton
       AlignWithMargins = True
-      Left = 688
+      Left = 704
       Top = 3
       Width = 98
       Height = 45
@@ -405,7 +414,7 @@ inherited viewbaselista1: Tviewbaselista1
     end
     object btnCancelar: TSpeedButton
       AlignWithMargins = True
-      Left = 792
+      Left = 808
       Top = 3
       Width = 122
       Height = 45
@@ -499,7 +508,7 @@ inherited viewbaselista1: Tviewbaselista1
     end
     object btnSalvar: TSpeedButton
       AlignWithMargins = True
-      Left = 920
+      Left = 936
       Top = 3
       Width = 103
       Height = 45
@@ -589,10 +598,11 @@ inherited viewbaselista1: Tviewbaselista1
         000000000000}
       ParentFont = False
       OnClick = btnSalvarClick
+      ExplicitLeft = 920
     end
     object btnNovo: TSpeedButton
       AlignWithMargins = True
-      Left = 595
+      Left = 611
       Top = 3
       Width = 87
       Height = 45
@@ -682,24 +692,27 @@ inherited viewbaselista1: Tviewbaselista1
         000000000000}
       ParentFont = False
       OnClick = btnNovoClick
+      ExplicitLeft = 595
       ExplicitTop = 6
     end
   end
   object pnlLinhaFundo: TPanel
     Left = 0
     Top = 36
-    Width = 1026
-    Height = 632
+    Width = 1042
+    Height = 671
     Align = alClient
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 2
+    ExplicitWidth = 1026
+    ExplicitHeight = 632
     object Page_panelconteudo: TPageControl
       AlignWithMargins = True
       Left = 2
       Top = 0
-      Width = 1022
-      Height = 632
+      Width = 1038
+      Height = 671
       Margins.Left = 2
       Margins.Top = 0
       Margins.Right = 2
@@ -707,26 +720,32 @@ inherited viewbaselista1: Tviewbaselista1
       ActivePage = Card_cadastro
       Align = alClient
       TabOrder = 0
+      ExplicitWidth = 1022
+      ExplicitHeight = 632
       object Card_cadastro: TTabSheet
         Caption = 'Card_cadastro'
+        ExplicitWidth = 1014
+        ExplicitHeight = 604
         object pnlFiltroCadastro: TPanel
           Left = 0
           Top = 0
-          Width = 1014
+          Width = 1030
           Height = 69
           Align = alTop
           BevelOuter = bvNone
           Color = 14606304
           TabOrder = 0
+          ExplicitWidth = 1014
           object btnVoltar: TSpeedButton
             AlignWithMargins = True
-            Left = 864
+            Left = 880
             Top = 3
             Width = 147
             Height = 63
             Align = alRight
             Caption = 'Voltar pesquisar'
             OnClick = btnVoltarClick
+            ExplicitLeft = 864
           end
           object lblTituloCadastro: TLabel
             AlignWithMargins = True
@@ -750,29 +769,33 @@ inherited viewbaselista1: Tviewbaselista1
       object Card_pesquisar: TTabSheet
         Caption = 'Card_pesquisar'
         ImageIndex = 1
+        ExplicitWidth = 1014
+        ExplicitHeight = 604
         object pnlFiltroPesquisa: TPanel
           Left = 0
           Top = 0
-          Width = 1014
+          Width = 1030
           Height = 81
           Align = alTop
           BevelOuter = bvNone
           Color = 14606304
           TabOrder = 0
+          ExplicitWidth = 1014
           object pnlPesquisar: TPanel
             Left = 0
             Top = 41
-            Width = 1014
+            Width = 1030
             Height = 40
             Align = alBottom
             BevelOuter = bvNone
             Color = 14606304
             TabOrder = 0
+            ExplicitWidth = 1014
             object edtPesquisar: TEdit
               AlignWithMargins = True
               Left = 3
               Top = 3
-              Width = 1008
+              Width = 1024
               Height = 34
               Align = alClient
               Font.Charset = DEFAULT_CHARSET
@@ -782,18 +805,20 @@ inherited viewbaselista1: Tviewbaselista1
               Font.Style = []
               ParentFont = False
               TabOrder = 0
+              ExplicitWidth = 1008
               ExplicitHeight = 31
             end
           end
           object pnlFiltro: TPanel
             Left = 0
             Top = 0
-            Width = 1014
+            Width = 1030
             Height = 41
             Align = alClient
             BevelOuter = bvNone
             Color = 14606304
             TabOrder = 1
+            ExplicitWidth = 1014
             object lblPesquisa: TLabel
               AlignWithMargins = True
               Left = 3
@@ -817,8 +842,8 @@ inherited viewbaselista1: Tviewbaselista1
           AlignWithMargins = True
           Left = 5
           Top = 86
-          Width = 1004
-          Height = 513
+          Width = 1020
+          Height = 552
           Margins.Left = 5
           Margins.Top = 5
           Margins.Right = 5

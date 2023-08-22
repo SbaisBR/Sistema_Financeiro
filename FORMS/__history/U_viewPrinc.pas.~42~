@@ -68,6 +68,12 @@ type
     cdsTBL_ItensVALORUNIT: TFMTBCDField;
     cdsTBL_ItensDESCONTO: TFMTBCDField;
     cdsTBL_ItensVALORTOTAL: TFMTBCDField;
+    procedure DBG_produtosDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure cdsTBL_ItensAfterPost(DataSet: TDataSet);
+    procedure edtQTDExit(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure FormResize(Sender: TObject);
     procedure edtCodBarrasExit(Sender: TObject);
     procedure lblAbreCaixaClick(Sender: TObject);
     procedure imgLogoEmpresaAmareloClick(Sender: TObject);
@@ -75,6 +81,7 @@ type
     procedure imgLogoEmpresaMouseEnter(Sender: TObject);
   private
     { Private declarations }
+    var TOTAL_VENDA : Double;
   public
     { Public declarations }
   end;
@@ -84,25 +91,61 @@ var
 
 implementation
 
-uses U_viewAbrirCaixa;
+uses U_viewAbrirCaixa, service.cadastro;
 
 {$R *.dfm}
 
+procedure TviewPrincipal.cdsTBL_ItensAfterPost(DataSet: TDataSet);
+begin //Somando
+  TOTAL_VENDA := 0;
+
+  cdsTBL_Itens.DisableControls;
+  cdsTBL_Itens.First;
+  while not cdsTBL_Itens.Eof do
+  begin
+    TOTAL_VENDA := TOTAL_VENDA + cdsTBL_ItensVALORTOTAL.AsFloat;
+    cdsTbl_ITens.Next;
+  end;
+  cdsTBL_Itens.EnableControls;
+  edtTotalApagar.Text := FloatToStr(TOTAL_VENDA);
+end;
+
+procedure TviewPrincipal.DBG_produtosDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin //Deixando a cor branca
+  if Column.Field <> nil then
+  begin
+    if gdSelected in State then
+    begin
+      DBG_produtos.Canvas.Brush.Color := clHighlight;
+      DBG_produtos.Canvas.Font.Color := clHighlightText;
+    end
+    else
+    begin
+      DBG_produtos.Canvas.Brush.Color := clWhite;
+      DBG_produtos.Canvas.Font.Color := clBlack;
+    end;
+    DBG_produtos.Canvas.FillRect(Rect);
+    DBG_produtos.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2, Column.Field.DisplayText);
+  end;
+end;
+
 procedure TviewPrincipal.edtCodBarrasExit(Sender: TObject);
 Var QTD, VLR_UNIT,VLR_SUBTOTAL : Double;
-begin //Filtra pelo código de barras
+begin
   if Length(edtCodBarras.Text) > 0 then
   begin
-    cdsCodBar.Close;
+    cdsCodBar.Close; //Filtra pelo código de barras
     sqlCodBar.commandText := 'SELECT * FROM CADPRODUTO WHERE EAN LIKE  ''%'+edtCodBarras.Text+'%''';
     cdsCodBar.Open;
 
-    if not cdsCodBar.IsEmpty then
+    if not cdsCodBar.IsEmpty then //Não insere nada caso não encontre código de barras
     begin
       VLR_UNIT := (cdsCodBarVALORUNIT.AsCurrency);
       QTD := StrToFloatDef(edtQTD.Text,1);
-      VLR_SUBTOTAL := VLR_UNIT * QTD;
+      VLR_SUBTOTAL := VLR_UNIT * QTD; //Multiplica a unidade pela quantidade
       edtSubTOTAL.Text := FloatToStr(VLR_SUBTOTAL);
+      edtVAlorUnitario.Text := FloatToStr(VLR_UNIT);
 
       cdsTBL_Itens.Open;
       cdsTBL_Itens.Insert;
@@ -110,9 +153,13 @@ begin //Filtra pelo código de barras
       cdsTBL_ItensQTDE.AsFloat          := QTD;
       cdsTBL_ItensVALORUNIT.AsFloat     := VLR_UNIT;
       cdsTBL_ItensDESCONTO.AsFloat      := 0;
-      cdsTBL_ItensVALORTOTAL.AsFloat     := VLR_SUBTOTAL;
+      cdsTBL_ItensVALORTOTAL.AsFloat    := VLR_SUBTOTAL;
       cdsTBL_Itensnome_produto.AsString := cdsCodBarDESCRICAO.AsString;
       cdsTBL_Itens.Post;
+
+      //Limpando os edts
+      edtQTD.Text := '1';
+      edtValorUnitario.Text := '0';
 
       edtCodBarras.Clear;
       edtCodBarras.SetFocus;
@@ -120,6 +167,26 @@ begin //Filtra pelo código de barras
     else
     ShowMessage('Nenhum produto encontrado com o código de barras especificado.');
   end;
+end;
+
+procedure TviewPrincipal.edtQTDExit(Sender: TObject);
+begin
+  edtCodBarras.SetFocus;
+end;
+
+procedure TviewPrincipal.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if key = #43 then
+  begin
+    key := #0;
+    edtQTD.SetFocus;
+  end;
+  
+end;
+
+procedure TviewPrincipal.FormResize(Sender: TObject);
+begin
+  ServiceCadastro.DimensionarGrid(DBG_produtos);
 end;
 
 procedure TviewPrincipal.imgLogoEmpresaAmareloClick(Sender: TObject);

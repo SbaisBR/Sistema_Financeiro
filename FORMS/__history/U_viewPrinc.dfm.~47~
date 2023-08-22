@@ -9,7 +9,10 @@ object viewPrincipal: TviewPrincipal
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
+  OnKeyPress = FormKeyPress
+  OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
   object pnlTopo: TPanel
@@ -664,8 +667,8 @@ object viewPrincipal: TviewPrincipal
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          ReadOnly = True
           TabOrder = 0
-          Text = '1'
         end
       end
       object pnlNomeProduto: TPanel
@@ -743,7 +746,7 @@ object viewPrincipal: TviewPrincipal
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            Text = '1'
+            OnExit = edtQTDExit
           end
           object edtValorUnitario: TEdit
             Left = 85
@@ -756,8 +759,8 @@ object viewPrincipal: TviewPrincipal
             Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
+            ReadOnly = True
             TabOrder = 1
-            Text = '1'
           end
         end
       end
@@ -820,6 +823,7 @@ object viewPrincipal: TviewPrincipal
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          ReadOnly = True
           TabOrder = 0
           Text = '0'
         end
@@ -836,9 +840,9 @@ object viewPrincipal: TviewPrincipal
         Align = alClient
         BorderStyle = bsNone
         DataSource = dtsTBL_Itens
-        FixedColor = 11516371
+        FixedColor = 4079682
         Font.Charset = ANSI_CHARSET
-        Font.Color = 5460819
+        Font.Color = clWhite
         Font.Height = -16
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
@@ -860,40 +864,81 @@ object viewPrincipal: TviewPrincipal
         CorColOrdenado = clWhite
         Columns = <
           item
+            Alignment = taLeftJustify
             Expanded = False
-            FieldName = 'Cod_Item'
+            FieldName = 'ID_PRODUTO'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = 4079682
+            Font.Height = -16
+            Font.Name = 'Segoe UI Semibold'
+            Font.Style = [fsBold]
             Title.Caption = 'C'#243'digo'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWhite
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = []
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'nome_produto'
+            FieldName = 'DESCRICAO'
             Title.Caption = 'Produto'
-            Width = 100
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWhite
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = []
+            Width = 180
             Visible = True
           end
           item
+            Alignment = taLeftJustify
             Expanded = False
-            FieldName = 'qtd_Produto'
+            FieldName = 'QTDE'
             Title.Caption = 'QTD'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWhite
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = []
+            Width = 48
             Visible = True
           end
           item
+            Alignment = taLeftJustify
             Expanded = False
-            FieldName = 'vlr_Unitario'
+            FieldName = 'VALORUNIT'
             Title.Caption = 'Vlr. Unit'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWhite
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = []
             Visible = True
           end
           item
+            Alignment = taLeftJustify
             Expanded = False
-            FieldName = 'vlr_Desconto'
+            FieldName = 'DESCONTO'
             Title.Caption = 'Vlr. Desc'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWhite
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = []
             Visible = True
           end
           item
+            Alignment = taLeftJustify
             Expanded = False
-            FieldName = 'vlr_Total'
+            FieldName = 'VALORTOTAL'
             Title.Caption = 'Sub. Total'
+            Title.Font.Charset = DEFAULT_CHARSET
+            Title.Font.Color = clWhite
+            Title.Font.Height = -11
+            Title.Font.Name = 'Tahoma'
+            Title.Font.Style = []
             Visible = True
           end>
       end
@@ -993,6 +1038,7 @@ object viewPrincipal: TviewPrincipal
         ParamType = ptInput
       end>
     ProviderName = 'dspTBL_Itens'
+    AfterPost = cdsTBL_ItensAfterPost
     Left = 457
     Top = 64
     object cdsTBL_ItensCod_Item: TIntegerField
@@ -1001,17 +1047,25 @@ object viewPrincipal: TviewPrincipal
     object cdsTBL_ItensCod_PRODUTO: TIntegerField
       FieldName = 'ID_PRODUTO'
     end
-    object cdsTBL_ItensQtd_Produto: TCurrencyField
+    object cdsTBL_ItensQTDE: TFMTBCDField
       FieldName = 'QTDE'
+      Precision = 15
+      Size = 4
     end
-    object cdsTBL_Itensvlr_Unitario: TCurrencyField
+    object cdsTBL_ItensVALORUNIT: TFMTBCDField
       FieldName = 'VALORUNIT'
+      currency = True
+      Precision = 15
     end
-    object cdsTBL_Itensvlr_Desconto: TCurrencyField
-      FieldName = 'DESCONTO'
-    end
-    object cdsTBL_Itensvlr_Total: TCurrencyField
+    object cdsTBL_ItensVALORTOTAL: TFMTBCDField
       FieldName = 'VALORTOTAL'
+      currency = True
+      Precision = 15
+      Size = 2
+    end
+    object cdsTBL_ItensDESCONTO: TFMTBCDField
+      FieldName = 'DESCONTO'
+      Precision = 15
     end
     object cdsTBL_Itensnome_produto: TStringField
       FieldName = 'DESCRICAO'

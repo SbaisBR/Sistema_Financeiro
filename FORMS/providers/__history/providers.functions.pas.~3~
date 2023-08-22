@@ -3,8 +3,8 @@ unit providers.functions;
 interface
 
 uses
-  Forms,
-  SysUtils,
+  Vcl.Forms,
+  System.SysUtils,
   view.telaFundo;
 
 {procedures}

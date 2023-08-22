@@ -2,20 +2,17 @@ unit providers.functions;
 
 interface
 
-uses
-  Forms,
-  SysUtils,
-  view.telaFundo;
+
 
 {procedures}
-procedure CriaForm(const AClasse: TCustomFormClass;  out Form);
+//procedure CriaForm(const AClasse: TCustomFormClass;  out Form);
 
 implementation
 
 // ======================= implementação ===============================
 
 
-procedure CriaForm(const AClasse: TCustomFormClass; out Form);
+{procedure CriaForm(const AClasse: TCustomFormClass; out Form);
 var
  MeuForm: TCustomForm absolute Form;
 begin
@@ -30,6 +27,6 @@ begin
       FreeAndNil(MeuForm);
     end;
   end;
-end;
+end;}
 
 end.

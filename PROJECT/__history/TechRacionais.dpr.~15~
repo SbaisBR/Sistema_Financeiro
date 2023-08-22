@@ -18,7 +18,7 @@ uses
   providers.variaveis in '..\FORMS\providers\providers.variaveis.pas',
   service.cadastro in '..\FORMS\services\service.cadastro.pas',
   U_baselLista in '..\FORMS\U_baselLista.pas' {viewbaselista},
-  View.TelaFundo in '..\FORMS\View.TelaFundo.pas' {ViewTelaFundo};
+  View.TelaFundo in '..\FORMS\View.TelaFundo.pas' {Form1};
 
 {$R *.res}
 
@@ -28,6 +28,7 @@ begin
   Application.CreateForm(TConexao, Conexao);
   Application.CreateForm(TFrmlogin, Frmlogin);
   Application.CreateForm(TviewPrincipal, viewPrincipal);
-  Application.CreateForm(TViewTelaFundo, ViewTelaFundo);
+  Application.CreateForm(Tviewbaselista, viewbaselista);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.

@@ -9,7 +9,9 @@ object viewPrincipal: TviewPrincipal
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
+  OnKeyPress = FormKeyPress
   OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
@@ -744,6 +746,7 @@ object viewPrincipal: TviewPrincipal
             Font.Style = []
             ParentFont = False
             TabOrder = 0
+            OnExit = edtQTDExit
           end
           object edtValorUnitario: TEdit
             Left = 85
@@ -851,6 +854,7 @@ object viewPrincipal: TviewPrincipal
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
+        OnDrawColumnCell = DBG_produtosDrawColumnCell
         TitleButtons = True
         SelectColumnsDialogStrings.Caption = 'Select columns'
         SelectColumnsDialogStrings.OK = '&OK'
@@ -1035,6 +1039,7 @@ object viewPrincipal: TviewPrincipal
         ParamType = ptInput
       end>
     ProviderName = 'dspTBL_Itens'
+    AfterPost = cdsTBL_ItensAfterPost
     Left = 457
     Top = 64
     object cdsTBL_ItensCod_Item: TIntegerField
