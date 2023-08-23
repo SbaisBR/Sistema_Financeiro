@@ -17,7 +17,6 @@ inherited viewbaselista1: Tviewbaselista1
     Color = 4079682
     TabOrder = 0
     OnMouseDown = lblTituloMouseDown
-    ExplicitWidth = 1026
     object lblTitulo: TLabel
       AlignWithMargins = True
       Left = 45
@@ -271,10 +270,8 @@ inherited viewbaselista1: Tviewbaselista1
           4042}
         OnMouseDown = lblTituloMouseDown
         OnMouseEnter = imgLogoAzulMouseEnter
-        ExplicitLeft = 1
-        ExplicitTop = 1
-        ExplicitWidth = 152
-        ExplicitHeight = 47
+        ExplicitLeft = -3
+        ExplicitTop = -3
       end
     end
     object pnlFechar: TPanel
@@ -286,7 +283,6 @@ inherited viewbaselista1: Tviewbaselista1
       BevelOuter = bvNone
       Color = 46079
       TabOrder = 1
-      ExplicitLeft = 960
       object btnFechar: TSpeedButton
         Left = 0
         Top = 0
@@ -316,8 +312,6 @@ inherited viewbaselista1: Tviewbaselista1
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 1
-    ExplicitTop = 668
-    ExplicitWidth = 1026
     object btnEditar: TSpeedButton
       AlignWithMargins = True
       Left = 704
@@ -705,8 +699,6 @@ inherited viewbaselista1: Tviewbaselista1
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 2
-    ExplicitWidth = 1026
-    ExplicitHeight = 632
     object Page_panelconteudo: TPageControl
       AlignWithMargins = True
       Left = 2
@@ -720,12 +712,8 @@ inherited viewbaselista1: Tviewbaselista1
       ActivePage = Card_cadastro
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 1022
-      ExplicitHeight = 632
       object Card_cadastro: TTabSheet
         Caption = 'Card_cadastro'
-        ExplicitWidth = 1014
-        ExplicitHeight = 604
         object pnlFiltroCadastro: TPanel
           Left = 0
           Top = 0
@@ -735,7 +723,6 @@ inherited viewbaselista1: Tviewbaselista1
           BevelOuter = bvNone
           Color = 14606304
           TabOrder = 0
-          ExplicitWidth = 1014
           object btnVoltar: TSpeedButton
             AlignWithMargins = True
             Left = 880
@@ -769,8 +756,6 @@ inherited viewbaselista1: Tviewbaselista1
       object Card_pesquisar: TTabSheet
         Caption = 'Card_pesquisar'
         ImageIndex = 1
-        ExplicitWidth = 1014
-        ExplicitHeight = 604
         object pnlFiltroPesquisa: TPanel
           Left = 0
           Top = 0
@@ -780,7 +765,6 @@ inherited viewbaselista1: Tviewbaselista1
           BevelOuter = bvNone
           Color = 14606304
           TabOrder = 0
-          ExplicitWidth = 1014
           object pnlPesquisar: TPanel
             Left = 0
             Top = 41
@@ -790,7 +774,6 @@ inherited viewbaselista1: Tviewbaselista1
             BevelOuter = bvNone
             Color = 14606304
             TabOrder = 0
-            ExplicitWidth = 1014
             object edtPesquisar: TEdit
               AlignWithMargins = True
               Left = 3
@@ -805,7 +788,6 @@ inherited viewbaselista1: Tviewbaselista1
               Font.Style = []
               ParentFont = False
               TabOrder = 0
-              ExplicitWidth = 1008
               ExplicitHeight = 31
             end
           end
@@ -818,7 +800,6 @@ inherited viewbaselista1: Tviewbaselista1
             BevelOuter = bvNone
             Color = 14606304
             TabOrder = 1
-            ExplicitWidth = 1014
             object lblPesquisa: TLabel
               AlignWithMargins = True
               Left = 3

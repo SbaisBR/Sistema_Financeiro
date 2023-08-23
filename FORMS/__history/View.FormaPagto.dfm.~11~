@@ -513,7 +513,6 @@ inherited viewFormaPagto: TviewFormaPagto
       Margins.Bottom = 5
       Align = alClient
       BorderStyle = bsNone
-      DataSource = dtsFormaPGTO
       FixedColor = 4079682
       Font.Charset = ANSI_CHARSET
       Font.Color = clWhite
@@ -528,7 +527,6 @@ inherited viewFormaPagto: TviewFormaPagto
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
-      OnDrawColumnCell = DBG_FormaPAGTODrawColumnCell
       TitleButtons = True
       SelectColumnsDialogStrings.Caption = 'Select columns'
       SelectColumnsDialogStrings.OK = '&OK'

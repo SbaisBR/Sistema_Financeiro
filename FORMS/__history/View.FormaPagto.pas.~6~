@@ -1,0 +1,53 @@
+unit View.FormaPagto;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, U_baselLista, Buttons, ExtCtrls, StdCtrls, Grids, DBGrids,
+  JvExDBGrids, JvDBGrid, SuperGrid;
+
+type
+  TviewFormaPagto = class(Tviewbaselista)
+    pnlTopo: TPanel;
+    lblTitulo: TLabel;
+    pnlImgLogo: TPanel;
+    imgLogoCinza: TImage;
+    imgLogoAzul: TImage;
+    pnlFechar: TPanel;
+    btnFechar: TSpeedButton;
+    pnlRodape: TPanel;
+    pnlTotais: TPanel;
+    pnlFormasPGTO: TPanel;
+    pnlFormasEscolhidas: TPanel;
+    DBG_FormaPAGTO: TSuperGrid;
+    DBG_FormaPAGTOEscolhidas: TSuperGrid;
+    pblBtnSalvar: TPanel;
+    btnSalvar: TSpeedButton;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    procedure btnFecharClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  viewFormaPagto: TviewFormaPagto;
+
+implementation
+
+{$R *.dfm}
+
+procedure TviewFormaPagto.btnFecharClick(Sender: TObject);
+begin
+  inherited;
+  Self.Close;
+end;
+
+end.

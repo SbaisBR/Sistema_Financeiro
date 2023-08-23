@@ -37,8 +37,6 @@ type
     cdsFormaPGTOFOR_CODIGO: TIntegerField;
     cdsFormaPGTOFOR_DESCRICAO: TStringField;
     cdsFormaPGTOFOR_GERARECEBER: TStringField;
-    procedure DBG_FormaPAGTODrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure pnlTopoMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure FormShow(Sender: TObject);
@@ -62,33 +60,10 @@ begin
   Self.Close;
 end;
 
-procedure TviewFormaPagto.DBG_FormaPAGTODrawColumnCell(Sender: TObject;
-  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
-begin
-  inherited;
-  //Deixando a cor branca
-  if Column.Field <> nil then
-  begin
-    if gdSelected in State then
-    begin
-      DBG_formaPAGTO.Canvas.Brush.Color := clHighlight;
-      DBG_formaPAGTO.Canvas.Font.Color := clHighlightText;
-    end
-    else
-    begin
-      DBG_formaPAGTO.Canvas.Brush.Color := clWhite;
-      DBG_formaPAGTO.Canvas.Font.Color := clBlack;
-    end;
-    DBG_formaPAGTO.Canvas.FillRect(Rect);
-    DBG_formaPAGTO.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2, Column.Field.DisplayText);
-  end;
-end;
-
 procedure TviewFormaPagto.FormShow(Sender: TObject);
 begin
   inherited;
   cdsFormaPGTO.Open;
-  DBG_formaPAGTO.SetFocus;
 end;
 
 procedure TviewFormaPagto.pnlTopoMouseDown(Sender: TObject;

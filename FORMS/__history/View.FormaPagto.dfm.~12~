@@ -528,7 +528,6 @@ inherited viewFormaPagto: TviewFormaPagto
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
-      OnDrawColumnCell = DBG_FormaPAGTODrawColumnCell
       TitleButtons = True
       SelectColumnsDialogStrings.Caption = 'Select columns'
       SelectColumnsDialogStrings.OK = '&OK'

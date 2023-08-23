@@ -79,6 +79,8 @@ type
     FMTBCDField3: TFMTBCDField;
     FMTBCDField4: TFMTBCDField;
     StringField1: TStringField;
+    lblFaturar: TLabel;
+    procedure lblFaturarClick(Sender: TObject);
     procedure Timer_HoraTimer(Sender: TObject);
     procedure dtsTBL_ItensDataChange(Sender: TObject; Field: TField);
     procedure DBG_produtosDrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -104,7 +106,7 @@ var
 
 implementation
 
-uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo;
+uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo, View.FormaPagto;
 
 {$R *.dfm}
 
@@ -231,6 +233,16 @@ begin //Abrir Caixa
     viewAbrirCaixa.Showmodal;
   finally
     FreeAndNil(viewAbrirCaixa);
+  end;
+end;
+
+procedure TviewPrincipal.lblFaturarClick(Sender: TObject);
+begin //Faturamento
+  viewFormaPagto := TviewFormaPagto.Create(Self);
+  try
+     viewFormaPagto.Showmodal;
+  finally
+    FreeAndNil( viewFormaPagto);
   end;
 end;
 

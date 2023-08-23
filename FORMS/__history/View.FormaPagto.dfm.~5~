@@ -4,7 +4,6 @@ inherited viewFormaPagto: TviewFormaPagto
   ClientHeight = 550
   ClientWidth = 900
   Position = poOwnerFormCenter
-  OnShow = FormShow
   ExplicitWidth = 900
   ExplicitHeight = 550
   PixelsPerInch = 96
@@ -19,7 +18,6 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
-    OnMouseDown = pnlTopoMouseDown
     ExplicitWidth = 1042
     object lblTitulo: TLabel
       AlignWithMargins = True
@@ -40,7 +38,6 @@ inherited viewFormaPagto: TviewFormaPagto
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      OnMouseDown = pnlTopoMouseDown
       ExplicitHeight = 24
     end
     object pnlImgLogo: TPanel
@@ -271,7 +268,6 @@ inherited viewFormaPagto: TviewFormaPagto
           05070B02030512161E6E747E3E40424E535C0B0D13020204080A0E3E40423E40
           423E40423E40423E40423E40423E40423E40423E40423E40423E40423E40423E
           4042}
-        OnMouseDown = pnlTopoMouseDown
         ExplicitLeft = 1
         ExplicitTop = 1
         ExplicitWidth = 152
@@ -355,9 +351,9 @@ inherited viewFormaPagto: TviewFormaPagto
   object pnlTotais: TPanel
     AlignWithMargins = True
     Left = 20
-    Top = 389
+    Top = 396
     Width = 860
-    Height = 100
+    Height = 93
     Margins.Left = 20
     Margins.Top = 0
     Margins.Right = 20
@@ -366,132 +362,13 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 2
-    object Label1: TLabel
-      Left = 60
-      Top = 24
-      Width = 136
-      Height = 24
-      Caption = 'Valor da Venda'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -20
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label2: TLabel
-      Left = 335
-      Top = 24
-      Width = 131
-      Height = 24
-      Caption = 'Valor Faturado'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -20
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label3: TLabel
-      Left = 610
-      Top = 24
-      Width = 131
-      Height = 24
-      Caption = 'Valor Restante'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -20
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Edit1: TEdit
-      AlignWithMargins = True
-      Left = 610
-      Top = 50
-      Width = 185
-      Height = 30
-      Margins.Left = 60
-      Margins.Top = 50
-      Margins.Right = 30
-      Margins.Bottom = 20
-      Align = alLeft
-      BevelOuter = bvNone
-      BorderStyle = bsNone
-      Color = 4079682
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -27
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      ReadOnly = True
-      TabOrder = 0
-      Text = '0'
-      ExplicitLeft = 60
-      ExplicitTop = 20
-      ExplicitHeight = 60
-    end
-    object Edit2: TEdit
-      AlignWithMargins = True
-      Left = 60
-      Top = 50
-      Width = 185
-      Height = 30
-      Margins.Left = 60
-      Margins.Top = 50
-      Margins.Right = 30
-      Margins.Bottom = 20
-      Align = alLeft
-      BevelOuter = bvNone
-      BorderStyle = bsNone
-      Color = 4079682
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -27
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      ReadOnly = True
-      TabOrder = 1
-      Text = '0'
-      ExplicitTop = 20
-      ExplicitHeight = 60
-    end
-    object Edit3: TEdit
-      AlignWithMargins = True
-      Left = 335
-      Top = 50
-      Width = 185
-      Height = 30
-      Margins.Left = 60
-      Margins.Top = 50
-      Margins.Right = 30
-      Margins.Bottom = 20
-      Align = alLeft
-      BevelOuter = bvNone
-      BorderStyle = bsNone
-      Color = 4079682
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -27
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      ReadOnly = True
-      TabOrder = 2
-      Text = '0'
-      ExplicitLeft = 60
-      ExplicitTop = 20
-      ExplicitHeight = 60
-    end
   end
   object pnlFormasPGTO: TPanel
     AlignWithMargins = True
     Left = 20
     Top = 56
     Width = 245
-    Height = 313
+    Height = 320
     Margins.Left = 20
     Margins.Top = 20
     Margins.Right = 20
@@ -500,87 +377,12 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 3
-    ExplicitHeight = 320
     object DBG_FormaPAGTO: TSuperGrid
       AlignWithMargins = True
       Left = 5
       Top = 5
       Width = 235
-      Height = 303
-      Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
-      Align = alClient
-      BorderStyle = bsNone
-      DataSource = dtsFormaPGTO
-      FixedColor = 4079682
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWhite
-      Font.Height = -16
-      Font.Name = 'Segoe UI Semibold'
-      Font.Style = [fsBold]
-      Options = [dgTitles, dgTabs, dgRowSelect, dgAlwaysShowSelection]
-      ParentFont = False
-      TabOrder = 0
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'Tahoma'
-      TitleFont.Style = []
-      OnDrawColumnCell = DBG_FormaPAGTODrawColumnCell
-      TitleButtons = True
-      SelectColumnsDialogStrings.Caption = 'Select columns'
-      SelectColumnsDialogStrings.OK = '&OK'
-      SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
-      EditControls = <>
-      RowsHeight = 24
-      TitleRowHeight = 25
-      CorColOrdenado = clWhite
-      Columns = <
-        item
-          Expanded = False
-          FieldName = 'FOR_DESCRICAO'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWhite
-          Font.Height = -16
-          Font.Name = 'Segoe UI Semibold'
-          Font.Style = [fsBold]
-          Title.Caption = '[FORMAS DE PGTO]'
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWhite
-          Title.Font.Height = -17
-          Title.Font.Name = 'Tahoma'
-          Title.Font.Style = []
-          Width = 227
-          Visible = True
-        end>
-    end
-  end
-  object pnlFormasEscolhidas: TPanel
-    AlignWithMargins = True
-    Left = 285
-    Top = 56
-    Width = 595
-    Height = 313
-    Margins.Left = 0
-    Margins.Top = 20
-    Margins.Right = 20
-    Margins.Bottom = 20
-    Align = alClient
-    BevelOuter = bvNone
-    Color = clWhite
-    TabOrder = 4
-    ExplicitLeft = 28
-    ExplicitTop = 64
-    ExplicitWidth = 245
-    ExplicitHeight = 320
-    object DBG_FormaPAGTOEscolhidas: TSuperGrid
-      AlignWithMargins = True
-      Left = 5
-      Top = 5
-      Width = 585
-      Height = 303
+      Height = 310
       Margins.Left = 5
       Margins.Top = 5
       Margins.Right = 5
@@ -611,43 +413,57 @@ inherited viewFormaPagto: TviewFormaPagto
       CorColOrdenado = clWhite
     end
   end
-  object cdsFormaPGTO: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspFormaPGTO'
-    Left = 137
-    Top = 272
-    object cdsFormaPGTOFOR_CODIGO: TIntegerField
-      FieldName = 'FOR_CODIGO'
-      Required = True
+  object pnlFormasEscolhidas: TPanel
+    AlignWithMargins = True
+    Left = 285
+    Top = 56
+    Width = 595
+    Height = 320
+    Margins.Left = 0
+    Margins.Top = 20
+    Margins.Right = 20
+    Margins.Bottom = 20
+    Align = alClient
+    BevelOuter = bvNone
+    Color = clWhite
+    TabOrder = 4
+    ExplicitLeft = 28
+    ExplicitTop = 64
+    ExplicitWidth = 245
+    object DBG_FormaPAGTOEscolhidas: TSuperGrid
+      AlignWithMargins = True
+      Left = 5
+      Top = 5
+      Width = 585
+      Height = 310
+      Margins.Left = 5
+      Margins.Top = 5
+      Margins.Right = 5
+      Margins.Bottom = 5
+      Align = alClient
+      BorderStyle = bsNone
+      FixedColor = 4079682
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      Options = [dgTitles, dgTabs, dgRowSelect, dgAlwaysShowSelection]
+      ParentFont = False
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      TitleButtons = True
+      SelectColumnsDialogStrings.Caption = 'Select columns'
+      SelectColumnsDialogStrings.OK = '&OK'
+      SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
+      EditControls = <>
+      RowsHeight = 24
+      TitleRowHeight = 17
+      CorColOrdenado = clWhite
     end
-    object cdsFormaPGTOFOR_DESCRICAO: TStringField
-      FieldName = 'FOR_DESCRICAO'
-      Size = 150
-    end
-    object cdsFormaPGTOFOR_GERARECEBER: TStringField
-      FieldName = 'FOR_GERARECEBER'
-      FixedChar = True
-      Size = 2
-    end
-  end
-  object dspFormaPGTO: TDataSetProvider
-    DataSet = sqlFormaPGTO
-    Left = 104
-    Top = 272
-  end
-  object sqlFormaPGTO: TSQLDataSet
-    SchemaName = 'sysdba'
-    CommandText = 'SELECT * FROM FORMASPAGAMENTOS ORDER BY FOR_CODIGO'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = Conexao.Conexao
-    Left = 72
-    Top = 272
-  end
-  object dtsFormaPGTO: TDataSource
-    DataSet = cdsFormaPGTO
-    Left = 184
-    Top = 272
   end
 end

@@ -19,7 +19,6 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
-    OnMouseDown = pnlTopoMouseDown
     ExplicitWidth = 1042
     object lblTitulo: TLabel
       AlignWithMargins = True
@@ -40,7 +39,6 @@ inherited viewFormaPagto: TviewFormaPagto
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      OnMouseDown = pnlTopoMouseDown
       ExplicitHeight = 24
     end
     object pnlImgLogo: TPanel
@@ -271,7 +269,6 @@ inherited viewFormaPagto: TviewFormaPagto
           05070B02030512161E6E747E3E40424E535C0B0D13020204080A0E3E40423E40
           423E40423E40423E40423E40423E40423E40423E40423E40423E40423E40423E
           4042}
-        OnMouseDown = pnlTopoMouseDown
         ExplicitLeft = 1
         ExplicitTop = 1
         ExplicitWidth = 152
@@ -513,7 +510,6 @@ inherited viewFormaPagto: TviewFormaPagto
       Margins.Bottom = 5
       Align = alClient
       BorderStyle = bsNone
-      DataSource = dtsFormaPGTO
       FixedColor = 4079682
       Font.Charset = ANSI_CHARSET
       Font.Color = clWhite
@@ -528,7 +524,6 @@ inherited viewFormaPagto: TviewFormaPagto
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
-      OnDrawColumnCell = DBG_FormaPAGTODrawColumnCell
       TitleButtons = True
       SelectColumnsDialogStrings.Caption = 'Select columns'
       SelectColumnsDialogStrings.OK = '&OK'

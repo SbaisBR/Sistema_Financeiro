@@ -19,7 +19,7 @@ uses
   service.cadastro in '..\FORMS\services\service.cadastro.pas',
   U_baselLista in '..\FORMS\U_baselLista.pas' {viewbaselista},
   View.TelaFundo in '..\FORMS\View.TelaFundo.pas' {ViewTelaFundo},
-  View.FormaPagto in '..\FORMS\View.FormaPagto.pas' {viewbaselista2};
+  View.FormaPagto in '..\FORMS\View.FormaPagto.pas' {viewFormaPagto};
 
 {$R *.res}
 
@@ -30,6 +30,6 @@ begin
   Application.CreateForm(TFrmlogin, Frmlogin);
   Application.CreateForm(TviewPrincipal, viewPrincipal);
   Application.CreateForm(TViewTelaFundo, ViewTelaFundo);
-  Application.CreateForm(Tviewbaselista2, viewbaselista2);
+  Application.CreateForm(TviewFormaPagto, viewFormaPagto);
   Application.Run;
 end.
