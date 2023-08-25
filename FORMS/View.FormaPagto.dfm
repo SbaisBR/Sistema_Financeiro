@@ -20,7 +20,6 @@ inherited viewFormaPagto: TviewFormaPagto
     Color = 4079682
     TabOrder = 0
     OnMouseDown = pnlTopoMouseDown
-    ExplicitWidth = 1042
     object lblTitulo: TLabel
       AlignWithMargins = True
       Left = 45
@@ -287,7 +286,6 @@ inherited viewFormaPagto: TviewFormaPagto
       BevelOuter = bvNone
       Color = 46079
       TabOrder = 1
-      ExplicitLeft = 976
       object btnFechar: TSpeedButton
         Left = 0
         Top = 0
@@ -317,9 +315,6 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 1
-    ExplicitLeft = 424
-    ExplicitTop = 216
-    ExplicitWidth = 185
     object pblBtnSalvar: TPanel
       Left = 760
       Top = 0
@@ -366,7 +361,7 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 2
-    object Label1: TLabel
+    object lblVenda: TLabel
       Left = 60
       Top = 24
       Width = 136
@@ -379,7 +374,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Font.Style = []
       ParentFont = False
     end
-    object Label2: TLabel
+    object lblFaturado: TLabel
       Left = 335
       Top = 24
       Width = 131
@@ -392,7 +387,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Font.Style = []
       ParentFont = False
     end
-    object Label3: TLabel
+    object lblRestante: TLabel
       Left = 610
       Top = 24
       Width = 131
@@ -405,7 +400,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Font.Style = []
       ParentFont = False
     end
-    object Edit1: TEdit
+    object edtRestante: TEdit
       AlignWithMargins = True
       Left = 610
       Top = 50
@@ -428,11 +423,8 @@ inherited viewFormaPagto: TviewFormaPagto
       ReadOnly = True
       TabOrder = 0
       Text = '0'
-      ExplicitLeft = 60
-      ExplicitTop = 20
-      ExplicitHeight = 60
     end
-    object Edit2: TEdit
+    object edtVenda: TEdit
       AlignWithMargins = True
       Left = 60
       Top = 50
@@ -455,10 +447,8 @@ inherited viewFormaPagto: TviewFormaPagto
       ReadOnly = True
       TabOrder = 1
       Text = '0'
-      ExplicitTop = 20
-      ExplicitHeight = 60
     end
-    object Edit3: TEdit
+    object edtFaturado: TEdit
       AlignWithMargins = True
       Left = 335
       Top = 50
@@ -481,9 +471,6 @@ inherited viewFormaPagto: TviewFormaPagto
       ReadOnly = True
       TabOrder = 2
       Text = '0'
-      ExplicitLeft = 60
-      ExplicitTop = 20
-      ExplicitHeight = 60
     end
   end
   object pnlFormasPGTO: TPanel
@@ -500,7 +487,6 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 3
-    ExplicitHeight = 320
     object DBG_FormaPAGTO: TSuperGrid
       AlignWithMargins = True
       Left = 5
@@ -541,11 +527,6 @@ inherited viewFormaPagto: TviewFormaPagto
         item
           Expanded = False
           FieldName = 'FOR_DESCRICAO'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWhite
-          Font.Height = -16
-          Font.Name = 'Segoe UI Semibold'
-          Font.Style = [fsBold]
           Title.Caption = '[FORMAS DE PGTO]'
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWhite
@@ -571,10 +552,6 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 4
-    ExplicitLeft = 28
-    ExplicitTop = 64
-    ExplicitWidth = 245
-    ExplicitHeight = 320
     object DBG_FormaPAGTOEscolhidas: TSuperGrid
       AlignWithMargins = True
       Left = 5

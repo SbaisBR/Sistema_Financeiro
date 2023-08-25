@@ -1,9 +1,8 @@
 object Frmlogin: TFrmlogin
   Left = 0
   Top = 0
-  BorderStyle = bsNone
-  ClientHeight = 301
-  ClientWidth = 623
+  ClientHeight = 262
+  ClientWidth = 607
   Color = clSilver
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
