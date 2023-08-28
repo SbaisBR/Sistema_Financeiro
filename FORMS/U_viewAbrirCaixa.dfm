@@ -1,8 +1,12 @@
 inherited viewAbrirCaixa: TviewAbrirCaixa
   Caption = 'viewAbrirCaixa'
+  Position = poDesktopCenter
+  ExplicitWidth = 1042
+  ExplicitHeight = 758
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlTopo: TPanel
+    ExplicitTop = -3
     inherited lblTitulo: TLabel
       Width = 97
       Height = 34
@@ -13,11 +17,13 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
   inherited pnlLinhaFundo: TPanel
     inherited Page_panelconteudo: TPageControl
       ActivePage = Card_pesquisar
+      ExplicitLeft = 0
+      ExplicitTop = -3
       inherited Card_cadastro: TTabSheet
         ExplicitLeft = 4
         ExplicitTop = 24
-        ExplicitWidth = 1014
-        ExplicitHeight = 604
+        ExplicitWidth = 1030
+        ExplicitHeight = 643
         object lblVlrInicial: TLabel [0]
           Left = 11
           Top = 104
@@ -107,9 +113,15 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
       inherited Card_pesquisar: TTabSheet
         ExplicitLeft = 4
         ExplicitTop = 24
-        ExplicitWidth = 1014
-        ExplicitHeight = 604
+        ExplicitWidth = 1030
+        ExplicitHeight = 643
         inherited pnlFiltroPesquisa: TPanel
+          inherited pnlPesquisar: TPanel
+            inherited edtPesquisar: TEdit
+              ExplicitLeft = 5
+              ExplicitHeight = 34
+            end
+          end
           inherited pnlFiltro: TPanel
             inherited lblPesquisa: TLabel
               Top = 15

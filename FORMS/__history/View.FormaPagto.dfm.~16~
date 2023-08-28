@@ -4,6 +4,7 @@ inherited viewFormaPagto: TviewFormaPagto
   ClientHeight = 550
   ClientWidth = 900
   Position = poOwnerFormCenter
+  OnShow = FormShow
   ExplicitWidth = 900
   ExplicitHeight = 550
   PixelsPerInch = 96
@@ -18,7 +19,7 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
-    ExplicitWidth = 1042
+    OnMouseDown = pnlTopoMouseDown
     object lblTitulo: TLabel
       AlignWithMargins = True
       Left = 45
@@ -38,6 +39,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnMouseDown = pnlTopoMouseDown
       ExplicitHeight = 24
     end
     object pnlImgLogo: TPanel
@@ -268,6 +270,7 @@ inherited viewFormaPagto: TviewFormaPagto
           05070B02030512161E6E747E3E40424E535C0B0D13020204080A0E3E40423E40
           423E40423E40423E40423E40423E40423E40423E40423E40423E40423E40423E
           4042}
+        OnMouseDown = pnlTopoMouseDown
         ExplicitLeft = 1
         ExplicitTop = 1
         ExplicitWidth = 152
@@ -283,7 +286,6 @@ inherited viewFormaPagto: TviewFormaPagto
       BevelOuter = bvNone
       Color = 46079
       TabOrder = 1
-      ExplicitLeft = 976
       object btnFechar: TSpeedButton
         Left = 0
         Top = 0
@@ -313,9 +315,6 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 1
-    ExplicitLeft = 424
-    ExplicitTop = 216
-    ExplicitWidth = 185
     object pblBtnSalvar: TPanel
       Left = 760
       Top = 0
@@ -362,7 +361,7 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 2
-    object Label1: TLabel
+    object lblVenda: TLabel
       Left = 60
       Top = 24
       Width = 136
@@ -375,7 +374,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Font.Style = []
       ParentFont = False
     end
-    object Label2: TLabel
+    object lblFaturado: TLabel
       Left = 335
       Top = 24
       Width = 131
@@ -388,7 +387,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Font.Style = []
       ParentFont = False
     end
-    object Label3: TLabel
+    object lblRestante: TLabel
       Left = 610
       Top = 24
       Width = 131
@@ -401,7 +400,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Font.Style = []
       ParentFont = False
     end
-    object Edit1: TEdit
+    object edtRestante: TEdit
       AlignWithMargins = True
       Left = 610
       Top = 50
@@ -424,11 +423,8 @@ inherited viewFormaPagto: TviewFormaPagto
       ReadOnly = True
       TabOrder = 0
       Text = '0'
-      ExplicitLeft = 60
-      ExplicitTop = 20
-      ExplicitHeight = 60
     end
-    object Edit2: TEdit
+    object edtVenda: TEdit
       AlignWithMargins = True
       Left = 60
       Top = 50
@@ -451,10 +447,8 @@ inherited viewFormaPagto: TviewFormaPagto
       ReadOnly = True
       TabOrder = 1
       Text = '0'
-      ExplicitTop = 20
-      ExplicitHeight = 60
     end
-    object Edit3: TEdit
+    object edtFaturado: TEdit
       AlignWithMargins = True
       Left = 335
       Top = 50
@@ -477,9 +471,6 @@ inherited viewFormaPagto: TviewFormaPagto
       ReadOnly = True
       TabOrder = 2
       Text = '0'
-      ExplicitLeft = 60
-      ExplicitTop = 20
-      ExplicitHeight = 60
     end
   end
   object pnlFormasPGTO: TPanel
@@ -496,7 +487,6 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 3
-    ExplicitHeight = 320
     object DBG_FormaPAGTO: TSuperGrid
       AlignWithMargins = True
       Left = 5
@@ -509,6 +499,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Margins.Bottom = 5
       Align = alClient
       BorderStyle = bsNone
+      DataSource = dtsFormaPGTO
       FixedColor = 4079682
       Font.Charset = ANSI_CHARSET
       Font.Color = clWhite
@@ -523,14 +514,28 @@ inherited viewFormaPagto: TviewFormaPagto
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnDrawColumnCell = DBG_FormaPAGTODrawColumnCell
       TitleButtons = True
       SelectColumnsDialogStrings.Caption = 'Select columns'
       SelectColumnsDialogStrings.OK = '&OK'
       SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
       EditControls = <>
       RowsHeight = 24
-      TitleRowHeight = 17
+      TitleRowHeight = 25
       CorColOrdenado = clWhite
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'FOR_DESCRICAO'
+          Title.Caption = '[FORMAS DE PGTO]'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWhite
+          Title.Font.Height = -17
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = []
+          Width = 227
+          Visible = True
+        end>
     end
   end
   object pnlFormasEscolhidas: TPanel
@@ -547,10 +552,6 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 4
-    ExplicitLeft = 28
-    ExplicitTop = 64
-    ExplicitWidth = 245
-    ExplicitHeight = 320
     object DBG_FormaPAGTOEscolhidas: TSuperGrid
       AlignWithMargins = True
       Left = 5
@@ -586,5 +587,114 @@ inherited viewFormaPagto: TviewFormaPagto
       TitleRowHeight = 17
       CorColOrdenado = clWhite
     end
+  end
+  object pnlValor: TPanel
+    Left = 328
+    Top = 112
+    Width = 337
+    Height = 201
+    BevelOuter = bvNone
+    TabOrder = 5
+    object edtVlrFaturar: TEdit
+      AlignWithMargins = True
+      Left = 52
+      Top = 88
+      Width = 247
+      Height = 37
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      Align = alCustom
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      Color = 4079682
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 0
+      Text = '0'
+    end
+    object pnlBtnOk: TPanel
+      Left = 0
+      Top = 152
+      Width = 337
+      Height = 49
+      Align = alBottom
+      TabOrder = 1
+    end
+    object pnlTitValor: TPanel
+      Left = 0
+      Top = 0
+      Width = 337
+      Height = 49
+      Align = alTop
+      TabOrder = 2
+      object lblTituloValor: TLabel
+        AlignWithMargins = True
+        Left = 6
+        Top = 2
+        Width = 114
+        Height = 45
+        Cursor = crHandPoint
+        Margins.Left = 5
+        Margins.Top = 1
+        Margins.Right = 1
+        Margins.Bottom = 1
+        Align = alLeft
+        Caption = 'Faturamento'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -20
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        OnMouseDown = pnlTopoMouseDown
+        ExplicitHeight = 24
+      end
+    end
+  end
+  object cdsFormaPGTO: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspFormaPGTO'
+    Left = 137
+    Top = 272
+    object cdsFormaPGTOFOR_CODIGO: TIntegerField
+      FieldName = 'FOR_CODIGO'
+      Required = True
+    end
+    object cdsFormaPGTOFOR_DESCRICAO: TStringField
+      FieldName = 'FOR_DESCRICAO'
+      Size = 150
+    end
+    object cdsFormaPGTOFOR_GERARECEBER: TStringField
+      FieldName = 'FOR_GERARECEBER'
+      FixedChar = True
+      Size = 2
+    end
+  end
+  object dspFormaPGTO: TDataSetProvider
+    DataSet = sqlFormaPGTO
+    Left = 104
+    Top = 272
+  end
+  object sqlFormaPGTO: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 'SELECT * FROM FORMASPAGAMENTOS ORDER BY FOR_CODIGO'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 72
+    Top = 272
+  end
+  object dtsFormaPGTO: TDataSource
+    DataSet = cdsFormaPGTO
+    Left = 184
+    Top = 272
   end
 end

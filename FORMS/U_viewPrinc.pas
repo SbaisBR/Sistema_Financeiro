@@ -106,7 +106,8 @@ var
 
 implementation
 
-uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo, View.FormaPagto;
+uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo, View.FormaPagto,
+  providers.functions;
 
 {$R *.dfm}
 
@@ -228,22 +229,24 @@ end;
 
 procedure TviewPrincipal.lblAbreCaixaClick(Sender: TObject);
 begin //Abrir Caixa
-  viewAbrirCaixa := TviewAbrirCaixa.Create(Self);
-  try
-    viewAbrirCaixa.Showmodal;
-  finally
-    FreeAndNil(viewAbrirCaixa);
-  end;
+  CriaForm(TviewAbrirCaixa, viewAbrirCaixa);
 end;
 
 procedure TviewPrincipal.lblFaturarClick(Sender: TObject);
 begin //Faturamento
-  viewFormaPagto := TviewFormaPagto.Create(Self);
+
+  ViewFormaPagto := TViewFormaPagto.Create(Self);
   try
-     viewFormaPagto.Showmodal;
+
+    ViewFormaPagto.ValorVenda := StrToFloatDef(edtTotalAPagar.Text, 0);
+    ViewFormaPagto.ShowModal;
+
   finally
-    FreeAndNil( viewFormaPagto);
+    FreeAndNil(ViewFormaPagto);
   end;
+
+
+  CriaForm(TviewFormaPagto,viewFormaPagto);
 end;
 
 procedure TviewPrincipal.Timer_HoraTimer(Sender: TObject);

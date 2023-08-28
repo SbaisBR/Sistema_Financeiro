@@ -38,11 +38,10 @@ type
     cdsFormaPGTOFOR_DESCRICAO: TStringField;
     cdsFormaPGTOFOR_GERARECEBER: TStringField;
     pnlValor: TPanel;
-    pnlTitValor: TPanel;
-    lblTitValor: TLabel;
     edtVlrFaturar: TEdit;
     pnlBtnOk: TPanel;
-    btnOk: TSpeedButton;
+    pnlTitValor: TPanel;
+    lblTituloValor: TLabel;
     procedure DBG_FormaPAGTODrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure pnlTopoMouseDown(Sender: TObject; Button: TMouseButton;
