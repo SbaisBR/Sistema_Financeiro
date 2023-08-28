@@ -245,8 +245,6 @@ begin //Faturamento
     FreeAndNil(ViewFormaPagto);
   end;
 
-
-  CriaForm(TviewFormaPagto,viewFormaPagto);
 end;
 
 procedure TviewPrincipal.Timer_HoraTimer(Sender: TObject);

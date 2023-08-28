@@ -515,6 +515,7 @@ inherited viewFormaPagto: TviewFormaPagto
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
       OnDrawColumnCell = DBG_FormaPAGTODrawColumnCell
+      OnDblClick = DBG_FormaPAGTODblClick
       TitleButtons = True
       SelectColumnsDialogStrings.Caption = 'Select columns'
       SelectColumnsDialogStrings.OK = '&OK'
@@ -725,5 +726,44 @@ inherited viewFormaPagto: TviewFormaPagto
     DataSet = cdsFormaPGTO
     Left = 184
     Top = 272
+  end
+  object _sqlFormaPGTO: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 'SELECT * FROM FORMASPAGAMENTOS ORDER BY FOR_CODIGO'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 664
+    Top = 80
+  end
+  object _dspFormaPGTO: TDataSetProvider
+    DataSet = _sqlFormaPGTO
+    Left = 696
+    Top = 80
+  end
+  object _cdsFormaPGTO: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspFormaPGTO'
+    Left = 729
+    Top = 80
+    object IntegerField1: TIntegerField
+      FieldName = 'FOR_CODIGO'
+      Required = True
+    end
+    object StringField1: TStringField
+      FieldName = 'FOR_DESCRICAO'
+      Size = 150
+    end
+    object StringField2: TStringField
+      FieldName = 'FOR_GERARECEBER'
+      FixedChar = True
+      Size = 2
+    end
+  end
+  object _dtsFormaPGTO: TDataSource
+    DataSet = _cdsFormaPGTO
+    Left = 776
+    Top = 80
   end
 end

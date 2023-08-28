@@ -24,12 +24,12 @@ type
     DBG_FormaPAGTOEscolhidas: TSuperGrid;
     pblBtnSalvar: TPanel;
     btnSalvar: TSpeedButton;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
+    edtRestante: TEdit;
+    edtVenda: TEdit;
+    edtFaturado: TEdit;
+    lblVenda: TLabel;
+    lblFaturado: TLabel;
+    lblRestante: TLabel;
     cdsFormaPGTO: TClientDataSet;
     dspFormaPGTO: TDataSetProvider;
     sqlFormaPGTO: TSQLDataSet;
@@ -37,14 +37,24 @@ type
     cdsFormaPGTOFOR_CODIGO: TIntegerField;
     cdsFormaPGTOFOR_DESCRICAO: TStringField;
     cdsFormaPGTOFOR_GERARECEBER: TStringField;
+    pnlValor: TPanel;
+    pnlTitValor: TPanel;
+    lblTitValor: TLabel;
+    edtVlrFaturar: TEdit;
+    pnlBtnOk: TPanel;
+    btnOk: TSpeedButton;
+    procedure DBG_FormaPAGTODblClick(Sender: TObject);
+    procedure DBG_FormaPAGTODrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure pnlTopoMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure FormShow(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
   private
-    { Private declarations }
+    FValorVenda : Double;
   public
-    { Public declarations }
+    property ValorVenda: Double read FValorVenda write FValorVenda;
+
   end;
 
 var
@@ -60,11 +70,52 @@ begin
   Self.Close;
 end;
 
+procedure TviewFormaPagto.DBG_FormaPAGTODblClick(Sender: TObject);
+begin
+  if StrToFloatDef(edtRestante.Text, 0) > 0 then
+  begin
+     pnlValor.Visible := True;
+     edtVlrFaturar.Text := edtRestante.Text;
+     edtVlrFaturar.SetFocus;
+  end
+  else begin
+    ShowMessage('Não há mais valor para faturar.');
+  end;
+end;
+
+procedure TviewFormaPagto.DBG_FormaPAGTODrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  inherited;
+  //Deixando a cor branca
+  if Column.Field <> nil then
+  begin
+    if gdSelected in State then
+    begin
+      DBG_formaPAGTO.Canvas.Brush.Color := clHighlight;
+      DBG_formaPAGTO.Canvas.Font.Color := clHighlightText;
+    end
+    else
+    begin
+      DBG_formaPAGTO.Canvas.Brush.Color := clWhite;
+      DBG_formaPAGTO.Canvas.Font.Color := clBlack;
+    end;
+    DBG_formaPAGTO.Canvas.FillRect(Rect);
+    DBG_formaPAGTO.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2, Column.Field.DisplayText);
+  end;
+end;
+
 procedure TviewFormaPagto.FormShow(Sender: TObject);
 begin
   inherited;
   cdsFormaPGTO.Open;
   DBG_formaPAGTO.SetFocus;
+
+  edtVenda.Text    := FloatToStr(FValorVenda);
+  edtRestante.Text := FloatToStr(FValorVenda);
+
+
+
 end;
 
 procedure TviewFormaPagto.pnlTopoMouseDown(Sender: TObject;

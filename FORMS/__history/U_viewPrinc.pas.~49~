@@ -68,6 +68,26 @@ type
     cdsTBL_ItensVALORUNIT: TFMTBCDField;
     cdsTBL_ItensDESCONTO: TFMTBCDField;
     cdsTBL_ItensVALORTOTAL: TFMTBCDField;
+    Timer_Hora: TTimer;
+    sqlFrmPagto: TSQLDataSet;
+    dspFrmPagto: TDataSetProvider;
+    cdsFrmPagto: TClientDataSet;
+    IntegerField1: TIntegerField;
+    IntegerField2: TIntegerField;
+    FMTBCDField1: TFMTBCDField;
+    FMTBCDField2: TFMTBCDField;
+    FMTBCDField3: TFMTBCDField;
+    FMTBCDField4: TFMTBCDField;
+    StringField1: TStringField;
+    lblFaturar: TLabel;
+    procedure lblFaturarClick(Sender: TObject);
+    procedure Timer_HoraTimer(Sender: TObject);
+    procedure dtsTBL_ItensDataChange(Sender: TObject; Field: TField);
+    procedure DBG_produtosDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure cdsTBL_ItensAfterPost(DataSet: TDataSet);
+    procedure edtQTDExit(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormResize(Sender: TObject);
     procedure edtCodBarrasExit(Sender: TObject);
     procedure lblAbreCaixaClick(Sender: TObject);
@@ -76,6 +96,7 @@ type
     procedure imgLogoEmpresaMouseEnter(Sender: TObject);
   private
     { Private declarations }
+    var TOTAL_VENDA : Double;
   public
     { Public declarations }
   end;
@@ -85,9 +106,50 @@ var
 
 implementation
 
-uses U_viewAbrirCaixa, service.cadastro;
+uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo, View.FormaPagto,
+  providers.functions;
 
 {$R *.dfm}
+
+procedure TviewPrincipal.cdsTBL_ItensAfterPost(DataSet: TDataSet);
+begin //Somando
+  TOTAL_VENDA := 0;
+
+  cdsTBL_Itens.DisableControls;
+  cdsTBL_Itens.First;
+  while not cdsTBL_Itens.Eof do
+  begin
+    TOTAL_VENDA := TOTAL_VENDA + cdsTBL_ItensVALORTOTAL.AsFloat;
+    cdsTbl_ITens.Next;
+  end;
+  cdsTBL_Itens.EnableControls;
+  edtTotalApagar.Text := FloatToStr(TOTAL_VENDA);
+end;
+
+procedure TviewPrincipal.DBG_produtosDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin //Deixando a cor branca
+  if Column.Field <> nil then
+  begin
+    if gdSelected in State then
+    begin
+      DBG_produtos.Canvas.Brush.Color := clHighlight;
+      DBG_produtos.Canvas.Font.Color := clHighlightText;
+    end
+    else
+    begin
+      DBG_produtos.Canvas.Brush.Color := clWhite;
+      DBG_produtos.Canvas.Font.Color := clBlack;
+    end;
+    DBG_produtos.Canvas.FillRect(Rect);
+    DBG_produtos.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2, Column.Field.DisplayText);
+  end;
+end;
+
+procedure TviewPrincipal.dtsTBL_ItensDataChange(Sender: TObject; Field: TField);
+begin //Data Change
+  ServiceCadastro.DimensionarGrid(DBG_produtos);
+end;
 
 procedure TviewPrincipal.edtCodBarrasExit(Sender: TObject);
 Var QTD, VLR_UNIT,VLR_SUBTOTAL : Double;
@@ -116,6 +178,10 @@ begin
       cdsTBL_Itensnome_produto.AsString := cdsCodBarDESCRICAO.AsString;
       cdsTBL_Itens.Post;
 
+      //Limpando os edts
+      edtQTD.Text := '1';
+      edtValorUnitario.Text := '0';
+
       edtCodBarras.Clear;
       edtCodBarras.SetFocus;
     end
@@ -124,8 +190,23 @@ begin
   end;
 end;
 
-procedure TviewPrincipal.FormResize(Sender: TObject);
+procedure TviewPrincipal.edtQTDExit(Sender: TObject);
 begin
+  edtCodBarras.SetFocus;
+end;
+
+procedure TviewPrincipal.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if key = #43 then
+  begin
+    key := #0;
+    edtQTD.SetFocus;
+  end;
+
+end;
+
+procedure TviewPrincipal.FormResize(Sender: TObject);
+begin //Resize
   ServiceCadastro.DimensionarGrid(DBG_produtos);
 end;
 
@@ -148,12 +229,29 @@ end;
 
 procedure TviewPrincipal.lblAbreCaixaClick(Sender: TObject);
 begin //Abrir Caixa
-  viewAbrirCaixa := TviewAbrirCaixa.Create(Self);
+  CriaForm(TviewAbrirCaixa, viewAbrirCaixa);
+end;
+
+procedure TviewPrincipal.lblFaturarClick(Sender: TObject);
+begin //Faturamento
+
+  ViewFormaPagto := TViewFormaPagto.Create(Self);
   try
-    viewAbrirCaixa.Showmodal;
+
+    ViewFormaPagto.ValorVenda := StrToFloatDef(edtTotalAPagar.Text, 0);
+    ViewFormaPagto.ShowModal;
+
   finally
-    FreeAndNil(viewAbrirCaixa);
+    FreeAndNil(ViewFormaPagto);
   end;
+
+
+  CriaForm(TviewFormaPagto,viewFormaPagto);
+end;
+
+procedure TviewPrincipal.Timer_HoraTimer(Sender: TObject);
+begin
+  lblHora.Caption := TimeToStr(Time);
 end;
 
 end.

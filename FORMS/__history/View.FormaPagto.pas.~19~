@@ -43,13 +43,6 @@ type
     edtVlrFaturar: TEdit;
     pnlBtnOk: TPanel;
     btnOk: TSpeedButton;
-    _sqlFormaPGTO: TSQLDataSet;
-    _dspFormaPGTO: TDataSetProvider;
-    _cdsFormaPGTO: TClientDataSet;
-    IntegerField1: TIntegerField;
-    StringField1: TStringField;
-    StringField2: TStringField;
-    _dtsFormaPGTO: TDataSource;
     procedure DBG_FormaPAGTODblClick(Sender: TObject);
     procedure DBG_FormaPAGTODrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
@@ -83,7 +76,7 @@ begin
   begin
      pnlValor.Visible := True;
      edtVlrFaturar.Text := edtRestante.Text;
-     edtVlrFaturar.SetFocus;
+     edtFaturado.SetFocus;
   end
   else begin
     ShowMessage('Não há mais valor para faturar.');
