@@ -400,7 +400,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Font.Style = []
       ParentFont = False
     end
-    object edtRestante: TEdit
+    object edtVlrRestante: TEdit
       AlignWithMargins = True
       Left = 610
       Top = 50
@@ -515,6 +515,7 @@ inherited viewFormaPagto: TviewFormaPagto
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
       OnDrawColumnCell = DBG_FormaPAGTODrawColumnCell
+      OnDblClick = DBG_FormaPAGTODblClick
       TitleButtons = True
       SelectColumnsDialogStrings.Caption = 'Select columns'
       SelectColumnsDialogStrings.OK = '&OK'
@@ -564,6 +565,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Margins.Bottom = 5
       Align = alClient
       BorderStyle = bsNone
+      DataSource = _dtsFormaPGTO
       FixedColor = 4079682
       Font.Charset = ANSI_CHARSET
       Font.Color = clWhite
@@ -584,8 +586,132 @@ inherited viewFormaPagto: TviewFormaPagto
       SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
       EditControls = <>
       RowsHeight = 24
-      TitleRowHeight = 17
+      TitleRowHeight = 23
       CorColOrdenado = clWhite
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'VALOR_PAGTO'
+          Title.Caption = 'Valor'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWhite
+          Title.Font.Height = -16
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = []
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'NOME_FORMAPAGTO'
+          Title.Caption = 'Forma de pagamento'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWhite
+          Title.Font.Height = -16
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = []
+          Width = 500
+          Visible = True
+        end>
+    end
+  end
+  object pnlValor: TPanel
+    Left = 341
+    Top = 157
+    Width = 297
+    Height = 145
+    BevelOuter = bvNone
+    Color = 9737364
+    ParentBackground = False
+    TabOrder = 5
+    Visible = False
+    object pnlTitValor: TPanel
+      Left = 0
+      Top = 0
+      Width = 297
+      Height = 33
+      Align = alTop
+      BevelOuter = bvNone
+      Color = 7566195
+      ParentBackground = False
+      TabOrder = 0
+      object lblTitValor: TLabel
+        AlignWithMargins = True
+        Left = 3
+        Top = 0
+        Width = 291
+        Height = 33
+        Cursor = crHandPoint
+        Margins.Top = 0
+        Margins.Bottom = 0
+        Align = alClient
+        Alignment = taCenter
+        Caption = '[ VALOR PARA FATURAR ]'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -21
+        Font.Name = 'Segoe UI Semilight'
+        Font.Style = []
+        ParentFont = False
+        ExplicitWidth = 228
+        ExplicitHeight = 30
+      end
+    end
+    object edtVlrFaturar: TEdit
+      AlignWithMargins = True
+      Left = 5
+      Top = 43
+      Width = 287
+      Height = 45
+      Margins.Left = 5
+      Margins.Top = 10
+      Margins.Right = 5
+      Margins.Bottom = 5
+      Align = alTop
+      BevelInner = bvNone
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      Color = 9737364
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -27
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+      Text = '0.00'
+    end
+    object pnlBtnOk: TPanel
+      AlignWithMargins = True
+      Left = 216
+      Top = 104
+      Width = 73
+      Height = 33
+      Margins.Left = 50
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      BevelOuter = bvNone
+      Color = 45056
+      ParentBackground = False
+      TabOrder = 2
+      object btnOk: TSpeedButton
+        Left = 0
+        Top = 0
+        Width = 73
+        Height = 33
+        Cursor = crHandPoint
+        Align = alClient
+        Caption = 'Ok'
+        Flat = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = []
+        ParentFont = False
+        OnClick = btnOkClick
+        ExplicitTop = -8
+      end
     end
   end
   object cdsFormaPGTO: TClientDataSet
@@ -615,6 +741,7 @@ inherited viewFormaPagto: TviewFormaPagto
   end
   object sqlFormaPGTO: TSQLDataSet
     SchemaName = 'sysdba'
+    Active = True
     CommandText = 'SELECT * FROM FORMASPAGAMENTOS ORDER BY FOR_CODIGO'
     MaxBlobSize = -1
     Params = <>
@@ -626,5 +753,53 @@ inherited viewFormaPagto: TviewFormaPagto
     DataSet = cdsFormaPGTO
     Left = 184
     Top = 272
+  end
+  object _cdsFormaPGTO: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsp_FormaPGTO'
+    Left = 729
+    Top = 80
+    object _cdsFormaPGTOID_FORMAPGTO: TIntegerField
+      FieldName = 'ID_FORMAPGTO'
+      Required = True
+    end
+    object _cdsFormaPGTOVALOR_PAGTO: TFMTBCDField
+      FieldName = 'VALOR_PAGTO'
+      Precision = 15
+      Size = 2
+    end
+    object _cdsFormaPGTONOME_FORMAPAGTO: TStringField
+      FieldName = 'NOME_FORMAPAGTO'
+      Size = 150
+    end
+    object _cdsFormaPGTOGERAR_RECEBER: TStringField
+      FieldName = 'GERAR_RECEBER'
+      FixedChar = True
+      Size = 2
+    end
+    object _cdsFormaPGTOID_CLIENTE: TIntegerField
+      FieldName = 'ID_CLIENTE'
+    end
+  end
+  object _dtsFormaPGTO: TDataSource
+    DataSet = _cdsFormaPGTO
+    Left = 776
+    Top = 80
+  end
+  object sql_FormaPGTO: TSQLDataSet
+    SchemaName = 'sysdba'
+    Active = True
+    CommandText = 'SELECT *'#13#10'FROM'#13#10'    PAGAMENTOESCOLHIDO'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 656
+    Top = 80
+  end
+  object dsp_FormaPGTO: TDataSetProvider
+    DataSet = sql_FormaPGTO
+    Left = 688
+    Top = 80
   end
 end

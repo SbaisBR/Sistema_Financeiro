@@ -400,7 +400,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Font.Style = []
       ParentFont = False
     end
-    object edtRestante: TEdit
+    object edtVlrRestante: TEdit
       AlignWithMargins = True
       Left = 610
       Top = 50
@@ -499,7 +499,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Margins.Bottom = 5
       Align = alClient
       BorderStyle = bsNone
-      DataSource = dtsFormaPGTO
+      DataSource = _dtsFormaPGTO
       FixedColor = 4079682
       Font.Charset = ANSI_CHARSET
       Font.Color = clWhite
@@ -528,7 +528,7 @@ inherited viewFormaPagto: TviewFormaPagto
         item
           Expanded = False
           FieldName = 'FOR_DESCRICAO'
-          Title.Caption = '[FORMAS DE PGTO]'
+          Title.Caption = '[FORMAS DE PAGAMENTO]'
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWhite
           Title.Font.Height = -17
@@ -565,6 +565,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Margins.Bottom = 5
       Align = alClient
       BorderStyle = bsNone
+      DataSource = _dtsFormaPGTO
       FixedColor = 4079682
       Font.Charset = ANSI_CHARSET
       Font.Color = clWhite
@@ -579,14 +580,39 @@ inherited viewFormaPagto: TviewFormaPagto
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnDrawColumnCell = DBG_FormaPAGTOEscolhidasDrawColumnCell
       TitleButtons = True
       SelectColumnsDialogStrings.Caption = 'Select columns'
       SelectColumnsDialogStrings.OK = '&OK'
       SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
       EditControls = <>
       RowsHeight = 24
-      TitleRowHeight = 17
+      TitleRowHeight = 23
       CorColOrdenado = clWhite
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'VALOR_PAGTO'
+          Title.Caption = 'Valor'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWhite
+          Title.Font.Height = -16
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = []
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'NOME_FORMAPAGTO'
+          Title.Caption = 'Forma de pagamento'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWhite
+          Title.Font.Height = -16
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = []
+          Width = 500
+          Visible = True
+        end>
     end
   end
   object pnlValor: TPanel
@@ -684,6 +710,7 @@ inherited viewFormaPagto: TviewFormaPagto
         Font.Name = 'Segoe UI Semibold'
         Font.Style = []
         ParentFont = False
+        OnClick = btnOkClick
         ExplicitTop = -8
       end
     end
@@ -715,6 +742,7 @@ inherited viewFormaPagto: TviewFormaPagto
   end
   object sqlFormaPGTO: TSQLDataSet
     SchemaName = 'sysdba'
+    Active = True
     CommandText = 'SELECT * FROM FORMASPAGAMENTOS ORDER BY FOR_CODIGO'
     MaxBlobSize = -1
     Params = <>
@@ -727,43 +755,52 @@ inherited viewFormaPagto: TviewFormaPagto
     Left = 184
     Top = 272
   end
-  object _sqlFormaPGTO: TSQLDataSet
-    SchemaName = 'sysdba'
-    CommandText = 'SELECT * FROM FORMASPAGAMENTOS ORDER BY FOR_CODIGO'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = Conexao.Conexao
-    Left = 664
-    Top = 80
-  end
-  object _dspFormaPGTO: TDataSetProvider
-    DataSet = _sqlFormaPGTO
-    Left = 696
-    Top = 80
-  end
   object _cdsFormaPGTO: TClientDataSet
     Aggregates = <>
     Params = <>
-    ProviderName = 'dspFormaPGTO'
+    ProviderName = 'dsp_FormaPGTO'
     Left = 729
     Top = 80
-    object IntegerField1: TIntegerField
-      FieldName = 'FOR_CODIGO'
+    object _cdsFormaPGTOID_FORMAPGTO: TIntegerField
+      FieldName = 'ID_FORMAPGTO'
       Required = True
     end
-    object StringField1: TStringField
-      FieldName = 'FOR_DESCRICAO'
+    object _cdsFormaPGTOVALOR_PAGTO: TFMTBCDField
+      FieldName = 'VALOR_PAGTO'
+      Precision = 15
+      Size = 2
+    end
+    object _cdsFormaPGTONOME_FORMAPAGTO: TStringField
+      FieldName = 'NOME_FORMAPAGTO'
       Size = 150
     end
-    object StringField2: TStringField
-      FieldName = 'FOR_GERARECEBER'
+    object _cdsFormaPGTOGERAR_RECEBER: TStringField
+      FieldName = 'GERAR_RECEBER'
       FixedChar = True
       Size = 2
+    end
+    object _cdsFormaPGTOID_CLIENTE: TIntegerField
+      FieldName = 'ID_CLIENTE'
     end
   end
   object _dtsFormaPGTO: TDataSource
     DataSet = _cdsFormaPGTO
     Left = 776
+    Top = 80
+  end
+  object sql_FormaPGTO: TSQLDataSet
+    SchemaName = 'sysdba'
+    Active = True
+    CommandText = 'SELECT *'#13#10'FROM'#13#10'    PAGAMENTOESCOLHIDO'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 656
+    Top = 80
+  end
+  object dsp_FormaPGTO: TDataSetProvider
+    DataSet = sql_FormaPGTO
+    Left = 688
     Top = 80
   end
 end

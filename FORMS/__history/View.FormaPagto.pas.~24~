@@ -24,7 +24,7 @@ type
     DBG_FormaPAGTOEscolhidas: TSuperGrid;
     pblBtnSalvar: TPanel;
     btnSalvar: TSpeedButton;
-    edtRestante: TEdit;
+    edtVlrRestante: TEdit;
     edtVenda: TEdit;
     edtFaturado: TEdit;
     lblVenda: TLabel;
@@ -43,6 +43,17 @@ type
     edtVlrFaturar: TEdit;
     pnlBtnOk: TPanel;
     btnOk: TSpeedButton;
+    _sqlFormaPGTO: TSQLDataSet;
+    _dspFormaPGTO: TDataSetProvider;
+    _cdsFormaPGTO: TClientDataSet;
+    _dtsFormaPGTO: TDataSource;
+    _cdsFormaPGTOID_FORMAPGTO: TIntegerField;
+    _cdsFormaPGTOVALOR_PGTO: TCurrencyField;
+    _cdsFormaPGTONOME_FORMAPGTO: TStringField;
+    _cdsFormaPGTOGERAR_RECEBER: TStringField;
+    _cdsFormaPGTOID_CLIENTE: TIntegerField;
+    procedure btnOkClick(Sender: TObject);
+    procedure DBG_FormaPAGTODblClick(Sender: TObject);
     procedure DBG_FormaPAGTODrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure pnlTopoMouseDown(Sender: TObject; Button: TMouseButton;
@@ -67,6 +78,42 @@ procedure TviewFormaPagto.btnFecharClick(Sender: TObject);
 begin
   inherited;
   Self.Close;
+end;
+
+procedure TviewFormaPagto.btnOkClick(Sender: TObject);
+var
+  valor_faturado, valor_restante: double;
+begin
+  inherited;
+  _cdsFormaPGTO.Open;
+  _cdsFormaPGTO.Insert;
+  _cdsFormaPGTOID_FORMAPGTO.AsInteger  := cdsFormaPGTOFOR_CODIGO.AsInteger;
+  _cdsFormaPGTOVALOR_PGTO.AsFloat      := StrToFloatDef(edtVlrFaturar.Text, 0);
+  _cdsFormaPGTONOME_FORMAPGTO.AsString := cdsFormaPGTOFOR_DESCRICAO.AsString;
+  _cdsFormaPGTOGERAR_RECEBER.AsString  := cdsFormaPGTOFOR_GERARECEBER.AsString;
+  //_cdsFormaPGTOID_CLIENTE.AsInteger
+  //_cdsFormaPGTO
+
+  _cdsFormaPGTO.Post;
+  //Calculando a diferença
+  valor_faturado := StrToFloatDef(edtVlrFaturar.Text, 0);
+  edtVlrFaturar.Text := FloatToStr(valor_Faturado + StrToFloatDef(edtVlrFaturar.Text, 0));
+
+  valor_restante := FValorVenda - StrToFloatDef(edtVlrFaturar.Text, 0);
+  edtVlrRestante.Text := FloatToStr(valor_restante);
+end;
+
+procedure TviewFormaPagto.DBG_FormaPAGTODblClick(Sender: TObject);
+begin
+  if StrToFloatDef(edtVlrRestante.Text, 0) > 0 then
+  begin
+     pnlValor.Visible := True;
+     edtVlrFaturar.Text := edtVlrRestante.Text;
+     edtVlrFaturar.SetFocus;
+  end
+  else begin
+    ShowMessage('Não há mais valor para faturar.');
+  end;
 end;
 
 procedure TviewFormaPagto.DBG_FormaPAGTODrawColumnCell(Sender: TObject;
@@ -97,7 +144,10 @@ begin
   cdsFormaPGTO.Open;
   DBG_formaPAGTO.SetFocus;
 
-  edtVenda.Text := FloatToStr(FValorVenda)
+  edtVenda.Text    := FloatToStr(FValorVenda);
+  edtVlrRestante.Text := FloatToStr(FValorVenda);
+
+
 
 end;
 

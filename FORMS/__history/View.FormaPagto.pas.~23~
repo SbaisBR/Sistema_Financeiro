@@ -43,6 +43,16 @@ type
     edtVlrFaturar: TEdit;
     pnlBtnOk: TPanel;
     btnOk: TSpeedButton;
+    _sqlFormaPGTO: TSQLDataSet;
+    _dspFormaPGTO: TDataSetProvider;
+    _cdsFormaPGTO: TClientDataSet;
+    _dtsFormaPGTO: TDataSource;
+    _cdsFormaPGTOID_FORMAPGTO: TIntegerField;
+    _cdsFormaPGTOVALOR_PGTO: TCurrencyField;
+    _cdsFormaPGTONOME_FORMAPGTO: TStringField;
+    _cdsFormaPGTOGERAR_RECEBER: TStringField;
+    _cdsFormaPGTOID_CLIENTE: TIntegerField;
+    procedure btnOkClick(Sender: TObject);
     procedure DBG_FormaPAGTODblClick(Sender: TObject);
     procedure DBG_FormaPAGTODrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
@@ -70,16 +80,31 @@ begin
   Self.Close;
 end;
 
+procedure TviewFormaPagto.btnOkClick(Sender: TObject);
+var
+  valor_faturado, valor_restante: double;
+begin
+  inherited;
+  _cdsFormaPGTO.Open;
+  _cdsFormaPGTO.Insert;
+  _cdsFormaPGTOID_FORMAPGTO.AsInteger  := cdsFormaPGTOFOR_CODIGO.AsInteger;
+  _cdsFormaPGTOVALOR_PGTO.AsFloat      := StrToFloatDef(edtVlrFaturar.Text, 0);
+  _cdsFormaPGTONOME_FORMAPGTO.AsString := cdsFormaPGTOFOR_DESCRICAO.AsString;
+  _cdsFormaPGTOGERAR_RECEBER.AsString  := cdsFormaPGTOFOR_GERARECEBER.AsString;
+  //_cdsFormaPGTOID_CLIENTE.AsInteger
+  //_cdsFormaPGTO
+end;
+
 procedure TviewFormaPagto.DBG_FormaPAGTODblClick(Sender: TObject);
 begin
   if StrToFloatDef(edtRestante.Text, 0) > 0 then
   begin
      pnlValor.Visible := True;
-     edtFaturado.Text := edtRestante.Text;
-     edtFaturado.SetFocus;
+     edtVlrFaturar.Text := edtRestante.Text;
+     edtVlrFaturar.SetFocus;
   end
   else begin
-    ShowMessage('Não há mais valor para faturar.','Atenção','E');
+    ShowMessage('Não há mais valor para faturar.');
   end;
 end;
 
