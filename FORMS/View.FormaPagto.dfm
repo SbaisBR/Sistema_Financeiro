@@ -499,7 +499,7 @@ inherited viewFormaPagto: TviewFormaPagto
       Margins.Bottom = 5
       Align = alClient
       BorderStyle = bsNone
-      DataSource = _dtsFormaPGTO
+      DataSource = dtsFormaPGTO
       FixedColor = 4079682
       Font.Charset = ANSI_CHARSET
       Font.Color = clWhite
@@ -742,7 +742,6 @@ inherited viewFormaPagto: TviewFormaPagto
   end
   object sqlFormaPGTO: TSQLDataSet
     SchemaName = 'sysdba'
-    Active = True
     CommandText = 'SELECT * FROM FORMASPAGAMENTOS ORDER BY FOR_CODIGO'
     MaxBlobSize = -1
     Params = <>
@@ -790,7 +789,6 @@ inherited viewFormaPagto: TviewFormaPagto
   end
   object sql_FormaPGTO: TSQLDataSet
     SchemaName = 'sysdba'
-    Active = True
     CommandText = 'SELECT *'#13#10'FROM'#13#10'    PAGAMENTOESCOLHIDO'
     MaxBlobSize = -1
     Params = <>

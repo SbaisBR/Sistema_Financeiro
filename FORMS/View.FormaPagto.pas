@@ -99,8 +99,10 @@ begin
 
   _cdsFormaPGTO.Post;
   //Calculando a diferença
+  valor_restante := 0;
   valor_faturado := StrToFloatDef(edtVlrFaturar.Text, 0);
-  edtFaturado.Text := FloatToStr(valor_Faturado + StrToFloatDef(edtFaturado.Text, 0));
+  edtFaturado.Text := FloatToStr(StrToFloatDef(edtVlrFaturar.Text, 0) + StrToFloatDef(edtFaturado.Text, 0));
+
 
   valor_restante := FValorVenda - StrToFloatDef(edtVlrFaturar.Text, 0);
   edtVlrRestante.Text := FloatToStr(valor_restante);
