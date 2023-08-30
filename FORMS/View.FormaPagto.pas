@@ -98,18 +98,22 @@ begin
   //_cdsFormaPGTO
 
   _cdsFormaPGTO.Post;
-  //Calculando a diferença
-  valor_restante := 0;
-  valor_faturado := StrToFloatDef(edtVlrFaturar.Text, 0);
-  edtFaturado.Text := FloatToStr(StrToFloatDef(edtVlrFaturar.Text, 0) + StrToFloatDef(edtFaturado.Text, 0));
+ 
+  // Atualizar o valor total do caixa
+  FValorVenda := FValorVenda - _cdsFormaPGTOVALOR_PAGTO.AsFloat;
 
+  // Atualizar o valor faturado
+  valor_faturado := StrToFloatDef(edtFaturado.Text, 0) + _cdsFormaPGTOVALOR_PAGTO.AsFloat;
+  edtFaturado.Text := FloatToStr(valor_faturado);
 
-  valor_restante := FValorVenda - StrToFloatDef(edtVlrFaturar.Text, 0);
+  // Calculando o valor restante
+  valor_restante := FValorVenda;
   edtVlrRestante.Text := FloatToStr(valor_restante);
 
   edtVlrFaturar.Clear;
   pnlValor.Visible := False;
   DBG_FormaPAGTO.SetFocus;
+
 end;
 
 procedure TviewFormaPagto.DBG_FormaPAGTODblClick(Sender: TObject);
