@@ -17,7 +17,7 @@ inherited viewFormaPagto: TviewFormaPagto
     Cursor = crHandPoint
     Align = alTop
     BevelOuter = bvNone
-    Color = 4079682
+    Color = 14581528
     TabOrder = 0
     OnMouseDown = pnlTopoMouseDown
     object lblTitulo: TLabel
@@ -340,6 +340,7 @@ inherited viewFormaPagto: TviewFormaPagto
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+        OnClick = btnSalvarClick
         ExplicitLeft = 80
         ExplicitTop = 8
         ExplicitWidth = 23
@@ -800,5 +801,52 @@ inherited viewFormaPagto: TviewFormaPagto
     DataSet = sql_FormaPGTO
     Left = 688
     Top = 80
+  end
+  object sqlCaixa: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 'SELECT *'#13#10'FROM'#13#10'CAIXA'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao.Conexao
+    Left = 656
+    Top = 136
+  end
+  object dspCaixa: TDataSetProvider
+    DataSet = sqlCaixa
+    Left = 688
+    Top = 136
+  end
+  object cdsCaixa: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspCaixa'
+    Left = 729
+    Top = 136
+    object cdsCaixaCAI_ID: TIntegerField
+      FieldName = 'CAI_ID'
+      Required = True
+    end
+    object cdsCaixaCAI_DATAHORA: TDateField
+      FieldName = 'CAI_DATAHORA'
+    end
+    object cdsCaixaCAI_TIPO: TStringField
+      FieldName = 'CAI_TIPO'
+      Size = 10
+    end
+    object cdsCaixaCAI_VALOR: TFMTBCDField
+      FieldName = 'CAI_VALOR'
+      Precision = 15
+      Size = 2
+    end
+    object cdsCaixaCAI_DESCRICAO: TStringField
+      FieldName = 'CAI_DESCRICAO'
+      Size = 150
+    end
+    object cdsCaixaCAI_IDFORMAPGTO: TIntegerField
+      FieldName = 'CAI_IDFORMAPGTO'
+    end
+    object cdsCaixaCAI_IDVENDA: TIntegerField
+      FieldName = 'CAI_IDVENDA'
+    end
   end
 end

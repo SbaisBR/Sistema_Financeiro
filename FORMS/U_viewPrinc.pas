@@ -234,17 +234,16 @@ end;
 
 procedure TviewPrincipal.lblFaturarClick(Sender: TObject);
 begin //Faturamento
-
   ViewFormaPagto := TViewFormaPagto.Create(Self);
   try
-
     ViewFormaPagto.ValorVenda := StrToFloatDef(edtTotalAPagar.Text, 0);
-    ViewFormaPagto.ShowModal;
 
+    ViewTelaFundo.Show;
+    ViewFormaPagto.ShowModal;
   finally
+    ViewTelaFundo.Hide;
     FreeAndNil(ViewFormaPagto);
   end;
-
 end;
 
 procedure TviewPrincipal.Timer_HoraTimer(Sender: TObject);

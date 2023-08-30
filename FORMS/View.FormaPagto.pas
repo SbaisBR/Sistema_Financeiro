@@ -52,6 +52,17 @@ type
     _cdsFormaPGTONOME_FORMAPAGTO: TStringField;
     _cdsFormaPGTOGERAR_RECEBER: TStringField;
     _cdsFormaPGTOID_CLIENTE: TIntegerField;
+    sqlCaixa: TSQLDataSet;
+    dspCaixa: TDataSetProvider;
+    cdsCaixa: TClientDataSet;
+    cdsCaixaCAI_ID: TIntegerField;
+    cdsCaixaCAI_DATAHORA: TDateField;
+    cdsCaixaCAI_TIPO: TStringField;
+    cdsCaixaCAI_VALOR: TFMTBCDField;
+    cdsCaixaCAI_DESCRICAO: TStringField;
+    cdsCaixaCAI_IDFORMAPGTO: TIntegerField;
+    cdsCaixaCAI_IDVENDA: TIntegerField;
+    procedure btnSalvarClick(Sender: TObject);
     procedure DBG_FormaPAGTOEscolhidasDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
       State: TGridDrawState);
@@ -74,6 +85,8 @@ var
   viewFormaPagto: TviewFormaPagto;
 
 implementation
+
+uses U_viewPrinc;
 
 {$R *.dfm}
 
@@ -114,6 +127,27 @@ begin
   pnlValor.Visible := False;
   DBG_FormaPAGTO.SetFocus;
 
+end;
+
+procedure TviewFormaPagto.btnSalvarClick(Sender: TObject);
+begin //SAlvar
+  inherited;
+  _cdsFormaPGTO.First;
+  while not  _cdsFormaPGTO.Eof do
+  begin
+    cdsCaixa.Close;
+    cdsCaixa.Open();
+    cdsCaixa.Insert;
+    cdsCaixaCAI_DATAHORA.ASDateTime   := Now;
+   // cdsCaixaCAI_TIPO.AsString		      := viewPrincipal.cdsTBL_Iten;
+    cdsCaixaCAI_VALOR.AsFloat		      := _cdsFormaPGTOVALOR_PAGTO.AsInteger;
+    cdsCaixaCAI_DESCRICAO.AsString	  := viewPrincipal.cdsTBL_Itensnome_produto.AsString;
+    cdsCaixaCAI_IDFORMAPGTO.AsInteger := _cdsFormaPGTOID_FORMAPGTO.AsInteger;
+    cdsCaixaCAI_IDVENDA.AsInteger     := viewPrincipal.cdsTBL_ItensCod_Item.AsInteger;
+    cdsCaixa.Post;
+      //GravandoCaixa
+    _cdsFormaPGTO.Next;
+  end;
 end;
 
 procedure TviewFormaPagto.DBG_FormaPAGTODblClick(Sender: TObject);
