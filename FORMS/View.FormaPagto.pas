@@ -118,7 +118,7 @@ begin
   //_cdsFormaPGTO
 
   _cdsFormaPGTO.Post;
- 
+
   // Atualizar o valor total do caixa
   FValorVenda := FValorVenda - _cdsFormaPGTOVALOR_PAGTO.AsFloat;
 
@@ -139,35 +139,31 @@ end;
 procedure TviewFormaPagto.btnSalvarClick(Sender: TObject);
 var
   proximo : integer;
-begin //SAlvar
- // inherited;
+begin  //SAlvar
+  cdsCaixa.Open;
   _cdsFormaPGTO.First;
-  while not  _cdsFormaPGTO.Eof do
+
+
+  while not _cdsFormaPGTO.Eof do
   begin
-    cdsCaixa.Open;
-    cdsCAixa.Edit;
-    if cdsCaixaCAI_ID.IsNull then
-    begin
-      cdsCaixa.insert;
+      cdsCaixa.Last;
       proximo := cdsCaixaCAI_ID.AsInteger + 1;
+      cdsCaixa.Append;
+
       cdsCaixaCAI_ID.AsInteger := proximo;
-    end;
-    cdsCaixaCAI_DATAHORA.ASDateTime   := Date;
-   // cdsCaixaCAI_TIPO.AsString		      := viewPrincipal.cdsTBL_Iten;
-    cdsCaixaCAI_VALOR.AsFloat		      := _cdsFormaPGTOVALOR_PAGTO.AsInteger;
-    cdsCaixaCAI_DESCRICAO.AsString	  := viewPrincipal.cdsTBL_Itensnome_produto.AsString;
-    cdsCaixaCAI_IDFORMAPGTO.AsInteger := _cdsFormaPGTOID_FORMAPGTO.AsInteger;
-//    cdsCaixaCAI_IDVENDA.AsInteger     := viewPrincipal.cdsTBL_ItensCod_Item.AsInteger;
-    cdsCaixa.Post;
-      //GravandoCaixa
+      cdsCaixaCAI_DATAHORA.AsDateTime   := Date;
+      cdsCaixaCAI_VALOR.AsFloat         := _cdsFormaPGTOVALOR_PAGTO.AsFloat;
+      cdsCaixaCAI_DESCRICAO.AsString    := viewPrincipal.cdsTBL_Itensnome_produto.AsString;
+      cdsCaixaCAI_IDFORMAPGTO.AsInteger := _cdsFormaPGTOID_FORMAPGTO.AsInteger;
 
+      cdsCaixa.Post;
 
-    cdsCaixa.ApplyUpdates(0);
     _cdsFormaPGTO.Next;
-
-
-    ShowMessage('Salvo com sucesso!');
   end;
+
+  cdsCaixa.ApplyUpdates(0);
+
+  Self.Close;
 end;
 
 procedure TviewFormaPagto.DBG_FormaPAGTODblClick(Sender: TObject);

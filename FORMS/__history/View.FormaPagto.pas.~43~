@@ -61,7 +61,13 @@ type
     cdsCaixaCAI_VALOR: TFMTBCDField;
     cdsCaixaCAI_DESCRICAO: TStringField;
     cdsCaixaCAI_IDFORMAPGTO: TIntegerField;
-    cdsCaixaCAI_IDVENDA: TIntegerField;
+    sqlCaixaCAI_ID: TIntegerField;
+    sqlCaixaCAI_DATAHORA: TDateField;
+    sqlCaixaCAI_TIPO: TStringField;
+    sqlCaixaCAI_VALOR: TFMTBCDField;
+    sqlCaixaCAI_DESCRICAO: TStringField;
+    sqlCaixaCAI_IDFORMAPGTO: TIntegerField;
+    procedure btnSalvarClick(Sender: TObject);
     procedure DBG_FormaPAGTOEscolhidasDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
       State: TGridDrawState);
@@ -77,6 +83,8 @@ type
     FValorVenda : Double;
   public
     property ValorVenda: Double read FValorVenda write FValorVenda;
+   // property ValorVenda: Double read FValorVenda write FValorVenda;
+
 
   end;
 
@@ -84,6 +92,8 @@ var
   viewFormaPagto: TviewFormaPagto;
 
 implementation
+
+uses U_viewPrinc;
 
 {$R *.dfm}
 
@@ -104,11 +114,11 @@ begin
   _cdsFormaPGTOVALOR_PAGTO.AsFloat      := StrToFloatDef(edtVlrFaturar.Text, 0);
   _cdsFormaPGTONOME_FORMAPAGTO.AsString := cdsFormaPGTOFOR_DESCRICAO.AsString;
   _cdsFormaPGTOGERAR_RECEBER.AsString   := cdsFormaPGTOFOR_GERARECEBER.AsString;
-  _cdsFormaPGTOID_CLIENTE.AsInteger     := 1;
+  _cdsFormaPGTOID_CLIENTE.AsInteger     := + 1;
   //_cdsFormaPGTO
 
   _cdsFormaPGTO.Post;
- 
+
   // Atualizar o valor total do caixa
   FValorVenda := FValorVenda - _cdsFormaPGTOVALOR_PAGTO.AsFloat;
 
@@ -124,6 +134,43 @@ begin
   pnlValor.Visible := False;
   DBG_FormaPAGTO.SetFocus;
 
+end;
+
+procedure TviewFormaPagto.btnSalvarClick(Sender: TObject);
+var
+  proximo : integer;
+begin  //SAlvar
+  cdsCaixa.Open;
+  _cdsFormaPGTO.First;
+
+
+  while not _cdsFormaPGTO.Eof do
+  begin
+    if cdsCaixaCAI_ID.IsNull then
+    begin
+        cdsCaixa.Last;
+        proximo := cdsCaixaCAI_ID.AsInteger + 1;
+    end
+    else
+    begin
+      proximo := 1;
+      cdsCaixa.edit;
+      cdsCaixaCAI_ID.AsInteger := proximo;
+    end;
+    cdsCaixa.Append;
+    cdsCaixaCAI_DATAHORA.AsDateTime   := Date;
+    cdsCaixaCAI_VALOR.AsFloat         := _cdsFormaPGTOVALOR_PAGTO.AsFloat;
+    cdsCaixaCAI_DESCRICAO.AsString    := viewPrincipal.cdsTBL_Itensnome_produto.AsString;
+    cdsCaixaCAI_IDFORMAPGTO.AsInteger := _cdsFormaPGTOID_FORMAPGTO.AsInteger;
+
+    cdsCaixa.Post;
+
+    _cdsFormaPGTO.Next;
+  end;
+
+  cdsCaixa.ApplyUpdates(0);
+
+  Self.Close;
 end;
 
 procedure TviewFormaPagto.DBG_FormaPAGTODblClick(Sender: TObject);

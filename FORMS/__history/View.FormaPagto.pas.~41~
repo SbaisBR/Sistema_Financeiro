@@ -52,6 +52,22 @@ type
     _cdsFormaPGTONOME_FORMAPAGTO: TStringField;
     _cdsFormaPGTOGERAR_RECEBER: TStringField;
     _cdsFormaPGTOID_CLIENTE: TIntegerField;
+    sqlCaixa: TSQLDataSet;
+    dspCaixa: TDataSetProvider;
+    cdsCaixa: TClientDataSet;
+    cdsCaixaCAI_ID: TIntegerField;
+    cdsCaixaCAI_DATAHORA: TDateField;
+    cdsCaixaCAI_TIPO: TStringField;
+    cdsCaixaCAI_VALOR: TFMTBCDField;
+    cdsCaixaCAI_DESCRICAO: TStringField;
+    cdsCaixaCAI_IDFORMAPGTO: TIntegerField;
+    sqlCaixaCAI_ID: TIntegerField;
+    sqlCaixaCAI_DATAHORA: TDateField;
+    sqlCaixaCAI_TIPO: TStringField;
+    sqlCaixaCAI_VALOR: TFMTBCDField;
+    sqlCaixaCAI_DESCRICAO: TStringField;
+    sqlCaixaCAI_IDFORMAPGTO: TIntegerField;
+    procedure btnSalvarClick(Sender: TObject);
     procedure DBG_FormaPAGTOEscolhidasDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
       State: TGridDrawState);
@@ -67,6 +83,8 @@ type
     FValorVenda : Double;
   public
     property ValorVenda: Double read FValorVenda write FValorVenda;
+   // property ValorVenda: Double read FValorVenda write FValorVenda;
+
 
   end;
 
@@ -74,6 +92,8 @@ var
   viewFormaPagto: TviewFormaPagto;
 
 implementation
+
+uses U_viewPrinc;
 
 {$R *.dfm}
 
@@ -94,22 +114,61 @@ begin
   _cdsFormaPGTOVALOR_PAGTO.AsFloat      := StrToFloatDef(edtVlrFaturar.Text, 0);
   _cdsFormaPGTONOME_FORMAPAGTO.AsString := cdsFormaPGTOFOR_DESCRICAO.AsString;
   _cdsFormaPGTOGERAR_RECEBER.AsString   := cdsFormaPGTOFOR_GERARECEBER.AsString;
-  _cdsFormaPGTOID_CLIENTE.AsInteger     := 1;
+  _cdsFormaPGTOID_CLIENTE.AsInteger     := + 1;
   //_cdsFormaPGTO
 
   _cdsFormaPGTO.Post;
-  //Calculando a diferença
-  valor_restante := 0;
-  valor_faturado := StrToFloatDef(edtVlrFaturar.Text, 0);
-  edtFaturado.Text := FloatToStr(StrToFloatDef(edtVlrFaturar.Text, 0) + StrToFloatDef(edtFaturado.Text, 0));
+ 
+  // Atualizar o valor total do caixa
+  FValorVenda := FValorVenda - _cdsFormaPGTOVALOR_PAGTO.AsFloat;
 
+  // Atualizar o valor faturado
+  valor_faturado := StrToFloatDef(edtFaturado.Text, 0) + _cdsFormaPGTOVALOR_PAGTO.AsFloat;
+  edtFaturado.Text := FloatToStr(valor_faturado);
 
-  valor_restante := FValorVenda - StrToFloatDef(edtVlrFaturar.Text, 0);
+  // Calculando o valor restante
+  valor_restante := FValorVenda;
   edtVlrRestante.Text := FloatToStr(valor_restante);
 
   edtVlrFaturar.Clear;
   pnlValor.Visible := False;
   DBG_FormaPAGTO.SetFocus;
+
+end;
+
+procedure TviewFormaPagto.btnSalvarClick(Sender: TObject);
+var
+  proximo : integer;
+begin //SAlvar
+ // inherited;
+  _cdsFormaPGTO.First;
+  while not  _cdsFormaPGTO.Eof do
+  begin
+    cdsCaixa.Open;
+    cdsCAixa.Edit;
+    if cdsCaixaCAI_ID.IsNull then
+    begin
+      cdsCaixa.insert;
+      proximo := cdsCaixaCAI_ID.AsInteger + 1;
+      cdsCaixaCAI_ID.AsInteger := proximo;
+    end;
+    cdsCaixa.Insert;
+    cdsCaixaCAI_DATAHORA.ASDateTime   := Date;
+   // cdsCaixaCAI_TIPO.AsString		      := viewPrincipal.cdsTBL_Iten;
+    cdsCaixaCAI_VALOR.AsFloat		      := _cdsFormaPGTOVALOR_PAGTO.AsInteger;
+    cdsCaixaCAI_DESCRICAO.AsString	  := viewPrincipal.cdsTBL_Itensnome_produto.AsString;
+    cdsCaixaCAI_IDFORMAPGTO.AsInteger := _cdsFormaPGTOID_FORMAPGTO.AsInteger;
+//    cdsCaixaCAI_IDVENDA.AsInteger     := viewPrincipal.cdsTBL_ItensCod_Item.AsInteger;
+    cdsCaixa.Post;
+      //GravandoCaixa
+
+
+    cdsCaixa.ApplyUpdates(0);
+    _cdsFormaPGTO.Next;
+
+
+    sELF.Close;
+  end;
 end;
 
 procedure TviewFormaPagto.DBG_FormaPAGTODblClick(Sender: TObject);

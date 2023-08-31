@@ -2113,7 +2113,6 @@ object Frmlogin: TFrmlogin
     Top = 72
     Width = 249
     Height = 21
-    CharCase = ecUpperCase
     TabOrder = 0
     OnKeyPress = edNomeKeyPress
   end
