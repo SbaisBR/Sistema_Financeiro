@@ -810,6 +810,29 @@ inherited viewFormaPagto: TviewFormaPagto
     SQLConnection = Conexao.Conexao
     Left = 656
     Top = 136
+    object sqlCaixaCAI_ID: TIntegerField
+      FieldName = 'CAI_ID'
+      Required = True
+    end
+    object sqlCaixaCAI_DATAHORA: TDateField
+      FieldName = 'CAI_DATAHORA'
+    end
+    object sqlCaixaCAI_TIPO: TStringField
+      FieldName = 'CAI_TIPO'
+      Size = 10
+    end
+    object sqlCaixaCAI_VALOR: TFMTBCDField
+      FieldName = 'CAI_VALOR'
+      Precision = 15
+      Size = 2
+    end
+    object sqlCaixaCAI_DESCRICAO: TStringField
+      FieldName = 'CAI_DESCRICAO'
+      Size = 150
+    end
+    object sqlCaixaCAI_IDFORMAPGTO: TIntegerField
+      FieldName = 'CAI_IDFORMAPGTO'
+    end
   end
   object dspCaixa: TDataSetProvider
     DataSet = sqlCaixa
@@ -844,9 +867,6 @@ inherited viewFormaPagto: TviewFormaPagto
     end
     object cdsCaixaCAI_IDFORMAPGTO: TIntegerField
       FieldName = 'CAI_IDFORMAPGTO'
-    end
-    object cdsCaixaCAI_IDVENDA: TIntegerField
-      FieldName = 'CAI_IDVENDA'
     end
   end
 end

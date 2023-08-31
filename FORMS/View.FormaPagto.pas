@@ -61,7 +61,12 @@ type
     cdsCaixaCAI_VALOR: TFMTBCDField;
     cdsCaixaCAI_DESCRICAO: TStringField;
     cdsCaixaCAI_IDFORMAPGTO: TIntegerField;
-    cdsCaixaCAI_IDVENDA: TIntegerField;
+    sqlCaixaCAI_ID: TIntegerField;
+    sqlCaixaCAI_DATAHORA: TDateField;
+    sqlCaixaCAI_TIPO: TStringField;
+    sqlCaixaCAI_VALOR: TFMTBCDField;
+    sqlCaixaCAI_DESCRICAO: TStringField;
+    sqlCaixaCAI_IDFORMAPGTO: TIntegerField;
     procedure btnSalvarClick(Sender: TObject);
     procedure DBG_FormaPAGTOEscolhidasDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
@@ -78,6 +83,8 @@ type
     FValorVenda : Double;
   public
     property ValorVenda: Double read FValorVenda write FValorVenda;
+   // property ValorVenda: Double read FValorVenda write FValorVenda;
+
 
   end;
 
@@ -107,7 +114,7 @@ begin
   _cdsFormaPGTOVALOR_PAGTO.AsFloat      := StrToFloatDef(edtVlrFaturar.Text, 0);
   _cdsFormaPGTONOME_FORMAPAGTO.AsString := cdsFormaPGTOFOR_DESCRICAO.AsString;
   _cdsFormaPGTOGERAR_RECEBER.AsString   := cdsFormaPGTOFOR_GERARECEBER.AsString;
-  _cdsFormaPGTOID_CLIENTE.AsInteger     := 1;
+  _cdsFormaPGTOID_CLIENTE.AsInteger     := + 1;
   //_cdsFormaPGTO
 
   _cdsFormaPGTO.Post;
@@ -130,23 +137,36 @@ begin
 end;
 
 procedure TviewFormaPagto.btnSalvarClick(Sender: TObject);
+var
+  proximo : integer;
 begin //SAlvar
-  inherited;
+ // inherited;
   _cdsFormaPGTO.First;
   while not  _cdsFormaPGTO.Eof do
   begin
-    cdsCaixa.Close;
-    cdsCaixa.Open();
-    cdsCaixa.Insert;
-    cdsCaixaCAI_DATAHORA.ASDateTime   := Now;
+    cdsCaixa.Open;
+    cdsCAixa.Edit;
+    if cdsCaixaCAI_ID.IsNull then
+    begin
+      cdsCaixa.insert;
+      proximo := cdsCaixaCAI_ID.AsInteger + 1;
+      cdsCaixaCAI_ID.AsInteger := proximo;
+    end;
+    cdsCaixaCAI_DATAHORA.ASDateTime   := Date;
    // cdsCaixaCAI_TIPO.AsString		      := viewPrincipal.cdsTBL_Iten;
     cdsCaixaCAI_VALOR.AsFloat		      := _cdsFormaPGTOVALOR_PAGTO.AsInteger;
     cdsCaixaCAI_DESCRICAO.AsString	  := viewPrincipal.cdsTBL_Itensnome_produto.AsString;
     cdsCaixaCAI_IDFORMAPGTO.AsInteger := _cdsFormaPGTOID_FORMAPGTO.AsInteger;
-    cdsCaixaCAI_IDVENDA.AsInteger     := viewPrincipal.cdsTBL_ItensCod_Item.AsInteger;
+//    cdsCaixaCAI_IDVENDA.AsInteger     := viewPrincipal.cdsTBL_ItensCod_Item.AsInteger;
     cdsCaixa.Post;
       //GravandoCaixa
+
+
+    cdsCaixa.ApplyUpdates(0);
     _cdsFormaPGTO.Next;
+
+
+    ShowMessage('Salvo com sucesso!');
   end;
 end;
 

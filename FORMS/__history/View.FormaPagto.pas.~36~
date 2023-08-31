@@ -52,6 +52,20 @@ type
     _cdsFormaPGTONOME_FORMAPAGTO: TStringField;
     _cdsFormaPGTOGERAR_RECEBER: TStringField;
     _cdsFormaPGTOID_CLIENTE: TIntegerField;
+    sqlCaixa: TSQLDataSet;
+    dspCaixa: TDataSetProvider;
+    cdsCaixa: TClientDataSet;
+    cdsCaixaCAI_ID: TIntegerField;
+    cdsCaixaCAI_DATAHORA: TDateField;
+    cdsCaixaCAI_TIPO: TStringField;
+    cdsCaixaCAI_VALOR: TFMTBCDField;
+    cdsCaixaCAI_DESCRICAO: TStringField;
+    cdsCaixaCAI_IDFORMAPGTO: TIntegerField;
+    cdsCaixaCAI_IDVENDA: TIntegerField;
+    procedure btnSalvarClick(Sender: TObject);
+    procedure DBG_FormaPAGTOEscolhidasDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
     procedure btnOkClick(Sender: TObject);
     procedure DBG_FormaPAGTODblClick(Sender: TObject);
     procedure DBG_FormaPAGTODrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -71,6 +85,8 @@ var
   viewFormaPagto: TviewFormaPagto;
 
 implementation
+
+uses U_viewPrinc;
 
 {$R *.dfm}
 
@@ -95,16 +111,43 @@ begin
   //_cdsFormaPGTO
 
   _cdsFormaPGTO.Post;
-  //Calculando a diferença
-  valor_faturado := StrToFloatDef(edtVlrFaturar.Text, 0);
-  edtFaturado.Text := FloatToStr(valor_Faturado + StrToFloatDef(edtFaturado.Text, 0));
+ 
+  // Atualizar o valor total do caixa
+  FValorVenda := FValorVenda - _cdsFormaPGTOVALOR_PAGTO.AsFloat;
 
-  valor_restante := FValorVenda - StrToFloatDef(edtVlrFaturar.Text, 0);
+  // Atualizar o valor faturado
+  valor_faturado := StrToFloatDef(edtFaturado.Text, 0) + _cdsFormaPGTOVALOR_PAGTO.AsFloat;
+  edtFaturado.Text := FloatToStr(valor_faturado);
+
+  // Calculando o valor restante
+  valor_restante := FValorVenda;
   edtVlrRestante.Text := FloatToStr(valor_restante);
 
   edtVlrFaturar.Clear;
   pnlValor.Visible := False;
   DBG_FormaPAGTO.SetFocus;
+
+end;
+
+procedure TviewFormaPagto.btnSalvarClick(Sender: TObject);
+begin //SAlvar
+  inherited;
+  _cdsFormaPGTO.First;
+  while not  _cdsFormaPGTO.Eof do
+  begin
+    cdsCaixa.Close;
+    cdsCaixa.Open();
+    cdsCaixa.Insert;
+    cdsCaixaCAI_DATAHORA.ASDateTime   := Now;
+   // cdsCaixaCAI_TIPO.AsString		      := viewPrincipal.cdsTBL_Iten;
+    cdsCaixaCAI_VALOR.AsFloat		      := _cdsFormaPGTOVALOR_PAGTO.AsInteger;
+    cdsCaixaCAI_DESCRICAO.AsString	  := viewPrincipal.cdsTBL_Itensnome_produto.AsString;
+    cdsCaixaCAI_IDFORMAPGTO.AsInteger := _cdsFormaPGTOID_FORMAPGTO.AsInteger;
+    cdsCaixaCAI_IDVENDA.AsInteger     := viewPrincipal.cdsTBL_ItensCod_Item.AsInteger;
+    cdsCaixa.Post;
+      //GravandoCaixa
+    _cdsFormaPGTO.Next;
+  end;
 end;
 
 procedure TviewFormaPagto.DBG_FormaPAGTODblClick(Sender: TObject);
@@ -139,6 +182,28 @@ begin
     end;
     DBG_formaPAGTO.Canvas.FillRect(Rect);
     DBG_formaPAGTO.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2, Column.Field.DisplayText);
+  end;
+end;
+
+procedure TviewFormaPagto.DBG_FormaPAGTOEscolhidasDrawColumnCell(
+  Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+  inherited;
+  if Column.Field <> nil then
+  begin
+    if gdSelected in State then
+    begin
+      DBG_FormaPAGTOEscolhidas.Canvas.Brush.Color := clHighlight;
+      DBG_FormaPAGTOEscolhidas.Canvas.Font.Color := clHighlightText;
+    end
+    else
+    begin
+      DBG_FormaPAGTOEscolhidas.Canvas.Brush.Color := clWhite;
+      DBG_FormaPAGTOEscolhidas.Canvas.Font.Color := clBlack;
+    end;
+    DBG_FormaPAGTOEscolhidas.Canvas.FillRect(Rect);
+    DBG_FormaPAGTOEscolhidas.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2, Column.Field.DisplayText);
   end;
 end;
 
