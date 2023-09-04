@@ -305,6 +305,15 @@ inherited viewFormaPagto: TviewFormaPagto
         ExplicitTop = -3
       end
     end
+    object btn: TButton
+      Left = 416
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'btn'
+      TabOrder = 2
+      OnClick = btnClick
+    end
   end
   object pnlRodape: TPanel
     Left = 0

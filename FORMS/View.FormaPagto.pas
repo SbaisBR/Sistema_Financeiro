@@ -67,6 +67,8 @@ type
     sqlCaixaCAI_VALOR: TFMTBCDField;
     sqlCaixaCAI_DESCRICAO: TStringField;
     sqlCaixaCAI_IDFORMAPGTO: TIntegerField;
+    btn: TButton;
+    procedure btnClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure DBG_FormaPAGTOEscolhidasDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
@@ -96,6 +98,16 @@ implementation
 uses U_viewPrinc;
 
 {$R *.dfm}
+
+procedure TviewFormaPagto.btnClick(Sender: TObject);
+begin
+  inherited;
+  cdsCaixa.First;
+  while not cdsCaixa.Eof do
+  begin
+    cdsCaixa.Next;
+  end;
+end;
 
 procedure TviewFormaPagto.btnFecharClick(Sender: TObject);
 begin
