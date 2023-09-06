@@ -69,6 +69,18 @@ type
     cdsTBL_ItensDESCONTO: TFMTBCDField;
     cdsTBL_ItensVALORTOTAL: TFMTBCDField;
     Timer_Hora: TTimer;
+    sqlFrmPagto: TSQLDataSet;
+    dspFrmPagto: TDataSetProvider;
+    cdsFrmPagto: TClientDataSet;
+    IntegerField1: TIntegerField;
+    IntegerField2: TIntegerField;
+    FMTBCDField1: TFMTBCDField;
+    FMTBCDField2: TFMTBCDField;
+    FMTBCDField3: TFMTBCDField;
+    FMTBCDField4: TFMTBCDField;
+    StringField1: TStringField;
+    lblFaturar: TLabel;
+    procedure lblFaturarClick(Sender: TObject);
     procedure Timer_HoraTimer(Sender: TObject);
     procedure dtsTBL_ItensDataChange(Sender: TObject; Field: TField);
     procedure DBG_produtosDrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -94,7 +106,8 @@ var
 
 implementation
 
-uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo;
+uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo, View.FormaPagto,
+  providers.functions;
 
 {$R *.dfm}
 
@@ -216,11 +229,20 @@ end;
 
 procedure TviewPrincipal.lblAbreCaixaClick(Sender: TObject);
 begin //Abrir Caixa
-  viewAbrirCaixa := TviewAbrirCaixa.Create(Self);
+  CriaForm(TviewAbrirCaixa, viewAbrirCaixa);
+end;
+
+procedure TviewPrincipal.lblFaturarClick(Sender: TObject);
+begin //Faturamento
+  ViewFormaPagto := TViewFormaPagto.Create(Self);
   try
-    viewAbrirCaixa.Showmodal;
+    ViewFormaPagto.ValorVenda := StrToFloatDef(edtTotalAPagar.Text, 0);
+
+    ViewTelaFundo.Show;
+    ViewFormaPagto.ShowModal;
   finally
-    FreeAndNil(viewAbrirCaixa);
+    ViewTelaFundo.Hide;
+    FreeAndNil(ViewFormaPagto);
   end;
 end;
 

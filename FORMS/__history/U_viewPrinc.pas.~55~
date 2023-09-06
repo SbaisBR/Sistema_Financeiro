@@ -68,6 +68,21 @@ type
     cdsTBL_ItensVALORUNIT: TFMTBCDField;
     cdsTBL_ItensDESCONTO: TFMTBCDField;
     cdsTBL_ItensVALORTOTAL: TFMTBCDField;
+    Timer_Hora: TTimer;
+    sqlFrmPagto: TSQLDataSet;
+    dspFrmPagto: TDataSetProvider;
+    cdsFrmPagto: TClientDataSet;
+    IntegerField1: TIntegerField;
+    IntegerField2: TIntegerField;
+    FMTBCDField1: TFMTBCDField;
+    FMTBCDField2: TFMTBCDField;
+    FMTBCDField3: TFMTBCDField;
+    FMTBCDField4: TFMTBCDField;
+    StringField1: TStringField;
+    lblFaturar: TLabel;
+    procedure lblFaturarClick(Sender: TObject);
+    procedure Timer_HoraTimer(Sender: TObject);
+    procedure dtsTBL_ItensDataChange(Sender: TObject; Field: TField);
     procedure DBG_produtosDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure cdsTBL_ItensAfterPost(DataSet: TDataSet);
@@ -91,7 +106,8 @@ var
 
 implementation
 
-uses U_viewAbrirCaixa, service.cadastro;
+uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo, View.FormaPagto,
+  providers.functions;
 
 {$R *.dfm}
 
@@ -128,6 +144,11 @@ begin //Deixando a cor branca
     DBG_produtos.Canvas.FillRect(Rect);
     DBG_produtos.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2, Column.Field.DisplayText);
   end;
+end;
+
+procedure TviewPrincipal.dtsTBL_ItensDataChange(Sender: TObject; Field: TField);
+begin //Data Change
+  ServiceCadastro.DimensionarGrid(DBG_produtos);
 end;
 
 procedure TviewPrincipal.edtCodBarrasExit(Sender: TObject);
@@ -181,11 +202,11 @@ begin
     key := #0;
     edtQTD.SetFocus;
   end;
-  
+
 end;
 
 procedure TviewPrincipal.FormResize(Sender: TObject);
-begin
+begin //Resize
   ServiceCadastro.DimensionarGrid(DBG_produtos);
 end;
 
@@ -208,12 +229,32 @@ end;
 
 procedure TviewPrincipal.lblAbreCaixaClick(Sender: TObject);
 begin //Abrir Caixa
-  viewAbrirCaixa := TviewAbrirCaixa.Create(Self);
+  CriaForm(TviewAbrirCaixa, viewAbrirCaixa);
+end;
+
+procedure TviewPrincipal.lblFaturarClick(Sender: TObject);
+var FiltroSalvo: string;
+begin //Faturamento
+
+  FiltroSalvo := sqlTbl_Itens.Filter;
+
+  ViewFormaPagto := TViewFormaPagto.Create(Self);
   try
-    viewAbrirCaixa.Showmodal;
+    ViewFormaPagto.ValorVenda := StrToFloatDef(edtTotalAPagar.Text, 0);
+
+    ViewFormaPagto.FiltroSalvo := FiltroSalvo;
+
+    ViewTelaFundo.Show;
+    ViewFormaPagto.ShowModal;
   finally
-    FreeAndNil(viewAbrirCaixa);
+    ViewTelaFundo.Hide;
+    FreeAndNil(ViewFormaPagto);
   end;
+end;
+
+procedure TviewPrincipal.Timer_HoraTimer(Sender: TObject);
+begin
+  lblHora.Caption := TimeToStr(Time);
 end;
 
 end.

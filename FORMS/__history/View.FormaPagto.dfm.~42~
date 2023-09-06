@@ -4,6 +4,7 @@ inherited viewFormaPagto: TviewFormaPagto
   ClientHeight = 550
   ClientWidth = 900
   Position = poOwnerFormCenter
+  OnCreate = FormCreate
   OnShow = FormShow
   ExplicitWidth = 900
   ExplicitHeight = 550
@@ -304,6 +305,15 @@ inherited viewFormaPagto: TviewFormaPagto
         OnClick = btnFecharClick
         ExplicitTop = -3
       end
+    end
+    object btn: TButton
+      Left = 416
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'btn'
+      TabOrder = 2
+      OnClick = btnClick
     end
   end
   object pnlRodape: TPanel
@@ -810,6 +820,29 @@ inherited viewFormaPagto: TviewFormaPagto
     SQLConnection = Conexao.Conexao
     Left = 656
     Top = 136
+    object sqlCaixaCAI_ID: TIntegerField
+      FieldName = 'CAI_ID'
+      Required = True
+    end
+    object sqlCaixaCAI_DATAHORA: TDateField
+      FieldName = 'CAI_DATAHORA'
+    end
+    object sqlCaixaCAI_TIPO: TStringField
+      FieldName = 'CAI_TIPO'
+      Size = 10
+    end
+    object sqlCaixaCAI_VALOR: TFMTBCDField
+      FieldName = 'CAI_VALOR'
+      Precision = 15
+      Size = 2
+    end
+    object sqlCaixaCAI_DESCRICAO: TStringField
+      FieldName = 'CAI_DESCRICAO'
+      Size = 150
+    end
+    object sqlCaixaCAI_IDFORMAPGTO: TIntegerField
+      FieldName = 'CAI_IDFORMAPGTO'
+    end
   end
   object dspCaixa: TDataSetProvider
     DataSet = sqlCaixa
@@ -845,8 +878,86 @@ inherited viewFormaPagto: TviewFormaPagto
     object cdsCaixaCAI_IDFORMAPGTO: TIntegerField
       FieldName = 'CAI_IDFORMAPGTO'
     end
-    object cdsCaixaCAI_IDVENDA: TIntegerField
-      FieldName = 'CAI_IDVENDA'
+  end
+  object sqlTBL_Itens: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'SELECT'#13#10'   I.ID, I.ID_COTACAO, I.ID_PRODUTO, I.DESCRICAO, I.COMP' +
+      'LEMENTO, I.INFOADICIONAL, I.QTDE, I.LOCAL_ESTOQUE, I.CUSTOUNIT,'#13 +
+      #10'I.VALORUNIT, I.VALORUNIT2, I.DESCONTO, I.MARKUP, I.MARGEMLUCRO,' +
+      ' I.VALORUNIT_DESC, I.VALORUNIT_DESC2,  I.VALORUNITLIQUIDO, I.ALI' +
+      'QIPI, I.ALIQISSRETIDO, I.VALORISSRETIDO, I.ALIQICMS, I.VALORICMS' +
+      'SUBST, I.CODSIMILAR, I.DESCRICAO_SIMILAR,'#13#10'I.VALORICMS21, I.VALO' +
+      'RIPI, I.VALORTOTAL, I.VALORTOTALLIQUIDO, I.VALORDESCONTO, I.STAT' +
+      'US, I.PREV_ENTREGA, I.ESTOQUE,'#13#10'I.DATA_PREV_ENTREGA, I.OBS, I.ID' +
+      '_PEDIDO, I.ID_NOTAFISCAL, I.ID_NOTAFISCAL_COBR, I.ID_ORDEMSERVIC' +
+      'O, I.SAIDA, I.ESTORNO, I.ID_PROMOCAO, I.DATASOLIC, I.RECNO, I.UN' +
+      'IDMED,'#13#10'I.CAMPOCALC1, I.CAMPOCALC2, I.CAMPOCALC3, I.CAMPOCALC4, ' +
+      'I.CAMPOCALC5, I.CAMPOCALC6, I.CAMPOCALC7, I.CAMPOCALC8, I.CAMPOC' +
+      'ALC9,'#13#10'I.CAMPOADICIONAL1, I.CAMPOADICIONAL2, I.CAMPOADICIONAL3, ' +
+      'I.CAMPOADICIONAL4, I.CAMPOADICIONAL5, I.CAMPOADICIONAL6, I.CAMPO' +
+      'ADICIONAL7, I.CAMPOADICIONAL8, I.CAMPOADICIONAL9,'#13#10'I.ITEM_PEDIDO' +
+      'CLI, I.COMISSAO, I.VALORCOMISSAO, I.VALIDADE, I.CFOP, I.DESCONTO' +
+      '_S, I.ESTRUTURA_DATAREVCUSTO, I.VALORFRETE, I.ID_CONSIG, I.PRAZO' +
+      '_GARANTIA, I.TIPOPRODUTO,'#13#10'COALESCE(I.CLFISC, P.CLFISC) AS CLFIS' +
+      'C, P.UNIDMED as PRODUTO_UNIDMED, P.TIPO as PRODUTO_TIPO, P.DESCO' +
+      'NTOMAX as PRODUTO_DESCONTOMAX, P.EAN as PRODUTO_EAN,'#13#10'P.ID_GRUPO' +
+      ' as PRODUTO_ID_GRUPO, P.FRACIONADO_ID_PRODUTO, P.FRACIONADO_FRAC' +
+      'AO_S, P.COMPRIMENTO AS PRODUTO_COMPRIMENTO, P.ALTURA AS PRODUTO_' +
+      'ALTURA, P.LARGURA AS PRODUTO_LARGURA,'#13#10'(I.QTDE * P.PESO/1000) as' +
+      ' PESOTOTAL'#13#10'FROM COTACAOI I'#13#10'LEFT JOIN CADPRODUTO P on P.ID = I.' +
+      'ID_PRODUTO'#13#10'where I.ID_PRODUTO = :ID_PRODUTO'#13#10'order by I.ID'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID_PRODUTO'
+        ParamType = ptInput
+      end>
+    SQLConnection = Conexao.Conexao
+    Left = 656
+    Top = 208
+  end
+  object dspTBL_Itens: TDataSetProvider
+    DataSet = sqlTBL_Itens
+    Left = 688
+    Top = 208
+  end
+  object cdsTBL_Itens: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspTBL_Itens'
+    Left = 729
+    Top = 208
+    object cdsTBL_ItensID: TIntegerField
+      FieldName = 'ID'
+    end
+    object cdsTBL_ItensID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+    end
+    object cdsTBL_ItensQTDE: TFMTBCDField
+      FieldName = 'QTDE'
+      Precision = 15
+      Size = 4
+    end
+    object cdsTBL_ItensVALORUNIT: TFMTBCDField
+      FieldName = 'VALORUNIT'
+      currency = True
+      Precision = 15
+    end
+    object cdsTBL_ItensVALORTOTAL: TFMTBCDField
+      FieldName = 'VALORTOTAL'
+      currency = True
+      Precision = 15
+      Size = 2
+    end
+    object cdsTBL_ItensDESCONTO: TFMTBCDField
+      FieldName = 'DESCONTO'
+      Precision = 15
+    end
+    object cdsTBL_ItensDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 100
     end
   end
 end

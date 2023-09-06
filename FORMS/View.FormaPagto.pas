@@ -68,6 +68,16 @@ type
     sqlCaixaCAI_DESCRICAO: TStringField;
     sqlCaixaCAI_IDFORMAPGTO: TIntegerField;
     btn: TButton;
+    sqlTBL_Itens: TSQLDataSet;
+    dspTBL_Itens: TDataSetProvider;
+    cdsTBL_Itens: TClientDataSet;
+    cdsTBL_ItensID: TIntegerField;
+    cdsTBL_ItensID_PRODUTO: TIntegerField;
+    cdsTBL_ItensQTDE: TFMTBCDField;
+    cdsTBL_ItensVALORUNIT: TFMTBCDField;
+    cdsTBL_ItensVALORTOTAL: TFMTBCDField;
+    cdsTBL_ItensDESCONTO: TFMTBCDField;
+    cdsTBL_ItensDESCRICAO: TStringField;
     procedure btnClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure DBG_FormaPAGTOEscolhidasDrawColumnCell(Sender: TObject;
@@ -83,9 +93,10 @@ type
     procedure btnFecharClick(Sender: TObject);
   private
     FValorVenda : Double;
+    FFiltroSalvo : String;
   public
     property ValorVenda: Double read FValorVenda write FValorVenda;
-   // property ValorVenda: Double read FValorVenda write FValorVenda;
+    property FiltroSalvo : String read FfiltroSalvo write FfiltroSalvo;
 
 
   end;
@@ -102,10 +113,12 @@ uses U_viewPrinc;
 procedure TviewFormaPagto.btnClick(Sender: TObject);
 begin
   inherited;
-  cdsCaixa.First;
-  while not cdsCaixa.Eof do
+  cdsTbl_Itens.Open;
+  cdsTbl_Itens.First;
+  while not cdsTBL_Itens.Eof do
   begin
-    cdsCaixa.Next;
+    ShowMessage(cdsTBL_ItensID_PRODUTO.AsString);
+    cdsTbl_Itens.Next;
   end;
 end;
 
@@ -244,8 +257,12 @@ begin
   edtVenda.Text    := FloatToStr(FValorVenda);
   edtVlrRestante.Text := FloatToStr(FValorVenda);
 
+  cdsTbl_Itens.Open;
+//  cdsTbl_Itens.Edit;
+//  cdsTBL_ItensID_PRODUTO.AsString := FiltroSalvo;
 
-
+   cdsTBL_Itens.Filter := FiltroSalvo;
+   cdsTBL_Itens.Filtered := True;
 end;
 
 procedure TviewFormaPagto.pnlTopoMouseDown(Sender: TObject;

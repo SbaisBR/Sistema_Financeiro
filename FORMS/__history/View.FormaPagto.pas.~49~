@@ -67,6 +67,17 @@ type
     sqlCaixaCAI_VALOR: TFMTBCDField;
     sqlCaixaCAI_DESCRICAO: TStringField;
     sqlCaixaCAI_IDFORMAPGTO: TIntegerField;
+    btn: TButton;
+    sqlTBL_Itens: TSQLDataSet;
+    dspTBL_Itens: TDataSetProvider;
+    cdsTBL_Itens: TClientDataSet;
+    IntegerField1: TIntegerField;
+    FMTBCDField1: TFMTBCDField;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    IntegerField2: TIntegerField;
+    procedure FormCreate(Sender: TObject);
+    procedure btnClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure DBG_FormaPAGTOEscolhidasDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
@@ -81,9 +92,10 @@ type
     procedure btnFecharClick(Sender: TObject);
   private
     FValorVenda : Double;
+    FFiltroSalvo : String;
   public
     property ValorVenda: Double read FValorVenda write FValorVenda;
-   // property ValorVenda: Double read FValorVenda write FValorVenda;
+    property FiltroSalvo : String read FfiltroSalvo write FfiltroSalvo;
 
 
   end;
@@ -96,6 +108,17 @@ implementation
 uses U_viewPrinc;
 
 {$R *.dfm}
+
+procedure TviewFormaPagto.btnClick(Sender: TObject);
+begin
+  inherited;
+  cdsCaixa.First;
+  while not cdsCaixa.Eof do
+  begin
+    ShowMessage(cdsCaixaCAI_ID.AsString);
+    cdsCaixa.Next;
+  end;
+end;
 
 procedure TviewFormaPagto.btnFecharClick(Sender: TObject);
 begin
@@ -118,7 +141,7 @@ begin
   //_cdsFormaPGTO
 
   _cdsFormaPGTO.Post;
- 
+
   // Atualizar o valor total do caixa
   FValorVenda := FValorVenda - _cdsFormaPGTOVALOR_PAGTO.AsFloat;
 
@@ -139,36 +162,31 @@ end;
 procedure TviewFormaPagto.btnSalvarClick(Sender: TObject);
 var
   proximo : integer;
-begin //SAlvar
- // inherited;
+begin  //SAlvar
+  cdsCaixa.Open;
   _cdsFormaPGTO.First;
-  while not  _cdsFormaPGTO.Eof do
+
+
+  while not _cdsFormaPGTO.Eof do
   begin
-    cdsCaixa.Open;
-    cdsCAixa.Edit;
-    if cdsCaixaCAI_ID.IsNull then
-    begin
-      cdsCaixa.insert;
+      cdsCaixa.Last;
       proximo := cdsCaixaCAI_ID.AsInteger + 1;
+      cdsCaixa.Append;
+
       cdsCaixaCAI_ID.AsInteger := proximo;
-    end;
-    cdsCaixa.Insert;
-    cdsCaixaCAI_DATAHORA.ASDateTime   := Date;
-   // cdsCaixaCAI_TIPO.AsString		      := viewPrincipal.cdsTBL_Iten;
-    cdsCaixaCAI_VALOR.AsFloat		      := _cdsFormaPGTOVALOR_PAGTO.AsInteger;
-    cdsCaixaCAI_DESCRICAO.AsString	  := viewPrincipal.cdsTBL_Itensnome_produto.AsString;
-    cdsCaixaCAI_IDFORMAPGTO.AsInteger := _cdsFormaPGTOID_FORMAPGTO.AsInteger;
-//    cdsCaixaCAI_IDVENDA.AsInteger     := viewPrincipal.cdsTBL_ItensCod_Item.AsInteger;
-    cdsCaixa.Post;
-      //GravandoCaixa
+      cdsCaixaCAI_DATAHORA.AsDateTime   := Date;
+      cdsCaixaCAI_VALOR.AsFloat         := _cdsFormaPGTOVALOR_PAGTO.AsFloat;
+      cdsCaixaCAI_DESCRICAO.AsString    := viewPrincipal.cdsTBL_Itensnome_produto.AsString;
+      cdsCaixaCAI_IDFORMAPGTO.AsInteger := _cdsFormaPGTOID_FORMAPGTO.AsInteger;
 
+      cdsCaixa.Post;
 
-    cdsCaixa.ApplyUpdates(0);
     _cdsFormaPGTO.Next;
-
-
-    sELF.Close;
   end;
+
+  cdsCaixa.ApplyUpdates(0);
+
+  Self.Close;
 end;
 
 procedure TviewFormaPagto.DBG_FormaPAGTODblClick(Sender: TObject);
@@ -226,6 +244,12 @@ begin
     DBG_FormaPAGTOEscolhidas.Canvas.FillRect(Rect);
     DBG_FormaPAGTOEscolhidas.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2, Column.Field.DisplayText);
   end;
+end;
+
+procedure TviewFormaPagto.FormCreate(Sender: TObject);
+begin
+   sqlTBL_Itens.Filter := FiltroSalvo;
+   sqlTBL_Itens.Filtered := True; 
 end;
 
 procedure TviewFormaPagto.FormShow(Sender: TObject);
