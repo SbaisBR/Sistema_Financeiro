@@ -10,6 +10,7 @@ object FrmUser: TFrmUser
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -289,7 +290,7 @@ object FrmUser: TFrmUser
     Top = 65
     Width = 1243
     Height = 648
-    ActivePage = Cadastro
+    ActivePage = Consulta
     Align = alClient
     TabOrder = 1
     object Consulta: TTabSheet

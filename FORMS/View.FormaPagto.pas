@@ -67,18 +67,16 @@ type
     sqlCaixaCAI_VALOR: TFMTBCDField;
     sqlCaixaCAI_DESCRICAO: TStringField;
     sqlCaixaCAI_IDFORMAPGTO: TIntegerField;
-    btn: TButton;
-    sqlTBL_Itens: TSQLDataSet;
-    dspTBL_Itens: TDataSetProvider;
-    cdsTBL_Itens: TClientDataSet;
-    cdsTBL_ItensID: TIntegerField;
-    cdsTBL_ItensID_PRODUTO: TIntegerField;
-    cdsTBL_ItensQTDE: TFMTBCDField;
-    cdsTBL_ItensVALORUNIT: TFMTBCDField;
-    cdsTBL_ItensVALORTOTAL: TFMTBCDField;
-    cdsTBL_ItensDESCONTO: TFMTBCDField;
-    cdsTBL_ItensDESCRICAO: TStringField;
-    procedure btnClick(Sender: TObject);
+    sqlTBL_ItensVendas: TSQLDataSet;
+    dspTBL_ItensVendas: TDataSetProvider;
+    cdsTBL_ItensVendas: TClientDataSet;
+    cdsTBL_ItensVendasID: TIntegerField;
+    cdsTBL_ItensVendasID_PRODUTO: TIntegerField;
+    cdsTBL_ItensVendasQTDE: TFMTBCDField;
+    cdsTBL_ItensVendasVALORUNIT: TFMTBCDField;
+    cdsTBL_ItensVendasVALORTOTAL: TFMTBCDField;
+    cdsTBL_ItensVendasDESCONTO: TFMTBCDField;
+    cdsTBL_ItensVendasDESCRICAO: TStringField;
     procedure btnSalvarClick(Sender: TObject);
     procedure DBG_FormaPAGTOEscolhidasDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
@@ -109,18 +107,6 @@ implementation
 uses U_viewPrinc;
 
 {$R *.dfm}
-
-procedure TviewFormaPagto.btnClick(Sender: TObject);
-begin
-  inherited;
-  cdsTbl_Itens.Open;
-  cdsTbl_Itens.First;
-  while not cdsTBL_Itens.Eof do
-  begin
-    ShowMessage(cdsTBL_ItensID_PRODUTO.AsString);
-    cdsTbl_Itens.Next;
-  end;
-end;
 
 procedure TviewFormaPagto.btnFecharClick(Sender: TObject);
 begin
@@ -257,12 +243,10 @@ begin
   edtVenda.Text    := FloatToStr(FValorVenda);
   edtVlrRestante.Text := FloatToStr(FValorVenda);
 
-  cdsTbl_Itens.Open;
 //  cdsTbl_Itens.Edit;
 //  cdsTBL_ItensID_PRODUTO.AsString := FiltroSalvo;
 
-   cdsTBL_Itens.Filter := FiltroSalvo;
-   cdsTBL_Itens.Filtered := True;
+
 end;
 
 procedure TviewFormaPagto.pnlTopoMouseDown(Sender: TObject;

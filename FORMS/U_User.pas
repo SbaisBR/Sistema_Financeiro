@@ -51,6 +51,7 @@ type
     cdsConsultaSENHA: TStringField;
     cdsConsultaTIPO: TStringField;
     cdsConsultaCADASTRO: TDateField;
+    procedure FormShow(Sender: TObject);
     procedure sbPesquisarClick(Sender: TObject);
     procedure sbNovoClick(Sender: TObject);
     procedure sbSalvarClick(Sender: TObject);
@@ -76,6 +77,11 @@ uses dm;
 {$R *.dfm}
 
 
+
+procedure TFrmUser.FormShow(Sender: TObject);
+begin
+  cdsConsulta.Open;
+end;
 
 procedure TFrmUser.sbAtualizarClick(Sender: TObject);
 begin

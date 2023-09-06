@@ -236,13 +236,13 @@ procedure TviewPrincipal.lblFaturarClick(Sender: TObject);
 var FiltroSalvo: string;
 begin //Faturamento
 
-  FiltroSalvo := cdsTbl_Itens.Filter;
 
   ViewFormaPagto := TViewFormaPagto.Create(Self);
   try
+    ViewFormaPagto.cdsTBL_ItensVendas.SetProvider(cdsTBL_Itens);
     ViewFormaPagto.ValorVenda := StrToFloatDef(edtTotalAPagar.Text, 0);
 
-    ViewFormaPagto.FiltroSalvo := FiltroSalvo;
+//    ViewFormaPagto.FiltroSalvo := FiltroSalvo;
 
     ViewTelaFundo.Show;
     ViewFormaPagto.ShowModal;

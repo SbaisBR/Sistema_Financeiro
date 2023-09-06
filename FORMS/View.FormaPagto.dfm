@@ -305,15 +305,6 @@ inherited viewFormaPagto: TviewFormaPagto
         ExplicitTop = -3
       end
     end
-    object btn: TButton
-      Left = 416
-      Top = 8
-      Width = 75
-      Height = 25
-      Caption = 'btn'
-      TabOrder = 2
-      OnClick = btnClick
-    end
   end
   object pnlRodape: TPanel
     Left = 0
@@ -878,7 +869,7 @@ inherited viewFormaPagto: TviewFormaPagto
       FieldName = 'CAI_IDFORMAPGTO'
     end
   end
-  object sqlTBL_Itens: TSQLDataSet
+  object sqlTBL_ItensVendas: TSQLDataSet
     SchemaName = 'sysdba'
     CommandText = 
       'SELECT'#13#10'   I.ID, I.ID_COTACAO, I.ID_PRODUTO, I.DESCRICAO, I.COMP' +
@@ -917,44 +908,44 @@ inherited viewFormaPagto: TviewFormaPagto
     Left = 656
     Top = 208
   end
-  object dspTBL_Itens: TDataSetProvider
-    DataSet = sqlTBL_Itens
+  object dspTBL_ItensVendas: TDataSetProvider
+    DataSet = sqlTBL_ItensVendas
     Left = 688
     Top = 208
   end
-  object cdsTBL_Itens: TClientDataSet
+  object cdsTBL_ItensVendas: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'dspTBL_Itens'
     Left = 729
     Top = 208
-    object cdsTBL_ItensID: TIntegerField
+    object cdsTBL_ItensVendasID: TIntegerField
       FieldName = 'ID'
     end
-    object cdsTBL_ItensID_PRODUTO: TIntegerField
+    object cdsTBL_ItensVendasID_PRODUTO: TIntegerField
       FieldName = 'ID_PRODUTO'
     end
-    object cdsTBL_ItensQTDE: TFMTBCDField
+    object cdsTBL_ItensVendasQTDE: TFMTBCDField
       FieldName = 'QTDE'
       Precision = 15
       Size = 4
     end
-    object cdsTBL_ItensVALORUNIT: TFMTBCDField
+    object cdsTBL_ItensVendasVALORUNIT: TFMTBCDField
       FieldName = 'VALORUNIT'
       currency = True
       Precision = 15
     end
-    object cdsTBL_ItensVALORTOTAL: TFMTBCDField
+    object cdsTBL_ItensVendasVALORTOTAL: TFMTBCDField
       FieldName = 'VALORTOTAL'
       currency = True
       Precision = 15
       Size = 2
     end
-    object cdsTBL_ItensDESCONTO: TFMTBCDField
+    object cdsTBL_ItensVendasDESCONTO: TFMTBCDField
       FieldName = 'DESCONTO'
       Precision = 15
     end
-    object cdsTBL_ItensDESCRICAO: TStringField
+    object cdsTBL_ItensVendasDESCRICAO: TStringField
       FieldName = 'DESCRICAO'
       Size = 100
     end
