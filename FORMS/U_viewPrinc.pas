@@ -80,6 +80,7 @@ type
     FMTBCDField4: TFMTBCDField;
     StringField1: TStringField;
     lblFaturar: TLabel;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure lblFaturarClick(Sender: TObject);
     procedure Timer_HoraTimer(Sender: TObject);
     procedure dtsTBL_ItensDataChange(Sender: TObject; Field: TField);
@@ -195,6 +196,14 @@ begin
   edtCodBarras.SetFocus;
 end;
 
+procedure TviewPrincipal.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = VK_F5 then
+    lblFaturarClick(lblFaturar);
+  
+end;
+
 procedure TviewPrincipal.FormKeyPress(Sender: TObject; var Key: Char);
 begin
   if key = #43 then
@@ -250,6 +259,8 @@ begin //Faturamento
     if ViewFormaPagto.ModalResult = mrOk then
     begin
       cdsTBL_itens.EmptyDataSet;
+      edtSubTotal.Clear;
+      edtTotalApagar.Clear;
       edtCodBarras.SetFocus;
     end;
     
