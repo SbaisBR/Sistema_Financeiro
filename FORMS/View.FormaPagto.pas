@@ -151,9 +151,14 @@ procedure TviewFormaPagto.btnSalvarClick(Sender: TObject);
 var
   proximo : integer;
 begin  //SAlvar
+  if not _cdsFormaPGTO.Active then
+  Begin
+    Self.Close;
+  end
+  Else begin
   cdsCaixa.Open;
   _cdsFormaPGTO.First;
-
+  end;
 
   while not _cdsFormaPGTO.Eof do
   begin
