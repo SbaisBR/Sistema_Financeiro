@@ -348,10 +348,6 @@ object FrmPrestador: TFrmPrestador
     object Cadastro: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel3: TPanel
         Left = 0
         Top = 455
@@ -493,7 +489,7 @@ object FrmPrestador: TFrmPrestador
           Height = 21
           DataField = 'ESTADO'
           Enabled = False
-          ItemHeight = 0
+          ItemHeight = 13
           TabOrder = 0
         end
         object DBEdit1: TDBEdit
@@ -662,7 +658,7 @@ object FrmPrestador: TFrmPrestador
           Height = 21
           DataField = 'TIPOPESSOA'
           Enabled = False
-          ItemHeight = 0
+          ItemHeight = 13
           Items.Strings = (
             'Pessoa Fisica'
             'Pessoa Jur'#237'dica'

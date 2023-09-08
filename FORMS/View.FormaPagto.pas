@@ -104,7 +104,7 @@ var
 
 implementation
 
-uses U_viewPrinc;
+uses U_viewPrinc, View_Mensagens;
 
 {$R *.dfm}
 
@@ -186,7 +186,7 @@ begin
      edtVlrFaturar.SetFocus;
   end
   else begin
-    ShowMessage('Não há mais valor para faturar.');
+    TViewMensagens.Mensagem('Não há mais valor para faturar.','Atenção!','i',[mbOk]);
   end;
 end;
 

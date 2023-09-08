@@ -99,7 +99,7 @@ var
 
 implementation
 
-uses dm, View_Mensagens;
+uses dm;
 
 {$R *.dfm}
 
@@ -172,7 +172,7 @@ procedure TFrmPrestador.sbPesquisarClick(Sender: TObject);
 begin
   if edDescricao.Visible and (edDescricao.Text = '') then
   begin
-    TViewMensagens.Mensagem('Preenchimento do campo obrigatório!','Atenção!','A',[mbOk]);
+    ShowMessage('Preenchimento do campo obrigatório!');
     Exit;
   end;
 

@@ -190,7 +190,7 @@ var
 
 implementation
 
-uses dm, View_Mensagens;
+uses dm;
 
 {$R *.dfm}
 
@@ -202,7 +202,7 @@ begin
   Lock.Enabled      := True;
   if edNome.CanFocus then
     edNome.SetFocus;
-  if TViewMensagens.Mensagem('Deseja alterar esse registro?','Atenção!','A', [mbSim,MbNao]) then
+  if MessageDlg('Deseja alterar esse registro?', MtConfirmation, [mbOk,MbNo], 0) =mrOk then
    begin
      cdsCadCliente.Edit;
    end
@@ -216,13 +216,13 @@ begin
   Tratabotao();
   cdsCadCliente.Cancel;
   cdsCadCliente.CancelUpdates;
-  TViewMensagens.Mensagem('Ação cancelada com sucesso','Atenção','I', [mbOk]);
+  MessageDlg('Ação cancelada com sucesso', MTINFORMATION, [MBOK], 0);
 end;
 
 procedure TFrmCliente.btExcluirClick(Sender: TObject);
 begin
   tratabotao();
-  if TViewMensagens.Mensagem('Deseja deletar esse registro?','Atenção!','A', [mbSim,MbNao]) then
+  if MessageDlg('Deseja deletar esse registro?', MtConfirmation, [mbOk,MbNo], 0) =mrOk then
   begin
     tratabotao();
     cdsCadCliente.delete;
@@ -259,14 +259,20 @@ procedure TFrmCliente.btSalvarClick(Sender: TObject);
 begin
     if (Trim(cdsCadClienteTELEFONE.Text) <> '') and (Length(cdsCadClienteTELEFONE.Text) < 8)  then
     begin
-     TViewMensagens.Mensagem('Telefone inválido, realize a correção'+ #13 + 'Campo Telefone precisa de 8 caracteres ou mais.','Atenção!','E',[mbOk]);
+     MessageBox(Handle, PChar('Telefone inválido, realize a correção'
+      + #13 + 'Campo Telefone precisa de 8 caracteres ou mais.'),
+      'Atenção', MB_YESNO + MB_ICONINFORMATION +
+      MB_DEFBUTTON2);
       edTelefone.SetFocus;
       exit;
     end;
 
     if (Trim(cdsCadClienteTELEFONE2.Text) <> '') and (Length(cdsCadClienteTELEFONE2.Text) < 8)  then
     begin
-      TViewMensagens.Mensagem('Telefone2 inválido, realize a correção'+ #13 + 'Campo Telefone precisa de 8 caracteres ou mais.','Atenção!','E',[mbOk]);
+       MessageBox(Handle, PChar('Telefone2 inválido, realize a correção'
+      + #13 + 'Campo Telefone2 precisa de 8 caracteres ou mais.'),
+      'Atenção', MB_YESNO + MB_ICONINFORMATION +
+      MB_DEFBUTTON2);
 
       edTelefone2.SetFocus;
       exit;

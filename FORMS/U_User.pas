@@ -72,7 +72,7 @@ var
 
 implementation
 
-uses dm;
+uses dm, View_Mensagens;
 
 {$R *.dfm}
 
@@ -88,7 +88,7 @@ begin
   Tratabotao();
   //Conexao.cdsUsuario.ApplyUpdates(0);
   Conexao.cdsUsuario.Refresh;
-  MessageDlg('Atualizado com sucesso!', MTINFORMATION, [MBOK],0);
+ TViewMensagens.Mensagem('Atualizado com sucesso!','Atenção!','i',[MBOK]);
 end;
 
 procedure TFrmUser.sbCancelarClick(Sender: TObject);
@@ -96,13 +96,13 @@ begin
   Tratabotao();
   Conexao.cdsUsuario.Cancel;
   Conexao.cdsUsuario.CancelUpdates;
-  MessageDlg('Ação cancelada com sucesso', MTINFORMATION, [MBOK], 0);
+  TViewMensagens.Mensagem('Ação cancelada com sucesso','Atenção!', 'i',[MBOK]);
 end;
 
 procedure TFrmUser.sbDeletarClick(Sender: TObject);
 begin
   Tratabotao();
-  if MessageDlg('Deseja deletar esse registro?', MtConfirmation, [mbOk,MbNo], 0) =mrOk then
+  if TViewMensagens.Mensagem('Deseja deletar esse registro?','Atenção!', 'A', [mbSim,MbNao]) then
     begin
       Conexao.cdsUsuario.delete;
       Tratabotao();
@@ -116,7 +116,7 @@ procedure TFrmUser.sbEditarClick(Sender: TObject);
 begin
   Tratabotao();
   Lock.Enabled      := True;
-  if MessageDlg('Deseja alterar esse registro?', MtConfirmation, [mbOk,MbNo], 0) =mrOk then
+  if TViewMensagens.Mensagem('Deseja alterar esse registro?','Atenção!','A',[mbSim,MbNao])then
    begin
      Conexao.cdsUsuario.Edit;
    end
@@ -160,7 +160,7 @@ begin
   try
     if Trim(edNome.Text) = '' then
     begin
-      MessageDlg('O campo "Nome" é obrigatório.', mtError, [mbOK], 0);
+      TViewMensagens.Mensagem('O campo "Nome" é obrigatório.','Erro','E',[mbOK]);
       edNome.SetFocus;
       Exit;
     end;
@@ -168,7 +168,7 @@ begin
     Tratabotao();
     Lock.Enabled := False;
 
-    MessageDlg('Registro salvo com sucesso!', MtInformation, [mbOk], 0);
+    TViewMensagens.Mensagem('Registro salvo com sucesso!','Atenção!','i',[mbOk]);
     Conexao.cdsUsuario.Post;
     Conexao.cdsUsuario.ApplyUpdates(0);
     cdsConsulta.Refresh;

@@ -202,7 +202,7 @@ begin
   Lock.Enabled      := True;
   if edNome.CanFocus then
     edNome.SetFocus;
-  if TViewMensagens.Mensagem('Deseja alterar esse registro?','Atenção!','A', [mbSim,MbNao]) then
+  if TViewMensagens.Mensagem('Deseja alterar esse registro?','Atenção!','A', [mbYes,MbNo]) then
    begin
      cdsCadCliente.Edit;
    end
@@ -216,13 +216,13 @@ begin
   Tratabotao();
   cdsCadCliente.Cancel;
   cdsCadCliente.CancelUpdates;
-  TViewMensagens.Mensagem('Ação cancelada com sucesso','Atenção','I', [mbOk]);
+  TViewMensagens.Mensagem('Ação cancelada com sucesso','Atenção','I' [MBOK]);
 end;
 
 procedure TFrmCliente.btExcluirClick(Sender: TObject);
 begin
   tratabotao();
-  if TViewMensagens.Mensagem('Deseja deletar esse registro?','Atenção!','A', [mbSim,MbNao]) then
+  if TViewMensagens.Mensagem('Deseja deletar esse registro?','Atenção!','A', [mbYes,MbNo]) then
   begin
     tratabotao();
     cdsCadCliente.delete;
@@ -259,14 +259,14 @@ procedure TFrmCliente.btSalvarClick(Sender: TObject);
 begin
     if (Trim(cdsCadClienteTELEFONE.Text) <> '') and (Length(cdsCadClienteTELEFONE.Text) < 8)  then
     begin
-     TViewMensagens.Mensagem('Telefone inválido, realize a correção'+ #13 + 'Campo Telefone precisa de 8 caracteres ou mais.','Atenção!','E',[mbOk]);
+     TViewMensagens.Mensagem('Telefone inválido, realize a correção'+ #13 + 'Campo Telefone precisa de 8 caracteres ou mais.','Atenção!','A',[mbOk]);
       edTelefone.SetFocus;
       exit;
     end;
 
     if (Trim(cdsCadClienteTELEFONE2.Text) <> '') and (Length(cdsCadClienteTELEFONE2.Text) < 8)  then
     begin
-      TViewMensagens.Mensagem('Telefone2 inválido, realize a correção'+ #13 + 'Campo Telefone precisa de 8 caracteres ou mais.','Atenção!','E',[mbOk]);
+      TViewMensagens.Mensagem('Telefone2 inválido, realize a correção'+ #13 + 'Campo Telefone precisa de 8 caracteres ou mais.','Atenção!','A',[mbOk]);
 
       edTelefone2.SetFocus;
       exit;

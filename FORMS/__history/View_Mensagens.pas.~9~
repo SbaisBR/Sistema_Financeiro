@@ -21,11 +21,6 @@ type
     btnSim: TSpeedButton;
     btnNao: TSpeedButton;
     imgAlert: TImage;
-    imgInfo: TImage;
-    imgError: TImage;
-    procedure btnOkClick(Sender: TObject);
-    procedure btnNaoClick(Sender: TObject);
-    procedure btnSimClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,24 +38,6 @@ uses View.TelaFundo;
 
 { TViewMensagens }
 
-procedure TViewMensagens.btnNaoClick(Sender: TObject);
-begin //Não
-  inherited;
-  Self.ModalResult := mrNo;
-end;
-
-procedure TViewMensagens.btnOkClick(Sender: TObject);
-begin //Ok
-  inherited;
-  Self.ModalResult := mrOk;
-end;
-
-procedure TViewMensagens.btnSimClick(Sender: TObject);
-begin //Sim
-  inherited;
-  Self.ModalResult := mrYes;
-end;
-
 class function TViewMensagens.Mensagem(Texto, Titulo: String; Tipo: Char;
   Botoes: array of TmyButtons): Boolean;
 Var
@@ -74,9 +51,8 @@ begin
     View.mmoTexto.Text     := Texto;
 //    View.Caption           := TITULO;
 
-  //  ViewTelaFundo.Show;
+    ViewTelaFundo.Show;
 
-//    Tratando os botoes
     for I := 0 to Length(Botoes) - 1 do
     begin
       case (Botoes[i]) of
@@ -100,55 +76,13 @@ begin
            View.btnOk.Align   := AlRight;
         end;
       end;
+
+
     end;
-
-    //Tipo das imagens
-    case(Tipo)of
-      'I':begin
-            View.imgInfo.Visible := True;//Informação
-
-            {View.imgInfo.Top     := -4;
-            View.imgInfo.Left    := -12;
-            View.imgInfo.Height  := 192;
-            View.imgInfo.Width   := 816;}
-          end;
-
-      'E':begin
-            View.imgError.Visible := True;//Erro
-
-           { View.imgError.Top    := -4;
-            View.imgError.Left   := -12;
-            View.imgError.Height := 192;
-            View.imgError.Width  := 816;}
-          end;
-
-      'A':begin
-            View.imgAlert.Visible := True;//Alerta
-          end;
-
-     else begin
-       View.imgInfo.Visible := True;
-     end;
-    end;
-
-    //Mostrar o formulário
-    ViewTelaFundo.Show;
-    View.ShowModal;
-
-
-    case (View.ModalResult) of
-      mrOk, mrYes : result := True;
-      else
-        result := False;
-    end;
-
 
   finally
     if (view <> nil) then
-    begin
-      ViewTelaFundo.Hide;
       FreeAndNil(View);
-    end;
   end;
 end;
 

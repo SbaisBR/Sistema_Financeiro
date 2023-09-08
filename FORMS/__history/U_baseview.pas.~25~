@@ -103,7 +103,7 @@ procedure Tviewbaselista1.btnEditarClick(Sender: TObject);
 begin //Editar
   inherited;
   page_panelconteudo.ActivePage := Card_cadastro;
-  if TViewMensagens.Mensagem('Deseja alterar esse registro?','Atenção!','A', [mbSim,MbNao])then
+  if TViewMensagens.Mensagem('Deseja alterar esse registro?','Atenção!','A', [mbYes,MbNo])then
    begin
       cdsAbreCaixa.edit;
    end

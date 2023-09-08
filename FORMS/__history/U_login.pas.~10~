@@ -34,7 +34,7 @@ var
 
 implementation
 
-uses dm, Menu, View_Mensagens;
+uses dm, Menu;
 
 {$R *.dfm}
 
@@ -57,7 +57,7 @@ begin
   else
   begin
     //msg('Usuario incorreto','Porfavor verifique as informações');
-    TViewMensagens.Mensagem('Usuario incorreto, porfavor verifique as informações','Atenção','I',[MBOK]);
+    MessageDlg('Usuario incorreto, porfavor verifique as informações', MTINFORMATION, [MBOK], 0);
     edNome.Clear;
     edSenha.Clear;
     edNome.SetFocus;

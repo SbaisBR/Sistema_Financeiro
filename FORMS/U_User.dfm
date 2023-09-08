@@ -343,6 +343,10 @@ object FrmUser: TFrmUser
     object Cadastro: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel5: TPanel
         Left = 0
         Top = 81
@@ -468,7 +472,7 @@ object FrmUser: TFrmUser
           Height = 21
           DataField = 'TIPO'
           DataSource = Conexao.dtsUsuario
-          ItemHeight = 13
+          ItemHeight = 0
           Items.Strings = (
             'ADMINISTRADOR'
             'APOO')

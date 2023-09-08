@@ -59,6 +59,13 @@ type
     cdsAbreCaixaABR_CODIGOUSUARIO: TIntegerField;
     cdsAbreCaixaABR_STATUS: TStringField;
     cdsAbreCaixaABR_OBSERVACAO: TStringField;
+    lblTituloCadastro: TLabel;
+    DataSource1: TDataSource;
+    procedure lblTituloMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
   procedure imgLogoCinzaMouseLeave(Sender: TObject);
   procedure imgLogoAzulMouseEnter(Sender: TObject);
   procedure FormShow(Sender: TObject);
@@ -76,10 +83,33 @@ var
 
 implementation
 
+uses View_Mensagens;
+
 {$R *.dfm}
 
 
 
+
+procedure Tviewbaselista1.btnCancelarClick(Sender: TObject);
+begin //Cancelar
+  inherited;
+  cdsAbreCaixa.Cancel;
+  cdsAbreCaixa.CancelUpdates;
+  TViewMensagens.Mensagem('Ação cancelada com sucesso','I', [MBOK]);
+  Page_panelconteudo.ActivePage := Card_pesquisar;
+end;
+
+procedure Tviewbaselista1.btnEditarClick(Sender: TObject);
+begin //Editar
+  inherited;
+  page_panelconteudo.ActivePage := Card_cadastro;
+  if TViewMensagens.Mensagem('Deseja alterar esse registro?','A', [mbYes,MbNo])then
+   begin
+      cdsAbreCaixa.edit;
+   end
+   else
+     Exit;
+end;
 
 procedure Tviewbaselista1.btnFecharClick(Sender: TObject);
 begin
@@ -88,9 +118,25 @@ begin
 end;
 
 procedure Tviewbaselista1.btnNovoClick(Sender: TObject);
+var proximo : integer;
 begin //Novo
   inherited;
   page_panelconteudo.ActivePage := Card_cadastro;
+  cdsAbreCaixa.Open;   //Abre a tabela
+  cdsAbreCaixa.Last;   // Vai para o ultimo registro da tabela
+  proximo:= cdsAbreCaixaABR_CODIGO.Asinteger + 1;   //Recebe o valor do ultimo registro e vai para o proximo '+1'
+  cdsAbreCaixa.Append;  //Adiciona mais uma coluna em branco para adionar um novo registro
+  cdsAbreCaixaABR_CODIGO.Asinteger := proximo;   //O campo ID recebe o valor da variavel proximo
+  //cdsAbreCaixaABR_DATAABERTURA.AsDateTime:=Date;  //O campo CADASTRO recebe a data atualizada
+  //Lock.Enabled      := True;}
+end;
+
+procedure Tviewbaselista1.btnSalvarClick(Sender: TObject);
+begin  //Salvar
+  inherited;
+  TViewMensagens.Mensagem('Registro salvo com sucesso!','I', [mbOk]);
+  cdsAbreCaixa.Post;
+  cdsAbreCaixa.Applyupdates(0);
 end;
 
 procedure Tviewbaselista1.btnVoltarClick(Sender: TObject);
@@ -117,6 +163,16 @@ begin
   inherited;
   imgLogoAzul.Visible := True;
   imgLogoCinza.Visible := False;
+end;
+
+procedure Tviewbaselista1.lblTituloMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+const
+  sc_dragmove = $f012;
+begin // Mover o form sem bordas
+  inherited;
+  ReleaseCapture;
+  Perform(wm_SysCommand, sc_DragMove, 0);
 end;
 
 end.

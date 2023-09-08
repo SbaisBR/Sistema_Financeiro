@@ -107,7 +107,7 @@ var
 implementation
 
 uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo, View.FormaPagto,
-  providers.functions;
+  providers.functions, View_Mensagens;
 
 {$R *.dfm}
 
@@ -186,7 +186,7 @@ begin
       edtCodBarras.SetFocus;
     end
     else
-    ShowMessage('Nenhum produto encontrado com o código de barras especificado.');
+   TViewMensagens.Mensagem('Nenhum produto encontrado com o código de barras especificado.','Atenção','I',[mbOk]);
   end;
 end;
 

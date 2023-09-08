@@ -57,7 +57,7 @@ begin
   else
   begin
     //msg('Usuario incorreto','Porfavor verifique as informações');
-    TViewMensagens.Mensagem('Usuario incorreto, porfavor verifique as informações','Atenção','I',[MBOK]);
+    TViewMensagens.Mensagem('Usuario incorreto, porfavor verifique as informações','I',[MBOK]);
     edNome.Clear;
     edSenha.Clear;
     edNome.SetFocus;
