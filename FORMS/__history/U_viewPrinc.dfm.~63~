@@ -533,6 +533,21 @@ object viewPrincipal: TviewPrincipal
       ParentFont = False
       OnClick = lblAbreCaixaClick
     end
+    object lblFaturar: TLabel
+      Left = 108
+      Top = 12
+      Width = 36
+      Height = 13
+      Cursor = crHandPoint
+      Caption = 'Faturar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      OnClick = lblFaturarClick
+    end
   end
   object pnlBackground: TPanel
     Left = 0

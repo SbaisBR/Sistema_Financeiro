@@ -67,8 +67,16 @@ type
     sqlCaixaCAI_VALOR: TFMTBCDField;
     sqlCaixaCAI_DESCRICAO: TStringField;
     sqlCaixaCAI_IDFORMAPGTO: TIntegerField;
-    btn: TButton;
-    procedure btnClick(Sender: TObject);
+    sqlTBL_ItensVendas: TSQLDataSet;
+    dspTBL_ItensVendas: TDataSetProvider;
+    cdsTBL_ItensVendas: TClientDataSet;
+    cdsTBL_ItensVendasID: TIntegerField;
+    cdsTBL_ItensVendasID_PRODUTO: TIntegerField;
+    cdsTBL_ItensVendasQTDE: TFMTBCDField;
+    cdsTBL_ItensVendasVALORUNIT: TFMTBCDField;
+    cdsTBL_ItensVendasVALORTOTAL: TFMTBCDField;
+    cdsTBL_ItensVendasDESCONTO: TFMTBCDField;
+    cdsTBL_ItensVendasDESCRICAO: TStringField;
     procedure btnSalvarClick(Sender: TObject);
     procedure DBG_FormaPAGTOEscolhidasDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
@@ -83,9 +91,10 @@ type
     procedure btnFecharClick(Sender: TObject);
   private
     FValorVenda : Double;
+    FFiltroSalvo : String;
   public
     property ValorVenda: Double read FValorVenda write FValorVenda;
-   // property ValorVenda: Double read FValorVenda write FValorVenda;
+    property FiltroSalvo : String read FfiltroSalvo write FfiltroSalvo;
 
 
   end;
@@ -95,19 +104,9 @@ var
 
 implementation
 
-uses U_viewPrinc;
+uses U_viewPrinc, View_Mensagens;
 
 {$R *.dfm}
-
-procedure TviewFormaPagto.btnClick(Sender: TObject);
-begin
-  inherited;
-  cdsCaixa.First;
-  while not cdsCaixa.Eof do
-  begin
-    cdsCaixa.Next;
-  end;
-end;
 
 procedure TviewFormaPagto.btnFecharClick(Sender: TObject);
 begin
@@ -152,9 +151,14 @@ procedure TviewFormaPagto.btnSalvarClick(Sender: TObject);
 var
   proximo : integer;
 begin  //SAlvar
+  if not _cdsFormaPGTO.Active then
+  Begin
+    Self.Close;
+  end
+  Else begin
   cdsCaixa.Open;
   _cdsFormaPGTO.First;
-
+  end;
 
   while not _cdsFormaPGTO.Eof do
   begin
@@ -187,7 +191,7 @@ begin
      edtVlrFaturar.SetFocus;
   end
   else begin
-    ShowMessage('Não há mais valor para faturar.');
+    TViewMensagens.Mensagem('Não há mais valor para faturar.','Atenção!','i',[mbOk]);
   end;
 end;
 
@@ -244,6 +248,8 @@ begin
   edtVenda.Text    := FloatToStr(FValorVenda);
   edtVlrRestante.Text := FloatToStr(FValorVenda);
 
+//  cdsTbl_Itens.Edit;
+//  cdsTBL_ItensID_PRODUTO.AsString := FiltroSalvo;
 
 
 end;

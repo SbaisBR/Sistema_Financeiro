@@ -246,6 +246,14 @@ begin //Faturamento
 
     ViewTelaFundo.Show;
     ViewFormaPagto.ShowModal;
+
+    if ViewFormaPagto.ModalResult = mrOk then
+    begin
+      cdsTBL_itens.EmptyDataSet;
+      edtCodBarras.SetFocus;
+    end;
+    
+
   finally
     ViewTelaFundo.Hide;
     FreeAndNil(ViewFormaPagto);

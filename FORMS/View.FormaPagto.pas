@@ -179,7 +179,9 @@ begin  //SAlvar
 
   cdsCaixa.ApplyUpdates(0);
 
-  Self.Close;
+  ShowMessage('Dados salvos com sucesso.');
+
+  Self.ModalResult := mrOk;
 end;
 
 procedure TviewFormaPagto.DBG_FormaPAGTODblClick(Sender: TObject);

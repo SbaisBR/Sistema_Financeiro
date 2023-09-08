@@ -107,7 +107,7 @@ var
 implementation
 
 uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo, View.FormaPagto,
-  providers.functions;
+  providers.functions, View_Mensagens;
 
 {$R *.dfm}
 
@@ -186,7 +186,7 @@ begin
       edtCodBarras.SetFocus;
     end
     else
-    ShowMessage('Nenhum produto encontrado com o código de barras especificado.');
+   TViewMensagens.Mensagem('Nenhum produto encontrado com o código de barras especificado.','Atenção','I',[mbOk]);
   end;
 end;
 
@@ -229,29 +229,27 @@ end;
 
 procedure TviewPrincipal.lblAbreCaixaClick(Sender: TObject);
 begin //Abrir Caixa
-  viewAbrirCaixa := TviewAbrirCaixa.Create(Self);
-  try
-    viewAbrirCaixa.Showmodal;
-  finally
-    FreeAndNil(viewAbrirCaixa);
-  end;
+  CriaForm(TviewAbrirCaixa, viewAbrirCaixa);
 end;
 
 procedure TviewPrincipal.lblFaturarClick(Sender: TObject);
+var FiltroSalvo: string;
 begin //Faturamento
+
 
   ViewFormaPagto := TViewFormaPagto.Create(Self);
   try
-
+    ViewFormaPagto.cdsTBL_ItensVendas.SetProvider(cdsTBL_Itens);
     ViewFormaPagto.ValorVenda := StrToFloatDef(edtTotalAPagar.Text, 0);
-    ViewFormaPagto.ShowModal;
 
+//    ViewFormaPagto.FiltroSalvo := FiltroSalvo;
+
+    ViewTelaFundo.Show;
+    ViewFormaPagto.ShowModal;
   finally
+    ViewTelaFundo.Hide;
     FreeAndNil(ViewFormaPagto);
   end;
-
-
-  CriaForm(TviewFormaPagto,viewFormaPagto);
 end;
 
 procedure TviewPrincipal.Timer_HoraTimer(Sender: TObject);
