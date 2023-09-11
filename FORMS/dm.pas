@@ -48,6 +48,35 @@ type
     StringField5: TStringField;
     StringField6: TStringField;
     DateField2: TDateField;
+    sqlEmpresa: TSQLDataSet;
+    dspEmpresa: TDataSetProvider;
+    cdsEmpresa: TClientDataSet;
+    cdsEmpresaMUNICIPIO: TStringField;
+    cdsEmpresaID: TIntegerField;
+    cdsEmpresaFANTASIA: TStringField;
+    cdsEmpresaRAZAOSOCIAL: TStringField;
+    cdsEmpresaCNPJ: TStringField;
+    cdsEmpresaIE: TStringField;
+    cdsEmpresaIM: TStringField;
+    cdsEmpresaCNAE: TStringField;
+    cdsEmpresaCRT: TStringField;
+    cdsEmpresaDDD: TStringField;
+    cdsEmpresaTELEFONE: TStringField;
+    cdsEmpresaDDD2: TStringField;
+    cdsEmpresaTELEFONE2: TStringField;
+    cdsEmpresaDDDFAX: TStringField;
+    cdsEmpresaFAX: TStringField;
+    cdsEmpresaSITE: TStringField;
+    cdsEmpresaEMAIL: TStringField;
+    cdsEmpresaENDERECO: TStringField;
+    cdsEmpresaNUMERO: TStringField;
+    cdsEmpresaCOMPLEMENTO: TStringField;
+    cdsEmpresaBAIRRO: TStringField;
+    cdsEmpresaCIDADE: TStringField;
+    cdsEmpresaESTADO: TStringField;
+    cdsEmpresaCODIGOUF: TStringField;
+    cdsEmpresaCEP: TStringField;
+    cdsEmpresaLOGOTIPO: TStringField;
 
 
 

@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, StdCtrls, jpeg, Grids, DBGrids, JvExDBGrids, JvDBGrid,
-  SuperGrid, FMTBcd, DBClient, Provider, DB, SqlExpr, Menus, frxClass;
+  SuperGrid, FMTBcd, DBClient, Provider, DB, SqlExpr, Menus, frxClass, frxDBSet;
 
 type
   TviewPrincipal = class(TForm)
@@ -83,6 +83,9 @@ type
     PPM_Itens: TPopupMenu;
     Deletartem1: TMenuItem;
     frxReport: TfrxReport;
+    frxDBDataset_Venda: TfrxDBDataset;
+    frxDBDataset_VendaItem: TfrxDBDataset;
+    frxDBDataset_Empresa: TfrxDBDataset;
     procedure cdsTBL_ItensBeforeDelete(DataSet: TDataSet);
     procedure Deletartem1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -114,7 +117,7 @@ var
 implementation
 
 uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo, View.FormaPagto,
-  providers.functions, View_Mensagens;
+  providers.functions, View_Mensagens, dm;
 
 {$R *.dfm}
 

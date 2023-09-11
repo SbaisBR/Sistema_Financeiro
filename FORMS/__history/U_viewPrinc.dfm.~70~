@@ -11,6 +11,7 @@ object viewPrincipal: TviewPrincipal
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
+  OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
   OnResize = FormResize
   PixelsPerInch = 96
@@ -519,11 +520,15 @@ object viewPrincipal: TviewPrincipal
     Color = 3487029
     TabOrder = 2
     object lblAbreCaixa: TLabel
-      Left = 20
-      Top = 12
+      AlignWithMargins = True
+      Left = 10
+      Top = 15
       Width = 53
-      Height = 13
+      Height = 23
       Cursor = crHandPoint
+      Margins.Left = 10
+      Margins.Top = 15
+      Align = alLeft
       Caption = 'Abrir Caixa'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -532,14 +537,19 @@ object viewPrincipal: TviewPrincipal
       Font.Style = []
       ParentFont = False
       OnClick = lblAbreCaixaClick
+      ExplicitHeight = 13
     end
     object lblFaturar: TLabel
-      Left = 108
-      Top = 12
-      Width = 36
-      Height = 13
+      AlignWithMargins = True
+      Left = 76
+      Top = 15
+      Width = 58
+      Height = 23
       Cursor = crHandPoint
-      Caption = 'Faturar'
+      Margins.Left = 10
+      Margins.Top = 15
+      Align = alLeft
+      Caption = 'Faturar - F5'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -11
@@ -547,6 +557,7 @@ object viewPrincipal: TviewPrincipal
       Font.Style = []
       ParentFont = False
       OnClick = lblFaturarClick
+      ExplicitHeight = 13
     end
   end
   object pnlBackground: TPanel
@@ -863,6 +874,7 @@ object viewPrincipal: TviewPrincipal
         Font.Style = [fsBold]
         Options = [dgTitles, dgTabs, dgRowSelect, dgAlwaysShowSelection]
         ParentFont = False
+        PopupMenu = PPM_Itens
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -1055,6 +1067,7 @@ object viewPrincipal: TviewPrincipal
       end>
     ProviderName = 'dspTBL_Itens'
     AfterPost = cdsTBL_ItensAfterPost
+    BeforeDelete = cdsTBL_ItensBeforeDelete
     Left = 457
     Top = 64
     object cdsTBL_ItensCod_Item: TIntegerField
@@ -1155,5 +1168,34 @@ object viewPrincipal: TviewPrincipal
       FieldName = 'DESCRICAO'
       Size = 100
     end
+  end
+  object PPM_Itens: TPopupMenu
+    Left = 792
+    Top = 64
+    object Deletartem1: TMenuItem
+      Caption = 'Deletar '#205'tem'
+      OnClick = Deletartem1Click
+    end
+  end
+  object frxReport: TfrxReport
+    Version = '6.8.4'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 45180.382262349540000000
+    ReportOptions.LastChange = 45180.382262349540000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 864
+    Top = 64
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
 end

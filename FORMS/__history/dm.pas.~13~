@@ -25,22 +25,37 @@ type
     cdsLoginTIPO: TStringField;
     cdsLoginCADASTRO: TDateField;
     cdsLoginNIVEL: TStringField;
+    sqlUsuario: TSQLDataSet;
+    dspUsuario: TDataSetProvider;
+    cdsUsuario: TClientDataSet;
+    cdsUsuarioIDUSUARIO: TIntegerField;
+    cdsUsuarioNOME: TStringField;
+    cdsUsuarioSENHA: TStringField;
+    cdsUsuarioTIPO: TStringField;
+    cdsUsuarioCADASTRO: TDateField;
+    dtsUsuario: TDataSource;
+    sqlAbrCaixa: TSQLDataSet;
+    IntegerField1: TIntegerField;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    DateField1: TDateField;
+    dspAbrCaixa: TDataSetProvider;
+    dsAbrCaixa: TDataSource;
+    cdsAbrCaixa: TClientDataSet;
+    IntegerField2: TIntegerField;
+    StringField4: TStringField;
+    StringField5: TStringField;
+    StringField6: TStringField;
+    DateField2: TDateField;
 
 
 
   private
-    { Private declarations }
     FFSelecionar : Boolean;
     FIDUsuario: integer;
-    procedure SetFSelecionar(const Value: Boolean);
   public
     Usuario, Tipo : String;
-    function GetServiceController: TServiceController; override;
-    { Public declarations }
-
-    //property FSelecionar : Boolean read FFSelecionar write SetFSelecionar;
-    //property IDUsuario          : integer read FIDUsuario write FIDUsuario;
-
   end;
 
 var
@@ -50,19 +65,6 @@ implementation
 
 {$R *.DFM}
 
-procedure ServiceController(CtrlCode: DWord); stdcall;
-begin
-  Conexao.Controller(CtrlCode);
-end;
 
-function TConexao.GetServiceController: TServiceController;
-begin
-  Result := ServiceController;
-end;
-
-procedure TConexao.SetFSelecionar(const Value: Boolean);
-begin
-  FFSelecionar := Value;
-end;
 
 end.
