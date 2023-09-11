@@ -987,6 +987,7 @@ object viewPrincipal: TviewPrincipal
     Top = 64
   end
   object cdsCodBar: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspCodBar'
@@ -1058,6 +1059,7 @@ object viewPrincipal: TviewPrincipal
     Top = 64
   end
   object cdsTBL_Itens: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <
       item
@@ -1186,7 +1188,7 @@ object viewPrincipal: TviewPrincipal
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 45180.457825567100000000
-    ReportOptions.LastChange = 45180.487673680550000000
+    ReportOptions.LastChange = 45180.595249456000000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -1227,7 +1229,7 @@ object viewPrincipal: TviewPrincipal
       object ReportTitle1: TfrxReportTitle
         FillType = ftBrush
         Frame.Typ = []
-        Height = 139.842610000000000000
+        Height = 143.622140000000000000
         Top = 18.897650000000000000
         Width = 718.110700000000000000
         object frxDBDataset_VendaItem_EmpresaID: TfrxMemoView
@@ -1284,13 +1286,13 @@ object viewPrincipal: TviewPrincipal
           AllowVectorExport = True
           Left = 7.559060000000000000
           Top = 109.606370000000000000
-          Width = 49.133890000000000000
+          Width = 154.960730000000000000
           Height = 18.897650000000000000
           DataSet = frxDBDataset_Empresa
           DataSetName = 'frxDBDataset_VendaItem_Empresa'
           Frame.Typ = []
           Memo.UTF8 = (
-            'DATE')
+            'Dta. Venda: [DATE]')
         end
         object frxDBDataset_VendaID: TfrxMemoView
           IndexTag = 1
@@ -1311,12 +1313,20 @@ object viewPrincipal: TviewPrincipal
             'Num. Venda [frxDBDataset_Venda."ID"]')
           ParentFont = False
         end
+        object Line1: TfrxLineView
+          AllowVectorExport = True
+          Left = 11.338590000000000000
+          Top = 136.063080000000000000
+          Width = 695.433520000000000000
+          Color = clBlack
+          Frame.Typ = [ftTop]
+        end
       end
       object MasterData1: TfrxMasterData
         FillType = ftBrush
         Frame.Typ = []
-        Height = 102.047310000000000000
-        Top = 272.126160000000000000
+        Height = 37.795300000000000000
+        Top = 275.905690000000000000
         Width = 718.110700000000000000
         DataSet = frxDBDataset_VendaItem
         DataSetName = 'frxDBDataset_VendaItem'
@@ -1425,7 +1435,7 @@ object viewPrincipal: TviewPrincipal
         FillType = ftBrush
         Frame.Typ = []
         Height = 30.236240000000000000
-        Top = 219.212740000000000000
+        Top = 222.992270000000000000
         Width = 718.110700000000000000
         object Memo2: TfrxMemoView
           IndexTag = 1
@@ -1526,9 +1536,29 @@ object viewPrincipal: TviewPrincipal
       object Footer1: TfrxFooter
         FillType = ftBrush
         Frame.Typ = []
-        Height = 22.677180000000000000
-        Top = 396.850650000000000000
+        Height = 52.913420000000000000
+        Top = 336.378170000000000000
         Width = 718.110700000000000000
+        object Memo7: TfrxMemoView
+          AllowVectorExport = True
+          Left = 468.661720000000000000
+          Top = 26.456710000000000000
+          Width = 238.110390000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.FormatStr = '%2.2m'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8 = (
+            
+              'Total da Venda : [SUM(<frxDBDataset_VendaItem."VALORTOTAL">,Mast' +
+              'erData1)]')
+          ParentFont = False
+        end
       end
     end
   end

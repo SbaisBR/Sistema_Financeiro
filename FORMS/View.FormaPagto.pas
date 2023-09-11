@@ -181,6 +181,12 @@ begin  //SAlvar
 
   ShowMessage('Dados salvos com sucesso.');
 
+//  ViewPrincipal.frxReport.PrepareReport()
+
+ // ViewPrincipal.frxReport.LoadFromFile('C:\Users\IMPLANTACAO-4\Documents\GitHub\Sistema_Financeiro\FORMS\FR3s\1-RECIBO_VENDA_PDV.fr3');
+  ViewPrincipal.frxReport.ShowReport();
+
+
   Self.ModalResult := mrOk;
 end;
 

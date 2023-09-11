@@ -315,7 +315,6 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 1
-    ExplicitTop = 509
     object pblBtnSalvar: TPanel
       Left = 760
       Top = 0
@@ -363,7 +362,6 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 2
-    ExplicitTop = 389
     object lblVenda: TLabel
       Left = 60
       Top = 24
@@ -490,7 +488,6 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 3
-    ExplicitHeight = 313
     object DBG_FormaPAGTO: TSuperGrid
       AlignWithMargins = True
       Left = 5
@@ -557,7 +554,6 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 4
-    ExplicitHeight = 313
     object DBG_FormaPAGTOEscolhidas: TSuperGrid
       AlignWithMargins = True
       Left = 5
