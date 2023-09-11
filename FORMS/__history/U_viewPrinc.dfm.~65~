@@ -11,6 +11,7 @@ object viewPrincipal: TviewPrincipal
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
+  OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
   OnResize = FormResize
   PixelsPerInch = 96
@@ -519,11 +520,15 @@ object viewPrincipal: TviewPrincipal
     Color = 3487029
     TabOrder = 2
     object lblAbreCaixa: TLabel
-      Left = 20
-      Top = 12
+      AlignWithMargins = True
+      Left = 10
+      Top = 15
       Width = 53
-      Height = 13
+      Height = 23
       Cursor = crHandPoint
+      Margins.Left = 10
+      Margins.Top = 15
+      Align = alLeft
       Caption = 'Abrir Caixa'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -532,14 +537,21 @@ object viewPrincipal: TviewPrincipal
       Font.Style = []
       ParentFont = False
       OnClick = lblAbreCaixaClick
+      ExplicitLeft = 20
+      ExplicitTop = 12
+      ExplicitHeight = 13
     end
     object lblFaturar: TLabel
-      Left = 108
-      Top = 12
-      Width = 36
-      Height = 19
+      AlignWithMargins = True
+      Left = 76
+      Top = 15
+      Width = 58
+      Height = 23
       Cursor = crHandPoint
-      Caption = 'Faturar'
+      Margins.Left = 10
+      Margins.Top = 15
+      Align = alLeft
+      Caption = 'Faturar - F5'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -11
@@ -547,6 +559,8 @@ object viewPrincipal: TviewPrincipal
       Font.Style = []
       ParentFont = False
       OnClick = lblFaturarClick
+      ExplicitTop = 10
+      ExplicitHeight = 13
     end
   end
   object pnlBackground: TPanel

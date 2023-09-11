@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, StdCtrls, jpeg, Grids, DBGrids, JvExDBGrids, JvDBGrid,
-  SuperGrid, FMTBcd, DBClient, Provider, DB, SqlExpr;
+  SuperGrid, FMTBcd, DBClient, Provider, DB, SqlExpr, Menus, frxClass;
 
 type
   TviewPrincipal = class(TForm)
@@ -80,6 +80,11 @@ type
     FMTBCDField4: TFMTBCDField;
     StringField1: TStringField;
     lblFaturar: TLabel;
+    PPM_Itens: TPopupMenu;
+    Deletartem1: TMenuItem;
+    frxReport: TfrxReport;
+    procedure cdsTBL_ItensBeforeDelete(DataSet: TDataSet);
+    procedure Deletartem1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure lblFaturarClick(Sender: TObject);
     procedure Timer_HoraTimer(Sender: TObject);
@@ -98,6 +103,7 @@ type
   private
     { Private declarations }
     var TOTAL_VENDA : Double;
+    procedure Somar_Venda;
   public
     { Public declarations }
   end;
@@ -114,17 +120,12 @@ uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo, View.FormaPagto,
 
 procedure TviewPrincipal.cdsTBL_ItensAfterPost(DataSet: TDataSet);
 begin //Somando
-  TOTAL_VENDA := 0;
+  Somar_Venda;
+end;
 
-  cdsTBL_Itens.DisableControls;
-  cdsTBL_Itens.First;
-  while not cdsTBL_Itens.Eof do
-  begin
-    TOTAL_VENDA := TOTAL_VENDA + cdsTBL_ItensVALORTOTAL.AsFloat;
-    cdsTbl_ITens.Next;
-  end;
-  cdsTBL_Itens.EnableControls;
-  edtTotalApagar.Text := FloatToStr(TOTAL_VENDA);
+procedure TviewPrincipal.cdsTBL_ItensBeforeDelete(DataSet: TDataSet);
+begin
+  Somar_Venda;
 end;
 
 procedure TviewPrincipal.DBG_produtosDrawColumnCell(Sender: TObject;
@@ -145,6 +146,12 @@ begin //Deixando a cor branca
     DBG_produtos.Canvas.FillRect(Rect);
     DBG_produtos.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2, Column.Field.DisplayText);
   end;
+end;
+
+procedure TviewPrincipal.Deletartem1Click(Sender: TObject);
+begin //Deçetando Item
+  cdsTBL_Itens.Delete;
+  edtCodBarras.setFocus;
 end;
 
 procedure TviewPrincipal.dtsTBL_ItensDataChange(Sender: TObject; Field: TField);
@@ -236,6 +243,20 @@ begin //Mouse enter
   imgLogoEmpresaAmarelo.Visible := True;
 end;
 
+procedure TviewPrincipal.Somar_Venda;
+begin //Somar Venda
+  TOTAL_VENDA := 0;
+  cdsTBL_Itens.DisableControls;
+  cdsTBL_Itens.First;
+  while not cdsTBL_Itens.Eof do
+  begin
+    TOTAL_VENDA := TOTAL_VENDA + cdsTBL_ItensVALORTOTAL.AsFloat;
+    cdsTbl_ITens.Next;
+  end;
+  cdsTBL_Itens.EnableControls;
+  edtTotalApagar.Text := FloatToStr(TOTAL_VENDA);
+end;
+
 procedure TviewPrincipal.lblAbreCaixaClick(Sender: TObject);
 begin //Abrir Caixa
   CriaForm(TviewAbrirCaixa, viewAbrirCaixa);
@@ -244,6 +265,9 @@ end;
 procedure TviewPrincipal.lblFaturarClick(Sender: TObject);
 var FiltroSalvo: string;
 begin //Faturamento
+
+  if cdsTBL_Itens.RecordCount < 1 then
+    abort;
 
 
   ViewFormaPagto := TViewFormaPagto.Create(Self);

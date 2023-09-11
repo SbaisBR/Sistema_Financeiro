@@ -537,8 +537,6 @@ object viewPrincipal: TviewPrincipal
       Font.Style = []
       ParentFont = False
       OnClick = lblAbreCaixaClick
-      ExplicitLeft = 20
-      ExplicitTop = 12
       ExplicitHeight = 13
     end
     object lblFaturar: TLabel
@@ -559,7 +557,6 @@ object viewPrincipal: TviewPrincipal
       Font.Style = []
       ParentFont = False
       OnClick = lblFaturarClick
-      ExplicitTop = 10
       ExplicitHeight = 13
     end
   end
@@ -877,6 +874,7 @@ object viewPrincipal: TviewPrincipal
         Font.Style = [fsBold]
         Options = [dgTitles, dgTabs, dgRowSelect, dgAlwaysShowSelection]
         ParentFont = False
+        PopupMenu = PPM_Itens
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -1069,6 +1067,7 @@ object viewPrincipal: TviewPrincipal
       end>
     ProviderName = 'dspTBL_Itens'
     AfterPost = cdsTBL_ItensAfterPost
+    BeforeDelete = cdsTBL_ItensBeforeDelete
     Left = 457
     Top = 64
     object cdsTBL_ItensCod_Item: TIntegerField
@@ -1169,5 +1168,34 @@ object viewPrincipal: TviewPrincipal
       FieldName = 'DESCRICAO'
       Size = 100
     end
+  end
+  object PPM_Itens: TPopupMenu
+    Left = 792
+    Top = 64
+    object Deletartem1: TMenuItem
+      Caption = 'Deletar '#205'tem'
+      OnClick = Deletartem1Click
+    end
+  end
+  object frxReport: TfrxReport
+    Version = '6.8.4'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 45180.382262349540000000
+    ReportOptions.LastChange = 45180.382262349540000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 864
+    Top = 64
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
 end

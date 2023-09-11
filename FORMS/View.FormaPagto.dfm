@@ -1,12 +1,12 @@
 inherited viewFormaPagto: TviewFormaPagto
   BorderStyle = bsNone
   Caption = 'viewFormaPagto'
-  ClientHeight = 550
+  ClientHeight = 543
   ClientWidth = 900
   Position = poOwnerFormCenter
   OnShow = FormShow
   ExplicitWidth = 900
-  ExplicitHeight = 550
+  ExplicitHeight = 543
   PixelsPerInch = 96
   TextHeight = 13
   object pnlTopo: TPanel
@@ -308,13 +308,14 @@ inherited viewFormaPagto: TviewFormaPagto
   end
   object pnlRodape: TPanel
     Left = 0
-    Top = 509
+    Top = 502
     Width = 900
     Height = 41
     Align = alBottom
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 1
+    ExplicitTop = 509
     object pblBtnSalvar: TPanel
       Left = 760
       Top = 0
@@ -351,7 +352,7 @@ inherited viewFormaPagto: TviewFormaPagto
   object pnlTotais: TPanel
     AlignWithMargins = True
     Left = 20
-    Top = 389
+    Top = 382
     Width = 860
     Height = 100
     Margins.Left = 20
@@ -362,6 +363,7 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 2
+    ExplicitTop = 389
     object lblVenda: TLabel
       Left = 60
       Top = 24
@@ -479,7 +481,7 @@ inherited viewFormaPagto: TviewFormaPagto
     Left = 20
     Top = 56
     Width = 245
-    Height = 313
+    Height = 306
     Margins.Left = 20
     Margins.Top = 20
     Margins.Right = 20
@@ -488,12 +490,13 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 3
+    ExplicitHeight = 313
     object DBG_FormaPAGTO: TSuperGrid
       AlignWithMargins = True
       Left = 5
       Top = 5
       Width = 235
-      Height = 303
+      Height = 296
       Margins.Left = 5
       Margins.Top = 5
       Margins.Right = 5
@@ -545,7 +548,7 @@ inherited viewFormaPagto: TviewFormaPagto
     Left = 285
     Top = 56
     Width = 595
-    Height = 313
+    Height = 306
     Margins.Left = 0
     Margins.Top = 20
     Margins.Right = 20
@@ -554,12 +557,13 @@ inherited viewFormaPagto: TviewFormaPagto
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 4
+    ExplicitHeight = 313
     object DBG_FormaPAGTOEscolhidas: TSuperGrid
       AlignWithMargins = True
       Left = 5
       Top = 5
       Width = 585
-      Height = 303
+      Height = 296
       Margins.Left = 5
       Margins.Top = 5
       Margins.Right = 5

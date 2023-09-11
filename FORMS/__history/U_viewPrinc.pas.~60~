@@ -80,6 +80,7 @@ type
     FMTBCDField4: TFMTBCDField;
     StringField1: TStringField;
     lblFaturar: TLabel;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure lblFaturarClick(Sender: TObject);
     procedure Timer_HoraTimer(Sender: TObject);
     procedure dtsTBL_ItensDataChange(Sender: TObject; Field: TField);
@@ -107,7 +108,7 @@ var
 implementation
 
 uses U_viewAbrirCaixa, service.cadastro, View.TelaFundo, View.FormaPagto,
-  providers.functions;
+  providers.functions, View_Mensagens;
 
 {$R *.dfm}
 
@@ -186,13 +187,21 @@ begin
       edtCodBarras.SetFocus;
     end
     else
-    ShowMessage('Nenhum produto encontrado com o código de barras especificado.');
+   TViewMensagens.Mensagem('Nenhum produto encontrado com o código de barras especificado.','Atenção','I',[mbOk]);
   end;
 end;
 
 procedure TviewPrincipal.edtQTDExit(Sender: TObject);
 begin
   edtCodBarras.SetFocus;
+end;
+
+procedure TviewPrincipal.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = VK_F5 then
+    lblFaturarClick(lblFaturar);
+  
 end;
 
 procedure TviewPrincipal.FormKeyPress(Sender: TObject; var Key: Char);
@@ -236,16 +245,26 @@ procedure TviewPrincipal.lblFaturarClick(Sender: TObject);
 var FiltroSalvo: string;
 begin //Faturamento
 
-  FiltroSalvo := sqlTbl_Itens.Filter;
 
   ViewFormaPagto := TViewFormaPagto.Create(Self);
   try
+    ViewFormaPagto.cdsTBL_ItensVendas.SetProvider(cdsTBL_Itens);
     ViewFormaPagto.ValorVenda := StrToFloatDef(edtTotalAPagar.Text, 0);
 
-    ViewFormaPagto.FiltroSalvo := FiltroSalvo;
+//    ViewFormaPagto.FiltroSalvo := FiltroSalvo;
 
     ViewTelaFundo.Show;
     ViewFormaPagto.ShowModal;
+
+    if ViewFormaPagto.ModalResult = mrOk then
+    begin
+      cdsTBL_itens.EmptyDataSet;
+      edtSubTotal.Clear;
+      edtTotalApagar.Clear;
+      edtCodBarras.SetFocus;
+    end;
+    
+
   finally
     ViewTelaFundo.Hide;
     FreeAndNil(ViewFormaPagto);
