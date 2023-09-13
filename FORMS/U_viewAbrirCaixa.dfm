@@ -6,7 +6,6 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlTopo: TPanel
-    ExplicitTop = -3
     inherited lblTitulo: TLabel
       Width = 97
       Height = 34
@@ -17,8 +16,6 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
   inherited pnlLinhaFundo: TPanel
     inherited Page_panelconteudo: TPageControl
       ActivePage = Card_pesquisar
-      ExplicitLeft = 0
-      ExplicitTop = -3
       inherited Card_cadastro: TTabSheet
         ExplicitLeft = 4
         ExplicitTop = 24
@@ -116,18 +113,42 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
         ExplicitWidth = 1030
         ExplicitHeight = 643
         inherited pnlFiltroPesquisa: TPanel
-          inherited pnlPesquisar: TPanel
-            inherited edtPesquisar: TEdit
-              ExplicitLeft = 5
-              ExplicitHeight = 34
-            end
-          end
           inherited pnlFiltro: TPanel
+            ExplicitTop = -3
             inherited lblPesquisa: TLabel
               Top = 15
               Margins.Top = 15
               ExplicitTop = 19
               ExplicitHeight = 18
+            end
+            object rdoAberto: TRadioButton
+              Left = 216
+              Top = 15
+              Width = 65
+              Height = 17
+              Caption = 'Aberto'
+              Checked = True
+              TabOrder = 0
+              TabStop = True
+              OnClick = rdoAbertoClick
+            end
+            object rdoFechado: TRadioButton
+              Left = 304
+              Top = 15
+              Width = 65
+              Height = 17
+              Caption = 'Fechado'
+              TabOrder = 1
+              OnClick = rdoAbertoClick
+            end
+            object rdoTodos: TRadioButton
+              Left = 400
+              Top = 15
+              Width = 65
+              Height = 17
+              Caption = 'Todos'
+              TabOrder = 2
+              OnClick = rdoAbertoClick
             end
           end
         end

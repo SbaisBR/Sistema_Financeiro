@@ -14,13 +14,18 @@ type
     lblVlrInicial: TLabel;
     lblOBS: TLabel;
     edOBS: TDBEdit;
+    cbxStatus: TDBComboBox;
+    rdoAberto: TRadioButton;
+    rdoFechado: TRadioButton;
+    rdoTodos: TRadioButton;
     procedure btnSalvarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
+    Var
+      STATUS : String;
   end;
 
 var
@@ -52,7 +57,19 @@ end;
 procedure TviewAbrirCaixa.FormShow(Sender: TObject);
 begin
   inherited;
+
+  if rdoAberto.Checked then
+    STATUS := 'ABERTO';
+
+  if rdoFechado.Checked then
+    STATUS := 'FECHADO1';
+
+  if rdoTodos.Checked then
+    STATUS := 'TODOS';
+
+  cdsAbreCaixa.Params[0].AsString := '';
   cdsAbreCaixa.Open;
+
   Card_cadastro.TabVisible := False;
   Card_Pesquisar.TabVisible := False;
   Page_panelconteudo.ActivePage := Card_Pesquisar;

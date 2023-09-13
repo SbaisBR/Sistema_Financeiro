@@ -43,7 +43,7 @@ procedure TviewAbrirCaixa.btnNovoClick(Sender: TObject);
 begin
   inherited;
   cdsAbreCaixaABR_DATAABERTURA.AsDateTime := Date;
-  cdsAbreCaixaABR_HRAABERTURA.AsDateTime := Time;
+  cdsAbreCaixaABR_HRAABERTURA.AsDateTime :=Time;
   cdsAbreCaixaABR_CODIGOUSUARIO.AsInteger :=1;
   cdsAbreCaixaABR_STATUS.AsString := 'ABERTO';
   edVlrIncial.SetFocus;
@@ -61,7 +61,7 @@ begin
   inherited;
   cdsAbreCaixa.Close;
   GET_status;
-  //cdsAbreCaixa.Params[0].AsString := '';
+  cdsAbreCaixa.Params[0].AsString := '';
   cdsAbreCaixa.Open;
 
   Card_cadastro.TabVisible := False;
@@ -88,16 +88,18 @@ begin
   if rdoTodos.Checked then
   begin
     cdsAbreCaixa.Close;
-    sqlAbreCaixa.CommandText := ('SELECT * FROM abrecaixa order by 1');
-    cdsAbreCaixa.Open;
+    sqlAbreCaixa.CommandText('SELECT * FROM abrecaixa order by 1');
+    cdsAbreCaixa.Open
   end
   else begin
+
     cdsAbreCaixa.Close;
-    sqlAbreCaixa.CommandText := ('SELECT * FROM abrecaixa where abr_status = :status');
+    sqlAbreCaixa.CommandText('SELECT * FROM abrecaixa where abr_status = :status');
     cdsAbreCaixa.Open;
-    //cdsAbreCaixa.Params[0].AsString := STATUS;
+    cdsAbreCaixa.Params[0].AsString := STATUS;
   end;
-  cdsAbreCaixa.Open;
+  cdsAbreCaixa.Open
+
 end;
 
 end.
