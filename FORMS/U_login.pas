@@ -97,7 +97,7 @@ procedure TFrmlogin.FormKeyDown(Sender: TObject; var Key: Word;
 begin
   if Key = vk_escape then
   begin
-    Close
+    Close;
   end;
 end;
 

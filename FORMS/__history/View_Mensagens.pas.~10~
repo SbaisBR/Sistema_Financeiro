@@ -23,7 +23,6 @@ type
     imgAlert: TImage;
     imgInfo: TImage;
     imgError: TImage;
-    procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure btnOkClick(Sender: TObject);
     procedure btnNaoClick(Sender: TObject);
     procedure btnSimClick(Sender: TObject);
@@ -60,15 +59,6 @@ procedure TViewMensagens.btnSimClick(Sender: TObject);
 begin //Sim
   inherited;
   Self.ModalResult := mrYes;
-end;
-
-procedure TViewMensagens.FormKeyPress(Sender: TObject; var Key: Char);
-begin
-  inherited;
-  if key = #13 then
-  begin
-    btnOk.Click;
-  end;
 end;
 
 class function TViewMensagens.Mensagem(Texto, Titulo: String; Tipo: Char;

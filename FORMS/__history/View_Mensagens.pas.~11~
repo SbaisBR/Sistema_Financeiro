@@ -23,6 +23,7 @@ type
     imgAlert: TImage;
     imgInfo: TImage;
     imgError: TImage;
+    procedure FormShow(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure btnOkClick(Sender: TObject);
     procedure btnNaoClick(Sender: TObject);
@@ -69,6 +70,13 @@ begin
   begin
     btnOk.Click;
   end;
+end;
+
+procedure TViewMensagens.FormShow(Sender: TObject);
+begin
+  inherited;
+
+   ViewMensagens.SetFocus;
 end;
 
 class function TViewMensagens.Mensagem(Texto, Titulo: String; Tipo: Char;

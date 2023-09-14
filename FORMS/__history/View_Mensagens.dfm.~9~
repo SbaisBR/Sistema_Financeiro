@@ -4,8 +4,6 @@ inherited ViewMensagens: TViewMensagens
   ClientHeight = 150
   ClientWidth = 854
   Position = poMainFormCenter
-  OnKeyDown = nil
-  OnKeyPress = FormKeyPress
   ExplicitWidth = 854
   ExplicitHeight = 150
   PixelsPerInch = 96
@@ -55,6 +53,8 @@ inherited ViewMensagens: TViewMensagens
       BevelOuter = bvNone
       Color = clWhite
       TabOrder = 1
+      ExplicitLeft = 6
+      ExplicitTop = 118
       object btnOk: TSpeedButton
         Left = 619
         Top = 0
@@ -123,16 +123,8 @@ inherited ViewMensagens: TViewMensagens
       Align = alClient
       BevelInner = bvNone
       BorderStyle = bsNone
-      Enabled = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
       ReadOnly = True
       TabOrder = 2
-      OnKeyPress = FormKeyPress
     end
   end
   object pnlImagens: TPanel

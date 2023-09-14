@@ -74,7 +74,7 @@ begin
   if rdoAberto.Checked then
     STATUS := 'ABERTO';
   if rdoFechado.Checked then
-    STATUS := 'FECHADO1';
+    STATUS := 'FECHADO';
   if rdoTodos.Checked then
     STATUS := 'TODOS';
 end;

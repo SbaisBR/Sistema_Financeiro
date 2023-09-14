@@ -12,13 +12,15 @@ type
     edNome: TEdit;
     Label1: TLabel;
     edSenha: TEdit;
-    BitBtn1: TBitBtn;
+    btnOk: TBitBtn;
     Image1: TImage;
-    BitBtn2: TBitBtn;
+    btnCanc: TBitBtn;
     Bevel1: TBevel;
+    procedure edNomeKeyPress(Sender: TObject; var Key: Char);
+    procedure edSenhaKeyPress(Sender: TObject; var Key: Char);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+    procedure btnOkClick(Sender: TObject);
+    procedure btnCancClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormCreate(Sender: TObject);
   private
@@ -32,11 +34,11 @@ var
 
 implementation
 
-uses dm, Menu;
+uses dm, Menu, View_Mensagens;
 
 {$R *.dfm}
 
-procedure TFrmlogin.BitBtn1Click(Sender: TObject);
+procedure TFrmlogin.btnOkClick(Sender: TObject);
 begin
   //Validação de login, pesquisa de login no banco de  dados.
   Conexao.cdsLogin.close;
@@ -45,8 +47,9 @@ begin
   if Conexao.cdsLogin.Locate('NOME',edNome.Text,[]) and dm.Conexao.cdsLogin.Locate ('SENHA', edSenha.Text,[]) then
   begin
     //Trazendo variaveis USUARIO E TIPO
-    //Conexao.Usuario := edNome.Text;
-    //Conexao.TIPO := dm.cdsUsuarioTIPO.AsString;
+    Conexao.Usuario := edNome.Text;
+    Conexao.TIPO := Conexao.cdsUsuarioTIPO.AsString;
+    FrmLogin.Visible := False;
     FrmMenu := TFrmMenu.Create(nil);
     FrmMenu.Show;
   end
@@ -54,7 +57,7 @@ begin
   else
   begin
     //msg('Usuario incorreto','Porfavor verifique as informações');
-    MessageDlg('Usuario incorreto, porfavor verifique as informações', MTINFORMATION, [MBOK], 0);
+    TViewMensagens.Mensagem('Usuario incorreto, porfavor verifique as informações','Atenção','I',[MBOK]);
     edNome.Clear;
     edSenha.Clear;
     edNome.SetFocus;
@@ -62,7 +65,24 @@ begin
   end;
 end;
 
-procedure TFrmlogin.BitBtn2Click(Sender: TObject);
+procedure TFrmlogin.edNomeKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key:=#0;
+    Perform(wm_NextDlgCtl,0,0);
+  end;
+end;
+
+procedure TFrmlogin.edSenhaKeyPress(Sender: TObject; var Key: Char);
+begin
+  if key = #13 then
+  begin
+    btnOk.Click;
+  end;
+end;
+
+procedure TFrmlogin.btnCancClick(Sender: TObject);
 begin
   Application.Terminate;
 end;
