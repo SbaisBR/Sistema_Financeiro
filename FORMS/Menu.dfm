@@ -2993,7 +2993,7 @@ object FrmMenu: TFrmMenu
       BevelOuter = bvNone
       Color = 4079682
       TabOrder = 2
-      object imgUser: TImage
+      object imgUserP: TImage
         Left = 49
         Top = 3
         Width = 125
@@ -3679,7 +3679,7 @@ object FrmMenu: TFrmMenu
           FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFF
           FF000000}
         Stretch = True
-        OnClick = imgUserClick
+        OnClick = imgUserPClick
       end
     end
   end

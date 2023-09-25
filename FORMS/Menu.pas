@@ -41,7 +41,7 @@ type
     Panel4: TPanel;
     lblTituloEmpresa: TLabel;
     pnlUser: TPanel;
-    imgUser: TImage;
+    imgUserP: TImage;
     sbCaixa: TJvSpeedButton;
     procedure sbCaixaClick(Sender: TObject);
     procedure Action4Execute(Sender: TObject);
@@ -49,7 +49,7 @@ type
     procedure Action2Execute(Sender: TObject);
     procedure AcCliExecute(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure imgUserClick(Sender: TObject);
+    procedure imgUserPClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure lblTituloEmpresaMouseLeave(Sender: TObject);
     procedure lblTituloEmpresaMouseEnter(Sender: TObject);
@@ -158,7 +158,7 @@ begin
   pnlShapeMenu.Repaint;
 end;
 
-procedure TFrmMenu.imgUserClick(Sender: TObject);
+procedure TFrmMenu.imgUserPClick(Sender: TObject);
 begin
   frmUser := TFrmUser.Create(nil);
   frmUser.ShowModal;

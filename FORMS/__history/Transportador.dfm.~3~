@@ -22,6 +22,7 @@ object FrmTransportador: TFrmTransportador
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
+    ExplicitWidth = 680
     object Image1: TImage
       Left = 903
       Top = 0
@@ -293,8 +294,16 @@ object FrmTransportador: TFrmTransportador
     ActivePage = Consulta
     Align = alClient
     TabOrder = 1
+    ExplicitLeft = -356
+    ExplicitTop = -46
+    ExplicitWidth = 1036
+    ExplicitHeight = 646
     object Consulta: TTabSheet
       Caption = 'Consulta'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object SgConsulta: TSuperGrid
         Left = 0
         Top = 63
@@ -372,11 +381,16 @@ object FrmTransportador: TFrmTransportador
         TabOrder = 0
         TabStop = True
         SuperGrid = SgConsulta
+        ExplicitWidth = 1161
       end
     end
     object Cadastro: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 381
@@ -385,6 +399,8 @@ object FrmTransportador: TFrmTransportador
         Align = alBottom
         Color = 14869218
         TabOrder = 0
+        ExplicitTop = 384
+        ExplicitWidth = 672
         object btInserir: TBitBtn
           Left = 11
           Top = 6
@@ -451,6 +467,7 @@ object FrmTransportador: TFrmTransportador
         Color = 14869218
         ParentColor = False
         TabOrder = 1
+        ExplicitWidth = 1028
         object Label15: TLabel
           Left = 12
           Top = 35
@@ -613,6 +630,7 @@ object FrmTransportador: TFrmTransportador
         Align = alTop
         Color = 14869218
         TabOrder = 2
+        ExplicitWidth = 1161
         object Label1: TLabel
           Left = 12
           Top = 3
@@ -817,6 +835,8 @@ object FrmTransportador: TFrmTransportador
         Align = alClient
         Color = 14869218
         TabOrder = 3
+        ExplicitWidth = 672
+        ExplicitHeight = 137
       end
     end
   end
