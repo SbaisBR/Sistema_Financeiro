@@ -1,9 +1,9 @@
 object Frmlogin: TFrmlogin
   Left = 0
   Top = 0
-  Caption = 'Frmlogin'
-  ClientHeight = 262
-  ClientWidth = 607
+  BorderStyle = bsNone
+  ClientHeight = 261
+  ClientWidth = 623
   Color = clSilver
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,6 +11,7 @@ object Frmlogin: TFrmlogin
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesktopCenter
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
@@ -2112,7 +2113,9 @@ object Frmlogin: TFrmlogin
     Top = 72
     Width = 249
     Height = 21
+    CharCase = ecUpperCase
     TabOrder = 0
+    OnKeyPress = edNomeKeyPress
   end
   object edSenha: TEdit
     Left = 24
@@ -2121,6 +2124,7 @@ object Frmlogin: TFrmlogin
     Height = 21
     PasswordChar = '*'
     TabOrder = 1
+    OnKeyPress = edSenhaKeyPress
   end
   object btnOk: TBitBtn
     Left = 48
@@ -2130,7 +2134,6 @@ object Frmlogin: TFrmlogin
     Caption = '&Ok'
     TabOrder = 2
     OnClick = btnOkClick
-    OnKeyPress = btnOkKeyPress
     Glyph.Data = {
       36040000424D3604000000000000360000002800000010000000100000000100
       2000000000000004000000000000000000000000000000000000FF00FF00FF00

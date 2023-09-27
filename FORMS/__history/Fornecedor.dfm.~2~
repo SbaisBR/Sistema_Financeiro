@@ -22,6 +22,7 @@ object FrmFornecedor: TFrmFornecedor
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
+    ExplicitWidth = 751
     object Image1: TImage
       Left = 859
       Top = 0
@@ -293,8 +294,16 @@ object FrmFornecedor: TFrmFornecedor
     ActivePage = Consulta
     Align = alClient
     TabOrder = 1
+    ExplicitLeft = -418
+    ExplicitTop = -200
+    ExplicitWidth = 1169
+    ExplicitHeight = 633
     object Consulta: TTabSheet
       Caption = 'Consulta'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object SgConsulta: TSuperGrid
         Left = 0
         Top = 63
@@ -372,11 +381,16 @@ object FrmFornecedor: TFrmFornecedor
         TabOrder = 0
         TabStop = True
         SuperGrid = SgConsulta
+        ExplicitWidth = 1161
       end
     end
     object Cadastro: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 495
@@ -385,6 +399,8 @@ object FrmFornecedor: TFrmFornecedor
         Align = alBottom
         Color = 14869218
         TabOrder = 0
+        ExplicitTop = 217
+        ExplicitWidth = 743
         object btInserir: TBitBtn
           Left = 11
           Top = 6
@@ -451,6 +467,7 @@ object FrmFornecedor: TFrmFornecedor
         Color = 14869218
         ParentColor = False
         TabOrder = 1
+        ExplicitWidth = 1161
         object Label15: TLabel
           Left = 12
           Top = 35
@@ -613,6 +630,7 @@ object FrmFornecedor: TFrmFornecedor
         Align = alTop
         Color = 14869218
         TabOrder = 2
+        ExplicitWidth = 1161
         object Label1: TLabel
           Left = 12
           Top = 3
@@ -817,110 +835,9 @@ object FrmFornecedor: TFrmFornecedor
         Align = alClient
         Color = 14869218
         TabOrder = 3
+        ExplicitWidth = 743
+        ExplicitHeight = 235
       end
     end
-  end
-  object sqlConsulta: TSQLDataSet
-    SchemaName = 'sysdba'
-    CommandText = 
-      'Select'#13#10'      C.*,E.cidade,E.estado, E.endereco, E.numero,E.bair' +
-      'ro,E.CEP,'#39'('#39' || C.DDD || '#39')'#39' || C.telefone AS TELEFONE_COMP'#13#10' Fr' +
-      'om CADCLIENTE C'#13#10'Left Join cadcliente_endereco E on (E.id_client' +
-      'e = C.id and e.tipo_end = '#39'(Padr'#227'o)'#39')'#13#10'where C.id is not null'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = Conexao.Conexao
-    Left = 192
-    Top = 8
-  end
-  object dspConsulta: TDataSetProvider
-    DataSet = sqlConsulta
-    Left = 224
-    Top = 8
-  end
-  object cdsConsulta: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspConsulta'
-    Left = 257
-    Top = 8
-    object cdsConsultaID: TIntegerField
-      FieldName = 'ID'
-    end
-    object cdsConsultaRAZAOSOCIAL: TStringField
-      FieldName = 'RAZAOSOCIAL'
-      Size = 100
-    end
-    object cdsConsultaFANTASIA: TStringField
-      FieldName = 'FANTASIA'
-      Size = 50
-    end
-    object cdsConsultaTELEFONE_COMP: TStringField
-      FieldName = 'TELEFONE_COMP'
-      Size = 24
-    end
-    object cdsConsultaCIDADE: TStringField
-      FieldName = 'CIDADE'
-      Size = 50
-    end
-    object cdsConsultaCNPJ: TStringField
-      FieldName = 'CNPJ'
-      EditMask = '00.000.000/0000-00;0;'
-      FixedChar = True
-      Size = 14
-    end
-    object cdsConsultaESTADO: TStringField
-      FieldName = 'ESTADO'
-      FixedChar = True
-      Size = 2
-    end
-    object cdsConsultaENDERECO: TStringField
-      FieldName = 'ENDERECO'
-      Size = 60
-    end
-    object cdsConsultaNUMERO: TStringField
-      FieldName = 'NUMERO'
-      Size = 10
-    end
-    object cdsConsultaBAIRRO: TStringField
-      FieldName = 'BAIRRO'
-      Size = 50
-    end
-    object cdsConsultaCEP: TStringField
-      FieldName = 'CEP'
-      FixedChar = True
-      Size = 8
-    end
-  end
-  object dtsConsulta: TDataSource
-    DataSet = cdsConsulta
-    Left = 304
-    Top = 8
-  end
-  object Lock: TLock
-    Tag = 9
-    Enabled = False
-    AlterarCor = True
-    ColorEdit = 13041663
-    Left = 385
-    Top = 8
-  end
-  object JvFormStorage: TJvFormStorage
-    Active = False
-    AppStoragePath = 'frmCliente\'
-    StoredValues = <>
-    Left = 782
-    Top = 18
-  end
-  object JvAppIniFileStorage: TJvAppIniFileStorage
-    StorageOptions.BooleanStringTrueValues = 'TRUE, YES, Y'
-    StorageOptions.BooleanStringFalseValues = 'FALSE, NO, N'
-    AutoFlush = True
-    AutoReload = True
-    FileName = 'estado.ini'
-    FlushOnDestroy = False
-    SubStorages = <>
-    Left = 822
-    Top = 18
   end
 end

@@ -5,9 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, jpeg, ExtCtrls, DBCtrls, JvExStdCtrls, JvDBCombobox, Mask,
-  Buttons, gbFiltro, Grids, DBGrids, JvExDBGrids, JvDBGrid, SuperGrid, ComCtrls,
-  FMTBcd, JvAppStorage, JvAppIniStorage, JvComponentBase, JvFormPlacement, Lock,
-  DB, DBClient, Provider, SqlExpr;
+  Buttons, gbFiltro, Grids, DBGrids, JvExDBGrids, JvDBGrid, SuperGrid, ComCtrls;
 
 type
   TFrmFornecedor = class(TForm)
@@ -66,24 +64,6 @@ type
     edDDD: TDBEdit;
     edDDD2: TDBEdit;
     Panel4: TPanel;
-    sqlConsulta: TSQLDataSet;
-    dspConsulta: TDataSetProvider;
-    cdsConsulta: TClientDataSet;
-    cdsConsultaID: TIntegerField;
-    cdsConsultaRAZAOSOCIAL: TStringField;
-    cdsConsultaFANTASIA: TStringField;
-    cdsConsultaTELEFONE_COMP: TStringField;
-    cdsConsultaCIDADE: TStringField;
-    cdsConsultaCNPJ: TStringField;
-    cdsConsultaESTADO: TStringField;
-    cdsConsultaENDERECO: TStringField;
-    cdsConsultaNUMERO: TStringField;
-    cdsConsultaBAIRRO: TStringField;
-    cdsConsultaCEP: TStringField;
-    dtsConsulta: TDataSource;
-    Lock: TLock;
-    JvFormStorage: TJvFormStorage;
-    JvAppIniFileStorage: TJvAppIniFileStorage;
   private
     { Private declarations }
   public
