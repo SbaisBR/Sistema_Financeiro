@@ -111,7 +111,6 @@ type
     cdsConsultaBAIRRO: TStringField;
     cdsConsultaIM: TStringField;
     cdsConsultaTRANSPORTADORA: TStringField;
-    procedure cdsConsultaAfterScroll(DataSet: TDataSet);
     procedure SgConsultaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
@@ -127,16 +126,6 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TFrmTransportador.cdsConsultaAfterScroll(DataSet: TDataSet);
-begin
-  if Cadastro.Visible then
-  begin
-   { cdsCadCliente.Close;
-    cdsCadCliente.Params.ParamByName('ID').Value := cdsConsultaID.Value;
-    cdsCadCliente.Open; }
-  end;
-end;
 
 procedure TFrmTransportador.FormCreate(Sender: TObject);
 begin

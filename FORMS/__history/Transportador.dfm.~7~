@@ -311,7 +311,6 @@ object FrmTransportador: TFrmTransportador
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
-        OnKeyDown = SgConsultaKeyDown
         TitleButtons = True
         SelectColumnsDialogStrings.Caption = 'Select columns'
         SelectColumnsDialogStrings.OK = '&OK'
@@ -324,11 +323,8 @@ object FrmTransportador: TFrmTransportador
           item
             Expanded = False
             FieldName = 'ID'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'DDD'
+            Title.Caption = 'C'#243'digo'
+            Width = 40
             Visible = True
           end
           item
@@ -339,16 +335,33 @@ object FrmTransportador: TFrmTransportador
           item
             Expanded = False
             FieldName = 'CNPJ'
+            Title.Caption = 'CPF/CNPJ'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'TELEFONE'
+            FieldName = 'TELEFONE_COMP'
+            Title.Caption = 'TELEFONE'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ESTADO'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'CIDADE'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'BAIRRO'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'NUMERO'
             Visible = True
           end>
       end
@@ -362,7 +375,6 @@ object FrmTransportador: TFrmTransportador
         TabOrder = 0
         TabStop = True
         SuperGrid = SgConsulta
-        ExplicitTop = -6
       end
     end
     object Cadastro: TTabSheet
@@ -834,7 +846,6 @@ object FrmTransportador: TFrmTransportador
     Top = 8
   end
   object dtsConsulta: TDataSource
-    DataSet = cdsConsulta
     Left = 304
     Top = 8
   end
@@ -868,7 +879,6 @@ object FrmTransportador: TFrmTransportador
     Aggregates = <>
     Params = <>
     ProviderName = 'dspConsulta'
-    AfterScroll = cdsConsultaAfterScroll
     Left = 260
     Top = 8
     object cdsConsultaID: TIntegerField

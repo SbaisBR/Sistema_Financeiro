@@ -132,9 +132,9 @@ procedure TFrmTransportador.cdsConsultaAfterScroll(DataSet: TDataSet);
 begin
   if Cadastro.Visible then
   begin
-   { cdsCadCliente.Close;
+    cdsCadCliente.Close;
     cdsCadCliente.Params.ParamByName('ID').Value := cdsConsultaID.Value;
-    cdsCadCliente.Open; }
+    cdsCadCliente.Open;
   end;
 end;
 

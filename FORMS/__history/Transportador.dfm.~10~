@@ -328,27 +328,8 @@ object FrmTransportador: TFrmTransportador
           end
           item
             Expanded = False
-            FieldName = 'DDD'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'FANTASIA'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'CNPJ'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'TELEFONE'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'CIDADE'
+            FieldName = 'TRANSPORTADORA_FANTASIA'
+            Width = 144
             Visible = True
           end>
       end
@@ -834,7 +815,6 @@ object FrmTransportador: TFrmTransportador
     Top = 8
   end
   object dtsConsulta: TDataSource
-    DataSet = cdsConsulta
     Left = 304
     Top = 8
   end

@@ -1,6 +1,6 @@
 object viewPrincipal: TviewPrincipal
-  Left = 0
-  Top = 0
+  Left = 219
+  Top = 132
   ClientHeight = 731
   ClientWidth = 1291
   Color = clBtnFace
@@ -11,6 +11,7 @@ object viewPrincipal: TviewPrincipal
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
+  Position = poDesigned
   OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
   OnResize = FormResize
