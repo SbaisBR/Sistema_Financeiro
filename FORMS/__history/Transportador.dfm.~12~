@@ -1,6 +1,6 @@
 object FrmTransportador: TFrmTransportador
-  Left = 411
-  Top = 77
+  Left = 0
+  Top = 0
   Caption = 'Transportador'
   ClientHeight = 597
   ClientWidth = 1080
@@ -11,7 +11,6 @@ object FrmTransportador: TFrmTransportador
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesigned
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -24,6 +23,7 @@ object FrmTransportador: TFrmTransportador
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
+    ExplicitTop = -6
     object Image1: TImage
       Left = 903
       Top = 0
@@ -362,6 +362,7 @@ object FrmTransportador: TFrmTransportador
         TabOrder = 0
         TabStop = True
         SuperGrid = SgConsulta
+        ExplicitTop = -6
       end
     end
     object Cadastro: TTabSheet

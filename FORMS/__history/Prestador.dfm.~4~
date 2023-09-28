@@ -1,6 +1,6 @@
 object FrmPrestador: TFrmPrestador
-  Left = 549
-  Top = 231
+  Left = 0
+  Top = 0
   Caption = 'Prestador'
   ClientHeight = 671
   ClientWidth = 1061
@@ -11,7 +11,6 @@ object FrmPrestador: TFrmPrestador
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesigned
   OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 13
@@ -349,6 +348,10 @@ object FrmPrestador: TFrmPrestador
     object Cadastro: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel3: TPanel
         Left = 0
         Top = 455
@@ -490,7 +493,7 @@ object FrmPrestador: TFrmPrestador
           Height = 21
           DataField = 'ESTADO'
           Enabled = False
-          ItemHeight = 13
+          ItemHeight = 0
           TabOrder = 0
         end
         object DBEdit1: TDBEdit
@@ -659,7 +662,7 @@ object FrmPrestador: TFrmPrestador
           Height = 21
           DataField = 'TIPOPESSOA'
           Enabled = False
-          ItemHeight = 13
+          ItemHeight = 0
           Items.Strings = (
             'Pessoa Fisica'
             'Pessoa Jur'#237'dica'

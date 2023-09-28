@@ -68,48 +68,22 @@ type
     Panel4: TPanel;
     sqlConsulta: TSQLDataSet;
     dspConsulta: TDataSetProvider;
+    cdsConsulta: TClientDataSet;
+    cdsConsultaID: TIntegerField;
+    cdsConsultaRAZAOSOCIAL: TStringField;
+    cdsConsultaFANTASIA: TStringField;
+    cdsConsultaTELEFONE_COMP: TStringField;
+    cdsConsultaCIDADE: TStringField;
+    cdsConsultaCNPJ: TStringField;
+    cdsConsultaESTADO: TStringField;
+    cdsConsultaENDERECO: TStringField;
+    cdsConsultaNUMERO: TStringField;
+    cdsConsultaBAIRRO: TStringField;
+    cdsConsultaCEP: TStringField;
     dtsConsulta: TDataSource;
     Lock: TLock;
     JvFormStorage: TJvFormStorage;
     JvAppIniFileStorage: TJvAppIniFileStorage;
-    cdsConsulta: TClientDataSet;
-    cdsConsultaID: TIntegerField;
-    cdsConsultaID_TIPO: TIntegerField;
-    cdsConsultaFANTASIA: TStringField;
-    cdsConsultaRAZAOSOCIAL: TStringField;
-    cdsConsultaCNPJ: TStringField;
-    cdsConsultaIE: TStringField;
-    cdsConsultaDDD: TStringField;
-    cdsConsultaTELEFONE: TStringField;
-    cdsConsultaDDD2: TStringField;
-    cdsConsultaTELEFONE2: TStringField;
-    cdsConsultaDDDFAX: TStringField;
-    cdsConsultaFAX: TStringField;
-    cdsConsultaSITE: TStringField;
-    cdsConsultaDATACAD: TDateField;
-    cdsConsultaDATAFUND: TDateField;
-    cdsConsultaBLOQUEIO: TDateField;
-    cdsConsultaINATIVO: TDateField;
-    cdsConsultaUSUARIO: TIntegerField;
-    cdsConsultaPESSOAFISICA: TStringField;
-    cdsConsultaOBS: TStringField;
-    cdsConsultaCONDPAGTO: TStringField;
-    cdsConsultaID_TRANSPORTADORA: TIntegerField;
-    cdsConsultaMODFRETE: TStringField;
-    cdsConsultaSUFRAMA: TStringField;
-    cdsConsultaTRANSPORTADORA_FANTASIA: TStringField;
-    cdsConsultaCIDADE: TStringField;
-    cdsConsultaESTADO: TStringField;
-    cdsConsultaTIPO: TStringField;
-    cdsConsultaCONTATO: TStringField;
-    cdsConsultaEMAIL: TStringField;
-    cdsConsultaID_EMP: TIntegerField;
-    cdsConsultaENDERECO: TStringField;
-    cdsConsultaNUMERO: TStringField;
-    cdsConsultaCEP: TStringField;
-    cdsConsultaBAIRRO: TStringField;
-    cdsConsultaIM: TStringField;
-    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -122,10 +96,5 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TFrmFornecedor.FormCreate(Sender: TObject);
-begin
-  cdsConsulta.Open;
-end;
 
 end.

@@ -1,6 +1,6 @@
 object FrmPrestador: TFrmPrestador
-  Left = 549
-  Top = 231
+  Left = 343
+  Top = 0
   Caption = 'Prestador'
   ClientHeight = 671
   ClientWidth = 1061

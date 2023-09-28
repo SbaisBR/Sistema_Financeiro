@@ -1,6 +1,6 @@
 object FrmCliente: TFrmCliente
-  Left = 0
-  Top = 0
+  Left = 411
+  Top = 77
   Caption = 'Cliente'
   ClientHeight = 698
   ClientWidth = 1169
@@ -11,6 +11,7 @@ object FrmCliente: TFrmCliente
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnCreate = FormCreate
   OnKeyPress = FormKeyPress
   PixelsPerInch = 96

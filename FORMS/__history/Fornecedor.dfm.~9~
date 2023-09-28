@@ -1,9 +1,9 @@
-object FrmTransportador: TFrmTransportador
-  Left = 411
-  Top = 77
-  Caption = 'Transportador'
-  ClientHeight = 597
-  ClientWidth = 1080
+object FrmFornecedor: TFrmFornecedor
+  Left = 823
+  Top = 231
+  Caption = 'Fornecedor'
+  ClientHeight = 711
+  ClientWidth = 1036
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,14 +18,14 @@ object FrmTransportador: TFrmTransportador
   object Panel2: TPanel
     Left = 0
     Top = 0
-    Width = 1080
+    Width = 1036
     Height = 65
     Align = alTop
     BevelOuter = bvNone
     Color = 4079682
     TabOrder = 0
     object Image1: TImage
-      Left = 903
+      Left = 859
       Top = 0
       Width = 177
       Height = 65
@@ -273,9 +273,9 @@ object FrmTransportador: TFrmTransportador
     object lbTitulo: TLabel
       Left = 4
       Top = 0
-      Width = 159
+      Width = 124
       Height = 25
-      Caption = 'Transportador'
+      Caption = 'Fornecedor'
       Color = clBtnFace
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -290,8 +290,8 @@ object FrmTransportador: TFrmTransportador
   object pgcCliente: TPageControl
     Left = 0
     Top = 65
-    Width = 1080
-    Height = 532
+    Width = 1036
+    Height = 646
     ActivePage = Consulta
     Align = alClient
     TabOrder = 1
@@ -300,10 +300,9 @@ object FrmTransportador: TFrmTransportador
       object SgConsulta: TSuperGrid
         Left = 0
         Top = 63
-        Width = 1072
-        Height = 441
+        Width = 1028
+        Height = 555
         Align = alClient
-        DataSource = dtsConsulta
         FixedColor = 11516371
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
@@ -311,7 +310,6 @@ object FrmTransportador: TFrmTransportador
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
-        OnKeyDown = SgConsultaKeyDown
         TitleButtons = True
         SelectColumnsDialogStrings.Caption = 'Select columns'
         SelectColumnsDialogStrings.OK = '&OK'
@@ -324,11 +322,13 @@ object FrmTransportador: TFrmTransportador
           item
             Expanded = False
             FieldName = 'ID'
+            Title.Caption = 'C'#243'digo'
+            Width = 40
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'DDD'
+            FieldName = 'RAZAOSOCIAL'
             Visible = True
           end
           item
@@ -339,23 +339,34 @@ object FrmTransportador: TFrmTransportador
           item
             Expanded = False
             FieldName = 'CNPJ'
+            Title.Caption = 'CPF/CNPJ'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'TELEFONE'
+            FieldName = 'ESTADO'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'CIDADE'
             Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'BAIRRO'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'NUMERO'
+            Visible = True
           end>
       end
       object gbFiltro1: TgbFiltro
         Left = 0
         Top = 0
-        Width = 1072
+        Width = 1028
         Height = 63
         Align = alTop
         Caption = 'Filtrar'
@@ -369,8 +380,8 @@ object FrmTransportador: TFrmTransportador
       ImageIndex = 1
       object Panel1: TPanel
         Left = 0
-        Top = 381
-        Width = 1072
+        Top = 495
+        Width = 1028
         Height = 123
         Align = alBottom
         Color = 14869218
@@ -434,7 +445,7 @@ object FrmTransportador: TFrmTransportador
       object GroupBox1: TGroupBox
         Left = 0
         Top = 94
-        Width = 1072
+        Width = 1028
         Height = 153
         Align = alTop
         Caption = 'Endere'#231'o'
@@ -598,7 +609,7 @@ object FrmTransportador: TFrmTransportador
       object Panel3: TPanel
         Left = 0
         Top = 0
-        Width = 1072
+        Width = 1028
         Height = 94
         Align = alTop
         Color = 14869218
@@ -802,8 +813,8 @@ object FrmTransportador: TFrmTransportador
       object Panel4: TPanel
         Left = 0
         Top = 247
-        Width = 1072
-        Height = 134
+        Width = 1028
+        Height = 248
         Align = alClient
         Color = 14869218
         TabOrder = 3
@@ -813,14 +824,14 @@ object FrmTransportador: TFrmTransportador
   object sqlConsulta: TSQLDataSet
     SchemaName = 'sysdba'
     CommandText = 
-      'select'#13#10' C.*, CO.CONTATO, CO.EMAIL, E.CIDADE, E.ESTADO,E.ENDEREC' +
+      'select'#13#10'C.*, CO.CONTATO, CO.EMAIL, E.CIDADE, E.ESTADO, E.ENDEREC' +
       'O, E.NUMERO,E.BAIRRO, E.CEP, TP.TIPO, P.FANTASIA as TRANSPORTADO' +
-      'RA_FANTASIA'#13#10' from CADPRESTADOR C'#13#10'left join CADPRESTADOR_CONTAT' +
-      'O CO on (CO.ID_PRESTADOR = C.ID and CO.PADRAO = '#39'X'#39')'#13#10'left join ' +
-      'CADPRESTADOR_ENDERECO E on (E.ID_PRESTADOR = C.ID and E.TIPO_END' +
-      ' = '#39'(Padr'#227'o)'#39')'#13#10'left join  CADTIPOPRESTADOR TP on TP.ID = C.ID_T' +
-      'IPO'#13#10'left join CADPRESTADOR P on P.ID = C.ID_TRANSPORTADORA'#13#10'WhE' +
-      'rE C.ID is not null'#13#10'AND C.TRANSPORTADORA = '#39'T'#39
+      'RA_FANTASIA'#13#10'from CADFORNECEDOR C'#13#10'left join CADFORNECEDOR_CONTA' +
+      'TO CO on (CO.ID_FORNECEDOR = C.ID and CO.PADRAO = '#39'X'#39')'#13#10'left joi' +
+      'n CADFORNECEDOR_ENDERECO E on (E.ID_FORNECEDOR = C.ID and E.TIPO' +
+      '_END = '#39'(Padr'#227'o)'#39')'#13#10'left join  CADTIPOFORNECEDOR TP on TP.ID = C' +
+      '.ID_TIPO'#13#10'left join CADPRESTADOR P on P.ID = C.ID_TRANSPORTADORA' +
+      #13#10'WhErE C.ID is not null'
     MaxBlobSize = -1
     Params = <>
     SQLConnection = Conexao.Conexao
@@ -867,8 +878,7 @@ object FrmTransportador: TFrmTransportador
     Aggregates = <>
     Params = <>
     ProviderName = 'dspConsulta'
-    AfterScroll = cdsConsultaAfterScroll
-    Left = 260
+    Left = 262
     Top = 8
     object cdsConsultaID: TIntegerField
       Tag = 1
@@ -901,14 +911,14 @@ object FrmTransportador: TFrmTransportador
       FixedChar = True
       Size = 2
     end
+    object cdsConsultaTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Size = 15
+    end
     object cdsConsultaDDD2: TStringField
       FieldName = 'DDD2'
       FixedChar = True
       Size = 2
-    end
-    object cdsConsultaTELEFONE: TStringField
-      FieldName = 'TELEFONE'
-      Size = 15
     end
     object cdsConsultaTELEFONE2: TStringField
       FieldName = 'TELEFONE2'
@@ -1024,11 +1034,6 @@ object FrmTransportador: TFrmTransportador
     end
     object cdsConsultaIM: TStringField
       FieldName = 'IM'
-    end
-    object cdsConsultaTRANSPORTADORA: TStringField
-      FieldName = 'TRANSPORTADORA'
-      FixedChar = True
-      Size = 1
     end
   end
 end

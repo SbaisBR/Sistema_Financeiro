@@ -109,7 +109,6 @@ type
     cdsConsultaCEP: TStringField;
     cdsConsultaBAIRRO: TStringField;
     cdsConsultaIM: TStringField;
-    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -122,10 +121,5 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TFrmFornecedor.FormCreate(Sender: TObject);
-begin
-  cdsConsulta.Open;
-end;
 
 end.
