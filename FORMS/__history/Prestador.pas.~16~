@@ -216,7 +216,7 @@ end;
 
 procedure TFrmPrestador.btCancelarClick(Sender: TObject);
 begin
-  Tratabotao();
+   Tratabotao();
   cdsCadastro.Cancel;
   cdsCadastro.CancelUpdates;
   TViewMensagens.Mensagem('Ação cancelada com sucesso','Atenção','I', [mbOk]);

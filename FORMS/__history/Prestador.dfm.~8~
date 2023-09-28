@@ -364,7 +364,6 @@ object FrmPrestador: TFrmPrestador
           Height = 33
           Caption = 'Inserir'
           TabOrder = 0
-          OnClick = btInserirClick
         end
         object DBNavigator1: TDBNavigator
           Left = 11
@@ -377,13 +376,12 @@ object FrmPrestador: TFrmPrestador
         end
         object btAlterar: TBitBtn
           Tag = -11
-          Left = 79
+          Left = 76
           Top = 6
           Width = 61
           Height = 33
           Caption = 'Alterar'
           TabOrder = 2
-          OnClick = btAlterarClick
         end
         object btSalvar: TBitBtn
           Tag = 11
@@ -394,7 +392,6 @@ object FrmPrestador: TFrmPrestador
           Caption = 'Salvar'
           Enabled = False
           TabOrder = 3
-          OnClick = btSalvarClick
         end
         object btExcluir: TBitBtn
           Tag = 11
@@ -405,7 +402,6 @@ object FrmPrestador: TFrmPrestador
           Caption = 'Excluir'
           Enabled = False
           TabOrder = 4
-          OnClick = btExcluirClick
         end
         object btCancelar: TBitBtn
           Tag = 11
@@ -416,7 +412,6 @@ object FrmPrestador: TFrmPrestador
           Caption = 'Cancelar'
           Enabled = False
           TabOrder = 5
-          OnClick = btCancelarClick
         end
       end
       object Panel4: TPanel
@@ -1081,7 +1076,6 @@ object FrmPrestador: TFrmPrestador
     Aggregates = <>
     Params = <>
     ProviderName = 'dspConsulta'
-    AfterScroll = cdsConsultaAfterScroll
     Left = 257
     Top = 8
     object cdsConsultaID: TIntegerField

@@ -73,7 +73,6 @@ type
     Label7: TLabel;
     Label8: TLabel;
     dbTipoPessoa: TJvDBComboBox;
-    rgSexo: TDBRadioGroup;
     dbCBInativo: TDBCheckBox;
     edTELEFONE: TDBEdit;
     edTelefone2: TDBEdit;
@@ -85,9 +84,103 @@ type
     edDDD: TDBEdit;
     edDDD2: TDBEdit;
     Lock: TLock;
+    dtsCadastro: TDataSource;
+    sqlCadastro: TSQLDataSet;
+    sqlCadastroID: TIntegerField;
+    sqlCadastroID_TIPO: TIntegerField;
+    sqlCadastroFANTASIA: TStringField;
+    sqlCadastroRAZAOSOCIAL: TStringField;
+    sqlCadastroCNPJ: TStringField;
+    sqlCadastroIE: TStringField;
+    sqlCadastroDDD: TStringField;
+    sqlCadastroTELEFONE: TStringField;
+    sqlCadastroDDD2: TStringField;
+    sqlCadastroTELEFONE2: TStringField;
+    sqlCadastroDDDFAX: TStringField;
+    sqlCadastroFAX: TStringField;
+    sqlCadastroSITE: TStringField;
+    sqlCadastroDATACAD: TDateField;
+    sqlCadastroDATAFUND: TDateField;
+    sqlCadastroBLOQUEIO: TDateField;
+    sqlCadastroINATIVO: TDateField;
+    sqlCadastroPESSOAFISICA: TStringField;
+    sqlCadastroTIPOPESSOA: TStringField;
+    sqlCadastroOBS: TStringField;
+    sqlCadastroUSUARIO: TIntegerField;
+    sqlCadastroCONDPAGTO: TStringField;
+    sqlCadastroID_TRANSPORTADORA: TIntegerField;
+    sqlCadastroMODFRETE: TStringField;
+    sqlCadastroSUFRAMA: TStringField;
+    sqlCadastroTRANSPORTADORA_FANTASIA: TStringField;
+    sqlCadastroCIDADE: TStringField;
+    sqlCadastroESTADO: TStringField;
+    sqlCadastroTIPO: TStringField;
+    sqlCadastroCONTATO: TStringField;
+    sqlCadastroEMAIL: TStringField;
+    sqlCadastroID_EMP: TIntegerField;
+    sqlCadastroENDERECO: TStringField;
+    sqlCadastroNUMERO: TStringField;
+    sqlCadastroBAIRRO: TStringField;
+    sqlCadastroCEP: TStringField;
+    sqlCadastroIM: TStringField;
+    sqlCadastroTELEFONE_ZAP: TStringField;
+    sqlCadastroTELEFONE2_ZAP: TStringField;
+    sqlCadastroTELEFONE3_ZAP: TStringField;
+    sqlCadastroSEXO: TStringField;
+    sqlCadastroTRANSPORTADORA: TStringField;
+    sqlCadastroCHAVEPIX: TStringField;
+    dspCadastro: TDataSetProvider;
+    cdsCadastro: TClientDataSet;
+    cdsCadastroID: TIntegerField;
+    cdsCadastroID_TIPO: TIntegerField;
+    cdsCadastroFANTASIA: TStringField;
+    cdsCadastroRAZAOSOCIAL: TStringField;
+    cdsCadastroCNPJ: TStringField;
+    cdsCadastroIE: TStringField;
+    cdsCadastroDDD: TStringField;
+    cdsCadastroTELEFONE: TStringField;
+    cdsCadastroDDD2: TStringField;
+    cdsCadastroTELEFONE2: TStringField;
+    cdsCadastroDDDFAX: TStringField;
+    cdsCadastroFAX: TStringField;
+    cdsCadastroSITE: TStringField;
+    cdsCadastroDATACAD: TDateField;
+    cdsCadastroDATAFUND: TDateField;
+    cdsCadastroBLOQUEIO: TDateField;
+    cdsCadastroINATIVO: TDateField;
+    cdsCadastroUSUARIO: TIntegerField;
+    cdsCadastroPESSOAFISICA: TStringField;
+    cdsCadastroTIPOPESSOA: TStringField;
+    cdsCadastroOBS: TStringField;
+    cdsCadastroCONDPAGTO: TStringField;
+    cdsCadastroID_TRANSPORTADORA: TIntegerField;
+    cdsCadastroMODFRETE: TStringField;
+    cdsCadastroSUFRAMA: TStringField;
+    cdsCadastroTRANSPORTADORA_FANTASIA: TStringField;
+    cdsCadastroCIDADE: TStringField;
+    cdsCadastroESTADO: TStringField;
+    cdsCadastroTIPO: TStringField;
+    cdsCadastroCONTATO: TStringField;
+    cdsCadastroEMAIL: TStringField;
+    cdsCadastroID_EMP: TIntegerField;
+    cdsCadastroENDERECO: TStringField;
+    cdsCadastroNUMERO: TStringField;
+    cdsCadastroCEP: TStringField;
+    cdsCadastroBAIRRO: TStringField;
+    cdsCadastroIM: TStringField;
+    cdsCadastroTELEFONE_ZAP: TStringField;
+    cdsCadastroTELEFONE2_ZAP: TStringField;
+    cdsCadastroTELEFONE3_ZAP: TStringField;
+    cdsCadastroSEXO: TStringField;
+    cdsCadastroTRANSPORTADORA: TStringField;
+    cdsCadastroCHAVEPIX: TStringField;
+    procedure btSalvarClick(Sender: TObject);
+    procedure cdsConsultaAfterScroll(DataSet: TDataSet);
+    procedure btAlterarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure sbPesquisarClick(Sender: TObject);
     procedure cb_ChaveChange(Sender: TObject);
+    procedure tratabotao();
   private
     { Private declarations }
   public
@@ -99,9 +192,58 @@ var
 
 implementation
 
-uses dm;
+uses dm, View_Mensagens;
 
 {$R *.dfm}
+
+procedure TFrmPrestador.btAlterarClick(Sender: TObject);
+begin
+  tratabotao();
+  Lock.Enabled      := True;
+  if edNome.CanFocus then
+    edNome.SetFocus;
+  if TViewMensagens.Mensagem('Deseja alterar esse registro?','Atenção!','A', [mbSim,MbNao]) then
+   begin
+     cdsCadastro.Edit;
+   end
+   else
+    Tratabotao();
+   // abort;
+end;
+
+procedure TFrmPrestador.btSalvarClick(Sender: TObject);
+begin
+  if (Trim(cdsCadastroTELEFONE.Text) <> '') and (Length(cdsCadastroTELEFONE.Text) < 8)  then
+    begin
+     TViewMensagens.Mensagem('Telefone inválido, realize a correção'+ #13 + 'Campo Telefone precisa de 8 caracteres ou mais.','Atenção!','E',[mbOk]);
+      edTelefone.SetFocus;
+      exit;
+    end;
+
+    if (Trim(cdsCadastroTELEFONE2.Text) <> '') and (Length(cdsCadastroTELEFONE2.Text) < 8)  then
+    begin
+      TViewMensagens.Mensagem('Telefone2 inválido, realize a correção'+ #13 + 'Campo Telefone precisa de 8 caracteres ou mais.','Atenção!','E',[mbOk]);
+
+      edTelefone2.SetFocus;
+      exit;
+    end;
+
+    btInserir.Enabled  := true;
+    Lock.Enabled     := False;
+    try
+      //cdsCadCliente.ApplyUpdates(0);
+      //cdsCadCliente.Refresh;
+
+//      MessageDlg('Registro salvo com sucesso!', MtInformation, [mbOk], 0);
+      cdsCadastro.Post;
+      cdsCadastro.ApplyUpdates(0);
+      cdsConsulta.Refresh;
+
+     finally
+
+     end;
+  cdsCadastro.AfterScroll(cdsCadastro);
+end;
 
 procedure TFrmPrestador.cb_ChaveChange(Sender: TObject);
 begin
@@ -162,6 +304,16 @@ begin
   end;
 end;
 
+procedure TFrmPrestador.cdsConsultaAfterScroll(DataSet: TDataSet);
+begin
+  if Cadastro.Visible then
+  begin
+    cdsCadastro.Close;
+    cdsCadastro.Params.ParamByName('ID').Value := cdsConsultaID.Value;
+    cdsCadastro.Open;
+  end;
+end;
+
 procedure TFrmPrestador.FormKeyPress(Sender: TObject; var Key: Char);
 begin
   if key = #27 then
@@ -172,7 +324,7 @@ procedure TFrmPrestador.sbPesquisarClick(Sender: TObject);
 begin
   if edDescricao.Visible and (edDescricao.Text = '') then
   begin
-    ShowMessage('Preenchimento do campo obrigatório!');
+    TViewMensagens.Mensagem('Preenchimento do campo obrigatório!','Atenção!','A',[mbOk]);
     Exit;
   end;
 
@@ -210,4 +362,12 @@ begin
       ShowMessage('Nenhum registro encontrado !!!');
       GridPesquisa.SetFocus;
   end;}
+  procedure TFrmPrestador.tratabotao;
+  begin
+    btInserir.Enabled := Not btInserir.Enabled;
+    btSalvar.Enabled  := Not btSalvar.Enabled;
+    btExcluir.Enabled := Not btExcluir.Enabled;
+    btAlterar.Enabled := Not btAlterar.Enabled;
+    btCancelar.Enabled:= Not btCancelar.Enabled;
+  end;
 end.

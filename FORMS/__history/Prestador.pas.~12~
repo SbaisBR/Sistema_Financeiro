@@ -174,8 +174,6 @@ type
     cdsCadastroSEXO: TStringField;
     cdsCadastroTRANSPORTADORA: TStringField;
     cdsCadastroCHAVEPIX: TStringField;
-    procedure btCancelarClick(Sender: TObject);
-    procedure btExcluirClick(Sender: TObject);
     procedure btInserirClick(Sender: TObject);
     procedure btSalvarClick(Sender: TObject);
     procedure cdsConsultaAfterScroll(DataSet: TDataSet);
@@ -214,27 +212,6 @@ begin
    // abort;
 end;
 
-procedure TFrmPrestador.btCancelarClick(Sender: TObject);
-begin
-  Tratabotao();
-  cdsCadastro.Cancel;
-  cdsCadastro.CancelUpdates;
-  TViewMensagens.Mensagem('Ação cancelada com sucesso','Atenção','I', [mbOk]);
-end;
-
-procedure TFrmPrestador.btExcluirClick(Sender: TObject);
-begin
-  tratabotao();
-  if TViewMensagens.Mensagem('Deseja deletar esse registro?','Atenção!','A', [mbSim,MbNao]) then
-  begin
-    tratabotao();
-    cdsCadastro.delete;
-  end
-  else
-  tratabotao();
-  abort;
-end;
-
 procedure TFrmPrestador.btInserirClick(Sender: TObject);
 begin
   tratabotao();
@@ -244,6 +221,7 @@ begin
   cdsCadastroDATACAD.Value := Date;
   cdsCadastro.IndexFieldNames := 'ID';
   btAlterar.Click;
+  cdsCadastroAfterScroll(Nil);
 end;
 
 procedure TFrmPrestador.btSalvarClick(Sender: TObject);

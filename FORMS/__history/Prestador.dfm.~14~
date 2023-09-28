@@ -416,7 +416,6 @@ object FrmPrestador: TFrmPrestador
           Caption = 'Cancelar'
           Enabled = False
           TabOrder = 5
-          OnClick = btCancelarClick
         end
       end
       object Panel4: TPanel

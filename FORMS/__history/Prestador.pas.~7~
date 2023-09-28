@@ -174,12 +174,6 @@ type
     cdsCadastroSEXO: TStringField;
     cdsCadastroTRANSPORTADORA: TStringField;
     cdsCadastroCHAVEPIX: TStringField;
-    procedure btCancelarClick(Sender: TObject);
-    procedure btExcluirClick(Sender: TObject);
-    procedure btInserirClick(Sender: TObject);
-    procedure btSalvarClick(Sender: TObject);
-    procedure cdsConsultaAfterScroll(DataSet: TDataSet);
-    procedure btAlterarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure sbPesquisarClick(Sender: TObject);
     procedure cb_ChaveChange(Sender: TObject);
@@ -198,83 +192,6 @@ implementation
 uses dm, View_Mensagens;
 
 {$R *.dfm}
-
-procedure TFrmPrestador.btAlterarClick(Sender: TObject);
-begin
-  tratabotao();
-  Lock.Enabled      := True;
-  if edNome.CanFocus then
-    edNome.SetFocus;
-  if TViewMensagens.Mensagem('Deseja alterar esse registro?','Atenção!','A', [mbSim,MbNao]) then
-   begin
-     cdsCadastro.Edit;
-   end
-   else
-    Tratabotao();
-   // abort;
-end;
-
-procedure TFrmPrestador.btCancelarClick(Sender: TObject);
-begin
-  Tratabotao();
-  cdsCadastro.Cancel;
-  cdsCadastro.CancelUpdates;
-  TViewMensagens.Mensagem('Ação cancelada com sucesso','Atenção','I', [mbOk]);
-end;
-
-procedure TFrmPrestador.btExcluirClick(Sender: TObject);
-begin
-  tratabotao();
-  if TViewMensagens.Mensagem('Deseja deletar esse registro?','Atenção!','A', [mbSim,MbNao]) then
-  begin
-    tratabotao();
-    cdsCadastro.delete;
-  end
-  else
-  tratabotao();
-  abort;
-end;
-
-procedure TFrmPrestador.btInserirClick(Sender: TObject);
-begin
-  tratabotao();
-  cdsCadastro.Append;
-  if cdsCadastroPESSOAFISICA.IsNull then
-    cdsCadastroPESSOAFISICA.Value := 'F'; //valor lógico
-  cdsCadastroDATACAD.Value := Date;
-  cdsCadastro.IndexFieldNames := 'ID';
-  btAlterar.Click;
-end;
-
-procedure TFrmPrestador.btSalvarClick(Sender: TObject);
-begin
-  if (Trim(cdsCadastroTELEFONE.Text) <> '') and (Length(cdsCadastroTELEFONE.Text) < 8)  then
-    begin
-     TViewMensagens.Mensagem('Telefone inválido, realize a correção'+ #13 + 'Campo Telefone precisa de 8 caracteres ou mais.','Atenção!','E',[mbOk]);
-      edTelefone.SetFocus;
-      exit;
-    end;
-
-    if (Trim(cdsCadastroTELEFONE2.Text) <> '') and (Length(cdsCadastroTELEFONE2.Text) < 8)  then
-    begin
-      TViewMensagens.Mensagem('Telefone2 inválido, realize a correção'+ #13 + 'Campo Telefone precisa de 8 caracteres ou mais.','Atenção!','E',[mbOk]);
-
-      edTelefone2.SetFocus;
-      exit;
-    end;
-
-    btInserir.Enabled  := true;
-    Lock.Enabled     := False;
-    try
-      cdsCadastro.Post;
-      cdsCadastro.ApplyUpdates(0);
-      cdsConsulta.Refresh;
-
-     finally
-
-     end;
-  cdsCadastro.AfterScroll(cdsCadastro);
-end;
 
 procedure TFrmPrestador.cb_ChaveChange(Sender: TObject);
 begin
@@ -332,16 +249,6 @@ begin
           mkdFim.Visible       := False;
           //mkdIncio.SetFocus;
         end;
-  end;
-end;
-
-procedure TFrmPrestador.cdsConsultaAfterScroll(DataSet: TDataSet);
-begin
-  if Cadastro.Visible then
-  begin
-    cdsCadastro.Close;
-    cdsCadastro.Params.ParamByName('ID').Value := cdsConsultaID.Value;
-    cdsCadastro.Open;
   end;
 end;
 

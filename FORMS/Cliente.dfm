@@ -293,7 +293,7 @@ object FrmCliente: TFrmCliente
     Top = 65
     Width = 1169
     Height = 633
-    ActivePage = Consulta
+    ActivePage = Cadastro
     Align = alClient
     TabOrder = 1
     object Consulta: TTabSheet

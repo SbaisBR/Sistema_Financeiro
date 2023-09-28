@@ -364,7 +364,6 @@ object FrmPrestador: TFrmPrestador
           Height = 33
           Caption = 'Inserir'
           TabOrder = 0
-          OnClick = btInserirClick
         end
         object DBNavigator1: TDBNavigator
           Left = 11
@@ -405,7 +404,6 @@ object FrmPrestador: TFrmPrestador
           Caption = 'Excluir'
           Enabled = False
           TabOrder = 4
-          OnClick = btExcluirClick
         end
         object btCancelar: TBitBtn
           Tag = 11
@@ -416,7 +414,6 @@ object FrmPrestador: TFrmPrestador
           Caption = 'Cancelar'
           Enabled = False
           TabOrder = 5
-          OnClick = btCancelarClick
         end
       end
       object Panel4: TPanel

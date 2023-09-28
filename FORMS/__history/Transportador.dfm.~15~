@@ -1,6 +1,6 @@
 object FrmTransportador: TFrmTransportador
-  Left = 0
-  Top = 0
+  Left = 411
+  Top = 77
   Caption = 'Transportador'
   ClientHeight = 597
   ClientWidth = 1080
@@ -11,6 +11,8 @@ object FrmTransportador: TFrmTransportador
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Panel2: TPanel
@@ -309,6 +311,7 @@ object FrmTransportador: TFrmTransportador
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
+        OnKeyDown = SgConsultaKeyDown
         TitleButtons = True
         SelectColumnsDialogStrings.Caption = 'Select columns'
         SelectColumnsDialogStrings.OK = '&OK'
@@ -321,8 +324,11 @@ object FrmTransportador: TFrmTransportador
           item
             Expanded = False
             FieldName = 'ID'
-            Title.Caption = 'C'#243'digo'
-            Width = 40
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DDD'
             Visible = True
           end
           item
@@ -333,38 +339,16 @@ object FrmTransportador: TFrmTransportador
           item
             Expanded = False
             FieldName = 'CNPJ'
-            Title.Caption = 'CPF/CNPJ'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'TELEFONE_COMP'
-            Title.Caption = 'TELEFONE'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'ESTADO'
-            Width = 64
+            FieldName = 'TELEFONE'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'CIDADE'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'BAIRRO'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'NUMERO'
             Visible = True
           end>
       end
@@ -829,10 +813,14 @@ object FrmTransportador: TFrmTransportador
   object sqlConsulta: TSQLDataSet
     SchemaName = 'sysdba'
     CommandText = 
-      'Select'#13#10'      C.*,E.cidade,E.estado, E.endereco, E.numero,E.bair' +
-      'ro,E.CEP,'#39'('#39' || C.DDD || '#39')'#39' || C.telefone AS TELEFONE_COMP'#13#10' Fr' +
-      'om CADCLIENTE C'#13#10'Left Join cadcliente_endereco E on (E.id_client' +
-      'e = C.id and e.tipo_end = '#39'(Padr'#227'o)'#39')'#13#10'where C.id is not null'
+      'select'#13#10' C.*, CO.CONTATO, CO.EMAIL, E.CIDADE, E.ESTADO,E.ENDEREC' +
+      'O, E.NUMERO,E.BAIRRO, E.CEP, TP.TIPO, P.FANTASIA as TRANSPORTADO' +
+      'RA_FANTASIA'#13#10' from CADPRESTADOR C'#13#10'left join CADPRESTADOR_CONTAT' +
+      'O CO on (CO.ID_PRESTADOR = C.ID and CO.PADRAO = '#39'X'#39')'#13#10'left join ' +
+      'CADPRESTADOR_ENDERECO E on (E.ID_PRESTADOR = C.ID and E.TIPO_END' +
+      ' = '#39'(Padr'#227'o)'#39')'#13#10'left join  CADTIPOPRESTADOR TP on TP.ID = C.ID_T' +
+      'IPO'#13#10'left join CADPRESTADOR P on P.ID = C.ID_TRANSPORTADORA'#13#10'WhE' +
+      'rE C.ID is not null'#13#10'AND C.TRANSPORTADORA = '#39'T'#39
     MaxBlobSize = -1
     Params = <>
     SQLConnection = Conexao.Conexao
@@ -843,60 +831,6 @@ object FrmTransportador: TFrmTransportador
     DataSet = sqlConsulta
     Left = 224
     Top = 8
-  end
-  object cdsConsulta: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspConsulta'
-    Left = 257
-    Top = 8
-    object cdsConsultaID: TIntegerField
-      FieldName = 'ID'
-    end
-    object cdsConsultaRAZAOSOCIAL: TStringField
-      FieldName = 'RAZAOSOCIAL'
-      Size = 100
-    end
-    object cdsConsultaFANTASIA: TStringField
-      FieldName = 'FANTASIA'
-      Size = 50
-    end
-    object cdsConsultaTELEFONE_COMP: TStringField
-      FieldName = 'TELEFONE_COMP'
-      Size = 24
-    end
-    object cdsConsultaCIDADE: TStringField
-      FieldName = 'CIDADE'
-      Size = 50
-    end
-    object cdsConsultaCNPJ: TStringField
-      FieldName = 'CNPJ'
-      EditMask = '00.000.000/0000-00;0;'
-      FixedChar = True
-      Size = 14
-    end
-    object cdsConsultaESTADO: TStringField
-      FieldName = 'ESTADO'
-      FixedChar = True
-      Size = 2
-    end
-    object cdsConsultaENDERECO: TStringField
-      FieldName = 'ENDERECO'
-      Size = 60
-    end
-    object cdsConsultaNUMERO: TStringField
-      FieldName = 'NUMERO'
-      Size = 10
-    end
-    object cdsConsultaBAIRRO: TStringField
-      FieldName = 'BAIRRO'
-      Size = 50
-    end
-    object cdsConsultaCEP: TStringField
-      FieldName = 'CEP'
-      FixedChar = True
-      Size = 8
-    end
   end
   object dtsConsulta: TDataSource
     DataSet = cdsConsulta
@@ -928,5 +862,173 @@ object FrmTransportador: TFrmTransportador
     SubStorages = <>
     Left = 822
     Top = 18
+  end
+  object cdsConsulta: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspConsulta'
+    AfterScroll = cdsConsultaAfterScroll
+    Left = 260
+    Top = 8
+    object cdsConsultaID: TIntegerField
+      Tag = 1
+      FieldName = 'ID'
+    end
+    object cdsConsultaID_TIPO: TIntegerField
+      FieldName = 'ID_TIPO'
+    end
+    object cdsConsultaFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Size = 50
+    end
+    object cdsConsultaRAZAOSOCIAL: TStringField
+      FieldName = 'RAZAOSOCIAL'
+      Size = 100
+    end
+    object cdsConsultaCNPJ: TStringField
+      FieldName = 'CNPJ'
+      EditMask = '00.000.000/0000-00;0;'
+      FixedChar = True
+      Size = 14
+    end
+    object cdsConsultaIE: TStringField
+      FieldName = 'IE'
+      FixedChar = True
+      Size = 15
+    end
+    object cdsConsultaDDD: TStringField
+      FieldName = 'DDD'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsConsultaDDD2: TStringField
+      FieldName = 'DDD2'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsConsultaTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Size = 15
+    end
+    object cdsConsultaTELEFONE2: TStringField
+      FieldName = 'TELEFONE2'
+      Size = 15
+    end
+    object cdsConsultaDDDFAX: TStringField
+      FieldName = 'DDDFAX'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsConsultaFAX: TStringField
+      FieldName = 'FAX'
+      Size = 15
+    end
+    object cdsConsultaSITE: TStringField
+      FieldName = 'SITE'
+      Size = 50
+    end
+    object cdsConsultaDATACAD: TDateField
+      FieldName = 'DATACAD'
+    end
+    object cdsConsultaDATAFUND: TDateField
+      FieldName = 'DATAFUND'
+    end
+    object cdsConsultaBLOQUEIO: TDateField
+      FieldName = 'BLOQUEIO'
+    end
+    object cdsConsultaINATIVO: TDateField
+      FieldName = 'INATIVO'
+    end
+    object cdsConsultaUSUARIO: TIntegerField
+      FieldName = 'USUARIO'
+    end
+    object cdsConsultaPESSOAFISICA: TStringField
+      FieldName = 'PESSOAFISICA'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsConsultaOBS: TStringField
+      FieldName = 'OBS'
+      Size = 500
+    end
+    object cdsConsultaCONDPAGTO: TStringField
+      FieldName = 'CONDPAGTO'
+      Size = 50
+    end
+    object cdsConsultaID_TRANSPORTADORA: TIntegerField
+      FieldName = 'ID_TRANSPORTADORA'
+    end
+    object cdsConsultaMODFRETE: TStringField
+      FieldName = 'MODFRETE'
+      FixedChar = True
+      Size = 3
+    end
+    object cdsConsultaSUFRAMA: TStringField
+      FieldName = 'SUFRAMA'
+      Size = 10
+    end
+    object cdsConsultaTRANSPORTADORA_FANTASIA: TStringField
+      FieldName = 'TRANSPORTADORA_FANTASIA'
+      ProviderFlags = []
+      Size = 50
+    end
+    object cdsConsultaCIDADE: TStringField
+      FieldName = 'CIDADE'
+      ProviderFlags = []
+      Size = 50
+    end
+    object cdsConsultaESTADO: TStringField
+      FieldName = 'ESTADO'
+      ProviderFlags = []
+      FixedChar = True
+      Size = 2
+    end
+    object cdsConsultaTIPO: TStringField
+      FieldName = 'TIPO'
+      ProviderFlags = []
+      Size = 30
+    end
+    object cdsConsultaCONTATO: TStringField
+      FieldName = 'CONTATO'
+      ProviderFlags = []
+      Size = 50
+    end
+    object cdsConsultaEMAIL: TStringField
+      FieldName = 'EMAIL'
+      ProviderFlags = []
+      Size = 100
+    end
+    object cdsConsultaID_EMP: TIntegerField
+      FieldName = 'ID_EMP'
+    end
+    object cdsConsultaENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      ProviderFlags = []
+      Size = 60
+    end
+    object cdsConsultaNUMERO: TStringField
+      FieldName = 'NUMERO'
+      ProviderFlags = []
+      Size = 10
+    end
+    object cdsConsultaCEP: TStringField
+      FieldName = 'CEP'
+      ProviderFlags = []
+      FixedChar = True
+      Size = 8
+    end
+    object cdsConsultaBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      ProviderFlags = []
+      Size = 50
+    end
+    object cdsConsultaIM: TStringField
+      FieldName = 'IM'
+    end
+    object cdsConsultaTRANSPORTADORA: TStringField
+      FieldName = 'TRANSPORTADORA'
+      FixedChar = True
+      Size = 1
+    end
   end
 end
