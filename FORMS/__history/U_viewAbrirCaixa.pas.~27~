@@ -18,10 +18,12 @@ type
     rdoAberto: TRadioButton;
     rdoFechado: TRadioButton;
     rdoTodos: TRadioButton;
+    procedure rdoAbertoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
+    procedure GET_status;
     { Private declarations }
   public
     Var
@@ -41,7 +43,7 @@ procedure TviewAbrirCaixa.btnNovoClick(Sender: TObject);
 begin
   inherited;
   cdsAbreCaixaABR_DATAABERTURA.AsDateTime := Date;
-  cdsAbreCaixaABR_HRAABERTURA.AsDateTime :=Time;
+  cdsAbreCaixaABR_HRAABERTURA.AsDateTime := Time;
   cdsAbreCaixaABR_CODIGOUSUARIO.AsInteger :=1;
   cdsAbreCaixaABR_STATUS.AsString := 'ABERTO';
   edVlrIncial.SetFocus;
@@ -57,22 +59,45 @@ end;
 procedure TviewAbrirCaixa.FormShow(Sender: TObject);
 begin
   inherited;
-
-  if rdoAberto.Checked then
-    STATUS := 'ABERTO';
-
-  if rdoFechado.Checked then
-    STATUS := 'FECHADO1';
-
-  if rdoTodos.Checked then
-    STATUS := 'TODOS';
-
-  cdsAbreCaixa.Params[0].AsString := '';
-  cdsAbreCaixa.Open;
+  cdsAbreCaixa.Close;
+  GET_status;
+  rdoAbertoClick(Sender);
+  //cdsAbreCaixa.Params[0].AsString := '';
+  //cdsAbreCaixa.Open;
 
   Card_cadastro.TabVisible := False;
   Card_Pesquisar.TabVisible := False;
   Page_panelconteudo.ActivePage := Card_Pesquisar;
+end;
+
+procedure TviewAbrirCaixa.GET_status;
+begin
+  if rdoAberto.Checked then
+    STATUS := 'ABERTO';
+  if rdoFechado.Checked then
+    STATUS := 'FECHADO';
+  if rdoTodos.Checked then
+    STATUS := 'TODOS';
+end;
+
+procedure TviewAbrirCaixa.rdoAbertoClick(Sender: TObject);
+begin
+  inherited;
+ cdsAbreCaixa.Close;
+  GET_status;
+
+  cdsAbreCaixa.Close;
+  sqlAbreCaixa.CommandText := 'SELECT * FROM abrecaixa';
+  
+  if STATUS <> 'TODOS' then
+  begin
+    sqlAbreCaixa.CommandText := sqlAbreCaixa.CommandText + ' WHERE abr_status = :status';
+    sqlAbreCaixa.Params.ParamByName('status').AsString := STATUS;
+  end;
+  
+  sqlAbreCaixa.CommandText := sqlAbreCaixa.CommandText + ' ORDER BY 1';
+  
+  cdsAbreCaixa.Open;
 end;
 
 end.

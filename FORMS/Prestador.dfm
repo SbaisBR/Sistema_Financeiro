@@ -20,7 +20,7 @@ object FrmPrestador: TFrmPrestador
     Top = 65
     Width = 1061
     Height = 606
-    ActivePage = Cadastro
+    ActivePage = Consulta
     Align = alClient
     TabOrder = 0
     object Consulta: TTabSheet
@@ -600,7 +600,6 @@ object FrmPrestador: TFrmPrestador
         Align = alTop
         Color = 14869218
         TabOrder = 3
-        ExplicitTop = -6
         object Label1: TLabel
           Left = 12
           Top = 3

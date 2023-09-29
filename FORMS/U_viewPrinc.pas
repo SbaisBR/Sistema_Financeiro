@@ -139,12 +139,12 @@ begin //Deixando a cor branca
     if gdSelected in State then
     begin
       DBG_produtos.Canvas.Brush.Color := clHighlight;
-      DBG_produtos.Canvas.Font.Color := clHighlightText;
+      DBG_produtos.Canvas.Font.Color  := clHighlightText;
     end
     else
     begin
       DBG_produtos.Canvas.Brush.Color := clWhite;
-      DBG_produtos.Canvas.Font.Color := clBlack;
+      DBG_produtos.Canvas.Font.Color  := clBlack;
     end;
     DBG_produtos.Canvas.FillRect(Rect);
     DBG_produtos.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2, Column.Field.DisplayText);

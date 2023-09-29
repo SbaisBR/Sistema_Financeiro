@@ -114,7 +114,6 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
         ExplicitHeight = 643
         inherited pnlFiltroPesquisa: TPanel
           inherited pnlFiltro: TPanel
-            ExplicitTop = -3
             inherited lblPesquisa: TLabel
               Top = 15
               Margins.Top = 15

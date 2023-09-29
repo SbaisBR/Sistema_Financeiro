@@ -154,7 +154,7 @@ begin
   ShapeMenu.Left    := 0;
   ShapeMenu.Top     := 0;
   ShapeMenu.Height  := TJvSpeedButton(Sender).Height;
-  ShapeMenu.Top  := TJvSpeedButton(Sender).Top;
+  ShapeMenu.Top     := TJvSpeedButton(Sender).Top;
   pnlShapeMenu.Repaint;
 end;
 

@@ -61,8 +61,9 @@ begin
   inherited;
   cdsAbreCaixa.Close;
   GET_status;
-  cdsAbreCaixa.Params[0].AsString := '';
-  cdsAbreCaixa.Open;
+  rdoAbertoClick(Sender);
+  //cdsAbreCaixa.Params[0].AsString := '';
+  //cdsAbreCaixa.Open;
 
   Card_cadastro.TabVisible := False;
   Card_Pesquisar.TabVisible := False;
@@ -74,7 +75,7 @@ begin
   if rdoAberto.Checked then
     STATUS := 'ABERTO';
   if rdoFechado.Checked then
-    STATUS := 'FECHADO1';
+    STATUS := 'FECHADO';
   if rdoTodos.Checked then
     STATUS := 'TODOS';
 end;
@@ -82,21 +83,19 @@ end;
 procedure TviewAbrirCaixa.rdoAbertoClick(Sender: TObject);
 begin
   inherited;
-  cdsAbreCaixa.Close;
   GET_status;
 
-  if rdoTodos.Checked then
+  cdsAbreCaixa.Close;
+  sqlAbreCaixa.CommandText := 'SELECT * FROM ABRECAIXA';
+
+  if STATUS <> 'TODOS' then
   begin
-    cdsAbreCaixa.Close;
-    sqlAbreCaixa.CommandText := ('SELECT * FROM abrecaixa order by 1');
-    cdsAbreCaixa.Open;
-  end
-  else begin
-    cdsAbreCaixa.Close;
-    sqlAbreCaixa.CommandText := ('SELECT * FROM abrecaixa where abr_status = :status');
-    cdsAbreCaixa.Open;
-    cdsAbreCaixa.Params[0].AsString := STATUS;
+    sqlAbreCaixa.CommandText := sqlAbreCaixa.CommandText + ' WHERE ABR_STATUS = :status';
+    sqlAbreCaixa.Params.ParamByName('status').AsString := STATUS;
   end;
+
+  sqlAbreCaixa.CommandText := sqlAbreCaixa.CommandText + ' ORDER BY 1';
+
   cdsAbreCaixa.Open;
 end;
 

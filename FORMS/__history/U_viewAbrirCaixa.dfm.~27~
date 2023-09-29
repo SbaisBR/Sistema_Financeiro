@@ -1,17 +1,26 @@
 inherited viewAbrirCaixa: TviewAbrirCaixa
   Caption = 'viewAbrirCaixa'
+  Position = poDesktopCenter
+  ExplicitWidth = 1042
+  ExplicitHeight = 758
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlTopo: TPanel
     inherited lblTitulo: TLabel
       Width = 97
+      Height = 34
       Caption = 'Abrir Caixa'
       ExplicitWidth = 97
     end
   end
   inherited pnlLinhaFundo: TPanel
     inherited Page_panelconteudo: TPageControl
+      ActivePage = Card_pesquisar
       inherited Card_cadastro: TTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 1030
+        ExplicitHeight = 643
         object lblVlrInicial: TLabel [0]
           Left = 11
           Top = 104
@@ -39,6 +48,11 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+        end
+        inherited pnlFiltroCadastro: TPanel
+          inherited lblTituloCadastro: TLabel
+            Height = 51
+          end
         end
         object edVlrIncial: TDBEdit
           Left = 11
@@ -71,16 +85,70 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
           ParentFont = False
           TabOrder = 2
         end
+        object cbxStatus: TDBComboBox
+          Left = 720
+          Top = 133
+          Width = 225
+          Height = 31
+          Style = csDropDownList
+          CharCase = ecUpperCase
+          DataField = 'ABR_STATUS'
+          DataSource = dtsAbreCaixa
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 5395026
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ItemHeight = 23
+          Items.Strings = (
+            'ABERTO'
+            'FECHADO')
+          ParentFont = False
+          TabOrder = 3
+        end
       end
       inherited Card_pesquisar: TTabSheet
         ExplicitLeft = 4
         ExplicitTop = 24
-        ExplicitWidth = 1014
-        ExplicitHeight = 604
+        ExplicitWidth = 1030
+        ExplicitHeight = 643
         inherited pnlFiltroPesquisa: TPanel
           inherited pnlFiltro: TPanel
+            ExplicitTop = -3
             inherited lblPesquisa: TLabel
-              Height = 18
+              Top = 15
+              Margins.Top = 15
+              ExplicitTop = 19
+              ExplicitHeight = 18
+            end
+            object rdoAberto: TRadioButton
+              Left = 216
+              Top = 15
+              Width = 65
+              Height = 17
+              Caption = 'Aberto'
+              Checked = True
+              TabOrder = 0
+              TabStop = True
+              OnClick = rdoAbertoClick
+            end
+            object rdoFechado: TRadioButton
+              Left = 304
+              Top = 15
+              Width = 65
+              Height = 17
+              Caption = 'Fechado'
+              TabOrder = 1
+              OnClick = rdoAbertoClick
+            end
+            object rdoTodos: TRadioButton
+              Left = 400
+              Top = 15
+              Width = 65
+              Height = 17
+              Caption = 'Todos'
+              TabOrder = 2
+              OnClick = rdoAbertoClick
             end
           end
         end

@@ -988,7 +988,6 @@ object viewPrincipal: TviewPrincipal
     Top = 64
   end
   object cdsCodBar: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspCodBar'
@@ -1060,7 +1059,6 @@ object viewPrincipal: TviewPrincipal
     Top = 64
   end
   object cdsTBL_Itens: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <
       item
