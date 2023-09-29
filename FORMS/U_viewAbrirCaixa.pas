@@ -63,7 +63,6 @@ begin
   GET_status;
   rdoAbertoClick(Sender);
   //cdsAbreCaixa.Params[0].AsString := '';
-  //cdsAbreCaixa.Open;
 
   Card_cadastro.TabVisible := False;
   Card_Pesquisar.TabVisible := False;

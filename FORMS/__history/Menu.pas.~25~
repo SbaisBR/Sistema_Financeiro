@@ -41,10 +41,15 @@ type
     Panel4: TPanel;
     lblTituloEmpresa: TLabel;
     pnlUser: TPanel;
-    imgUser: TImage;
+    imgUserP: TImage;
+    sbCaixa: TJvSpeedButton;
+    procedure sbCaixaClick(Sender: TObject);
+    procedure Action4Execute(Sender: TObject);
+    procedure Action3Execute(Sender: TObject);
+    procedure Action2Execute(Sender: TObject);
     procedure AcCliExecute(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure imgUserClick(Sender: TObject);
+    procedure imgUserPClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure lblTituloEmpresaMouseLeave(Sender: TObject);
     procedure lblTituloEmpresaMouseEnter(Sender: TObject);
@@ -67,7 +72,8 @@ var
 
 implementation
 
-uses Cliente, dm, Fornecedor, Prestador, Transportador, U_login, U_User;
+uses Cliente, dm, Fornecedor, Prestador, Transportador, U_login, U_User,
+  U_viewPrinc;
 
 {$R *.dfm}
 
@@ -78,6 +84,42 @@ begin
 
     frmCliente := TFrmCliente.Create(nil);
     frmCliente.Show;
+  finally
+    if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
+  end;
+end;
+
+procedure TFrmMenu.Action2Execute(Sender: TObject);
+begin
+  try
+    if TAction(Sender).Enabled then TAction(Sender).Enabled := False;
+
+    FrmFornecedor := TFrmFornecedor.Create(nil);
+    frmFornecedor.Show;
+  finally
+    if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
+  end;
+end;
+
+procedure TFrmMenu.Action3Execute(Sender: TObject);
+begin
+  try
+    if TAction(Sender).Enabled then TAction(Sender).Enabled := False;
+
+    FrmPrestador := TFrmPrestador.Create(nil);
+    frmPrestador.Show;
+  finally
+    if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
+  end;
+end;
+
+procedure TFrmMenu.Action4Execute(Sender: TObject);
+begin
+  try
+    if TAction(Sender).Enabled then TAction(Sender).Enabled := False;
+
+    FrmTransportador := TFrmTransportador.Create(nil);
+    frmTransportador.Show;
   finally
     if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
   end;
@@ -112,11 +154,11 @@ begin
   ShapeMenu.Left    := 0;
   ShapeMenu.Top     := 0;
   ShapeMenu.Height  := TJvSpeedButton(Sender).Height;
-  ShapeMenu.Top  := TJvSpeedButton(Sender).Top;
+  ShapeMenu.Top     := TJvSpeedButton(Sender).Top;
   pnlShapeMenu.Repaint;
 end;
 
-procedure TFrmMenu.imgUserClick(Sender: TObject);
+procedure TFrmMenu.imgUserPClick(Sender: TObject);
 begin
   frmUser := TFrmUser.Create(nil);
   frmUser.ShowModal;
@@ -130,6 +172,13 @@ end;
 procedure TFrmMenu.lblTituloEmpresaMouseLeave(Sender: TObject);
 begin
   lblTituloEmpresa.Font.Color := clWhite;
+end;
+
+procedure TFrmMenu.sbCaixaClick(Sender: TObject);
+begin
+  GET_LineMENU(Sender);
+  ViewPrincipal := TviewPrincipal.Create(nil);
+  ViewPrincipal.ShowModal;
 end;
 
 procedure TFrmMenu.sbCLClick(Sender: TObject);

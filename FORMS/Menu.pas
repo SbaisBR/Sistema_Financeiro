@@ -73,7 +73,7 @@ var
 implementation
 
 uses Cliente, dm, Fornecedor, Prestador, Transportador, U_login, U_User,
-  U_viewPrinc;
+  U_viewPrinc, View.TelaFundo;
 
 {$R *.dfm}
 
@@ -83,6 +83,7 @@ begin
     if TAction(Sender).Enabled then TAction(Sender).Enabled := False;
 
     frmCliente := TFrmCliente.Create(nil);
+    ViewTelaFundo.Show;
     frmCliente.Show;
   finally
     if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
@@ -95,6 +96,7 @@ begin
     if TAction(Sender).Enabled then TAction(Sender).Enabled := False;
 
     FrmFornecedor := TFrmFornecedor.Create(nil);
+    ViewTelaFundo.Show;
     frmFornecedor.Show;
   finally
     if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
@@ -107,6 +109,7 @@ begin
     if TAction(Sender).Enabled then TAction(Sender).Enabled := False;
 
     FrmPrestador := TFrmPrestador.Create(nil);
+    ViewTelaFundo.Show;
     frmPrestador.Show;
   finally
     if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
@@ -119,6 +122,7 @@ begin
     if TAction(Sender).Enabled then TAction(Sender).Enabled := False;
 
     FrmTransportador := TFrmTransportador.Create(nil);
+    ViewTelaFundo.Show;
     frmTransportador.Show;
   finally
     if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
@@ -161,6 +165,7 @@ end;
 procedure TFrmMenu.imgUserPClick(Sender: TObject);
 begin
   frmUser := TFrmUser.Create(nil);
+  ViewTelaFundo.Show;
   frmUser.ShowModal;
 end;
 
@@ -178,6 +183,7 @@ procedure TFrmMenu.sbCaixaClick(Sender: TObject);
 begin
   GET_LineMENU(Sender);
   ViewPrincipal := TviewPrincipal.Create(nil);
+  ViewTelaFundo.Show;
   ViewPrincipal.ShowModal;
 end;
 
@@ -185,6 +191,7 @@ procedure TFrmMenu.sbCLClick(Sender: TObject);
 begin //Clientes
   GET_LineMENU(Sender);
   frmCliente := TFrmCliente.Create(nil);
+  ViewTelaFundo.Show;
   frmCliente.ShowModal;
 end;
 
@@ -192,6 +199,7 @@ procedure TFrmMenu.sbFRClick(Sender: TObject);
 begin //Fornecedor
   GET_LineMENU(Sender);
   FrmFornecedor := TFrmFornecedor.Create(nil);
+  ViewTelaFundo.Show;
   FrmFornecedor.ShowModal;
 end;
 
@@ -199,6 +207,7 @@ procedure TFrmMenu.sbPRClick(Sender: TObject);
 begin //Prestador
   GET_LineMENU(Sender);
   FrmPrestador := TfrmPrestador.Create(nil);
+  ViewTelaFundo.Show;
   FrmPrestador.ShowModal;
 end;
 
@@ -206,6 +215,7 @@ procedure TFrmMenu.sbTRClick(Sender: TObject);
 begin //Transportador
   GET_LineMENU(Sender);
   FrmTransportador := TfrmTransportador.Create(nil);
+  ViewTelaFundo.Show;
   FrmTransportador.ShowModal;
 end;
 
