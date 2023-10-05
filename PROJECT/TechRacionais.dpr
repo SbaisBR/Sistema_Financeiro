@@ -31,7 +31,6 @@ begin
   Application.CreateForm(TFrmlogin, Frmlogin);
   Application.CreateForm(TviewPrincipal, viewPrincipal);
   Application.CreateForm(TViewTelaFundo, ViewTelaFundo);
-  Application.CreateForm(TviewFormaPagto, viewFormaPagto);
   Application.CreateForm(TViewMensagens, ViewMensagens);
   Application.Run;
 end.
