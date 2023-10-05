@@ -41,12 +41,15 @@ type
     Panel4: TPanel;
     lblTituloEmpresa: TLabel;
     pnlUser: TPanel;
-    imgUser: TImage;
+    imgUserP: TImage;
+    sbCaixa: TJvSpeedButton;
+    procedure sbCaixaClick(Sender: TObject);
+    procedure Action4Execute(Sender: TObject);
     procedure Action3Execute(Sender: TObject);
     procedure Action2Execute(Sender: TObject);
     procedure AcCliExecute(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure imgUserClick(Sender: TObject);
+    procedure imgUserPClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure lblTituloEmpresaMouseLeave(Sender: TObject);
     procedure lblTituloEmpresaMouseEnter(Sender: TObject);
@@ -69,7 +72,8 @@ var
 
 implementation
 
-uses Cliente, dm, Fornecedor, Prestador, Transportador, U_login, U_User;
+uses Cliente, dm, Fornecedor, Prestador, Transportador, U_login, U_User,
+  U_viewPrinc, View.TelaFundo;
 
 {$R *.dfm}
 
@@ -79,6 +83,7 @@ begin
     if TAction(Sender).Enabled then TAction(Sender).Enabled := False;
 
     frmCliente := TFrmCliente.Create(nil);
+    ViewTelaFundo.Show;
     frmCliente.Show;
   finally
     if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
@@ -91,6 +96,7 @@ begin
     if TAction(Sender).Enabled then TAction(Sender).Enabled := False;
 
     FrmFornecedor := TFrmFornecedor.Create(nil);
+    ViewTelaFundo.Show;
     frmFornecedor.Show;
   finally
     if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
@@ -103,7 +109,21 @@ begin
     if TAction(Sender).Enabled then TAction(Sender).Enabled := False;
 
     FrmPrestador := TFrmPrestador.Create(nil);
+    ViewTelaFundo.Show;
     frmPrestador.Show;
+  finally
+    if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
+  end;
+end;
+
+procedure TFrmMenu.Action4Execute(Sender: TObject);
+begin
+  try
+    if TAction(Sender).Enabled then TAction(Sender).Enabled := False;
+
+    FrmTransportador := TFrmTransportador.Create(nil);
+    ViewTelaFundo.Show;
+    frmTransportador.Show;
   finally
     if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
   end;
@@ -138,13 +158,14 @@ begin
   ShapeMenu.Left    := 0;
   ShapeMenu.Top     := 0;
   ShapeMenu.Height  := TJvSpeedButton(Sender).Height;
-  ShapeMenu.Top  := TJvSpeedButton(Sender).Top;
+  ShapeMenu.Top     := TJvSpeedButton(Sender).Top;
   pnlShapeMenu.Repaint;
 end;
 
-procedure TFrmMenu.imgUserClick(Sender: TObject);
+procedure TFrmMenu.imgUserPClick(Sender: TObject);
 begin
   frmUser := TFrmUser.Create(nil);
+  ViewTelaFundo.Show;
   frmUser.ShowModal;
 end;
 
@@ -158,10 +179,19 @@ begin
   lblTituloEmpresa.Font.Color := clWhite;
 end;
 
+procedure TFrmMenu.sbCaixaClick(Sender: TObject);
+begin
+  GET_LineMENU(Sender);
+  ViewPrincipal := TviewPrincipal.Create(nil);
+  ViewTelaFundo.Show;
+  ViewPrincipal.ShowModal;
+end;
+
 procedure TFrmMenu.sbCLClick(Sender: TObject);
 begin //Clientes
   GET_LineMENU(Sender);
   frmCliente := TFrmCliente.Create(nil);
+  ViewTelaFundo.Show;
   frmCliente.ShowModal;
 end;
 
@@ -169,6 +199,7 @@ procedure TFrmMenu.sbFRClick(Sender: TObject);
 begin //Fornecedor
   GET_LineMENU(Sender);
   FrmFornecedor := TFrmFornecedor.Create(nil);
+  ViewTelaFundo.Show;
   FrmFornecedor.ShowModal;
 end;
 
@@ -176,6 +207,7 @@ procedure TFrmMenu.sbPRClick(Sender: TObject);
 begin //Prestador
   GET_LineMENU(Sender);
   FrmPrestador := TfrmPrestador.Create(nil);
+  ViewTelaFundo.Show;
   FrmPrestador.ShowModal;
 end;
 
@@ -183,6 +215,7 @@ procedure TFrmMenu.sbTRClick(Sender: TObject);
 begin //Transportador
   GET_LineMENU(Sender);
   FrmTransportador := TfrmTransportador.Create(nil);
+  ViewTelaFundo.Show;
   FrmTransportador.ShowModal;
 end;
 

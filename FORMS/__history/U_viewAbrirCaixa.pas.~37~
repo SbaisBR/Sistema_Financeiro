@@ -61,8 +61,8 @@ begin
   inherited;
   cdsAbreCaixa.Close;
   GET_status;
+  rdoAbertoClick(Sender);
   //cdsAbreCaixa.Params[0].AsString := '';
-  cdsAbreCaixa.Open;
 
   Card_cadastro.TabVisible := False;
   Card_Pesquisar.TabVisible := False;
@@ -88,14 +88,13 @@ begin
   if rdoTodos.Checked then
   begin
     cdsAbreCaixa.Close;
-    sqlAbreCaixa.CommandText := ('SELECT * FROM abrecaixa order by 1');
+    sqlAbreCaixa.CommandText := ('SELECT * FROM abrecaixa');
     cdsAbreCaixa.Open;
   end
   else begin
     cdsAbreCaixa.Close;
-    sqlAbreCaixa.CommandText := ('SELECT * FROM abrecaixa where abr_status = :status');
+    sqlAbreCaixa.CommandText := ('SELECT * FROM abrecaixa where abr_status = '''+STATUS+'''');
     cdsAbreCaixa.Open;
-    //cdsAbreCaixa.Params[0].AsString := STATUS;
   end;
   cdsAbreCaixa.Open;
 end;

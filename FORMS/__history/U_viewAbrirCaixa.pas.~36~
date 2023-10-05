@@ -63,7 +63,6 @@ begin
   GET_status;
   rdoAbertoClick(Sender);
   //cdsAbreCaixa.Params[0].AsString := '';
-  //cdsAbreCaixa.Open;
 
   Card_cadastro.TabVisible := False;
   Card_Pesquisar.TabVisible := False;
@@ -83,20 +82,20 @@ end;
 procedure TviewAbrirCaixa.rdoAbertoClick(Sender: TObject);
 begin
   inherited;
- cdsAbreCaixa.Close;
+  cdsAbreCaixa.Close;
   GET_status;
 
-  cdsAbreCaixa.Close;
-  sqlAbreCaixa.CommandText := 'SELECT * FROM abrecaixa';
-  
-  if STATUS <> 'TODOS' then
+  if rdoTodos.Checked then
   begin
-    sqlAbreCaixa.CommandText := sqlAbreCaixa.CommandText + ' WHERE abr_status = :status';
-    sqlAbreCaixa.Params.ParamByName('status').AsString := STATUS;
+    cdsAbreCaixa.Close;
+    sqlAbreCaixa.CommandText := ('SELECT * FROM abrecaixa');
+    cdsAbreCaixa.Open;
+  end
+  else begin
+    cdsAbreCaixa.Close;
+    sqlAbreCaixa.CommandText := ('SELECT * FROM abrecaixa where abr_status = '''+STATUS+'''');
+    cdsAbreCaixa.Open;
   end;
-  
-  sqlAbreCaixa.CommandText := sqlAbreCaixa.CommandText + ' ORDER BY 1';
-  
   cdsAbreCaixa.Open;
 end;
 

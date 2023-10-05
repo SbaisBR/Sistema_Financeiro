@@ -303,7 +303,6 @@ object FrmFornecedor: TFrmFornecedor
         Width = 1028
         Height = 555
         Align = alClient
-        DataSource = dtsConsulta
         FixedColor = 11516371
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
@@ -335,32 +334,27 @@ object FrmFornecedor: TFrmFornecedor
           item
             Expanded = False
             FieldName = 'FANTASIA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'CNPJ'
             Title.Caption = 'CPF/CNPJ'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ESTADO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'CIDADE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'BAIRRO'
-            Width = 64
             Visible = True
           end
           item

@@ -87,6 +87,7 @@ begin
     frmCliente.Show;
   finally
     if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
+    ViewTelaFundo.Hide;
   end;
 end;
 
@@ -100,6 +101,7 @@ begin
     frmFornecedor.Show;
   finally
     if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
+    ViewTelaFundo.Hide;
   end;
 end;
 
@@ -113,6 +115,7 @@ begin
     frmPrestador.Show;
   finally
     if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
+    ViewTelaFundo.Hide;
   end;
 end;
 
@@ -126,6 +129,7 @@ begin
     frmTransportador.Show;
   finally
     if not TAction(Sender).Enabled then TAction(Sender).Enabled := True;
+    ViewTelaFundo.Hide;
   end;
 end;
 
@@ -163,10 +167,14 @@ begin
 end;
 
 procedure TFrmMenu.imgUserPClick(Sender: TObject);
-begin
-  frmUser := TFrmUser.Create(nil);
-  ViewTelaFundo.Show;
-  frmUser.ShowModal;
+begin //Usuario
+  try
+    frmUser := TFrmUser.Create(nil);
+    ViewTelaFundo.Show;
+    frmUser.ShowModal;
+  finally
+    ViewTelaFundo.Hide;
+  end;
 end;
 
 procedure TFrmMenu.lblTituloEmpresaMouseEnter(Sender: TObject);
@@ -180,43 +188,63 @@ begin
 end;
 
 procedure TFrmMenu.sbCaixaClick(Sender: TObject);
-begin
-  GET_LineMENU(Sender);
-  ViewPrincipal := TviewPrincipal.Create(nil);
-  ViewTelaFundo.Show;
-  ViewPrincipal.ShowModal;
+begin //Caixa
+  try
+    GET_LineMENU(Sender);
+    ViewPrincipal := TviewPrincipal.Create(nil);
+    ViewTelaFundo.Show;
+    ViewPrincipal.ShowModal;
+  finally
+    ViewTelaFundo.Hide;
+  end;
 end;
 
 procedure TFrmMenu.sbCLClick(Sender: TObject);
 begin //Clientes
-  GET_LineMENU(Sender);
-  frmCliente := TFrmCliente.Create(nil);
-  ViewTelaFundo.Show;
-  frmCliente.ShowModal;
+  try
+    GET_LineMENU(Sender);
+    frmCliente := TFrmCliente.Create(nil);
+    ViewTelaFundo.Show;
+    frmCliente.ShowModal;
+  finally
+    ViewTelaFundo.Hide;
+  end;
 end;
 
 procedure TFrmMenu.sbFRClick(Sender: TObject);
 begin //Fornecedor
-  GET_LineMENU(Sender);
-  FrmFornecedor := TFrmFornecedor.Create(nil);
-  ViewTelaFundo.Show;
-  FrmFornecedor.ShowModal;
+  try
+    GET_LineMENU(Sender);
+    FrmFornecedor := TFrmFornecedor.Create(nil);
+    ViewTelaFundo.Show;
+    FrmFornecedor.ShowModal;
+  finally
+    ViewTelaFundo.Hide;
+  end;
 end;
 
 procedure TFrmMenu.sbPRClick(Sender: TObject);
 begin //Prestador
-  GET_LineMENU(Sender);
-  FrmPrestador := TfrmPrestador.Create(nil);
-  ViewTelaFundo.Show;
-  FrmPrestador.ShowModal;
+  try
+    GET_LineMENU(Sender);
+    FrmPrestador := TfrmPrestador.Create(nil);
+    ViewTelaFundo.Show;
+    FrmPrestador.ShowModal;
+  finally
+    ViewTelaFundo.Hide
+  end;
 end;
 
 procedure TFrmMenu.sbTRClick(Sender: TObject);
 begin //Transportador
-  GET_LineMENU(Sender);
-  FrmTransportador := TfrmTransportador.Create(nil);
-  ViewTelaFundo.Show;
-  FrmTransportador.ShowModal;
+  try
+    GET_LineMENU(Sender);
+    FrmTransportador := TfrmTransportador.Create(nil);
+    ViewTelaFundo.Show;
+    FrmTransportador.ShowModal;
+  finally
+    ViewTelaFundo.Hide;
+  end;
 end;
 
 procedure TFrmMenu.Timer1Timer(Sender: TObject);
