@@ -292,7 +292,7 @@ object FrmFornecedor: TFrmFornecedor
     Top = 65
     Width = 1036
     Height = 646
-    ActivePage = Cadastro
+    ActivePage = Consulta
     Align = alClient
     TabOrder = 1
     object Consulta: TTabSheet

@@ -1,14 +1,11 @@
 inherited viewAbrirCaixa: TviewAbrirCaixa
   Caption = 'viewAbrirCaixa'
   Position = poDesktopCenter
-  ExplicitWidth = 1042
-  ExplicitHeight = 758
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlTopo: TPanel
     inherited lblTitulo: TLabel
       Width = 97
-      Height = 34
       Caption = 'Abrir Caixa'
       ExplicitWidth = 97
     end
@@ -17,10 +14,6 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
     inherited Page_panelconteudo: TPageControl
       ActivePage = Card_pesquisar
       inherited Card_cadastro: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 1030
-        ExplicitHeight = 643
         object lblVlrInicial: TLabel [0]
           Left = 11
           Top = 104
@@ -48,11 +41,6 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-        end
-        inherited pnlFiltroCadastro: TPanel
-          inherited lblTituloCadastro: TLabel
-            Height = 51
-          end
         end
         object edVlrIncial: TDBEdit
           Left = 11
@@ -108,16 +96,13 @@ inherited viewAbrirCaixa: TviewAbrirCaixa
         end
       end
       inherited Card_pesquisar: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 1030
-        ExplicitHeight = 643
         inherited pnlFiltroPesquisa: TPanel
           inherited pnlFiltro: TPanel
             inherited lblPesquisa: TLabel
               Top = 15
+              Height = 23
               Margins.Top = 15
-              ExplicitTop = 19
+              ExplicitTop = 15
               ExplicitHeight = 18
             end
             object rdoAberto: TRadioButton

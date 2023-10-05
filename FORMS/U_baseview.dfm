@@ -756,10 +756,6 @@ inherited viewbaselista1: Tviewbaselista1
       object Card_pesquisar: TTabSheet
         Caption = 'Card_pesquisar'
         ImageIndex = 1
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object pnlFiltroPesquisa: TPanel
           Left = 0
           Top = 0
@@ -809,7 +805,7 @@ inherited viewbaselista1: Tviewbaselista1
               Left = 3
               Top = 20
               Width = 117
-              Height = 23
+              Height = 18
               Margins.Top = 20
               Align = alLeft
               Caption = '[PESQUISA]'
@@ -819,6 +815,7 @@ inherited viewbaselista1: Tviewbaselista1
               Font.Name = 'Tahoma'
               Font.Style = [fsBold]
               ParentFont = False
+              ExplicitHeight = 23
             end
           end
         end

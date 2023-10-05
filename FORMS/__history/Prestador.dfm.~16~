@@ -1,6 +1,6 @@
 object FrmPrestador: TFrmPrestador
-  Left = 343
-  Top = 0
+  Left = 549
+  Top = 231
   Caption = 'Prestador'
   ClientHeight = 671
   ClientWidth = 1061
@@ -364,6 +364,7 @@ object FrmPrestador: TFrmPrestador
           Height = 33
           Caption = 'Inserir'
           TabOrder = 0
+          OnClick = btInserirClick
         end
         object DBNavigator1: TDBNavigator
           Left = 11
@@ -376,12 +377,13 @@ object FrmPrestador: TFrmPrestador
         end
         object btAlterar: TBitBtn
           Tag = -11
-          Left = 76
+          Left = 79
           Top = 6
           Width = 61
           Height = 33
           Caption = 'Alterar'
           TabOrder = 2
+          OnClick = btAlterarClick
         end
         object btSalvar: TBitBtn
           Tag = 11
@@ -392,6 +394,7 @@ object FrmPrestador: TFrmPrestador
           Caption = 'Salvar'
           Enabled = False
           TabOrder = 3
+          OnClick = btSalvarClick
         end
         object btExcluir: TBitBtn
           Tag = 11
@@ -402,6 +405,7 @@ object FrmPrestador: TFrmPrestador
           Caption = 'Excluir'
           Enabled = False
           TabOrder = 4
+          OnClick = btExcluirClick
         end
         object btCancelar: TBitBtn
           Tag = 11
@@ -412,6 +416,7 @@ object FrmPrestador: TFrmPrestador
           Caption = 'Cancelar'
           Enabled = False
           TabOrder = 5
+          OnClick = btCancelarClick
         end
       end
       object Panel4: TPanel
@@ -666,27 +671,6 @@ object FrmPrestador: TFrmPrestador
             'Produtor Rural')
           TabOrder = 0
         end
-        object rgSexo: TDBRadioGroup
-          Tag = 11
-          Left = 649
-          Top = 50
-          Width = 169
-          Height = 31
-          Caption = 'G'#234'nero'
-          Columns = 2
-          DataField = 'SEXO'
-          Enabled = False
-          Items.Strings = (
-            'Masculino'
-            'Feminino')
-          ParentBackground = True
-          TabOrder = 1
-          TabStop = True
-          Values.Strings = (
-            'M'
-            'F')
-          Visible = False
-        end
         object dbCBInativo: TDBCheckBox
           Tag = 11
           Left = 776
@@ -696,7 +680,7 @@ object FrmPrestador: TFrmPrestador
           Caption = 'Inativo'
           DataField = '_INATIVO'
           Enabled = False
-          TabOrder = 2
+          TabOrder = 1
           ValueChecked = 'T'
           ValueUnchecked = 'F'
         end
@@ -707,8 +691,9 @@ object FrmPrestador: TFrmPrestador
           Width = 112
           Height = 21
           DataField = 'TELEFONE'
+          DataSource = dtsCadastro
           Enabled = False
-          TabOrder = 3
+          TabOrder = 2
         end
         object edTelefone2: TDBEdit
           Tag = 11
@@ -717,8 +702,9 @@ object FrmPrestador: TFrmPrestador
           Width = 112
           Height = 21
           DataField = 'TELEFONE2'
+          DataSource = dtsCadastro
           Enabled = False
-          TabOrder = 4
+          TabOrder = 3
         end
         object edNome: TDBEdit
           Tag = 11
@@ -727,8 +713,9 @@ object FrmPrestador: TFrmPrestador
           Width = 222
           Height = 21
           DataField = 'FANTASIA'
+          DataSource = dtsCadastro
           Enabled = False
-          TabOrder = 5
+          TabOrder = 4
         end
         object edCodigo: TDBEdit
           Tag = 11
@@ -737,18 +724,20 @@ object FrmPrestador: TFrmPrestador
           Width = 121
           Height = 21
           DataField = 'ID'
+          DataSource = dtsCadastro
           Enabled = False
-          TabOrder = 6
+          TabOrder = 5
         end
         object edRazaosocial: TDBEdit
           Tag = 11
-          Left = 381
+          Left = 378
           Top = 16
           Width = 181
           Height = 21
           DataField = 'RAZAOSOCIAL'
+          DataSource = dtsCadastro
           Enabled = False
-          TabOrder = 7
+          TabOrder = 6
         end
         object edCnpj: TDBEdit
           Tag = 11
@@ -757,18 +746,20 @@ object FrmPrestador: TFrmPrestador
           Width = 158
           Height = 21
           DataField = 'CNPJ'
+          DataSource = dtsCadastro
           Enabled = False
-          TabOrder = 8
+          TabOrder = 7
         end
         object edIe: TDBEdit
           Tag = 11
-          Left = 193
+          Left = 191
           Top = 60
           Width = 112
           Height = 21
           DataField = 'IE'
+          DataSource = dtsCadastro
           Enabled = False
-          TabOrder = 9
+          TabOrder = 8
         end
         object edDDD: TDBEdit
           Tag = 11
@@ -777,8 +768,9 @@ object FrmPrestador: TFrmPrestador
           Width = 21
           Height = 21
           DataField = 'DDD'
+          DataSource = dtsCadastro
           Enabled = False
-          TabOrder = 10
+          TabOrder = 9
         end
         object edDDD2: TDBEdit
           Tag = 11
@@ -787,8 +779,9 @@ object FrmPrestador: TFrmPrestador
           Width = 21
           Height = 21
           DataField = 'DDD2'
+          DataSource = dtsCadastro
           Enabled = False
-          TabOrder = 11
+          TabOrder = 10
         end
       end
     end
@@ -1087,6 +1080,7 @@ object FrmPrestador: TFrmPrestador
     Aggregates = <>
     Params = <>
     ProviderName = 'dspConsulta'
+    AfterScroll = cdsConsultaAfterScroll
     Left = 257
     Top = 8
     object cdsConsultaID: TIntegerField
@@ -1119,5 +1113,413 @@ object FrmPrestador: TFrmPrestador
     ColorEdit = 13041663
     Left = 385
     Top = 8
+  end
+  object dtsCadastro: TDataSource
+    DataSet = cdsCadastro
+    Left = 758
+    Top = 10
+  end
+  object sqlCadastro: TSQLDataSet
+    SchemaName = 'SYSDBA'
+    CommandText = 
+      'select C.*, CO.CONTATO, CO.EMAIL, E.CIDADE, E.ESTADO,E.ENDERECO,' +
+      ' E.NUMERO,E.BAIRRO, E.CEP,TP.TIPO, P.FANTASIA as TRANSPORTADORA_' +
+      'FANTASIA from CADPRESTADOR C'#13#10'left join CADPRESTADOR_CONTATO CO ' +
+      'on (CO.ID_PRESTADOR = C.ID and CO.PADRAO = '#39'X'#39')'#13#10'left join CADPR' +
+      'ESTADOR_ENDERECO E on (E.ID_PRESTADOR = C.ID and E.TIPO_END = '#39'(' +
+      'Padr'#227'o)'#39')'#13#10'left join  CADTIPOPRESTADOR TP on TP.ID = C.ID_TIPO'#13#10 +
+      'left join CADPRESTADOR P on P.ID = C.ID_TRANSPORTADORA'#13#10'where C.' +
+      'ID =:ID AND C.TRANSPORTADORA is null'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    SQLConnection = Conexao.Conexao
+    Left = 674
+    Top = 10
+    object sqlCadastroID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object sqlCadastroID_TIPO: TIntegerField
+      FieldName = 'ID_TIPO'
+    end
+    object sqlCadastroFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Size = 50
+    end
+    object sqlCadastroRAZAOSOCIAL: TStringField
+      FieldName = 'RAZAOSOCIAL'
+      Size = 100
+    end
+    object sqlCadastroCNPJ: TStringField
+      FieldName = 'CNPJ'
+      FixedChar = True
+      Size = 14
+    end
+    object sqlCadastroIE: TStringField
+      FieldName = 'IE'
+      FixedChar = True
+      Size = 15
+    end
+    object sqlCadastroDDD: TStringField
+      FieldName = 'DDD'
+      FixedChar = True
+      Size = 2
+    end
+    object sqlCadastroTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+    end
+    object sqlCadastroDDD2: TStringField
+      FieldName = 'DDD2'
+      FixedChar = True
+      Size = 2
+    end
+    object sqlCadastroTELEFONE2: TStringField
+      FieldName = 'TELEFONE2'
+    end
+    object sqlCadastroDDDFAX: TStringField
+      FieldName = 'DDDFAX'
+      FixedChar = True
+      Size = 2
+    end
+    object sqlCadastroFAX: TStringField
+      FieldName = 'FAX'
+    end
+    object sqlCadastroSITE: TStringField
+      FieldName = 'SITE'
+      Size = 50
+    end
+    object sqlCadastroDATACAD: TDateField
+      FieldName = 'DATACAD'
+    end
+    object sqlCadastroDATAFUND: TDateField
+      FieldName = 'DATAFUND'
+    end
+    object sqlCadastroBLOQUEIO: TDateField
+      FieldName = 'BLOQUEIO'
+    end
+    object sqlCadastroINATIVO: TDateField
+      FieldName = 'INATIVO'
+    end
+    object sqlCadastroPESSOAFISICA: TStringField
+      FieldName = 'PESSOAFISICA'
+      FixedChar = True
+      Size = 1
+    end
+    object sqlCadastroTIPOPESSOA: TStringField
+      FieldName = 'TIPOPESSOA'
+      FixedChar = True
+      Size = 2
+    end
+    object sqlCadastroOBS: TStringField
+      FieldName = 'OBS'
+      Size = 500
+    end
+    object sqlCadastroUSUARIO: TIntegerField
+      FieldName = 'USUARIO'
+    end
+    object sqlCadastroCONDPAGTO: TStringField
+      FieldName = 'CONDPAGTO'
+      Size = 50
+    end
+    object sqlCadastroID_TRANSPORTADORA: TIntegerField
+      FieldName = 'ID_TRANSPORTADORA'
+    end
+    object sqlCadastroMODFRETE: TStringField
+      FieldName = 'MODFRETE'
+      FixedChar = True
+      Size = 3
+    end
+    object sqlCadastroSUFRAMA: TStringField
+      FieldName = 'SUFRAMA'
+      Size = 10
+    end
+    object sqlCadastroTRANSPORTADORA_FANTASIA: TStringField
+      FieldName = 'TRANSPORTADORA_FANTASIA'
+      ProviderFlags = []
+      Size = 50
+    end
+    object sqlCadastroCIDADE: TStringField
+      FieldName = 'CIDADE'
+      ProviderFlags = []
+      Size = 30
+    end
+    object sqlCadastroESTADO: TStringField
+      FieldName = 'ESTADO'
+      ProviderFlags = []
+      FixedChar = True
+      Size = 2
+    end
+    object sqlCadastroTIPO: TStringField
+      FieldName = 'TIPO'
+      ProviderFlags = []
+      Size = 30
+    end
+    object sqlCadastroCONTATO: TStringField
+      FieldName = 'CONTATO'
+      ProviderFlags = []
+      Size = 50
+    end
+    object sqlCadastroEMAIL: TStringField
+      FieldName = 'EMAIL'
+      ProviderFlags = []
+      Size = 100
+    end
+    object sqlCadastroID_EMP: TIntegerField
+      FieldName = 'ID_EMP'
+    end
+    object sqlCadastroENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      ProviderFlags = []
+      Size = 50
+    end
+    object sqlCadastroNUMERO: TStringField
+      FieldName = 'NUMERO'
+      ProviderFlags = []
+      Size = 10
+    end
+    object sqlCadastroBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      ProviderFlags = []
+      Size = 30
+    end
+    object sqlCadastroCEP: TStringField
+      FieldName = 'CEP'
+      ProviderFlags = []
+      FixedChar = True
+      Size = 8
+    end
+    object sqlCadastroIM: TStringField
+      FieldName = 'IM'
+    end
+    object sqlCadastroTELEFONE_ZAP: TStringField
+      FieldName = 'TELEFONE_ZAP'
+    end
+    object sqlCadastroTELEFONE2_ZAP: TStringField
+      FieldName = 'TELEFONE2_ZAP'
+    end
+    object sqlCadastroTELEFONE3_ZAP: TStringField
+      FieldName = 'TELEFONE3_ZAP'
+    end
+    object sqlCadastroSEXO: TStringField
+      FieldName = 'SEXO'
+      FixedChar = True
+      Size = 1
+    end
+    object sqlCadastroTRANSPORTADORA: TStringField
+      FieldName = 'TRANSPORTADORA'
+      FixedChar = True
+      Size = 1
+    end
+    object sqlCadastroCHAVEPIX: TStringField
+      FieldName = 'CHAVEPIX'
+      Size = 100
+    end
+  end
+  object dspCadastro: TDataSetProvider
+    DataSet = sqlCadastro
+    UpdateMode = upWhereKeyOnly
+    Left = 702
+    Top = 10
+  end
+  object cdsCadastro: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspCadastro'
+    Left = 730
+    Top = 10
+    object cdsCadastroID: TIntegerField
+      Tag = 1
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object cdsCadastroID_TIPO: TIntegerField
+      FieldName = 'ID_TIPO'
+    end
+    object cdsCadastroFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Size = 50
+    end
+    object cdsCadastroRAZAOSOCIAL: TStringField
+      FieldName = 'RAZAOSOCIAL'
+      Size = 100
+    end
+    object cdsCadastroCNPJ: TStringField
+      FieldName = 'CNPJ'
+      EditMask = '00.000.000/0000-00;0;'
+      FixedChar = True
+      Size = 14
+    end
+    object cdsCadastroIE: TStringField
+      FieldName = 'IE'
+      FixedChar = True
+      Size = 15
+    end
+    object cdsCadastroDDD: TStringField
+      FieldName = 'DDD'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsCadastroTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Size = 15
+    end
+    object cdsCadastroDDD2: TStringField
+      FieldName = 'DDD2'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsCadastroTELEFONE2: TStringField
+      FieldName = 'TELEFONE2'
+      Size = 15
+    end
+    object cdsCadastroDDDFAX: TStringField
+      FieldName = 'DDDFAX'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsCadastroFAX: TStringField
+      FieldName = 'FAX'
+      Size = 15
+    end
+    object cdsCadastroSITE: TStringField
+      FieldName = 'SITE'
+      Size = 50
+    end
+    object cdsCadastroDATACAD: TDateField
+      FieldName = 'DATACAD'
+    end
+    object cdsCadastroDATAFUND: TDateField
+      FieldName = 'DATAFUND'
+    end
+    object cdsCadastroBLOQUEIO: TDateField
+      FieldName = 'BLOQUEIO'
+    end
+    object cdsCadastroINATIVO: TDateField
+      FieldName = 'INATIVO'
+    end
+    object cdsCadastroUSUARIO: TIntegerField
+      FieldName = 'USUARIO'
+    end
+    object cdsCadastroPESSOAFISICA: TStringField
+      FieldName = 'PESSOAFISICA'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsCadastroTIPOPESSOA: TStringField
+      FieldName = 'TIPOPESSOA'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsCadastroOBS: TStringField
+      FieldName = 'OBS'
+      Size = 2500
+    end
+    object cdsCadastroCONDPAGTO: TStringField
+      FieldName = 'CONDPAGTO'
+      Size = 50
+    end
+    object cdsCadastroID_TRANSPORTADORA: TIntegerField
+      FieldName = 'ID_TRANSPORTADORA'
+    end
+    object cdsCadastroMODFRETE: TStringField
+      FieldName = 'MODFRETE'
+      FixedChar = True
+      Size = 3
+    end
+    object cdsCadastroSUFRAMA: TStringField
+      FieldName = 'SUFRAMA'
+      Size = 10
+    end
+    object cdsCadastroTRANSPORTADORA_FANTASIA: TStringField
+      FieldName = 'TRANSPORTADORA_FANTASIA'
+      ProviderFlags = []
+      Size = 50
+    end
+    object cdsCadastroCIDADE: TStringField
+      FieldName = 'CIDADE'
+      ProviderFlags = []
+      Size = 30
+    end
+    object cdsCadastroESTADO: TStringField
+      FieldName = 'ESTADO'
+      ProviderFlags = []
+      FixedChar = True
+      Size = 2
+    end
+    object cdsCadastroTIPO: TStringField
+      FieldName = 'TIPO'
+      ProviderFlags = []
+      Size = 30
+    end
+    object cdsCadastroCONTATO: TStringField
+      FieldName = 'CONTATO'
+      ProviderFlags = []
+      Size = 50
+    end
+    object cdsCadastroEMAIL: TStringField
+      FieldName = 'EMAIL'
+      ProviderFlags = []
+      Size = 100
+    end
+    object cdsCadastroID_EMP: TIntegerField
+      FieldName = 'ID_EMP'
+    end
+    object cdsCadastroENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      ProviderFlags = []
+      Size = 50
+    end
+    object cdsCadastroNUMERO: TStringField
+      FieldName = 'NUMERO'
+      ProviderFlags = []
+      Size = 10
+    end
+    object cdsCadastroCEP: TStringField
+      FieldName = 'CEP'
+      ProviderFlags = []
+      FixedChar = True
+      Size = 8
+    end
+    object cdsCadastroBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      ProviderFlags = []
+      Size = 30
+    end
+    object cdsCadastroIM: TStringField
+      FieldName = 'IM'
+    end
+    object cdsCadastroTELEFONE_ZAP: TStringField
+      FieldName = 'TELEFONE_ZAP'
+    end
+    object cdsCadastroTELEFONE2_ZAP: TStringField
+      FieldName = 'TELEFONE2_ZAP'
+    end
+    object cdsCadastroTELEFONE3_ZAP: TStringField
+      FieldName = 'TELEFONE3_ZAP'
+    end
+    object cdsCadastroSEXO: TStringField
+      FieldName = 'SEXO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsCadastroTRANSPORTADORA: TStringField
+      FieldName = 'TRANSPORTADORA'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsCadastroCHAVEPIX: TStringField
+      FieldName = 'CHAVEPIX'
+      Size = 100
+    end
   end
 end

@@ -20,7 +20,7 @@ object FrmPrestador: TFrmPrestador
     Top = 65
     Width = 1061
     Height = 606
-    ActivePage = Consulta
+    ActivePage = Cadastro
     Align = alClient
     TabOrder = 0
     object Consulta: TTabSheet
